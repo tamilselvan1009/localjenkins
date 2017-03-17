@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>LINUX_GIT_DIR</name>
+          <description>Specify the location containing the git repo to use</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>LINUX_PACKAGE_DIR</name>
+          <description>Specify the directory where linux package to be copied</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_NAME</name>
+          <description>Specify a name for the build</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>LINUX_VECTORCAST_DIR</name>
+          <description>Specify the VECTORCAST_DIR on which VcTools to be installed. Leaving blank will skip the vcTools installation.</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash -xe
+
+# copy the artifacts from git dir
+cp -r &quot;${LINUX_GIT_DIR}/harvester&quot; .
+cp -r &quot;${LINUX_GIT_DIR}/imports&quot; .
+cp -r &quot;${LINUX_GIT_DIR}/build.sh&quot; .
+
+# This job assumes that all envs are stored as globals
+# in the system. Ex: BOOST_DIR
+./build.sh
+cd build
+
+# 64-bit recorder lib will not be built
+# so handle it
+./release-package.sh --test_release || if [[ $? == 1]] ; then 
+		True
+    else
+    	False
+    fi
+    
+# copy the build to the shared location
+cd ../release-package
+cp -r release &quot;${LINUX_PACKAGE_DIR}/.&quot;
+</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+  </buildWrappers>
+</project>
