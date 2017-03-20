@@ -9,7 +9,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>e735fb1d-7473-4777-a70e-3e479b380c2b</uuid>
+          <uuid>88e8121b-36d1-4d16-bf73-6a077c0c8070</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -109,6 +109,7 @@ fi
 mkdir &quot;${LINUX_RELEASE_DIR}&quot;
 
 # copy all the files to git dir
+mkdir &quot;${LINUX_GIT_DIR}&quot;
 cp -r * &quot;${LINUX_GIT_DIR}/.&quot;
 
 </command>
