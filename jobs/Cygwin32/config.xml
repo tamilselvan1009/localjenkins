@@ -39,7 +39,7 @@ set path=%path:&quot;=%&#xd;
 set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
 &#xd;
-copy /s %WIN_GIT_DIR%\tests tests /Y&#xd;
+xcopy /s /d %WIN_GIT_DIR%\tests tests /Y&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
 mkdir tbuild32_cyg&#xd;
