@@ -47,7 +47,7 @@ echo $VECTORCAST_DIR
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
-cp -r $LINUX_RELEASE_DIR/Git/tests $WORKSPACE
+cp -r ${LINUX_GIT_DIR}/tests $WORKSPACE
 
 #CMake and run VcRunTests
 mkdir tbuild32
