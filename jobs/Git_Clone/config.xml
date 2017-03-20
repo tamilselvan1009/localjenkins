@@ -18,6 +18,7 @@
           <defaultValue>origin/develop</defaultValue>
           <selectedValue>NONE</selectedValue>
           <quickFilterEnabled>false</quickFilterEnabled>
+          <customJobName>[ Git_Clone ] </customJobName>
         </net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WIN_RELEASE_DIR</name>
@@ -120,7 +121,7 @@ cp -r * &quot;${LINUX_GIT_DIR}/.&quot;
           <configs>
             <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
           </configs>
-          <projects>Build_Linux32, Build_Windows</projects>
+          <projects>Build_Linux32,Build_Windows</projects>
           <condition>ALWAYS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>
