@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>WIN_GIT_DIR</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>WIN_PACKAGE_DIR</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_NAME</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>WIN_VECTORCAST_DIR</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <assignedNode>Windows_54</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.BatchFile>
+      <command>::copy artifacts from git&#xd;
+xcopy /s &quot;%WIN_GIT_DIR%\\harvester&quot;  .&#xd;
+xcopy /s &quot;%WIN_GIT_DIR%\\imports&quot; .&#xd;
+xcopy /s &quot;%WIN_GIT_DIR%\\buildWin.bat&quot; .&#xd;
+&#xd;
+:: This job assumes that all envs are set globally in the system&#xd;
+buildWin.bat --arch=all&#xd;
+cd build&#xd;
+release-pacakage.bat&#xd;
+cd ..\release-package&#xd;
+7z a harvester.win.zip release&#xd;
+mkdir &quot;%WIN_PACKAGE_DIR%&quot;&#xd;
+copy harvester.win.zip &quot;%WIN_PACKAGE_DIR%\\.&quot;</command>
+    </hudson.tasks.BatchFile>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+  </buildWrappers>
+</project>
