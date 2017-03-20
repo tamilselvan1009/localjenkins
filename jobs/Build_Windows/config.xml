@@ -47,7 +47,7 @@
       <command>call &quot;C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\vcvarsall.bat&quot; &#xd;
 ::copy artifacts from git&#xd;
 xcopy /s &quot;%WIN_GIT_DIR%\\harvester&quot;  harvester\&#xd;
-xcopy /s &quot;%WIN_GIT_DIR%\\imports&quot; . imports\&#xd;
+xcopy /s &quot;%WIN_GIT_DIR%\\imports&quot; imports\&#xd;
 copy &quot;%WIN_GIT_DIR%\\buildWin.bat&quot; .&#xd;
 &#xd;
 :: This job assumes that all envs are set globally in the system&#xd;
