@@ -58,7 +58,7 @@ cd build
 
 # 64-bit recorder lib will not be built
 # so handle it
-./release-package.sh --test_release || if [[ $? == 1]] ; then 
+./release-package.sh --test_release || if [[ $? == 1 ]]; then 
 		true
     else
     	false
