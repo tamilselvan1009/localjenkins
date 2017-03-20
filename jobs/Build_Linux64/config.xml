@@ -56,7 +56,7 @@ cp -r &quot;${LINUX_GIT_DIR}/build.sh&quot; .
 ./build.sh --arch=x64_lib
 
 # copy the 64-bit recorder lib to package
-cp build/lib64/libVcRecorderLib.so &quot;${LINUX_PACKAGE_DIR}/release/lib64/.&quot;
+cp build64/lib64/libVcRecorderLib.so &quot;${LINUX_PACKAGE_DIR}/release/lib64/.&quot;
 cd &quot;${LINUX_PACKAGE_DIR}&quot;
 tar -cvzf harvester.linux.tgz release
 
