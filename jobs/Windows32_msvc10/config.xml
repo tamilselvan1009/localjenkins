@@ -46,6 +46,7 @@ set VECTOR_LICENSE_FILE=C:\flexlm\vector-IDCWIN1.lic&#xd;
 set VC_ERROR_LEVEL=0&#xd;
 &#xd;
 xcopy %WIN_GIT_DIR%\tests %WORKSPACE% /Y&#xd;
+cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10 || call:handle_error&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests || call:handle_error&#xd;
