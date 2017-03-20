@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>LINUX_RELEASE_DIR</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>LINUX_GIT_DIR</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>LINUX_PACKAGE_DIR</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>LINUX_VECTORCAST_DIR</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <assignedNode>Redhat_64</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+
+# copy the required files from git repo
+cp -r &quot;${LINUX_GIT_DIR}/harvester&quot;  .
+cp -r &quot;${LINUX_GIT_DIR}/imports&quot;  .
+cp -r &quot;${LINUX_GIT_DIR}/build.sh&quot; .
+
+# This job assumes that env like BOOST64_DIR are
+# set as globals in the system
+./build.sh --arch=x64_lib
+
+# copy the 64-bit recorder lib to package
+cp build/lib64/libVcRecorderLib.so &quot;${LINUX_PACKAGE_DIR}/release/lib64/.&quot;
+cd &quot;${LINUX_PACKAGE_DIR}&quot;
+tar -cvzf harvester.linux.tgz release
+
+# install VcTools in Vectorcast dir 
+if [ ! -z &quot;$VECTORCAST_DIR&quot; ]; then
+export VECTORCAST_DIR=&quot;${LINUX_VECTORCAST_DIR}&quot;
+cd release
+./install.sh
+fi
+
+# remove the release to avoid cannot delete error
+rm -rf release</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
+  </buildWrappers>
+</project>
