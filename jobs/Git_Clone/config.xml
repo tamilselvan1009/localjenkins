@@ -9,7 +9,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>88e8121b-36d1-4d16-bf73-6a077c0c8070</uuid>
+          <uuid>3913d072-7009-4d1d-8520-42df9c732897</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -18,7 +18,6 @@
           <defaultValue>origin/develop</defaultValue>
           <selectedValue>NONE</selectedValue>
           <quickFilterEnabled>false</quickFilterEnabled>
-          <customJobName>[ Git_Clone ] </customJobName>
         </net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WIN_RELEASE_DIR</name>
@@ -153,5 +152,10 @@ cp -r * &quot;${LINUX_GIT_DIR}/.&quot;
   <publishers/>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
+      <template>${ENV, var=&quot;BUILD_NAME&quot;}</template>
+      <runAtStart>true</runAtStart>
+      <runAtEnd>false</runAtEnd>
+    </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
   </buildWrappers>
 </project>
