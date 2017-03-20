@@ -76,7 +76,7 @@ cp -r release &quot;${LINUX_PACKAGE_DIR}/.&quot;
           <configs>
             <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
           </configs>
-          <projects>Build_Linux_64</projects>
+          <projects>Build_Linux64</projects>
           <condition>ALWAYS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>
