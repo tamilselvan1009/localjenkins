@@ -69,7 +69,7 @@ $VECTORCAST_DIR/vpython VcCollectResult.py</command>
       <externalDelete></externalDelete>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
-      <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
+      <template>$BUILD_NAME</template>
       <runAtStart>true</runAtStart>
       <runAtEnd>true</runAtEnd>
     </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
