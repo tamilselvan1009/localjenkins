@@ -53,8 +53,8 @@ copy &quot;%WIN_GIT_DIR%\\buildWin.bat&quot; .&#xd;
 :: This job assumes that all envs are set globally in the system&#xd;
 call buildWin.bat msvc9 --arch=all&#xd;
 cd build&#xd;
-release-pacakage.bat&#xd;
-cd ..\release-package&#xd;
+call release-pacakage.bat --test_release&#xd;
+cd ..\release-packages&#xd;
 7z a harvester.win.zip release&#xd;
 mkdir &quot;%WIN_PACKAGE_DIR%&quot;&#xd;
 copy harvester.win.zip &quot;%WIN_PACKAGE_DIR%\\.&quot;</command>
