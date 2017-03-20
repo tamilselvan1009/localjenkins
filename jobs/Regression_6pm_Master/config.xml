@@ -117,7 +117,7 @@
           <configs>
             <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
           </configs>
-          <projects>Linux32, Windows32_msvc10, Cygwin32</projects>
+          <projects>Linux32,Windows32_msvc10,Cygwin32</projects>
           <condition>SUCCESS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>
