@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Run VcRunTests on Ubuntu32 bit mac</description>
+  <description>Run test cases in ValgrindTests</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.model.ParametersDefinitionProperty>
@@ -30,11 +30,7 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers>
-    <hudson.triggers.TimerTrigger>
-      <spec>00 13 * * *</spec>
-    </hudson.triggers.TimerTrigger>
-  </triggers>
+  <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
@@ -51,10 +47,10 @@ $VECTORCAST_DIR/clicast --version
 cp -r ${LINUX_GIT_DIR}/tests $WORKSPACE
 
 #CMake and run VcRunTests
-mkdir tbuild32
-cd tbuild32
+mkdir tbuild_valgrind
+cd tbuild_valgrind
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-$VECTORCAST_DIR/vpython VcRunTests.py --metrics
+$VECTORCAST_DIR/vpython ../VcRunTests.py --metrics
 $VECTORCAST_DIR/vpython VcCollectResult.py</command>
     </hudson.tasks.Shell>
   </builders>
