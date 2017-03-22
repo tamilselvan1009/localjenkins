@@ -54,6 +54,7 @@ set VECTOR_LICENSE_FILE=C:\flexlm\vector-IDCWIN2.lic&#xd;
 call buildWin.bat msvc9 --arch=all&#xd;
 cd build&#xd;
 call install.bat&#xd;
+set _VC_TEST_ENV_=1&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
