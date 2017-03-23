@@ -28,12 +28,29 @@
     </hudson.model.AllView>
     <org.jenkinsci.plugins.categorizedview.CategorizedJobsView plugin="categorized-view@1.9">
       <owner class="hudson" reference="../../.."/>
-      <name>Categorized</name>
+      <name>Categorized View</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>Build_Linux32</string>
+        <string>Build_Linux64</string>
+        <string>Build_Windows</string>
+        <string>Custom_Cygwin</string>
+        <string>Custom_Linux</string>
+        <string>Custom_Windows</string>
+        <string>Cygwin32</string>
+        <string>Git_Clone</string>
+        <string>Linux32</string>
+        <string>Linux_EnvCreate</string>
+        <string>Linux_ValgrindTest</string>
+        <string>Regression_6pm_Master</string>
+        <string>WinCyg_EnvCreate</string>
+        <string>Windows32_msvc10</string>
+        <string>Windows32_msvc9</string>
+        <string>Windows64_msvc10</string>
+        <string>Windows64_msvc9</string>
       </jobNames>
       <jobFilters/>
       <columns>
@@ -45,10 +62,21 @@
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
       </columns>
-      <recurse>false</recurse>
+      <recurse>true</recurse>
       <groupingRules/>
       <regexToIgnoreOnColorComputing></regexToIgnoreOnColorComputing>
-      <categorizationCriteria/>
+      <categorizationCriteria>
+        <org.jenkinsci.plugins.categorizedview.GroupingRule>
+          <groupRegex>^Regression_6pm_Master|Windows32_msvc10|Cygwin32|Linux32$</groupRegex>
+          <namingRule>Regression_6PM</namingRule>
+          <useDisplayName>false</useDisplayName>
+        </org.jenkinsci.plugins.categorizedview.GroupingRule>
+        <org.jenkinsci.plugins.categorizedview.GroupingRule>
+          <groupRegex>^Git_Clone|Build_Linux32|Build_Linux64|Build_Windows|</groupRegex>
+          <namingRule>Harvester_Build</namingRule>
+          <useDisplayName>false</useDisplayName>
+        </org.jenkinsci.plugins.categorizedview.GroupingRule>
+      </categorizationCriteria>
     </org.jenkinsci.plugins.categorizedview.CategorizedJobsView>
   </views>
   <primaryView>All</primaryView>
