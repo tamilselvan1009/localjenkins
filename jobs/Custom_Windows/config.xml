@@ -19,23 +19,7 @@
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.1.0">
-    <configVersion>2</configVersion>
-    <userRemoteConfigs>
-      <hudson.plugins.git.UserRemoteConfig>
-        <url>https://github.com/VectorSoftwareRI/Harvester</url>
-        <credentialsId>4ea2aec6-4495-43f3-b99c-4caf3d3417c9</credentialsId>
-      </hudson.plugins.git.UserRemoteConfig>
-    </userRemoteConfigs>
-    <branches>
-      <hudson.plugins.git.BranchSpec>
-        <name>${BRANCH}</name>
-      </hudson.plugins.git.BranchSpec>
-    </branches>
-    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
-    <submoduleCfg class="list"/>
-    <extensions/>
-  </scm>
+  <scm class="hudson.scm.NullSCM"/>
   <assignedNode>Windows_54</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
@@ -52,16 +36,17 @@ set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\custom\VCAST_WINDOWS&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
 &#xd;
-call buildWin.bat msvc9 --arch=all&#xd;
-cd build&#xd;
-call install.bat&#xd;
+REM call buildWin.bat msvc9 --arch=all&#xd;
+REM cd build&#xd;
+REM call install.bat&#xd;
 set _VC_TEST_ENV_=1&#xd;
 &#xd;
+echo %_VC_TEST_ENV_%&#xd;
+&#xd;
 cd %WORKSPACE%&#xd;
-mkdir tbuild32_msvc10&#xd;
+REM mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
-cmake ..\tests&#xd;
-exit&#xd;
+REM cmake ..\tests&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics&#xd;
 &#xd;
 </command>
@@ -74,11 +59,5 @@ exit&#xd;
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
   </publishers>
-  <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
-      <deleteDirs>false</deleteDirs>
-      <cleanupParameter></cleanupParameter>
-      <externalDelete></externalDelete>
-    </hudson.plugins.ws__cleanup.PreBuildCleanup>
-  </buildWrappers>
+  <buildWrappers/>
 </project>
