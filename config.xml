@@ -34,18 +34,24 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>Build_Linux32</string>
+        <string>Build_Linux64</string>
+        <string>Build_Windows</string>
+        <string>Custom_Cygwin</string>
+        <string>Custom_Linux</string>
+        <string>Custom_Windows</string>
+        <string>Cygwin32</string>
+        <string>Git_Clone</string>
+        <string>Linux32</string>
+        <string>Windows32_msvc10</string>
       </jobNames>
       <jobFilters/>
       <columns>
         <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
         <hudson.views.JobColumn/>
         <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
         <hudson.plugins.nodenamecolumn.NodeNameColumn plugin="nodenamecolumn@1.2"/>
-        <hudson.plugins.UpDownStreamViewColumn plugin="upstream-downstream-view@1.006"/>
       </columns>
       <recurse>false</recurse>
       <useCssStyle>false</useCssStyle>
