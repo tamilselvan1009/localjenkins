@@ -25,7 +25,7 @@
     </hudson.model.ParametersDefinitionProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
-  <assignedNode>master</assignedNode>
+  <assignedNode>Ubuntu32bit_71</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -36,12 +36,12 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
-export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-VECTORINDIA-X64-UBUNTU12.lic
+export VECTOR_LICENSE_FILE=/home/linuxregressionmac/flexlm/vector-UBUNTU.lic
 cd $WORKSPACE
 
 export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
 cp $LINUX_GIT_DIR/tests/VcCollectResult.py .
-python VcCollectResult.py --db=/mnt/nfs/shared/Jenkins_Result/vcshell.db --latestdiff --tag=result
+$VECTORCAST_DIR/vpython VcCollectResult.py --db=/mnt/nfs/shared/Jenkins_Result/vcshell.db --latestdiff --tag=result
 
 </command>
     </hudson.tasks.Shell>
