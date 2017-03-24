@@ -39,7 +39,7 @@
 cd $WORKSPACE
 
 export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
-cd $LINUX_GIT_DIR/tests
+cp $LINUX_GIT_DIR/tests/VcCollectResult.py .
 python VcCollectResult.py --db=/mnt/nfs/shared/Jenkins_Result/vcshell.db --latestdiff --tag=result
 
 </command>
