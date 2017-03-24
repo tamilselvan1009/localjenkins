@@ -36,6 +36,7 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
+export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-VECTORINDIA-X64-UBUNTU12.lic
 cd $WORKSPACE
 
 export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
