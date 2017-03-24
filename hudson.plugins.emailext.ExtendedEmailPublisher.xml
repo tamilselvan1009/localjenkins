@@ -1,10 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <hudson.plugins.emailext.ExtendedEmailPublisherDescriptor plugin="email-ext@2.57">
   <defaultSuffix>@vectorcast.com</defaultSuffix>
+  <smtpAuthUsername>kavya@vectorcast.com</smtpAuthUsername>
+  <smtpAuthPassword>LYP1URcPhqUu3OzHGd7vpFAceR7wPuR40dAEzOvWAGM=</smtpAuthPassword>
   <smtpHost>smtp.gmail.com</smtpHost>
-  <useSsl>false</useSsl>
+  <useSsl>true</useSsl>
+  <smtpPort>465</smtpPort>
   <charset>UTF-8</charset>
-  <defaultContentType>text/plain</defaultContentType>
+  <defaultContentType>text/html</defaultContentType>
   <defaultSubject>$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!</defaultSubject>
   <defaultBody>$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:&#xd;
 &#xd;
@@ -16,7 +19,7 @@ Check console output at $BUILD_URL to view the results.</defaultBody>
     <string>hudson.plugins.emailext.plugins.trigger.FailureTrigger</string>
   </defaultTriggerIds>
   <maxAttachmentSize>-1</maxAttachmentSize>
-  <recipientList></recipientList>
+  <recipientList>kavya@vectorcast.com</recipientList>
   <defaultReplyTo></defaultReplyTo>
   <excludedCommitters></excludedCommitters>
   <overrideGlobalSettings>true</overrideGlobalSettings>
