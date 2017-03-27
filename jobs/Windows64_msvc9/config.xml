@@ -30,7 +30,7 @@
     </hudson.model.ParametersDefinitionProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
-  <assignedNode>Windows_67</assignedNode>
+  <assignedNode>Windows_68</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -43,7 +43,7 @@
 set path=%path:&quot;=%&#xd;
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\vcvarsall.bat&quot; amd64&#xd;
 set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
-set VECTOR_LICENSE_FILE=C:\FLEXlm\vector-IDCWIN1.lic&#xd;
+set VECTOR_LICENSE_FILE=C:\FLEXlm\vector-IDCWIN8.lic&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 &#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
