@@ -73,7 +73,7 @@ goto:EOF&#xd;
           <configs>
             <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
           </configs>
-          <projects>Windows32_msvc9</projects>
+          <projects>Windows64_msvc10</projects>
           <condition>ALWAYS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>
