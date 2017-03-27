@@ -57,6 +57,7 @@
         <org.jenkinsci.plugins.categorizedview.IndentedJobColumn/>
         <hudson.views.BuildButtonColumn/>
         <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
       </columns>
       <recurse>true</recurse>
       <groupingRules/>
