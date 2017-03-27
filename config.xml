@@ -54,13 +54,9 @@
       </jobNames>
       <jobFilters/>
       <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
         <org.jenkinsci.plugins.categorizedview.IndentedJobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
+        <hudson.views.StatusColumn/>
       </columns>
       <recurse>true</recurse>
       <groupingRules/>
