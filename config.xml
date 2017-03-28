@@ -75,6 +75,17 @@
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
       </categorizationCriteria>
     </org.jenkinsci.plugins.categorizedview.CategorizedJobsView>
+    <com.ooyala.jenkins.plugins.pipelineaggregatorview.PipelineAggregator plugin="pipeline-aggregator-view@1.6">
+      <owner class="hudson" reference="../../.."/>
+      <name>Pipeline</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <fontSize>16</fontSize>
+      <buildHistorySize>16</buildHistorySize>
+      <useCondensedTables>false</useCondensedTables>
+      <useScrollingCommits>false</useScrollingCommits>
+    </com.ooyala.jenkins.plugins.pipelineaggregatorview.PipelineAggregator>
   </views>
   <primaryView>All</primaryView>
   <slaveAgentPort>0</slaveAgentPort>
