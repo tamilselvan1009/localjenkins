@@ -51,8 +51,8 @@ $VECTORCAST_DIR/vpython VcCollectResult.py --db=/mnt/nfs/shared/Jenkins_Result/v
       <recipientList>kavya@vectorcact.com</recipientList>
       <contentType>both</contentType>
       <defaultSubject>Regression Result</defaultSubject>
-      <defaultContent>Regression Result Summary</defaultContent>
-      <attachmentsPattern>Summary.html</attachmentsPattern>
+      <defaultContent>Summary.html</defaultContent>
+      <attachmentsPattern></attachmentsPattern>
       <presendScript></presendScript>
       <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
