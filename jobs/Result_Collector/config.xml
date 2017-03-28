@@ -72,7 +72,7 @@ $VECTORCAST_DIR/vpython VcCollectResult.py --db=/mnt/nfs/shared/Jenkins_Result/v
       <contentType>text/html</contentType>
       <defaultSubject></defaultSubject>
       <defaultContent></defaultContent>
-      <attachmentsPattern></attachmentsPattern>
+      <attachmentsPattern>Summary.html</attachmentsPattern>
       <presendScript></presendScript>
       <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
