@@ -23,7 +23,7 @@
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>https://github.com/VectorSoftwareRI/Harvester</url>
+        <url>http://github.com/VectorSoftwareRI/Harvester</url>
         <credentialsId>4ea2aec6-4495-43f3-b99c-4caf3d3417c9</credentialsId>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
