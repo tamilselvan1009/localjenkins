@@ -7,13 +7,12 @@
   <smtpPort>465</smtpPort>
   <charset>UTF-8</charset>
   <defaultContentType>text/html</defaultContentType>
-  <defaultSubject>$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!</defaultSubject>
-  <defaultBody>$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:&#xd;
-&#xd;
-Check console output at $BUILD_URL to view the results.</defaultBody>
   <defaultPresendScript></defaultPresendScript>
   <defaultPostsendScript></defaultPostsendScript>
   <defaultClasspath>
+    <hudson.plugins.emailext.GroovyScriptPath>
+      <path></path>
+    </hudson.plugins.emailext.GroovyScriptPath>
     <hudson.plugins.emailext.GroovyScriptPath>
       <path></path>
     </hudson.plugins.emailext.GroovyScriptPath>
