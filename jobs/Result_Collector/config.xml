@@ -65,9 +65,9 @@ $VECTORCAST_DIR/vpython VcCollectResult.py --db=/mnt/nfs/shared/Jenkins_Result/v
           </email>
         </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
       </configuredTriggers>
-      <contentType>both</contentType>
+      <contentType>text/html</contentType>
       <defaultSubject>Regression Result</defaultSubject>
-      <defaultContent>Summary.html</defaultContent>
+      <defaultContent>${FILE,path=&quot;Summary.html&quot;}</defaultContent>
       <attachmentsPattern></attachmentsPattern>
       <presendScript></presendScript>
       <postsendScript></postsendScript>
