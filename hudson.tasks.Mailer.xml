@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <hudson.tasks.Mailer_-DescriptorImpl plugin="mailer@1.19">
-  <defaultSuffix>@vectorcast.com</defaultSuffix>
   <hudsonUrl>http://192.168.163.61:8080/</hudsonUrl>
   <smtpAuthUsername>kavya@vectorcast.com</smtpAuthUsername>
   <smtpAuthPassword>LYP1URcPhqUu3OzHGd7vpFAceR7wPuR40dAEzOvWAGM=</smtpAuthPassword>
