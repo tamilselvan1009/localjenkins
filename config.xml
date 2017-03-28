@@ -85,6 +85,7 @@
       <buildHistorySize>16</buildHistorySize>
       <useCondensedTables>false</useCondensedTables>
       <useScrollingCommits>false</useScrollingCommits>
+      <filterRegex>Linux32</filterRegex>
     </com.ooyala.jenkins.plugins.pipelineaggregatorview.PipelineAggregator>
   </views>
   <primaryView>All</primaryView>
