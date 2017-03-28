@@ -43,7 +43,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>#!/bin/bash -xe
+      <command>#!/bin/bash
 
 cd $WORKSPACE
 export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
