@@ -9,7 +9,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
           <name>GIT_BRANCH_NAME</name>
           <description>Name of the branch. Default is origin/develop</description>
-          <uuid>c0a233fe-e86d-40f2-9d55-46fc7c77ad99</uuid>
+          <uuid>82623979-d414-4985-9da3-67efafddd7d4</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
