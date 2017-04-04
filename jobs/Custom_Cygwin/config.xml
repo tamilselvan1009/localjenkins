@@ -20,7 +20,7 @@
     </hudson.model.ParametersDefinitionProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
-  <assignedNode>Windows_68</assignedNode>
+  <assignedNode>Windows_67</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -32,7 +32,7 @@
       <command>cd %WORKSPACE%&#xd;
 set path=%path:&quot;=%&#xd;
 set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\custom\VCAST_WINDOWS&#xd;
-set VECTOR_LICENSE_FILE=C:\flexlm\vector-IDCWIN2.lic&#xd;
+set VECTOR_LICENSE_FILE=C:\flexlm\vector-IDCWIN1.lic&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 &#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
