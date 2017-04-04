@@ -6,19 +6,6 @@
   <properties>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
-        <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
-          <name>GIT_BRANCH_NAME</name>
-          <description>Name of the branch. Default is origin/develop</description>
-          <uuid>322914eb-888b-4c4d-9a81-6252328f3493</uuid>
-          <type>PT_BRANCH</type>
-          <branch></branch>
-          <tagFilter>*</tagFilter>
-          <branchFilter>.*</branchFilter>
-          <sortMode>NONE</sortMode>
-          <defaultValue>origin/develop</defaultValue>
-          <selectedValue>NONE</selectedValue>
-          <quickFilterEnabled>false</quickFilterEnabled>
-        </net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WIN_RELEASE_DIR</name>
           <description>Specify the location where artifacts will be stored. Location of the release dir in windows style path</description>
@@ -68,6 +55,11 @@
           <name>LINUX_VECTORCAST_DIR</name>
           <description>Specify the path to VECTORCAST_DIR</description>
           <defaultValue>/mnt/nfs/shared/vcinst_copy/vcinst</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>GIT_BRANCH_NAME</name>
+          <description>specify the branch name</description>
+          <defaultValue>origin/develop</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
