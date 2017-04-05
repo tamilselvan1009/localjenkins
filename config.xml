@@ -73,6 +73,11 @@
           <namingRule>Harvester_Build</namingRule>
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
+        <org.jenkinsci.plugins.categorizedview.GroupingRule>
+          <groupRegex>^Custom_Linux|Custom_Windows|Custom_Cygwin</groupRegex>
+          <namingRule>Custom_jobs</namingRule>
+          <useDisplayName>false</useDisplayName>
+        </org.jenkinsci.plugins.categorizedview.GroupingRule>
       </categorizationCriteria>
     </org.jenkinsci.plugins.categorizedview.CategorizedJobsView>
   </views>
