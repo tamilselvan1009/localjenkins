@@ -64,7 +64,7 @@
       <regexToIgnoreOnColorComputing></regexToIgnoreOnColorComputing>
       <categorizationCriteria>
         <org.jenkinsci.plugins.categorizedview.GroupingRule>
-          <groupRegex>^Regression_6pm_Master|Windows32_msvc10|Cygwin32|Linux32$</groupRegex>
+          <groupRegex>^Regression_6pm_Master|Windows32_msvc10|Cygwin32|(Linux32)$</groupRegex>
           <namingRule>Regression_6PM</namingRule>
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
