@@ -14,7 +14,23 @@
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
-  <scm class="hudson.scm.NullSCM"/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.1.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.com/VectorSoftwareRI/Harvester</url>
+        <credentialsId>4ea2aec6-4495-43f3-b99c-4caf3d3417c9</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/develop</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
   <assignedNode>Ubuntu32bit_71</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
@@ -34,9 +50,9 @@ echo $VECTORCAST_DIR
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
-cp -r /mnt/nfs/shared/Jenkins_Harvester/Git/tests $WORKSPACE
+#cp -r /mnt/nfs/shared/Jenkins_Harvester/Git/tests $WORKSPACE
 
-export _VC_TEST_ENV_=1
+#export _VC_TEST_ENV_=1
 
 #CMake and run VcRunTests
 mkdir tbuild32
