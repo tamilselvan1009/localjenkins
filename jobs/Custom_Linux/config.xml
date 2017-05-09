@@ -58,7 +58,7 @@ $VECTORCAST_DIR/clicast --version
 mkdir tbuild32
 cd tbuild32
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-cd CompatibilityTest\Version1_0x
+cd CompatibilityTest/Version1_0x
 $VECTORCAST_DIR/vpython ../../VcRunTests.py --metrics
 </command>
     </hudson.tasks.Shell>
