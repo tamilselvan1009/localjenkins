@@ -39,7 +39,14 @@ cp -r ${LINUX_GIT_DIR} $WORKSPACE
 
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 export VECTOR_LICENSE_FILE=/home/linuxregressionmac/flexlm/vector-UBUNTU.lic
-export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR</command>
+export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
+
+cd $WORKSPACE
+./build.sh --gcov
+cd build
+lcov --zerocounters --directory `pwd`
+./RunUnitTest.sh
+</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
