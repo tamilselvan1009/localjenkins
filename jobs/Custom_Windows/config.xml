@@ -2,7 +2,7 @@
 <project>
   <actions/>
   <description>Custom job which can be triggered at any instant of time. It does shallow clone, builds Harvester, installs VECTORCAST in shared/.VCAST_REGRESSION/custom</description>
-  <keepDependencies>false</keepDependencies>
+  <keepDependencies>true</keepDependencies>
   <properties>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
@@ -24,23 +24,7 @@
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.1.0">
-    <configVersion>2</configVersion>
-    <userRemoteConfigs>
-      <hudson.plugins.git.UserRemoteConfig>
-        <url>https://github.com/VectorSoftwareRI/Harvester</url>
-        <credentialsId>4ea2aec6-4495-43f3-b99c-4caf3d3417c9</credentialsId>
-      </hudson.plugins.git.UserRemoteConfig>
-    </userRemoteConfigs>
-    <branches>
-      <hudson.plugins.git.BranchSpec>
-        <name>*/develop</name>
-      </hudson.plugins.git.BranchSpec>
-    </branches>
-    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
-    <submoduleCfg class="list"/>
-    <extensions/>
-  </scm>
+  <scm class="hudson.scm.NullSCM"/>
   <assignedNode>Windows_54</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
@@ -53,11 +37,11 @@
       <command>cd %WORKSPACE%&#xd;
 set path=%path:&quot;=%&#xd;
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
-set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\custom\VCAST_WINDOWS&#xd;
+set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\JOB_6PM\VCAST_WINDOWS&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
 &#xd;
-REM xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
+xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 &#xd;
 REM call buildWin.bat msvc9 --arch=all&#xd;
 REM cd build&#xd;
@@ -70,8 +54,8 @@ cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests&#xd;
-cd CompatibilityTest\Version1_0x&#xd;
-%VECTORCAST_DIR%\vpython ..\..\VcRunTests.py --metrics&#xd;
+cd VcdbTest&#xd;
+%VECTORCAST_DIR%\vpython ..\VcRunTests.py --metrics&#xd;
 &#xd;
 </command>
     </hudson.tasks.BatchFile>
@@ -83,11 +67,5 @@ cd CompatibilityTest\Version1_0x&#xd;
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
   </publishers>
-  <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
-      <deleteDirs>false</deleteDirs>
-      <cleanupParameter></cleanupParameter>
-      <externalDelete></externalDelete>
-    </hudson.plugins.ws__cleanup.PreBuildCleanup>
-  </buildWrappers>
+  <buildWrappers/>
 </project>
