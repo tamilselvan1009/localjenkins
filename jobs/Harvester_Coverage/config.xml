@@ -1,7 +1,28 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
+  <description></description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>LINUX_GIT_DIR</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>LINUX_RELEASE_DIR</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>LINUX_VECTORCAST_DIR</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
@@ -9,7 +30,17 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <builders/>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+
+cp -r ${LINUX_GIT_DIR} $WORKSPACE
+
+export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
+export VECTOR_LICENSE_FILE=/home/linuxregressionmac/flexlm/vector-UBUNTU.lic
+export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR</command>
+    </hudson.tasks.Shell>
+  </builders>
   <publishers/>
   <buildWrappers/>
 </project>
