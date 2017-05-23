@@ -46,6 +46,19 @@ cd $WORKSPACE
 cd build
 lcov --zerocounters --directory `pwd`
 ./RunUnitTest.sh
+
+lcov --capture --directory . --output-file=coverage1.info
+
+mkdir tbuild
+cd tbuild
+cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+$VECTORCAST_DIR/vpython VcRunTests.py
+lcov --capture --directory . --output-file=coverage2.info
+
+mkdir coverage
+cd coverage
+lcov --add --add-tracefile ../coverage1.info -a ../coverage2.info -o coverage_merged.info
+genhtml ../coverage_merged.info
 </command>
     </hudson.tasks.Shell>
   </builders>
