@@ -53,7 +53,9 @@ mkdir tbuild64_cyg&#xd;
 cd tbuild64_cyg&#xd;
 set PATH=C:\cygwin64\bin;%PATH%&#xd;
 bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --metrics&#xd;
+%VECTORCAST_DIR%\clicast -lc template GNU_C_46&#xd;
+%VECTORCAST_DIR%\vcutil set_option C_EDG_FLAGS -w --gcc --gnu_version 40600 --restrict&#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py --metrics --cfg=.&#xd;
 %VECTORCAST_DIR%\vpython VcCollectResult.py --db=N:\shared\Jenkins_Result\vcshell.db --tag=cygwin64&#xd;
 </command>
     </hudson.tasks.BatchFile>
@@ -78,16 +80,5 @@ bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quo
       </configs>
     </hudson.plugins.parameterizedtrigger.BuildTrigger>
   </publishers>
-  <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
-      <deleteDirs>false</deleteDirs>
-      <cleanupParameter></cleanupParameter>
-      <externalDelete></externalDelete>
-    </hudson.plugins.ws__cleanup.PreBuildCleanup>
-    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
-      <template>${ENV, var=&quot;BUILD_NAME&quot;}</template>
-      <runAtStart>true</runAtStart>
-      <runAtEnd>true</runAtEnd>
-    </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
-  </buildWrappers>
+  <buildWrappers/>
 </project>
