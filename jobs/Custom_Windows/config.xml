@@ -37,7 +37,7 @@
       <command>cd %WORKSPACE%&#xd;
 set path=%path:&quot;=%&#xd;
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
-set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\JOB_6PM\VCAST_WINDOWS&#xd;
+set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\custom\VCAST_WINDOWS&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
 &#xd;
@@ -47,8 +47,6 @@ REM call buildWin.bat msvc9 --arch=all&#xd;
 REM cd build&#xd;
 REM call install.bat&#xd;
 REM set _VC_TEST_ENV_=1&#xd;
-&#xd;
-echo %_VC_TEST_ENV_%&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
