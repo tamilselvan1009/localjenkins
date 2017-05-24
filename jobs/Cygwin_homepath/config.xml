@@ -49,6 +49,7 @@ set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 &#xd;
 cd &quot;C:\cygwin\home\vectorindia&quot;&#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
+echo %VECTORCAST_DIR%&#xd;
 &#xd;
 mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
