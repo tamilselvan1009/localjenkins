@@ -36,7 +36,7 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
-cp -r ${LINUX_GIT_DIR} $WORKSPACE
+cp -r ${LINUX_GIT_DIR}\* $WORKSPACE
 
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 export VECTOR_LICENSE_FILE=/home/linuxregressionmac/flexlm/vector-UBUNTU.lic
