@@ -47,14 +47,13 @@ cd $WORKSPACE
 cd build
 lcov --zerocounters --directory `pwd`
 ./RunUnitTest.sh
-
 lcov --capture --directory . --output-file=coverage1.info
 
 cd $WORKSPACE
 mkdir tbuild
 cd tbuild
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-$VECTORCAST_DIR/vpython VcRunTests.py --gcov
+$VECTORCAST_DIR/vpython VcRunTests.py
 lcov --capture --directory . --output-file=coverage2.info
 
 cd $WORKSPACE
