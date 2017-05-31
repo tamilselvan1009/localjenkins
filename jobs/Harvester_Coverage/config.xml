@@ -45,22 +45,23 @@ export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
 cd $WORKSPACE
 ./build.sh --gcov
 cd build
+./install.sh
 lcov --zerocounters --directory `pwd`
 ./RunUnitTest.sh
-lcov --capture --directory . --output-file=coverage1.info
+
 
 cd $WORKSPACE
 mkdir tbuild
 cd tbuild
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 $VECTORCAST_DIR/vpython VcRunTests.py
-lcov --capture --directory . --output-file=coverage2.info
 
 cd $WORKSPACE
 mkdir coverage
 cd coverage
-lcov --add --add-tracefile ../coverage1.info -a ../coverage2.info -o coverage_merged.info
-genhtml ../coverage_merged.info
+lcov --capture --directory $WORKSPACE/build --output-file=$PWD/coverage.info
+#lcov --add --add-tracefile ../coverage1.info -a ../coverage2.info -o coverage_merged.info
+genhtml coverage.info
 </command>
     </hudson.tasks.Shell>
   </builders>
