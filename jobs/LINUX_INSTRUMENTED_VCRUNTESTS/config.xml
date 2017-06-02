@@ -51,8 +51,12 @@ fi
 mkdir ${VC_RESULT_DIR}
 
 #CMake and run VcRunTests
-mkdir tbuild32
-cd tbuild32
+if [ -d tbuild ]; then
+	rm -rf tbuild
+fi
+
+mkdir tbuild
+cd tbuild
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 export _VC_RUNTEST_RETURN_CODE_=0
 $VECTORCAST_DIR/vpython VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
