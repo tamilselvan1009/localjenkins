@@ -3,7 +3,27 @@
   <actions/>
   <description>Single job to run the manage project: /mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm</description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>LINUX_VECTORCAST_DIR</name>
+          <description></description>
+          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/VCAST_COVERAGE/VCAST_LINUX</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>HARVESTER_DIR</name>
+          <description></description>
+          <defaultValue>/mnt/nfs/shared/Harvester_Coverage/Linux/Harvester</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_NAME</name>
+          <description></description>
+          <defaultValue>VectorCAST coverage for Harvester</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@3.1.0">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
@@ -31,22 +51,7 @@
   <builders>
     <com.vectorcast.plugins.vectorcastexecution.VectorCASTSetup plugin="vectorcast-execution@0.18"/>
     <com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand plugin="vectorcast-execution@0.18">
-      <winCommand>
-set VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
-%VECTORCAST_DIR%\manage --project &quot;/mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm&quot; --status
-%VECTORCAST_DIR%\manage --project &quot;/mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm&quot; --release-locks
- %VECTORCAST_DIR%\manage --project &quot;/mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm&quot; --build-execute --incremental --output &quot;VcTools_manage_incremental_rebuild_report.html&quot; 
-
-%VECTORCAST_DIR%\vpython &quot;%WORKSPACE%\vc_scripts\generate-results.py&quot; --api 2 &quot;/mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm&quot; 
-%VECTORCAST_DIR%\manage --project &quot;/mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm&quot; --full-status=&quot;VcTools_full_report.html&quot;
-%VECTORCAST_DIR%\manage --project &quot;/mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm&quot; --create-report=aggregate   --output=&quot;VcTools_aggregate_report.html&quot;
-%VECTORCAST_DIR%\manage --project &quot;/mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm&quot; --create-report=metrics     --output=&quot;VcTools_metrics_report.html&quot;
-%VECTORCAST_DIR%\manage --project &quot;/mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm&quot; --create-report=environment --output=&quot;VcTools_environment_report.html&quot;
-%VECTORCAST_DIR%\manage --project &quot;/mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm&quot; --full-status &gt; &quot;VcTools_full_report.txt&quot;
-%VECTORCAST_DIR%\vpython &quot;%WORKSPACE%\vc_scripts\gen-combined-cov.py&quot; &quot;VcTools_aggregate_report.html&quot;
-%VECTORCAST_DIR%\vpython &quot;%WORKSPACE%\vc_scripts\getTotals.py&quot; --api 2 &quot;VcTools_full_report.txt&quot;
-
-</winCommand>
+      <winCommand></winCommand>
       <unixCommand>
 export VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
 $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm&quot; --status 
@@ -70,8 +75,47 @@ $VECTORCAST_DIR/clicast -lc -e harvester cover instrument statement
 cd ..
 ./build.sh --vcast_coverage
 
- $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm&quot; --build-execute --incremental --output &quot;VcTools_manage_incremental_rebuild_report.html&quot;
+ 
 
+
+</unixCommand>
+    </com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand>
+    <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.33">
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
+          </configs>
+          <projects>LINUX_INSTRUMENTED_VCRUNTESTS</projects>
+          <condition>ALWAYS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+          <triggerFromChildProjects>false</triggerFromChildProjects>
+          <block>
+            <buildStepFailureThreshold>
+              <name>FAILURE</name>
+              <ordinal>2</ordinal>
+              <color>RED</color>
+              <completeBuild>true</completeBuild>
+            </buildStepFailureThreshold>
+            <unstableThreshold>
+              <name>UNSTABLE</name>
+              <ordinal>1</ordinal>
+              <color>YELLOW</color>
+              <completeBuild>true</completeBuild>
+            </unstableThreshold>
+            <failureThreshold>
+              <name>FAILURE</name>
+              <ordinal>2</ordinal>
+              <color>RED</color>
+              <completeBuild>true</completeBuild>
+            </failureThreshold>
+          </block>
+          <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+        </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.TriggerBuilder>
+    <hudson.tasks.Shell>
+      <command>
 $VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/generate-results.py&quot; --api 2 &quot;/mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm&quot; 
 $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm&quot; --full-status=&quot;VcTools_full_report.html&quot;
 $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm&quot; --create-report=aggregate   --output=&quot;VcTools_aggregate_report.html&quot;
@@ -79,10 +123,8 @@ $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage_job/Vc
 $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm&quot; --create-report=environment --output=&quot;VcTools_environment_report.html&quot;
 $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm&quot; --full-status &gt; &quot;VcTools_full_report.txt&quot;
 $VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/gen-combined-cov.py&quot; &quot;VcTools_aggregate_report.html&quot;
-$VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/getTotals.py&quot; --api 2 &quot;VcTools_full_report.txt&quot;
-
-</unixCommand>
-    </com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand>
+$VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/getTotals.py&quot; --api 2 &quot;VcTools_full_report.txt&quot;</command>
+    </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
