@@ -36,7 +36,8 @@
     <com.vectorcast.plugins.vectorcastexecution.VectorCASTSetup plugin="vectorcast-execution@0.18"/>
     <com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand plugin="vectorcast-execution@0.18">
       <winCommand></winCommand>
-      <unixCommand>
+      <unixCommand>export PATH=/home/vectorindia/gcc-4.1.2/bin:$PATH
+
 export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
 export VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
 $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --status 
