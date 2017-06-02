@@ -40,11 +40,12 @@
 
 export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
 export VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
+cd ${LINUX_HARVESTER_DIR}
 &lt;&lt;COMMENT
 $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --status 
 $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --release-locks 
 
-cd ${LINUX_HARVESTER_DIR}
+
 if [ -d harvester ]; then
 rm -rf harvester
 fi
