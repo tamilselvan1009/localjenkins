@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
+  <actions/>
   <description>Single job to run the manage project: /mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm</description>
   <keepDependencies>false</keepDependencies>
   <properties/>
@@ -20,7 +21,8 @@
     <submoduleCfg class="list"/>
     <extensions/>
   </scm>
-  <canRoam>true</canRoam>
+  <assignedNode>Redhat_32</assignedNode>
+  <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
@@ -66,7 +68,6 @@ $VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/getTotals.py&quot; --api 2 &
   <publishers>
     <hudson.tasks.ArtifactArchiver>
       <artifacts>*_report.html, execution/**, management/**, xml_data/**</artifacts>
-      <latestOnly>false</latestOnly>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
@@ -83,7 +84,24 @@ $VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/getTotals.py&quot; --api 2 &
           <stopProcessingIfError>true</stopProcessingIfError>
         </CheckType>
       </types>
+      <thresholds>
+        <org.jenkinsci.plugins.xunit.threshold.FailedThreshold>
+          <unstableThreshold></unstableThreshold>
+          <unstableNewThreshold></unstableNewThreshold>
+          <failureThreshold></failureThreshold>
+          <failureNewThreshold></failureNewThreshold>
+        </org.jenkinsci.plugins.xunit.threshold.FailedThreshold>
+        <org.jenkinsci.plugins.xunit.threshold.SkippedThreshold>
+          <unstableThreshold></unstableThreshold>
+          <unstableNewThreshold></unstableNewThreshold>
+          <failureThreshold></failureThreshold>
+          <failureNewThreshold></failureNewThreshold>
+        </org.jenkinsci.plugins.xunit.threshold.SkippedThreshold>
+      </thresholds>
       <thresholdMode>1</thresholdMode>
+      <extraConfiguration>
+        <testTimeMargin>3000</testTimeMargin>
+      </extraConfiguration>
     </xunit>
     <com.vectorcast.plugins.vectorcastcoverage.VectorCASTPublisher plugin="vectorcast-coverage@0.10">
       <includes>**/coverage_results_*.xml</includes>
