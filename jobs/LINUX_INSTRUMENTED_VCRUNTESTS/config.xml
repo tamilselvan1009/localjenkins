@@ -84,7 +84,7 @@ export _VC_SEQ_DISPATCHER_=1
 $VECTORCAST_DIR/vpython ../VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
 find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/SEQ_DISPATCHER.DAT &apos;;&apos;
 
-cd ../../build
+cd ../../../build
 cp -r ../UnitTest .
 find . -name &quot;TESTINSS*&quot; -exec rm &apos;{}&apos; &apos;;&apos;
 ./RunUnitTest.sh || export _VC_RUNTEST_RETURN_CODE_=$?
