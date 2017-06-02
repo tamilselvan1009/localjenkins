@@ -47,6 +47,7 @@ if [ -d harvester ]; then
 rm -rf harvester
 fi
 git checkout -- harvester
+git stash
 git checkout master
 git branch -D develop
 git checkout develop
