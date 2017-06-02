@@ -51,6 +51,25 @@ set VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
 export VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
 $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm&quot; --status 
 $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm&quot; --release-locks 
+
+cd /mnt/nfs/shared/Harvester_Coverage/Linux/Harvester/cover
+$VECTORCAST_DIR/clicast -lc -e harvester cover instrument none
+git checkout master
+git branch -D develop
+git checkout develop
+git pull origin develop
+
+cd ..
+rm vcshell.*
+$VECTORCAST_DIR/vcshell --metrics bash ./build.sh
+$VECTORCAST_DIR/vcdb clearmetrics --file=vc_sqlite3.c
+
+cd cover
+$VECTORCAST_DIR/clicast -lc -e harvester cover instrument statement
+
+cd ..
+./build.sh --vcast_coverage
+
  $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm&quot; --build-execute --incremental --output &quot;VcTools_manage_incremental_rebuild_report.html&quot;
 
 $VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/generate-results.py&quot; --api 2 &quot;/mnt/nfs/shared/Harvester_Coverage_job/VcTools.vcm&quot; 
