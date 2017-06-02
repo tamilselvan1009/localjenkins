@@ -40,6 +40,7 @@
 
 export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
 export VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
+&lt;&lt;COMMENT
 $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --status 
 $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --release-locks 
 
@@ -76,11 +77,7 @@ while read a; do
   $VECTORCAST_DIR/clicast -e harvester cover append_cover_io true -u $a
 done &lt;../mainfiles.txt
 $VECTORCAST_DIR/clicast -e harvester cover  instrument statement
-
-
-
-cd cover
-$VECTORCAST_DIR/clicast -lc -e harvester cover instrument statement
+COMMENT
 
 cd ..
 ./build.sh --vcast_coverage
