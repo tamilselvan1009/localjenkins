@@ -42,17 +42,39 @@ export VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
 $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --status 
 $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --release-locks 
 
-cd ${LINUX_HARVESTER_DIR}/cover
-$VECTORCAST_DIR/clicast -lc -e harvester cover instrument none
+cd ${LINUX_HARVESTER_DIR}
+if [ -d harvester ]; then
+rm -rf harvester
+fi
+git checkout -- harvester
 git checkout master
 git branch -D develop
 git checkout develop
 git pull origin develop
 
-cd ..
 rm vcshell.*
 $VECTORCAST_DIR/vcshell --metrics bash ./build.sh
 $VECTORCAST_DIR/vcdb clearmetrics --file=vc_sqlite3.c
+if [ -d cover ]; then
+rm -rf cover
+fi
+mkdir cover
+
+cd cover
+$VECTORCAST_DIR/clicast -lc template GNU_CPP_41
+$VECTORCAST_DIR/clicast cover env create harvester
+$VECTORCAST_DIR/clicast -lc -e harvester option VCAST_APPEND_TO_TESTINSS TRUE
+$VECTORCAST_DIR/clicast -lc -e harvester option COVERAGE_IO_TYPE VCAST_COVERAGE_IO_BUFFERED
+$VECTORCAST_DIR/clicast -lc -e harvester option VCAST_DUMP_COVERAGE_AT_EXIT TRUE
+$VECTORCAST_DIR/clicast -lc -e harvester option VCAST_COVERAGE_FOR_HEADERS TRUE
+$VECTORCAST_DIR/clicast -lc -e harvester option VCAST_COVER_STATEMENTS_BY_BLOCK TRUE
+$VECTORCAST_DIR/clicover add_source_vcdb harvester  ../vcshell.db ../getfiles.txt
+while read a; do
+  $VECTORCAST_DIR/clicast -e harvester cover append_cover_io true -u $a
+done &lt;../mainfiles.txt
+$VECTORCAST_DIR/clicast -e harvester cover  instrument statement
+
+
 
 cd cover
 $VECTORCAST_DIR/clicast -lc -e harvester cover instrument statement
