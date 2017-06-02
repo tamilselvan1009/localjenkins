@@ -84,6 +84,20 @@ export _VC_SEQ_DISPATCHER_=1
 $VECTORCAST_DIR/vpython ../VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
 find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/SEQ_DISPATCHER.DAT &apos;;&apos;
 
+cd ../../build
+cp -r ../UnitTest .
+find . -name &quot;TESTINSS*&quot; -exec rm &apos;{}&apos; &apos;;&apos;
+./RunUnitTest.sh || export _VC_RUNTEST_RETURN_CODE_=$?
+find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/UNITTEST.DAT &apos;;&apos;
+
+if [ -d ../release-packages ]; then
+	rm -rf ../release-packages
+fi
+./release-package.sh
+cd ../release-packages/release/examples
+./buildall.sh
+find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/EXAMPLES.DAT &apos;;&apos;
+
 exit /b $_VC_RUNTEST_RETURN_CODE_</command>
     </hudson.tasks.Shell>
   </builders>
