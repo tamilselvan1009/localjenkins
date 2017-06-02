@@ -77,9 +77,9 @@ while read a; do
   $VECTORCAST_DIR/clicast -e harvester cover append_cover_io true -u $a
 done &lt;../mainfiles.txt
 $VECTORCAST_DIR/clicast -e harvester cover  instrument statement
-COMMENT
 
 cd ..
+COMMENT
 ./build.sh --vcast_coverage
 
  
