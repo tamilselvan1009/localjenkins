@@ -34,7 +34,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>call &quot;C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\vcvarsall.bat&quot;&#xd;
+      <command>call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
 &#xd;
 REM xcopy /S /I /E N:\shared\Jenkins_Harvester\Git_Latest  %WORKSPACE% /Q /Y&#xd;
 set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\VC_latest\windows&#xd;
@@ -45,6 +45,7 @@ REM call buildWin.bat msvc9 --arch=all&#xd;
 REM cd build&#xd;
 REM call install.bat&#xd;
 &#xd;
+call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
 cd %WORKSPACE%&#xd;
 REM mkdir tbuild&#xd;
 cd tbuild&#xd;
