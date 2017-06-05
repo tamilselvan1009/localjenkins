@@ -36,7 +36,7 @@
     <hudson.tasks.BatchFile>
       <command>call &quot;C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\vcvarsall.bat&quot;&#xd;
 &#xd;
-xcopy /s N:\\shared\\Jenkins_Harvester\\Git_Latest\\  %WORKSPACE%&#xd;
+xcopy /S /I /E &quot;N:\\shared\\Jenkins_Harvester\\Git_Latest\\&quot;  %WORKSPACE% /Q /Y&#xd;
 set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\VC_latest\windows&#xd;
 &#xd;
 call buildWin.bat msvc9 --arch=all&#xd;
