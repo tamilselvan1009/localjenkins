@@ -60,7 +60,11 @@ cp -r * /mnt/nfs/shared/Jenkins_Harvester/Git_Latest/.
 
 ./build.sh
 cd build
-./install.sh
+./install.sh || if [[ $? == 1 ]]; then 
+		true
+    else
+    	false
+    fi
 
 cd $WORKSPACE
 mkdir tbuild
