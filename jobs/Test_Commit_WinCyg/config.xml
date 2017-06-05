@@ -36,7 +36,7 @@
     <hudson.tasks.BatchFile>
       <command>call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
 &#xd;
-xcopy /S /I /E N:\shared\Jenkins_Harvester\Git_Latest  %WORKSPACE% /Q /Y&#xd;
+xcopy /S /I /E N:\shared\Git_Latest  %WORKSPACE% /Q /Y&#xd;
 set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\VC_latest\windows&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
