@@ -46,6 +46,8 @@
         <string>Linux_EnvCreate</string>
         <string>Linux_ValgrindTest</string>
         <string>Regression_6pm_Master</string>
+        <string>Test_Commit_Linux</string>
+        <string>Test_Commit_WinCyg</string>
         <string>WinCyg_EnvCreate</string>
         <string>Windows32_msvc10</string>
         <string>Windows32_msvc9</string>
@@ -74,8 +76,13 @@
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
         <org.jenkinsci.plugins.categorizedview.GroupingRule>
-          <groupRegex>^Custom_Linux|Custom_Windows|Custom_Cygwin</groupRegex>
+          <groupRegex>^Custom_Linux|Custom_Windows|Custom_Cygwin$</groupRegex>
           <namingRule>Custom_jobs</namingRule>
+          <useDisplayName>false</useDisplayName>
+        </org.jenkinsci.plugins.categorizedview.GroupingRule>
+        <org.jenkinsci.plugins.categorizedview.GroupingRule>
+          <groupRegex>^Test_Commit_Linux|Test_Commit_WinCyg$</groupRegex>
+          <namingRule>Test_Commit_jobs</namingRule>
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
       </categorizationCriteria>
