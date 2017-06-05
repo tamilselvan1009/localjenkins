@@ -36,25 +36,24 @@
     <hudson.tasks.BatchFile>
       <command>call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
 &#xd;
-REM xcopy /S /I /E N:\shared\Jenkins_Harvester\Git_Latest  %WORKSPACE% /Q /Y&#xd;
+xcopy /S /I /E N:\shared\Jenkins_Harvester\Git_Latest  %WORKSPACE% /Q /Y&#xd;
 set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\VC_latest\windows&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
 &#xd;
-REM call buildWin.bat msvc9 --arch=all&#xd;
-REM cd build&#xd;
-REM call install.bat&#xd;
+call buildWin.bat msvc9 --arch=all&#xd;
+cd build&#xd;
+call install.bat&#xd;
 &#xd;
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
 cd %WORKSPACE%&#xd;
-REM mkdir tbuild&#xd;
+mkdir tbuild&#xd;
 cd tbuild&#xd;
-REM cmake ..\tests&#xd;
+cmake ..\tests&#xd;
 cd HelloTest&#xd;
-REM %VECTORCAST_DIR%\vpython ..\VcRunTests.py&#xd;
+%VECTORCAST_DIR%\vpython ..\VcRunTests.py&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
-rmdir cbuild /s /q&#xd;
 mkdir cbuild&#xd;
 cd cbuild&#xd;
 set PATH=C:\cygwin\bin;%PATH%&#xd;
@@ -65,10 +64,16 @@ cd HelloTest&#xd;
   </builders>
   <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.19">
-      <recipients>kavya@vectorcast.com</recipients>
+      <recipients>vectorindia@vectorcast.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
   </publishers>
-  <buildWrappers/>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+  </buildWrappers>
 </project>
