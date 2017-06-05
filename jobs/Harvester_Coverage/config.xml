@@ -51,10 +51,24 @@ lcov --zerocounters --directory `pwd`
 
 
 cd $WORKSPACE
-mkdir tbuild
-cd tbuild
+mkdir tbuild1
+cd tbuild1
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 $VECTORCAST_DIR/vpython VcRunTests.py
+
+cd $WORKSPACE
+mkdir tbuild2
+cd tbuild2
+cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+$VECTORCAST_DIR/vpython VcRunTests.py --metrics
+
+cd $WORKSPACE
+mkdir tbuild3
+cd tbuild3
+cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+$VECTORCAST_DIR/vpython VcRunTests.py --cmdverb
+
+
 
 cd $WORKSPACE
 mkdir coverage
