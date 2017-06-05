@@ -17,7 +17,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
           <name>${GIT_REVISION}</name>
           <description></description>
-          <uuid>f39b28f2-fc98-4f70-8121-9f3d9dd70a40</uuid>
+          <uuid>f46fc6c8-a5c4-4c0a-a443-708f66acfb87</uuid>
           <type>PT_REVISION</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -83,11 +83,5 @@ bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quo
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
   </publishers>
-  <buildWrappers>
-    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
-      <template>${GIT_REVISION}</template>
-      <runAtStart>true</runAtStart>
-      <runAtEnd>true</runAtEnd>
-    </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
-  </buildWrappers>
+  <buildWrappers/>
 </project>
