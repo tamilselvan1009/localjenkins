@@ -71,17 +71,17 @@ cd ..
 
 cd MathTest/Matrix
 find . -name &quot;TESTINSS*&quot; -exec rm &apos;{}&apos; &apos;;&apos;
-$VECTORCAST_DIR/vpython ../VcRunTests.py --cmdverb || export _VC_RUNTEST_RETURN_CODE_=$?
+$VECTORCAST_DIR/vpython ../../VcRunTests.py --cmdverb || export _VC_RUNTEST_RETURN_CODE_=$?
 find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/CMDVERB.DAT &apos;;&apos;
 
 find . -name &quot;TESTINSS*&quot; -exec rm &apos;{}&apos; &apos;;&apos;
 export _VC_OLD_VCAPP_DB_IF_=1
-$VECTORCAST_DIR/vpython ../VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
+$VECTORCAST_DIR/vpython ../../VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
 find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/OLD_VCAPP.DAT &apos;;&apos;
 
 find . -name &quot;TESTINSS*&quot; -exec rm &apos;{}&apos; &apos;;&apos;
 export _VC_SEQ_DISPATCHER_=1
-$VECTORCAST_DIR/vpython ../VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
+$VECTORCAST_DIR/vpython ../../VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
 find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/SEQ_DISPATCHER.DAT &apos;;&apos;
 
 cd ../../../build
