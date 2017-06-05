@@ -81,7 +81,11 @@ ar cr c_cover_io.a c_cover_io.o
 ./build.sh --vcast_coverage
 
 cd build
-./install.sh
+./install.sh || if [[ $? == 1 ]]; then 
+	true
+    else
+    	false
+    fi
 
  
 
