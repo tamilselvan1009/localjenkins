@@ -76,6 +76,8 @@ $VECTORCAST_DIR/clicover add_source_vcdb harvester  ../vcshell.db ../getfiles.tx
 $VECTORCAST_DIR/clicast -e harvester cover  instrument statement
 
 cd ..
+gcc -c cover/harvester/c_cover_io.c -o c_cover_io.o
+ar cr c_cover_io.a c_cover_io.o
 ./build.sh --vcast_coverage
 
 cd build
