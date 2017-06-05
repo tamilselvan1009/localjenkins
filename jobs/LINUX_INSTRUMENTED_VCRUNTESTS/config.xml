@@ -102,7 +102,7 @@ cd ../release-packages/release/examples
 find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/EXAMPLES.DAT &apos;;&apos;
 
 cd ${LINUX_HARVESTER_DIR}/cover
-find ${VC_RESULT_DIR} -name *.DAT -exec $VECTORCAST_DIR/clicast -lc -e harvester cover result add &apos;{}&apos; &apos;;&apos;
+find ${VC_RESULT_DIR} -name &quot;*.DAT&quot; -exec $VECTORCAST_DIR/clicast -lc -e harvester cover result add &apos;{}&apos; &apos;;&apos;
 
 echo The return code from VcRunTests: $_VC_RUNTEST_RETURN_CODE_</command>
     </hudson.tasks.Shell>
