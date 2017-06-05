@@ -12,6 +12,23 @@
         <artifactNumToKeep>-1</artifactNumToKeep>
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
+          <name>${GIT_REVISION}</name>
+          <description></description>
+          <uuid>83819379-776e-409a-8a34-e49f783aefa3</uuid>
+          <type>PT_REVISION</type>
+          <branch></branch>
+          <tagFilter>*</tagFilter>
+          <branchFilter>.*</branchFilter>
+          <sortMode>NONE</sortMode>
+          <defaultValue></defaultValue>
+          <selectedValue>NONE</selectedValue>
+          <quickFilterEnabled>false</quickFilterEnabled>
+        </net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>Windows_54</assignedNode>
@@ -36,19 +53,19 @@
     <hudson.tasks.BatchFile>
       <command>call &quot;C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\vcvarsall.bat&quot;&#xd;
 &#xd;
-xcopy /S /I /E N:\shared\Jenkins_Harvester\Git_Latest  %WORKSPACE% /Q /Y&#xd;
+REM xcopy /S /I /E N:\shared\Jenkins_Harvester\Git_Latest  %WORKSPACE% /Q /Y&#xd;
 set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\VC_latest\windows&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-IDCWIN2.lic&#xd;
 &#xd;
-call buildWin.bat msvc9 --arch=all&#xd;
-cd build&#xd;
-call install.bat&#xd;
+REM call buildWin.bat msvc9 --arch=all&#xd;
+REM cd build&#xd;
+REM call install.bat&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
-mkdir tbuild&#xd;
+REM mkdir tbuild&#xd;
 cd tbuild&#xd;
-cmake ..\tests&#xd;
+REM cmake ..\tests&#xd;
 cd HelloTest&#xd;
 %VECTORCAST_DIR%\vpython ..\VcRunTests.py&#xd;
 &#xd;
@@ -67,11 +84,6 @@ bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quo
     </hudson.tasks.Mailer>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
-      <deleteDirs>false</deleteDirs>
-      <cleanupParameter></cleanupParameter>
-      <externalDelete></externalDelete>
-    </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
       <template>${GIT_REVISION}</template>
       <runAtStart>true</runAtStart>
