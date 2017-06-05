@@ -58,7 +58,6 @@ git pull origin develop
 
 rm vcshell.*
 $VECTORCAST_DIR/vcshell --metrics bash ./build.sh
-cp -r build/UnitTest .
 $VECTORCAST_DIR/vcdb clearmetrics --file=vc_sqlite3.c
 if [ -d cover ]; then
 rm -rf cover
