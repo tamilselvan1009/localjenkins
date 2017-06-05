@@ -38,6 +38,8 @@
 &#xd;
 xcopy /S /I /E N:\shared\Jenkins_Harvester\Git_Latest  %WORKSPACE% /Q /Y&#xd;
 set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\VC_latest\windows&#xd;
+set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
+set VECTOR_LICENSE_FILE=C:\flexlm\vector-IDCWIN2.lic&#xd;
 &#xd;
 call buildWin.bat msvc9 --arch=all&#xd;
 cd build&#xd;
