@@ -17,7 +17,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
           <name>${GIT_REVISION}</name>
           <description></description>
-          <uuid>f46fc6c8-a5c4-4c0a-a443-708f66acfb87</uuid>
+          <uuid>04821d00-7ebb-484e-b21d-24035f57dea8</uuid>
           <type>PT_REVISION</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
