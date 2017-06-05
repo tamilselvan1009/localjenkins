@@ -92,7 +92,11 @@ find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT
 if [ -d ../release-packages ]; then
 	rm -rf ../release-packages
 fi
-./release-package.sh
+./release-package.sh || if [[ $? == 1 ]]; then 
+		true
+    else
+    	false
+    fi
 cd ../release-packages/release/examples
 ./buildall.sh
 find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/EXAMPLES.DAT &apos;;&apos;
