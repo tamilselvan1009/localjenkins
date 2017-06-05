@@ -53,6 +53,7 @@ REM cmake ..\tests&#xd;
 cd HelloTest&#xd;
 %VECTORCAST_DIR%\vpython ..\VcRunTests.py&#xd;
 &#xd;
+cd %WORKSPACE%&#xd;
 mkdir cbuild&#xd;
 cd cbuild&#xd;
 set PATH=C:\cygwin\bin;%PATH%&#xd;
