@@ -66,7 +66,7 @@ export COMMIT_ID=$(git rev-parse --short HEAD)
 sed -i &quot;s/.*#define _VCTOOLS_VERSION_.*/#define _VCTOOLS_VERSION_ \&quot;${COMMIT_ID}\&quot;/&quot; harvester/inc/vcVersion.h
 
 rm vcshell.*
-$VECTORCAST_DIR/vcshell --metrics bash ./build.sh
+$VECTORCAST_DIR/vcshell --metrics bash &quot;./build.sh --enable_threads&quot;
 $VECTORCAST_DIR/vcdb clearmetrics --file=vc_sqlite3.c
 if [ -d cover ]; then
 rm -rf cover
