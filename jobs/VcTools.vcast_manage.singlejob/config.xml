@@ -137,15 +137,15 @@ $VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/getTotals.py&quot; --api 2 &
         <minStatement>0</minStatement>
         <maxStatement>100</maxStatement>
         <minBranch>0</minBranch>
-        <maxBranch>70</maxBranch>
+        <maxBranch>0</maxBranch>
         <minBasisPath>0</minBasisPath>
-        <maxBasisPath>80</maxBasisPath>
+        <maxBasisPath>0</maxBasisPath>
         <minMCDC>0</minMCDC>
-        <maxMCDC>80</maxMCDC>
+        <maxMCDC>0</maxMCDC>
         <minFunction>0</minFunction>
-        <maxFunction>80</maxFunction>
+        <maxFunction>0</maxFunction>
         <minFunctionCall>0</minFunctionCall>
-        <maxFunctionCall>80</maxFunctionCall>
+        <maxFunctionCall>0</maxFunctionCall>
       </healthReports>
     </com.vectorcast.plugins.vectorcastcoverage.VectorCASTPublisher>
     <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
