@@ -36,7 +36,8 @@
     <com.vectorcast.plugins.vectorcastexecution.VectorCASTSetup plugin="vectorcast-execution@0.18"/>
     <com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand plugin="vectorcast-execution@0.18">
       <winCommand></winCommand>
-      <unixCommand>export PATH=/home/vectorindia/gcc-4.1.2/bin:$PATH
+      <unixCommand>&lt;&lt; COMMENT
+export PATH=/home/vectorindia/gcc-4.1.2/bin:$PATH
 
 export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
 export VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
@@ -91,7 +92,7 @@ cd build
     	false
     fi
 
- 
+ COMMENT
 
 
 </unixCommand>
