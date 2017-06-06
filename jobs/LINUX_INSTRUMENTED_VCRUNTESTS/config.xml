@@ -104,7 +104,11 @@ find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT
 
 
 cd ${LINUX_HARVESTER_DIR}/cover
-find ${VC_RESULT_DIR} -name &quot;*.DAT&quot; -exec $VECTORCAST_DIR/clicast -lc -e harvester remove result update &apos;{}&apos; &apos;;&apos; 
+declare -a results=(&quot;VCRUNTESTS&quot; &quot;LONGCMD&quot; &quot;CMDVERB&quot; &quot;OLD_VCAPP&quot; &quot;SEQ_DISPATCHER&quot; &quot;UNITTEST&quot; &quot;EXAMPLES&quot;)
+for result in &quot;${results[@]}&quot;
+do
+$VECTORCAST_DIR/clicast -lc -e harvester remove result update $result ${VC_RESULT_DIR}/$result
+done
 
 echo The return code from VcRunTests: $_VC_RUNTEST_RETURN_CODE_</command>
     </hudson.tasks.Shell>
