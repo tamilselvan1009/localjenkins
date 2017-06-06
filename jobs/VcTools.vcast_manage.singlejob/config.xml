@@ -49,16 +49,11 @@ cd ${LINUX_HARVESTER_DIR}
 
 $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --status 
 $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --release-locks 
+$VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --disable-instrument-in-place
 
 
-if [ -d harvester ]; then
-rm -rf harvester
-fi
-git checkout -- harvester
+git checkout -- harvester/inc/vcVersion.h
 git stash
-git checkout master
-git branch -D develop
-git checkout develop
 git pull origin develop
 
 # change the vctools version to the git commit id
@@ -68,26 +63,9 @@ sed -i &quot;s/.*#define _VCTOOLS_VERSION_.*/#define _VCTOOLS_VERSION_ \&quot;${
 rm vcshell.*
 $VECTORCAST_DIR/vcshell --metrics bash &quot;./build.sh --enable_threads&quot;
 $VECTORCAST_DIR/vcdb clearmetrics --file=vc_sqlite3.c
-if [ -d cover ]; then
-rm -rf cover
-fi
-mkdir cover
 
-cd cover
-$VECTORCAST_DIR/clicast -lc template GNU_CPP_41
-$VECTORCAST_DIR/clicast cover env create harvester
-$VECTORCAST_DIR/clicast -lc -e harvester option VCAST_APPEND_TO_TESTINSS TRUE
-$VECTORCAST_DIR/clicast -lc -e harvester option COVERAGE_IO_TYPE VCAST_COVERAGE_IO_BUFFERED
-$VECTORCAST_DIR/clicast -lc -e harvester option VCAST_DUMP_COVERAGE_AT_EXIT TRUE
-$VECTORCAST_DIR/clicast -lc -e harvester option VCAST_COVERAGE_FOR_HEADERS TRUE
-$VECTORCAST_DIR/clicast -lc -e harvester option VCAST_COVER_STATEMENTS_BY_BLOCK TRUE
-$VECTORCAST_DIR/clicover add_source_vcdb harvester  ../vcshell.db ../getfiles.txt
-$VECTORCAST_DIR/clicast -e harvester cover  instrument statement
-
-cd ..
-gcc -c cover/harvester/c_cover_io.c -o c_cover_io.o
-ar cr c_cover_io.a c_cover_io.o
-./build.sh --vcast_coverage
+$VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --enable-instrument-in-place
+$VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --build
 
 cd build
 ./install.sh || if [[ $? == 1 ]]; then 
@@ -95,9 +73,6 @@ cd build
     else
     	false
     fi
-
-
-
 </unixCommand>
     </com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand>
     <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.33">
