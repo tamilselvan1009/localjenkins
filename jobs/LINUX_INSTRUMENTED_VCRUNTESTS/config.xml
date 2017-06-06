@@ -67,7 +67,7 @@ mkdir longcmd
 cd longcmd
 cmake  -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ ../../tests/LongCmd
 $VECTORCAST_DIR/vpython ../VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
-find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/VCRUNTESTS.DAT &apos;;&apos;
+find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/LONGCMD.DAT &apos;;&apos;
 cd ..
 
 cd MathTest/Matrix
