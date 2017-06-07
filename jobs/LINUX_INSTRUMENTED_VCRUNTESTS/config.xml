@@ -44,7 +44,7 @@ echo $VECTORCAST_DIR
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
-&lt;&lt; COMMENT
+if false; then
 
 export VC_RESULT_DIR=$PWD/results
 if [ -d results ]; then
@@ -103,7 +103,8 @@ fi
 cd ../release-packages/release/examples
 ./buildall.sh || export _VC_RUNTEST_RETURN_CODE_=$?
 find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/EXAMPLES.DAT &apos;;&apos;
-COMMENT 
+
+fi
 
 cd ${LINUX_HARVESTER_DIR}/cover
 declare -a results=(&quot;VCRUNTESTS&quot; &quot;LONGCMD&quot; &quot;CMDVERB&quot; &quot;OLD_VCAPP&quot; &quot;SEQ_DISPATCHER&quot; &quot;UNITTEST&quot; &quot;EXAMPLES&quot;)
