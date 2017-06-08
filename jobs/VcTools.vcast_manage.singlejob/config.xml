@@ -40,7 +40,7 @@
     <com.vectorcast.plugins.vectorcastexecution.VectorCASTSetup plugin="vectorcast-execution@0.18"/>
     <com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand plugin="vectorcast-execution@0.18">
       <winCommand></winCommand>
-      <unixCommand>&lt;&lt; COMMENT
+      <unixCommand>
 export PATH=/home/vectorindia/gcc-4.1.2/bin:$PATH
 
 export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
@@ -77,7 +77,7 @@ cd build
     	false
     fi
 
-COMMENT</unixCommand>
+</unixCommand>
     </com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand>
     <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.33">
       <configs>
@@ -121,6 +121,7 @@ $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTool
 $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --create-report=metrics     --output=&quot;VcTools_metrics_report.html&quot;
 $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --create-report=environment --output=&quot;VcTools_environment_report.html&quot;
 $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --full-status &gt; &quot;VcTools_full_report.txt&quot;
+$VECTORCAST_DIR/vcdash --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --history-dir=&quot;/mnt/nfs/shared/Harvester_Coverage/Linux_Coverage_History&quot; --save-history 
 $VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/gen-combined-cov.py&quot; &quot;VcTools_aggregate_report.html&quot;
 $VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/getTotals.py&quot; --api 2 &quot;VcTools_full_report.txt&quot;</command>
     </hudson.tasks.Shell>
