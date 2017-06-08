@@ -24,9 +24,9 @@
       <spec></spec>
       <upstreamProjects>Test_Commit_Linux</upstreamProjects>
       <threshold>
-        <name>SUCCESS</name>
-        <ordinal>0</ordinal>
-        <color>BLUE</color>
+        <name>UNSTABLE</name>
+        <ordinal>1</ordinal>
+        <color>YELLOW</color>
         <completeBuild>true</completeBuild>
       </threshold>
     </jenkins.triggers.ReverseBuildTrigger>
