@@ -108,7 +108,7 @@ cd ${LINUX_HARVESTER_DIR}/cover
 declare -a results=(&quot;VCRUNTESTS&quot; &quot;LONGCMD&quot; &quot;CMDVERB&quot; &quot;OLD_VCAPP&quot; &quot;SEQ_DISPATCHER&quot; &quot;UNITTEST&quot; &quot;EXAMPLES&quot;)
 for result in &quot;${results[@]}&quot;
 do
-$VECTORCAST_DIR/clicast -lc -e harvester cover result update $result ${VC_RESULT_DIR}/$result.DAT
+$VECTORCAST_DIR/clicast -lc -e harvester cover result add $result ${VC_RESULT_DIR}/$result.DAT
 done
 
 echo The return code from VcRunTests: $_VC_RUNTEST_RETURN_CODE_</command>
