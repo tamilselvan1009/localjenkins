@@ -40,7 +40,7 @@
     <com.vectorcast.plugins.vectorcastexecution.VectorCASTSetup plugin="vectorcast-execution@0.18"/>
     <com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand plugin="vectorcast-execution@0.18">
       <winCommand></winCommand>
-      <unixCommand>&lt;&lt; COMMENT
+      <unixCommand>
 export PATH=/home/vectorindia/gcc-4.1.2/bin:$PATH
 
 export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
@@ -77,7 +77,7 @@ cd build
     	false
     fi
 
-COMMENT</unixCommand>
+</unixCommand>
     </com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand>
     <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.33">
       <configs>
