@@ -1,10 +1,47 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
+  <actions/>
   <description>Single job to run the manage project: N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm</description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>VECTORCAST_DIR</name>
+          <description></description>
+          <defaultValue>N:\shared\.VCAST_REGRESSION\VCAST_COVERAGE\VCAST_WINDOWS</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>HARVESTER_DIR</name>
+          <description></description>
+          <defaultValue>N:\shared\Harvester_Coverage\Windows\Harvester</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_NAME</name>
+          <description></description>
+          <defaultValue>VectorCAST coverage for Harvester</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>MANAGE_PROJECT</name>
+          <description></description>
+          <defaultValue>N:\shared\Harvester_Coverage\Windows\Harvester\VcTool_Windows.vcm</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>VECTOR_LICENSE_FILE</name>
+          <description></description>
+          <defaultValue>C:\FLEXlm\vector-INDIAWINDOWSBUI.lic</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>VC_RESULT_DIR</name>
+          <description></description>
+          <defaultValue>N:\shared\Harvester_Coverage\Windows\Harvester\result</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
   <scm class="hudson.scm.NullSCM"/>
-  <canRoam>true</canRoam>
+  <assignedNode>Windows_54</assignedNode>
+  <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
@@ -13,11 +50,88 @@
   <builders>
     <com.vectorcast.plugins.vectorcastexecution.VectorCASTSetup plugin="vectorcast-execution@0.18"/>
     <com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand plugin="vectorcast-execution@0.18">
-      <winCommand>
+      <winCommand>call &quot;C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\vcvarsall.bat&quot;
+
 set VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
-%VECTORCAST_DIR%\manage --project &quot;N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm&quot; --status
-%VECTORCAST_DIR%\manage --project &quot;N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm&quot; --release-locks
- %VECTORCAST_DIR%\manage --project &quot;N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm&quot; --build-execute --incremental --output &quot;VcTools_Windows_manage_incremental_rebuild_report.html&quot; 
+cd %HARVESTER_DIR%
+
+%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT&quot; --status
+%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT&quot; --release-locks
+%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT&quot; --disable-instrument-in-place
+
+git checkout -- harvester\vcVersion.h
+git stash
+git pull origin develop
+
+:: Change the VcTools version to the git commit id
+FOR /F &quot;delims=&quot; %%i IN (&apos;git rev-parse --short HEAD&apos;) DO set version=%%i
+call powershell -Command &quot;(gc ./harvester/inc/vcVersion.h) -replace &apos;.*#define _VCTOOLS_VERSION_.*&apos;, &apos;#define _VCTOOLS_VERSION_ %version%&apos;  | Out-File har
+vester\inc\vcVersion.h&quot;
+
+del vcshell.*
+%VECTORCAST_DIR%\vcshell buildWin.bat msvc9 --arch-=win32 --config=Release
+
+%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT&quot; ---enable-instrument-in-place
+%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT&quot; --build
+
+cd build
+call install.bat
+
+call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\varsall.bat&quot;
+if EXIST tbuild rmdir /q /s tbuild
+mkdir tbuild
+
+cd tbuild
+cmake -G&quot;Visual Studio 10&quot; ..\tests
+%VECTORCAST_DIR%\vpython VcRunTests.py --metrics
+C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\VCRUNTESTS.DAT
+
+mkdir longcmd
+cmake -G&quot;Visual Studio 10&quot; ..\tests\LongCmd
+%VECTORCAST_DIR%\vpython VcRunTests.py --metrics
+C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\LONGCMD.DAT &apos;;&apos;
+cd ..
+
+cd MathTest\Matrix
+C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\rm &apos;{}&apos; &apos;;&apos;
+%VECTORCAST_DIR%\vpython VcRunTests.py --cmd-verb
+C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\CMDVERB.DAT &apos;;&apos;
+
+C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\rm &apos;{}&apos; &apos;;&apos;
+set _VC_OLD_VCAPP_DB_IF_=1
+%VECTORCAST_DIR%\vpython VcRunTests.py --metrics
+C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\OLD_VCAPP.DAT &apos;;&apos;
+
+C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\rm &apos;{}&apos; &apos;;&apos;
+set _VC_SEQ_DISPATCHER_=1
+%VECTORCAST_DIR%\vpython VcRunTests.py --metrics
+C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\SEQ_DISPATCHER.DAT &apos;;&apos;
+
+if EXIST ..\..\..\release-packages rmdir /q /s ..\..\..\release-packages
+cd ..\..\..\build
+call release-package.bat
+
+cd ..\release-packages\release\examples
+call buildall.bat
+C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\EXAMPLES.DAT &apos;;&apos;
+
+cd %HARVESTER_DIR%
+if EXIST tbuid_cygwin rmdir /q /s tcygwin
+mkdir tcygwin
+cd tcygwin
+set BPATH=%PATH%
+set PATH=C:\cygwin\bin;%PATH%
+bash -c &quot;cmake -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ ../tests&quot;
+cd HelloTest
+python VcRunTests.py --metrics
+C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\CYGWIN.DAT &apos;;&apos;
+
+cd %HARVESTER_DIR%\cover
+set results=VCRUNTESTS LONGCMD CMDVERB OLD_VCAPP SEQ_DISPATCHER EXAMPLES CYGWIN
+for result in (%results%) do (
+%VECTORCAST_DIR%\clicast -lc -e harvester_win32 cover result remove %result%
+%VECTORCAST_DIR%\clicast -lc -e harvester_win32 cover result add %result%
+)
 
 %VECTORCAST_DIR%\vpython &quot;%WORKSPACE%\vc_scripts\generate-results.py&quot; --api 2 &quot;N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm&quot; 
 %VECTORCAST_DIR%\manage --project &quot;N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm&quot; --full-status=&quot;VcTools_Windows_full_report.html&quot;
@@ -29,46 +143,18 @@ set VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
 %VECTORCAST_DIR%\vpython &quot;%WORKSPACE%\vc_scripts\getTotals.py&quot; --api 2 &quot;VcTools_Windows_full_report.txt&quot;
 
 </winCommand>
-      <unixCommand>
-export VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
-$VECTORCAST_DIR/manage --project &quot;N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm&quot; --status 
-$VECTORCAST_DIR/manage --project &quot;N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm&quot; --release-locks 
- $VECTORCAST_DIR/manage --project &quot;N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm&quot; --build-execute --incremental --output &quot;VcTools_Windows_manage_incremental_rebuild_report.html&quot;
-
-$VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/generate-results.py&quot; --api 2 &quot;N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm&quot; 
-$VECTORCAST_DIR/manage --project &quot;N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm&quot; --full-status=&quot;VcTools_Windows_full_report.html&quot;
-$VECTORCAST_DIR/manage --project &quot;N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm&quot; --create-report=aggregate   --output=&quot;VcTools_Windows_aggregate_report.html&quot;
-$VECTORCAST_DIR/manage --project &quot;N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm&quot; --create-report=metrics     --output=&quot;VcTools_Windows_metrics_report.html&quot;
-$VECTORCAST_DIR/manage --project &quot;N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm&quot; --create-report=environment --output=&quot;VcTools_Windows_environment_report.html&quot;
-$VECTORCAST_DIR/manage --project &quot;N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm&quot; --full-status &gt; &quot;VcTools_Windows_full_report.txt&quot;
-$VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/gen-combined-cov.py&quot; &quot;VcTools_Windows_aggregate_report.html&quot;
-$VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/getTotals.py&quot; --api 2 &quot;VcTools_Windows_full_report.txt&quot;
-
-</unixCommand>
+      <unixCommand></unixCommand>
     </com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>*_report.html, execution/**, management/**, xml_data/**</artifacts>
-      <latestOnly>false</latestOnly>
+      <artifacts>*_report.html, xml_data/**</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
       <defaultExcludes>true</defaultExcludes>
       <caseSensitive>true</caseSensitive>
     </hudson.tasks.ArtifactArchiver>
-    <xunit plugin="xunit@1.102">
-      <types>
-        <CheckType>
-          <pattern>**/test_results_*.xml</pattern>
-          <skipNoTestFiles>true</skipNoTestFiles>
-          <failIfNotNew>false</failIfNotNew>
-          <deleteOutputFiles>true</deleteOutputFiles>
-          <stopProcessingIfError>true</stopProcessingIfError>
-        </CheckType>
-      </types>
-      <thresholdMode>1</thresholdMode>
-    </xunit>
     <com.vectorcast.plugins.vectorcastcoverage.VectorCASTPublisher plugin="vectorcast-coverage@0.10">
       <includes>**/coverage_results_*.xml</includes>
       <useThreshold>false</useThreshold>
