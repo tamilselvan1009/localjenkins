@@ -60,9 +60,12 @@ n:
 %VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --release-locks
 %VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --disable-instrument-in-place
 
-git checkout -- harvester\inc\vcVersion.h
+set BPATH=%PATH%
+set PATH=C:\cygwin_2_8_0_dont_delete_reg_uses_this_for_git\bin;%PATH
+git checkout -- harvester/inc/vcVersion.h
 git stash
 git pull origin develop
+set PATH=%BPATH%
 
 :: Change the VcTools version to the git commit id
 FOR /F &quot;delims=&quot; %%i IN (&apos;git rev-parse --short HEAD&apos;) DO set version=%%i
