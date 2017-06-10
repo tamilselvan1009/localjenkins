@@ -60,7 +60,7 @@ n:
 %VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --release-locks
 %VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --disable-instrument-in-place
 
-git checkout -- harvester\vcVersion.h
+git checkout -- harvester\inc\vcVersion.h
 git stash
 git pull origin develop
 
