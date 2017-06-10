@@ -55,9 +55,9 @@
 set VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
 cd %HARVESTER_DIR%
 
-%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT&quot; --status
-%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT&quot; --release-locks
-%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT&quot; --disable-instrument-in-place
+%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --status
+%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --release-locks
+%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --disable-instrument-in-place
 
 git checkout -- harvester\vcVersion.h
 git stash
@@ -71,8 +71,8 @@ vester\inc\vcVersion.h&quot;
 del vcshell.*
 %VECTORCAST_DIR%\vcshell buildWin.bat msvc9 --arch-=win32 --config=Release
 
-%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT&quot; ---enable-instrument-in-place
-%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT&quot; --build
+%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; ---enable-instrument-in-place
+%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --build
 
 cd build
 call install.bat
