@@ -74,7 +74,7 @@ call powershell -Command &quot;(gc ./harvester/inc/vcVersion.h) -replace &apos;.
 del vcshell.*
 %VECTORCAST_DIR%\vcshell buildWin.bat msvc9 --arch=win32 --config=Release
 
-%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; ---enable-instrument-in-place
+%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --enable-instrument-in-place
 %VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --build
 
 cd build
