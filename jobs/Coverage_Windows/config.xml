@@ -54,6 +54,7 @@
 
 set VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
 cd %HARVESTER_DIR%
+n:
 
 %VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --status
 %VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --release-locks
@@ -78,6 +79,11 @@ cd build
 call install.bat
 
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\varsall.bat&quot;
+cd %WORKSPACE%
+c:
+mkdir harvester
+xcopy /s %HARVESTER_DIR%\harvester .
+cd ..
 if EXIST tbuild rmdir /q /s tbuild
 mkdir tbuild
 
