@@ -62,6 +62,8 @@ n:
 
 set BPATH=%PATH%
 set PATH=C:\cygwin_2_8_0_dont_delete_reg_uses_this_for_git\bin;%PATH%
+git config --global user.email &quot;54machine@vectorcast.com&quot;
+git config --global user.name &quot;54machine&quot;
 bash -c &quot;git checkout -- harvester/inc/vcVersion.h&quot;
 git stash
 git pull origin develop
