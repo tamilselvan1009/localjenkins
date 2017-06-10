@@ -61,7 +61,7 @@ n:
 %VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --disable-instrument-in-place
 
 set BPATH=%PATH%
-set PATH=C:\cygwin_2_8_0_dont_delete_reg_uses_this_for_git\bin;%PATH
+set PATH=C:\cygwin_2_8_0_dont_delete_reg_uses_this_for_git\bin;%PATH%
 git checkout -- harvester/inc/vcVersion.h
 git stash
 git pull origin develop
