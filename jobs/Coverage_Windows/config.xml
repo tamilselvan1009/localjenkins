@@ -107,8 +107,8 @@ set _VC_SEQ_DISPATCHER_=1
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\SEQ_DISPATCHER.DAT &apos;;&apos;
 
-if EXIST ..\..\..\release-packages rmdir /q /s ..\..\..\release-packages
-cd ..\..\..\build
+if EXIST %HARVESTER_DIR%\\release-packages rmdir /q /s %HARVESTER_DIR%\\release-packages
+cd %HARVESTER_DIR%\\build
 call release-package.bat
 
 cd ..\release-packages\release\examples
@@ -125,6 +125,7 @@ bash -c &quot;cmake -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ ../tests&quo
 cd HelloTest
 python VcRunTests.py --metrics
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\CYGWIN.DAT &apos;;&apos;
+set PATH=%BPATH%
 
 cd %HARVESTER_DIR%\cover
 set results=VCRUNTESTS LONGCMD CMDVERB OLD_VCAPP SEQ_DISPATCHER EXAMPLES CYGWIN
@@ -133,15 +134,15 @@ for result in (%results%) do (
 %VECTORCAST_DIR%\clicast -lc -e harvester_win32 cover result add %result%
 )
 
-%VECTORCAST_DIR%\vpython &quot;%WORKSPACE%\vc_scripts\generate-results.py&quot; --api 2 &quot;N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm&quot; 
-%VECTORCAST_DIR%\manage --project &quot;N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm&quot; --full-status=&quot;VcTools_Windows_full_report.html&quot;
-%VECTORCAST_DIR%\manage --project &quot;N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm&quot; --create-report=aggregate   --output=&quot;VcTools_Windows_aggregate_report.html&quot;
-%VECTORCAST_DIR%\manage --project &quot;N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm&quot; --create-report=metrics     --output=&quot;VcTools_Windows_metrics_report.html&quot;
-%VECTORCAST_DIR%\manage --project &quot;N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm&quot; --create-report=environment --output=&quot;VcTools_Windows_environment_report.html&quot;
-%VECTORCAST_DIR%\manage --project &quot;N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm&quot; --full-status &gt; &quot;VcTools_Windows_full_report.txt&quot;
+%VECTORCAST_DIR%\vpython &quot;%WORKSPACE%\vc_scripts\generate-results.py&quot; --api 2 &quot;%MANAGE_PROJECT%&quot; 
+%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --full-status=&quot;VcTools_Windows_full_report.html&quot;
+%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --create-report=aggregate   --output=&quot;VcTools_Windows_aggregate_report.html&quot;
+%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --create-report=metrics     --output=&quot;VcTools_Windows_metrics_report.html&quot;
+%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --create-report=environment --output=&quot;VcTools_Windows_environment_report.html&quot;
+%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --full-status &gt; &quot;VcTools_Windows_full_report.txt&quot;
 %VECTORCAST_DIR%\vpython &quot;%WORKSPACE%\vc_scripts\gen-combined-cov.py&quot; &quot;VcTools_Windows_aggregate_report.html&quot;
 %VECTORCAST_DIR%\vpython &quot;%WORKSPACE%\vc_scripts\getTotals.py&quot; --api 2 &quot;VcTools_Windows_full_report.txt&quot;
-
+%VECTORCAST_DIR%\vcdash -p &quot;%MANAGE_PROJECT%&quot; --history-dir=&quot;%HARVESTER_DIR%\\history&quot; --save-history
 </winCommand>
       <unixCommand></unixCommand>
     </com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand>
