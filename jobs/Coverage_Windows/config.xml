@@ -80,9 +80,9 @@ del vcshell.*
 cd build
 call install.bat
 
-call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\varsall.bat&quot;
+call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;
 cd %WORKSPACE%
-c:
+v:
 mkdir harvester
 xcopy /s %HARVESTER_DIR%\harvester .
 cd ..
