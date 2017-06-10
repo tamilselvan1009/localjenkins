@@ -24,7 +24,7 @@
         <hudson.model.StringParameterDefinition>
           <name>MANAGE_PROJECT</name>
           <description></description>
-          <defaultValue>N:\shared\Harvester_Coverage\Windows\Harvester\VcTool_Windows.vcm</defaultValue>
+          <defaultValue>N:\shared\Harvester_Coverage\Windows\Harvester\VcTools_Windows.vcm</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>VECTOR_LICENSE_FILE</name>
