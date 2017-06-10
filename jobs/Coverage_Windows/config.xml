@@ -83,8 +83,8 @@ call install.bat
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;
 cd %WORKSPACE%
 v:
-mkdir harvester
-xcopy /s %HARVESTER_DIR%\harvester .
+mkdir tests
+xcopy /s %HARVESTER_DIR%\tests .
 cd ..
 if EXIST tbuild rmdir /q /s tbuild
 mkdir tbuild
@@ -95,12 +95,13 @@ cmake -G&quot;Visual Studio 10&quot; ..\tests
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\VCRUNTESTS.DAT
 
 mkdir longcmd
+cd longcmd
 cmake -G&quot;Visual Studio 10&quot; ..\tests\LongCmd
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\LONGCMD.DAT &apos;;&apos;
 cd ..
 
-cd MathTest\Matrix
+cd ..\MathTest\Matrix
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\rm &apos;{}&apos; &apos;;&apos;
 %VECTORCAST_DIR%\vpython VcRunTests.py --cmd-verb
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\CMDVERB.DAT &apos;;&apos;
@@ -114,17 +115,9 @@ C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\rm &apos;{}
 set _VC_SEQ_DISPATCHER_=1
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\SEQ_DISPATCHER.DAT &apos;;&apos;
+cd ..\..\..
 
-if EXIST %HARVESTER_DIR%\\release-packages rmdir /q /s %HARVESTER_DIR%\\release-packages
-cd %HARVESTER_DIR%\\build
-call release-package.bat
-
-cd ..\release-packages\release\examples
-call buildall.bat
-C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\EXAMPLES.DAT &apos;;&apos;
-
-cd %HARVESTER_DIR%
-if EXIST tbuid_cygwin rmdir /q /s tcygwin
+if EXIST tcygwin rmdir /q /s tcygwin
 mkdir tcygwin
 cd tcygwin
 set BPATH=%PATH%
@@ -134,6 +127,15 @@ cd HelloTest
 python VcRunTests.py --metrics
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\CYGWIN.DAT &apos;;&apos;
 set PATH=%BPATH%
+
+n:
+if EXIST %HARVESTER_DIR%\\release-packages rmdir /q /s %HARVESTER_DIR%\\release-packages
+cd %HARVESTER_DIR%\\build
+call release-package.bat
+
+cd ..\release-packages\release\examples
+call buildall.bat
+C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\EXAMPLES.DAT &apos;;&apos;
 
 cd %HARVESTER_DIR%\cover
 set results=VCRUNTESTS LONGCMD CMDVERB OLD_VCAPP SEQ_DISPATCHER EXAMPLES CYGWIN
