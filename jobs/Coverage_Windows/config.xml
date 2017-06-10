@@ -56,13 +56,13 @@ set VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
 cd %HARVESTER_DIR%
 n:
 
-%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --status
-%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --release-locks
-%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --disable-instrument-in-place
+::%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --status
+::%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --release-locks
+::%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --disable-instrument-in-place
 
 set BPATH=%PATH%
 set PATH=C:\cygwin_2_8_0_dont_delete_reg_uses_this_for_git\bin;%PATH%
-git checkout -- harvester/inc/vcVersion.h
+bash -c &quot;git checkout -- harvester/inc/vcVersion.h&quot;
 git stash
 git pull origin develop
 set PATH=%BPATH%
