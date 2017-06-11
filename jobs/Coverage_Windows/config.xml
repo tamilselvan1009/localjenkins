@@ -84,6 +84,7 @@ call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&
 cd %WORKSPACE%
 v:
 mkdir tests
+cd tests
 xcopy /s %HARVESTER_DIR%\tests .
 cd ..
 if EXIST tbuild rmdir /q /s tbuild
@@ -96,7 +97,7 @@ C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{
 
 mkdir longcmd
 cd longcmd
-cmake -G&quot;Visual Studio 10&quot; ..\tests\LongCmd
+cmake -G&quot;Visual Studio 10&quot; ..\..\tests\LongCmd
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\LONGCMD.DAT &apos;;&apos;
 cd ..
@@ -134,14 +135,14 @@ cd %HARVESTER_DIR%\\build
 call release-package.bat
 
 cd ..\release-packages\release\examples
-call buildall.bat
+call buildall.bat msvc10
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\EXAMPLES.DAT &apos;;&apos;
 
 cd %HARVESTER_DIR%\cover
 set results=VCRUNTESTS LONGCMD CMDVERB OLD_VCAPP SEQ_DISPATCHER EXAMPLES CYGWIN
-for result in (%results%) do (
-%VECTORCAST_DIR%\clicast -lc -e harvester_win32 cover result remove %result%
-%VECTORCAST_DIR%\clicast -lc -e harvester_win32 cover result add %result%
+for %%r in (%results%) do (
+%VECTORCAST_DIR%\clicast -lc -e harvester_win32 cover result remove %%r
+%VECTORCAST_DIR%\clicast -lc -e harvester_win32 cover result add %%r
 )
 
 %VECTORCAST_DIR%\vpython &quot;%WORKSPACE%\vc_scripts\generate-results.py&quot; --api 2 &quot;%MANAGE_PROJECT%&quot; 
