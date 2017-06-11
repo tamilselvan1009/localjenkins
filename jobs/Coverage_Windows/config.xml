@@ -98,23 +98,23 @@ C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{
 mkdir longcmd
 cd longcmd
 cmake -G&quot;Visual Studio 10&quot; ..\..\tests\LongCmd
-%VECTORCAST_DIR%\vpython VcRunTests.py --metrics
+%VECTORCAST_DIR%\vpython ..\VcRunTests.py --metrics
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\LONGCMD.DAT &apos;;&apos;
 cd ..
 
-cd ..\MathTest\Matrix
+cd MathTest\Matrix
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\rm &apos;{}&apos; &apos;;&apos;
-%VECTORCAST_DIR%\vpython VcRunTests.py --cmd-verb
+%VECTORCAST_DIR%\vpython ..\..\VcRunTests.py --cmdverb
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\CMDVERB.DAT &apos;;&apos;
 
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\rm &apos;{}&apos; &apos;;&apos;
 set _VC_OLD_VCAPP_DB_IF_=1
-%VECTORCAST_DIR%\vpython VcRunTests.py --metrics
+%VECTORCAST_DIR%\vpython ..\..\VcRunTests.py --metrics
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\OLD_VCAPP.DAT &apos;;&apos;
 
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\rm &apos;{}&apos; &apos;;&apos;
 set _VC_SEQ_DISPATCHER_=1
-%VECTORCAST_DIR%\vpython VcRunTests.py --metrics
+%VECTORCAST_DIR%\vpython ..\..\VcRunTests.py --metrics
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\SEQ_DISPATCHER.DAT &apos;;&apos;
 cd ..\..\..
 
@@ -125,7 +125,7 @@ set BPATH=%PATH%
 set PATH=C:\cygwin\bin;%PATH%
 bash -c &quot;cmake -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ ../tests&quot;
 cd HelloTest
-python VcRunTests.py --metrics
+python ..\VcRunTests.py --metrics
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\CYGWIN.DAT &apos;;&apos;
 set PATH=%BPATH%
 
