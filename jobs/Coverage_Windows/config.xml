@@ -90,12 +90,15 @@ cd ..
 if EXIST tbuild rmdir /q /s tbuild
 mkdir tbuild
 
+if EXIST %VC_RESULT_DIR% rmdir /q /s %VC_RESULT_DIR%
+mkdir %VC_RESULT_DIR%
+
 cd tbuild
 cmake -G&quot;Visual Studio 10&quot; ..\tests
 call powershell -Command &quot;(gc vc_test_add_dir) -replace &apos;VcshellTest/MixedBitnessTest&apos;, &apos;&apos;  | Out-File vc_test_add_dir&quot;
 call powershell -Command &quot;(gc vc_test_add_dir) | ? {$_.trim() -ne &apos;&apos; } | set-content vc_test_add_dir&quot;
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics
-C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\VCRUNTESTS.DAT
+C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\VCRUNTESTS.DAT &apos;;&apos;
 
 mkdir longcmd
 cd longcmd
