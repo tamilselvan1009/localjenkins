@@ -144,7 +144,7 @@ cd %HARVESTER_DIR%\cover
 set results=VCRUNTESTS LONGCMD CMDVERB OLD_VCAPP SEQ_DISPATCHER EXAMPLES CYGWIN
 for %%r in (%results%) do (
 %VECTORCAST_DIR%\clicast -lc -e harvester_win32 cover result remove %%r
-%VECTORCAST_DIR%\clicast -lc -e harvester_win32 cover result add %%r
+%VECTORCAST_DIR%\clicast -lc -e harvester_win32 cover result add %%r.DAT
 )
 
 %VECTORCAST_DIR%\vpython &quot;%WORKSPACE%\vc_scripts\generate-results.py&quot; --api 2 &quot;%MANAGE_PROJECT%&quot; 
