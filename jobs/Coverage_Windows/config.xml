@@ -133,8 +133,8 @@ cd tcygwin
 set BPATH=%PATH%
 set PATH=C:\cygwin\bin;%PATH%
 bash -c &quot;cmake -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ ../tests&quot;
-cd HelloTest
-python ..\VcRunTests.py --metrics
+cd MathTest\Matrix
+python ..\..\VcRunTests.py --metrics
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\CYGWIN.DAT &apos;;&apos;
 set PATH=%BPATH%
 
