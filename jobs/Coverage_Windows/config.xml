@@ -154,6 +154,9 @@ for %%r in (%results%) do (
 %VECTORCAST_DIR%\clicast -lc -e harvester_win32 cover result add %%r.DAT
 )
 
+cd %WORKSPACE%
+v:
+
 %VECTORCAST_DIR%\vpython &quot;%WORKSPACE%\vc_scripts\generate-results.py&quot; --api 2 &quot;%MANAGE_PROJECT%&quot; 
 %VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --full-status=&quot;VcTools_Windows_full_report.html&quot;
 %VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --create-report=aggregate   --output=&quot;VcTools_Windows_aggregate_report.html&quot;
