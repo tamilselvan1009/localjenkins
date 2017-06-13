@@ -151,7 +151,7 @@ cd %HARVESTER_DIR%\cover
 set results=VCRUNTESTS LONGCMD CMDVERB OLD_VCAPP SEQ_DISPATCHER EXAMPLES CYGWIN
 for %%r in (%results%) do (
 %VECTORCAST_DIR%\clicast -lc -e harvester_win32 cover result remove %%r
-%VECTORCAST_DIR%\clicast -lc -e harvester_win32 cover result add %%r.DAT
+%VECTORCAST_DIR%\clicast -lc -e harvester_win32 cover result add ..\result\%%r.DAT
 )
 
 cd %WORKSPACE%
