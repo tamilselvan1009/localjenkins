@@ -57,6 +57,8 @@ bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quo
 cd EchoTests\PythonCmdScript&#xd;
 %VECTORCAST_DIR%\vpython ..\..\VcRunTests.py --metrics&#xd;
 &#xd;
+exit&#xd;
+&#xd;
 cd %WORKSPACE%&#xd;
 mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
