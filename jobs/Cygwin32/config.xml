@@ -47,7 +47,7 @@ set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 &#xd;
-xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
+REM xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
 mkdir tbuild32_cyg&#xd;
@@ -56,7 +56,14 @@ set PATH=C:\cygwin\bin;%PATH%&#xd;
 bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics&#xd;
 %VECTORCAST_DIR%\vpython VcCollectResult.py --db=N:\shared\Jenkins_Result\vcshell.db --tag=cygwin32&#xd;
-</command>
+&#xd;
+cd %WORKSPACE%&#xd;
+mkdir t&#xd;
+cd t&#xd;
+set PATH=C:\cygwin\bin;%PATH%&#xd;
+bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
+cd EchoTests\PythonCmdScript&#xd;
+%VECTORCAST_DIR%\vpython ..\..\VcRunTests.py --metrics</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
@@ -80,11 +87,6 @@ bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quo
     </hudson.plugins.parameterizedtrigger.BuildTrigger>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
-      <deleteDirs>false</deleteDirs>
-      <cleanupParameter></cleanupParameter>
-      <externalDelete></externalDelete>
-    </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
       <template>${ENV, var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
