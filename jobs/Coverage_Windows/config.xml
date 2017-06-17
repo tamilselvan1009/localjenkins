@@ -79,7 +79,10 @@ del vcshell.*
 %VECTORCAST_DIR%\vcshell buildWin.bat msvc9 --arch=win32 --config=Release
 
 %VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --enable-instrument-in-place
-%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --build
+cd cover
+%VECTORCAST_DIR%%\clicast -lc -e harvester_win32 cover instrument statement
+cd ..
+buildWin.bat msvc9 --arch=win32 --config=Release
 
 cd build
 call install.bat
