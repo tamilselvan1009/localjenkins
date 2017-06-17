@@ -82,7 +82,7 @@ del vcshell.*
 cd cover
 %VECTORCAST_DIR%%\clicast -lc -e harvester_win32 cover instrument statement
 cd ..
-buildWin.bat msvc9 --arch=win32 --config=Release
+call buildWin.bat msvc9 --arch=win32 --config=Release
 
 cd build
 call install.bat
