@@ -37,15 +37,22 @@
         <string>Build_Linux32</string>
         <string>Build_Linux64</string>
         <string>Build_Windows</string>
+        <string>Coverage_Linux</string>
+        <string>Coverage_Windows</string>
         <string>Custom_Cygwin</string>
         <string>Custom_Linux</string>
         <string>Custom_Windows</string>
         <string>Cygwin32</string>
+        <string>Cygwin64</string>
+        <string>Cygwin_homepath</string>
         <string>Git_Clone</string>
         <string>Linux32</string>
+        <string>Linux64</string>
         <string>Linux_EnvCreate</string>
+        <string>LINUX_INSTRUMENTED_VCRUNTESTS</string>
         <string>Linux_ValgrindTest</string>
         <string>Regression_6pm_Master</string>
+        <string>Result_Collector</string>
         <string>Test_Commit_Linux</string>
         <string>Test_Commit_WinCyg</string>
         <string>WinCyg_EnvCreate</string>
@@ -88,6 +95,11 @@
         <org.jenkinsci.plugins.categorizedview.GroupingRule>
           <groupRegex>^Linux_EnvCreate|WinCyg_EnvCreate$</groupRegex>
           <namingRule>Test_Commit_jobs</namingRule>
+          <useDisplayName>false</useDisplayName>
+        </org.jenkinsci.plugins.categorizedview.GroupingRule>
+        <org.jenkinsci.plugins.categorizedview.GroupingRule>
+          <groupRegex>^Linux_ValgrindTest|Coverage_Linux|Coverage_Windows|LINUX_INSTRUMENTED_VCRUNTESTS$</groupRegex>
+          <namingRule>Performance_jobs</namingRule>
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
       </categorizationCriteria>
