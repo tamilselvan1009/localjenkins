@@ -27,7 +27,7 @@
       <command>#!/bin/bash -xe
 
 cd $WORKSPACE
-export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/custom/VCAST_LINUX_NEW
+export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/custom/VCAST_LINUX
 export VECTOR_LICENSE_FILE=/home/linuxregressionmac/flexlm/vector-UBUNTU.lic
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 echo $VECTORCAST_DIR
