@@ -43,6 +43,7 @@ REM set _VC_TEST_ENV_=1&#xd;
 echo %_VC_TEST_ENV_%&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
+rmdir tbuild32 /s /q&#xd;
 mkdir tbuild32&#xd;
 cd tbuild32&#xd;
 set PATH=C:\cygwin\bin;%PATH%&#xd;
