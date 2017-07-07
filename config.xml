@@ -93,11 +93,6 @@
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
         <org.jenkinsci.plugins.categorizedview.GroupingRule>
-          <groupRegex>^Test_Commit_Linux|Test_Commit_WinCyg$</groupRegex>
-          <namingRule>Test_Commit_jobs</namingRule>
-          <useDisplayName>false</useDisplayName>
-        </org.jenkinsci.plugins.categorizedview.GroupingRule>
-        <org.jenkinsci.plugins.categorizedview.GroupingRule>
           <groupRegex>^Linux_ValgrindTest|Coverage_Linux|Coverage_Windows|LINUX_INSTRUMENTED_VCRUNTESTS|Linux_EnvCreate|WinCyg_EnvCreate$</groupRegex>
           <namingRule>Performance_jobs</namingRule>
           <useDisplayName>false</useDisplayName>
