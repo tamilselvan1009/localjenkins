@@ -56,7 +56,7 @@ mkdir tbuild_envcreate
 cd tbuild_envcreate
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 cd EnvCreateTests
-python ../VcRunTests.py</command>
+python ../EnvCreateTest.py --env=gnu</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
