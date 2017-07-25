@@ -51,14 +51,14 @@ mkdir tbuild_winenv&#xd;
 cd tbuild_winenv&#xd;
 cmake ..\tests&#xd;
 cd EnvCreateTests&#xd;
-%VECTORCAST_DIR%\vpython ..\VcRunTests.py&#xd;
+%VECTORCAST_DIR%\vpython EnvCreateTest.py --env=msvc10&#xd;
 &#xd;
 mkdir tbuild_cygenv&#xd;
 cd tbuild_cygenv&#xd;
 set PATH=&quot;C:\cygwin\bin;%PATH%&quot;&#xd;
 bash -c &quot;cmake ..\tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
 cd EnvCreateTests&#xd;
-%VECTORCAST_DIR%\vpython ..\VcRunTests.py&#xd;
+%VECTORCAST_DIR%\vpython EnvCreateTest.py --env=cygwin&#xd;
 &#xd;
 &#xd;
 </command>
