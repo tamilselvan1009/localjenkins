@@ -9,7 +9,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>55c9a9a0-1948-40a5-a230-9cf1633307cd</uuid>
+          <uuid>4d6b35a5-9704-4a44-a933-95a0821db287</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -122,6 +122,9 @@ mkdir &quot;${LINUX_RELEASE_DIR}&quot;
 mkdir &quot;${LINUX_GIT_DIR}&quot;
 cp -r * &quot;${LINUX_GIT_DIR}/.&quot;
 
+if [ $BUILD_HARVESTER ]; then
+touch build_harvester.txt
+fi
 </command>
     </hudson.tasks.Shell>
     <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.33">
@@ -129,6 +132,12 @@ cp -r * &quot;${LINUX_GIT_DIR}/.&quot;
         <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
           <configs>
             <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
+            <hudson.plugins.parameterizedtrigger.FileBuildParameters>
+              <propertiesFile>build_harvester.txt</propertiesFile>
+              <failTriggerOnMissing>true</failTriggerOnMissing>
+              <useMatrixChild>false</useMatrixChild>
+              <onlyExactRuns>false</onlyExactRuns>
+            </hudson.plugins.parameterizedtrigger.FileBuildParameters>
           </configs>
           <projects>Build_Linux32,Build_Windows</projects>
           <condition>ALWAYS</condition>
