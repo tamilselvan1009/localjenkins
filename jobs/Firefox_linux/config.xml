@@ -24,7 +24,7 @@ echo $VECTORCAST_DIR
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
-cp -r /home/vectorindia/firefox/firefox $WORKSPACE
+cd /home/vectorindia/firefox/firefox
 echo $PWD
 ./make_config
 cd mozilla-release
