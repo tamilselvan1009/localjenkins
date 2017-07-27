@@ -1,15 +1,63 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
+  <actions/>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.scm.NullSCM"/>
-  <canRoam>true</canRoam>
+  <assignedNode>firefox_linux</assignedNode>
+  <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <builders/>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash -xe
+
+cd $WORKSPACE
+export VECTORCAST_DIR=/home/vectorindia/vcast_64u
+export VECTOR_LICENSE_FILE=/home/vectorindia/vector-license/vector-VECTORINDIA.lic
+export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
+echo $VECTORCAST_DIR
+$VECTORCAST_DIR/vcshell --version
+$VECTORCAST_DIR/clicast --version
+
+cp -r /home/vectorindia/firefox/firefox $WORKSPACE
+./make_config
+cd mozilla-release
+cd obj-x86_64-unknown-linux-gnu
+echo &quot;---- Results for Version: $CURRENT_VC_VERSION&quot; &gt;&gt; ../../firefox_results
+
+../../metricscmd;  // time vcshell --metrics make -j4
+
+cat timings &gt;&gt; ../../firefox_results
+
+$VECTORCAST_DIR/vcdb getmetrics &gt;&gt; ../../firefox_results
+
+$VECTORCAST_DIR/vcdb clearmetrics
+
+../../utilmetricscmd
+
+cat timings &gt;&gt; ../../firefox_results
+
+$VECTORCAST_DIR/vcdb getmetrics &gt;&gt; ../../firefox_results
+
+../../utilqikcmd
+
+cat timings &gt;&gt; ../../firefox_results
+
+../../utilinstcmd
+
+cat timings &gt;&gt; ../../firefox_results
+
+../../utilincrinstcmd
+
+cat timings &gt;&gt; ../../firefox_results
+</command>
+    </hudson.tasks.Shell>
+  </builders>
   <publishers/>
   <buildWrappers/>
 </project>
