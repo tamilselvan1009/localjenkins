@@ -25,6 +25,7 @@ $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
 cp -r /home/vectorindia/firefox/firefox $WORKSPACE
+echo $PWD
 ./make_config
 cd mozilla-release
 cd obj-x86_64-unknown-linux-gnu
