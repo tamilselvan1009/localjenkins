@@ -28,7 +28,7 @@ cp -r /home/vectorindia/firefox/firefox $WORKSPACE
 ./make_config
 cd mozilla-release
 cd obj-x86_64-unknown-linux-gnu
-echo &quot;---- Results for Version: $CURRENT_VC_VERSION&quot; &gt;&gt; ../../firefox_results
+echo &quot;---- Results for Version:$VECTORCAST_DIR/vcshell --version &quot; &gt;&gt; ../../firefox_results
 
 ../../metricscmd;  // time vcshell --metrics make -j4
 
