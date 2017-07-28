@@ -26,10 +26,11 @@ $VECTORCAST_DIR/clicast --version
 cp -r /home/vectorindia/firefox/firefox/* $WORKSPACE/.
 
 echo $PWD
-./make_config
+. ./make_config
 echo &quot;---- Results for Version:$VECTORCAST_DIR/vcshell --version &quot; &gt;&gt; ../../firefox_results
-pwd
-chmod +x ../../metricscmd
+
+
+
 ../../metricscmd  
 
 time vcshell --metrics make -j4
