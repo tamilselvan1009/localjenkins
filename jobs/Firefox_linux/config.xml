@@ -31,33 +31,29 @@ echo &quot;---- Results for VcTools Version:`$VECTORCAST_DIR/vcshell --version` 
 
 
 
-../../metricscmd  
+(../../metricscmd) &gt; firefoxvcshell 2&gt;../../firefoxvcshelltiming 
 
-time vcshell --metrics make -j4
 
-cat timings &gt;&gt; ../../firefox_results
 
-$VECTORCAST_DIR/vcdb getmetrics &gt;&gt; ../../firefox_results
+
+($VECTORCAST_DIR/vcdb getmetrics) &gt; firefoxvcdbmetrics 2&gt;../../firefoxvcdbmetricstiming
 
 $VECTORCAST_DIR/vcdb clearmetrics
 
-../../utilmetricscmd
+(../../utilmetricscmd)  &gt; firefoxvcutilmetricscmd 2&gt;../../firefoxvcutilmetricscmd
 
-cat timings &gt;&gt; ../../firefox_results
 
-$VECTORCAST_DIR/vcdb getmetrics &gt;&gt; ../../firefox_results
 
-../../utilqikcmd
+($VECTORCAST_DIR/vcdb getmetrics) &gt; firefoxvcgetmetrics 2&gt;../../firefoxvcgetmetrics
 
-cat timings &gt;&gt; ../../firefox_results
+(../../utilqikcmd) &gt; firefoxutilqikcmd 2&gt;../../firefoxvcutilqikcmd
 
-../../utilinstcmd
 
-cat timings &gt;&gt; ../../firefox_results
+(../../utilinstcmd) &gt; firefoxutilinstcmd 2&gt;../../firefoxvcutilinstcmd
 
-../../utilincrinstcmd
 
-cat timings &gt;&gt; ../../firefox_results
+(../../utilincrinstcmd) &gt; firefoxutilincrinstcmd 2&gt; ../../firefoxutilincrinstcmd
+
 </command>
     </hudson.tasks.Shell>
   </builders>
