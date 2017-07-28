@@ -24,13 +24,13 @@ echo $VECTORCAST_DIR
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
-cp -R /home/vectorindia/firefox/firefox $WORKSPACE
+cd /home/vectorindia/firefox/firefox
 echo $PWD
-cd firefox
 ./make_config
 echo &quot;---- Results for Version:$VECTORCAST_DIR/vcshell --version &quot; &gt;&gt; ../../firefox_results
-
-./$WORKSPACE/firefox/metricscmd  
+pwd
+chmod +x ../../metricscmd
+../../metricscmd  
 
 time vcshell --metrics make -j4
 
@@ -40,21 +40,21 @@ $VECTORCAST_DIR/vcdb getmetrics &gt;&gt; ../../firefox_results
 
 $VECTORCAST_DIR/vcdb clearmetrics
 
-./$WORKSPACE/firefox/utilmetricscmd
+../../utilmetricscmd
 
 cat timings &gt;&gt; ../../firefox_results
 
 $VECTORCAST_DIR/vcdb getmetrics &gt;&gt; ../../firefox_results
 
-./$WORKSPACE/firefox/utilqikcmd
+../../utilqikcmd
 
 cat timings &gt;&gt; ../../firefox_results
 
-./$WORKSPACE/firefox/utilinstcmd
+../../utilinstcmd
 
 cat timings &gt;&gt; ../../firefox_results
 
-./$WORKSPACE/firefox/utilincrinstcmd
+../../utilincrinstcmd
 
 cat timings &gt;&gt; ../../firefox_results
 </command>
