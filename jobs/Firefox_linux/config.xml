@@ -29,7 +29,9 @@ echo $PWD
 ./make_config
 echo &quot;---- Results for Version:$VECTORCAST_DIR/vcshell --version &quot; &gt;&gt; ../../firefox_results
 
-../../metricscmd;  // time vcshell --metrics make -j4
+../../metricscmd  
+
+time vcshell --metrics make -j4
 
 cat timings &gt;&gt; ../../firefox_results
 
