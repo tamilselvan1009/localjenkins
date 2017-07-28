@@ -27,8 +27,6 @@ $VECTORCAST_DIR/clicast --version
 cd /home/vectorindia/firefox/firefox
 echo $PWD
 ./make_config
-cd mozilla-release
-cd obj-x86_64-unknown-linux-gnu
 echo &quot;---- Results for Version:$VECTORCAST_DIR/vcshell --version &quot; &gt;&gt; ../../firefox_results
 
 ../../metricscmd;  // time vcshell --metrics make -j4
