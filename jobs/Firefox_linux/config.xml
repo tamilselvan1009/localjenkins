@@ -30,7 +30,7 @@ cd firefox
 ./make_config
 echo &quot;---- Results for Version:$VECTORCAST_DIR/vcshell --version &quot; &gt;&gt; ../../firefox_results
 
-../../metricscmd  
+./$WORKSPACE/firefox/metricscmd  
 
 time vcshell --metrics make -j4
 
@@ -40,21 +40,21 @@ $VECTORCAST_DIR/vcdb getmetrics &gt;&gt; ../../firefox_results
 
 $VECTORCAST_DIR/vcdb clearmetrics
 
-../../utilmetricscmd
+./$WORKSPACE/firefox/utilmetricscmd
 
 cat timings &gt;&gt; ../../firefox_results
 
 $VECTORCAST_DIR/vcdb getmetrics &gt;&gt; ../../firefox_results
 
-../../utilqikcmd
+./$WORKSPACE/firefox/utilqikcmd
 
 cat timings &gt;&gt; ../../firefox_results
 
-../../utilinstcmd
+./$WORKSPACE/firefox/utilinstcmd
 
 cat timings &gt;&gt; ../../firefox_results
 
-../../utilincrinstcmd
+./$WORKSPACE/firefox/utilincrinstcmd
 
 cat timings &gt;&gt; ../../firefox_results
 </command>
