@@ -26,6 +26,7 @@ $VECTORCAST_DIR/clicast --version
 
 cp -R /home/vectorindia/firefox/firefox $WORKSPACE
 echo $PWD
+cd firefox
 ./make_config
 echo &quot;---- Results for Version:$VECTORCAST_DIR/vcshell --version &quot; &gt;&gt; ../../firefox_results
 
