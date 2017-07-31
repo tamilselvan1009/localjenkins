@@ -31,28 +31,28 @@ echo &quot;---- Results for VcTools Version:`$VECTORCAST_DIR/vcshell --version` 
 
 
 
-(../../metricscmd) &gt; firefoxvcshell 2&gt;../../firefoxvcshelltiming 
+../../metricscmd &gt; firefoxvcshell 2&gt;../../firefoxvcshelltiming 
 
 
 
 
-($VECTORCAST_DIR/vcdb getmetrics) &gt; firefoxvcdbmetrics 2&gt;../../firefoxvcdbmetricstiming
+$VECTORCAST_DIR/vcdb getmetrics &gt; firefoxvcdbmetrics 2&gt;../../firefoxvcdbmetricstiming
 
 $VECTORCAST_DIR/vcdb clearmetrics
 
-(../../utilmetricscmd)  &gt; firefoxvcutilmetricscmd 2&gt;../../firefoxvcutilmetricscmd
+../../utilmetricscmd  &gt; firefoxvcutilmetricscmd 2&gt;../../firefoxvcutilmetricscmd
 
 
 
-($VECTORCAST_DIR/vcdb getmetrics) &gt; firefoxvcgetmetrics 2&gt;../../firefoxvcgetmetrics
+$VECTORCAST_DIR/vcdb getmetrics &gt; firefoxvcgetmetrics 2&gt;../../firefoxvcgetmetrics
 
-(../../utilqikcmd) &gt; firefoxutilqikcmd 2&gt;../../firefoxvcutilqikcmd
-
-
-(../../utilinstcmd) &gt; firefoxutilinstcmd 2&gt;../../firefoxvcutilinstcmd
+../../utilqikcmd &gt; firefoxutilqikcmd 2&gt;../../firefoxvcutilqikcmd
 
 
-(../../utilincrinstcmd) &gt; firefoxutilincrinstcmd 2&gt; ../../firefoxutilincrinstcmd
+../../utilinstcmd &gt; firefoxutilinstcmd 2&gt;../../firefoxvcutilinstcmd
+
+
+../../utilincrinstcmd &gt; firefoxutilincrinstcmd 2&gt; ../../firefoxutilincrinstcmd
 
 </command>
     </hudson.tasks.Shell>
