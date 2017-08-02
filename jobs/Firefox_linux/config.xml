@@ -29,27 +29,19 @@ cp -r /home/vectorindia/firefox/firefox/* $WORKSPACE/.
 . ./make_config
 echo &quot;---- Results for VcTools Version:`$VECTORCAST_DIR/vcshell --version` &quot; &gt;&gt; ../../firefox_results
 
+. ../../metricscmd 
 
-
-(. ../../metricscmd )&gt; ../../firefoxvcshell.txt 2&gt;../../firefoxvcshelltiming.txt 
-
-
-
-
-($VECTORCAST_DIR/vcdb getmetrics) &gt; ../../firefoxvcdbmetrics.txt 2&gt;../../firefoxvcdbmetricstiming.txt
+$VECTORCAST_DIR/vcdb getmetrics
 
 $VECTORCAST_DIR/vcdb clearmetrics
 
-(../../utilmetricscmd)  &gt; ../../firefoxvcutilmetricscmd.txt 2&gt;../../firefoxvcutilmetricscmdtiming.txt
+../../utilmetricscmd
 
+$VECTORCAST_DIR/vcdb getmetrics
 
+../../utilqikcmd
 
-($VECTORCAST_DIR/vcdb getmetrics) &gt; ../../firefoxvcgetmetrics.txt 2&gt;../../firefoxvcgetmetricstiming.txt
-
-(../../utilqikcmd) &gt; ../../firefoxutilqikcmd.txt 2&gt;../../firefoxvcutilqikcmdtiming.txt
-
-
-(../../utilinstcmd) &gt; ../../firefoxutilinstcmd.txt 2&gt;../../firefoxvcutilinstcmdtiming.txt
+../../utilinstcmd
 
 
 </command>
