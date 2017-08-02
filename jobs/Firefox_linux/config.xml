@@ -31,7 +31,7 @@ echo &quot;---- Results for VcTools Version:`$VECTORCAST_DIR/vcshell --version` 
 
 
 
-(../../metricscmd )&gt; ../../firefoxvcshell.txt 2&gt;../../firefoxvcshelltiming.txt 
+(. ../../metricscmd )&gt; ../../firefoxvcshell.txt 2&gt;../../firefoxvcshelltiming.txt 
 
 
 
