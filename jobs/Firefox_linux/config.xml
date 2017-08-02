@@ -98,6 +98,14 @@ exit /b $_RETURN_CODE_
     </hudson.tasks.Shell>
   </builders>
   <publishers>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>mozilla-release/obj-x86_64-unknown-linux-gnu/*.out.txt, mozilla-release/obj-x86_64-unknown-linux-gnu/summary.txt</artifacts>
+      <allowEmptyArchive>false</allowEmptyArchive>
+      <onlyIfSuccessful>false</onlyIfSuccessful>
+      <fingerprint>false</fingerprint>
+      <defaultExcludes>true</defaultExcludes>
+      <caseSensitive>true</caseSensitive>
+    </hudson.tasks.ArtifactArchiver>
     <hudson.tasks.Mailer plugin="mailer@1.19">
       <recipients>shekhar.singh@vectorcast.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
