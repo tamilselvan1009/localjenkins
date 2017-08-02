@@ -53,7 +53,7 @@ cp -r &quot;${LINUX_GIT_DIR}/build.sh&quot; .
 
 # This job assumes that env like BOOST64_DIR are
 # set as globals in the system
-./build.sh --arch=x64_lib
+./build.sh --arch=x64_lib --static_cpp_lib=${VC_STDCPLUS_PLUS_STATIC_DIR}
 
 # copy the 64-bit recorder lib to package
 cp build64/lib64/libVcRecorderLib.so &quot;${LINUX_PACKAGE_DIR}/release/lib64/.&quot;
