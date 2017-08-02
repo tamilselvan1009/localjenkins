@@ -3,7 +3,22 @@
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>VECTORCAST_DIR</name>
+          <description>Vectorcast directory</description>
+          <defaultValue>/home/vectorindia/vcast_64u</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>summary_file</name>
+          <description></description>
+          <defaultValue>summary.txt</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>Firefox_linux</assignedNode>
   <canRoam>false</canRoam>
@@ -16,32 +31,85 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
-cd $WORKSPACE
-export VECTORCAST_DIR=/home/vectorindia/vcast_64u
+#Set up Environment varaibles
 export VECTOR_LICENSE_FILE=/home/vectorindia/vector-license/vector-VECTORINDIA.lic
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
-echo $VECTORCAST_DIR
+
+#Print tools version in console for reference
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
+
+#Copy the firefox source 
 cp -r /home/vectorindia/firefox/firefox/* $WORKSPACE/.
 
 
 . ./make_config
-echo &quot;---- Results for VcTools Version:`$VECTORCAST_DIR/vcshell --version` &quot; &gt;&gt; ../../firefox_results
 
-. ../../metricscmd 
+#print VcTools version in log file
+echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --version | grep Version | awk &apos;{print $3}&apos;` &quot; &gt;&gt; $summary_file
+echo  &gt;&gt; $summary_file
 
-$VECTORCAST_DIR/vcdb getmetrics
 
-$VECTORCAST_DIR/vcdb clearmetrics
+#Execute and measure timings for vcshell make -j4
+echo &quot;    Vcshell make -j4 &quot; &gt;&gt; $summary_file
+time ($VECTORCAST_DIR/vcshell --db=pristine_vcshell.db make -j4 &gt;vcshell_make.txt 2&gt;&amp;1) 2&gt;&gt; $summary_file || export _VCSHELL_MAKE_RETURN_CODE_=$?
+if [ ! &quot;$_VCSHELL_MAKE_RETURN_CODE_&quot; == &quot;0&quot; ];then
+	echo &quot;      Vcshell make command failed &quot; &gt;&gt; $summary_file
+	export _RETURN_CODE_=$_VCSHELL_MAKE_RETURN_CODE_
+fi
+echo  &gt;&gt; $summary_file
 
-../../utilmetricscmd
+#Execute and measure timings for vcshell metrics -j4
+echo &quot;    Vcshell metrics -j4 &quot; &gt;&gt; $summary_file
+time ($VECTORCAST_DIR/vcshell --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --metrics make -j4 &gt;vcshell_metrics.txt 2&gt;&amp;1) 2&gt;&gt; $summary_file || export _VCSHELL_METRICS_RET_=$?
+if [ ! &quot;$_VCSHELL_METRICS_RET_&quot; == &quot;0&quot; ];then
+	echo &quot;      Vcshell metrics command failed &quot; &gt;&gt; $summary_file
+	export _RETURN_CODE_=$_VCSHELL_METRICS_RET_
+fi
+echo  &gt;&gt; $summary_file
 
-$VECTORCAST_DIR/vcdb getmetrics
+#Execute and mesaure timings for getmetrics
+echo &quot;   Vcdb Getmetrics for vcshell --metrics &quot;  &gt;&gt; $summary_file
+time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_for_vcshell_metrics.txt 2&gt;&amp;1 ) 2 &gt;&gt;$summary_file || export _GETMETRICS_VCSHELL_RET_=$?
+if [ ! &quot;$_GETMETRICS_VCSHELL_RET_&quot; == &quot;0&quot; ];then
+	echo &quot;      Getmetrics command for vcshell failed &quot; &gt;&gt; $summary_file
+	export _RETURN_CODE_=$_GETMETRICS_VCSHELL_RET_
+fi
+echo &gt;&gt; $summary_file
 
-../../utilqikcmd
+#Execute and measure timings for clearmetrics
+cp vcshell.db vcutil_metrics.db
+echo &quot;   Vcdb clearmetrics &quot;  &gt;&gt; $summary_file
+time ($VECTORCAST_DIR/vcdb clearmetrics --db=vcutil_metrics.db &gt; vcdb_clearmetrics.txt 2&gt;&amp;1 ) 2&gt;&gt; $summary_file || export _CLEARMETRICS_RET_=$?
+if [ ! &quot;$_CLEARMETRICS_RET_&quot; == &quot;0&quot; ];then
+	echo &quot;      Clear metrics command  failed &quot; &gt;&gt; $summary_file
+	export _RETURN_CODE_=$_CLEARMETRICS_RET_
+fi
+echo &gt;&gt; $summary_file
 
-../../utilinstcmd
+#Execute and measure timings for vcutil addmetrics
+echo &quot;  Vcutil addmetrics &quot;  &gt;&gt; $summary_file
+time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db  --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all addmetrics &gt; vcutil_addmetrics.txt 2&gt;&amp;1)&gt; 2 &gt;&gt; $summary_file || export _VCUTIL_ADDMETRICS_RET_=$?
+if [ ! &quot;$_VCUTIL_ADDMETRICS_RET_&quot; == &quot;0&quot; ];then
+	echo &quot;      Vctuil addmetrics command  failed &quot; &gt;&gt; $summary_file
+	export _RETURN_CODE_=$_VCUTIL_ADDMETRICS_RET_
+fi
+echo &gt;&gt; $summary_file
+
+#Verify metrics recorded in vcutil
+echo &quot;   Vcdb Getmetrics for vcutil addmetrics &quot;  &gt;&gt; $summary_file
+time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_for_vcshell_metrics.txt 2&gt;&amp;1 ) 2 &gt;&gt;$summary_file || goto : handle_error
+echo &gt;&gt; $summary_file
+
+exit /b $_RETURN_CODE_
+
+:handle_error
+export _error_=$?
+if [ ! &quot;$_error_&quot; == &quot;0&quot; ];then
+	echo &quot;      Command failed &quot; &gt;&gt; $summary_file
+	export _RETURN_CODE_=$_error_
+fi
+
 
 
 </command>
