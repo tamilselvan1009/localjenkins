@@ -31,6 +31,16 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
+#function to handle error 
+handle_error()
+{
+	export _error_=$?
+	if [ ! &quot;$_error_&quot; == &quot;0&quot; ];then
+		echo &quot;      Command failed &quot; &gt;&gt; $summary_file
+		export _RETURN_CODE_=$_error_
+	fi
+}
+
 #Set up Environment varaibles
 export VECTOR_LICENSE_FILE=/home/vectorindia/vector-license/vector-VECTORINDIA.lic
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
@@ -41,15 +51,6 @@ $VECTORCAST_DIR/clicast --version
 
 #Copy the firefox source 
 cp -r /home/vectorindia/firefox/firefox/* $WORKSPACE/.
-handle_error()
-{
-export _error_=$?
-if [ ! &quot;$_error_&quot; == &quot;0&quot; ];then
-	echo &quot;      Command failed &quot; &gt;&gt; $summary_file
-	export _RETURN_CODE_=$_error_
-fi
-}
-
 
 . ./make_config
 
@@ -60,53 +61,33 @@ echo  &gt;&gt; $summary_file
 
 #Execute and measure timings for vcshell make -j4
 echo &quot;    Vcshell make -j4 &quot; &gt;&gt; $summary_file
-time ($VECTORCAST_DIR/vcshell --db=pristine_vcshell.db make -j4 &gt;vcshell_make.txt 2&gt;&amp;1) 2&gt;&gt; $summary_file || export _VCSHELL_MAKE_RETURN_CODE_=$?
-if [ ! &quot;$_VCSHELL_MAKE_RETURN_CODE_&quot; == &quot;0&quot; ];then
-	echo &quot;      Vcshell make command failed &quot; &gt;&gt; $summary_file
-	export _RETURN_CODE_=$_VCSHELL_MAKE_RETURN_CODE_
-fi
+time ($VECTORCAST_DIR/vcshell --db=pristine_vcshell.db make -j4 &gt;vcshell_make.out.txt 2&gt;&amp;1) 2&gt;&gt; $summary_file || handle_error
 echo  &gt;&gt; $summary_file
 
 #Execute and measure timings for vcshell metrics -j4
 echo &quot;    Vcshell metrics -j4 &quot; &gt;&gt; $summary_file
-time ($VECTORCAST_DIR/vcshell --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --metrics make -j4 &gt;vcshell_metrics.txt 2&gt;&amp;1) 2&gt;&gt; $summary_file || export _VCSHELL_METRICS_RET_=$?
-if [ ! &quot;$_VCSHELL_METRICS_RET_&quot; == &quot;0&quot; ];then
-	echo &quot;      Vcshell metrics command failed &quot; &gt;&gt; $summary_file
-	export _RETURN_CODE_=$_VCSHELL_METRICS_RET_
-fi
+time ($VECTORCAST_DIR/vcshell --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --metrics make -j4 &gt;vcshell_metrics.out.txt 2&gt;&amp;1) 2&gt;&gt; $summary_file || handle_error
 echo  &gt;&gt; $summary_file
 
 #Execute and mesaure timings for getmetrics
 echo &quot;   Vcdb Getmetrics for vcshell --metrics &quot;  &gt;&gt; $summary_file
-time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_for_vcshell_metrics.txt 2&gt;&amp;1 ) 2 &gt;&gt;$summary_file || export _GETMETRICS_VCSHELL_RET_=$?
-if [ ! &quot;$_GETMETRICS_VCSHELL_RET_&quot; == &quot;0&quot; ];then
-	echo &quot;      Getmetrics command for vcshell failed &quot; &gt;&gt; $summary_file
-	export _RETURN_CODE_=$_GETMETRICS_VCSHELL_RET_
-fi
+time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_for_vcshell_metrics.out.txt 2&gt;&amp;1 ) 2 &gt;&gt;$summary_file || handle_error
 echo &gt;&gt; $summary_file
 
 #Execute and measure timings for clearmetrics
 cp vcshell.db vcutil_metrics.db
 echo &quot;   Vcdb clearmetrics &quot;  &gt;&gt; $summary_file
-time ($VECTORCAST_DIR/vcdb clearmetrics --db=vcutil_metrics.db &gt; vcdb_clearmetrics.txt 2&gt;&amp;1 ) 2&gt;&gt; $summary_file || export _CLEARMETRICS_RET_=$?
-if [ ! &quot;$_CLEARMETRICS_RET_&quot; == &quot;0&quot; ];then
-	echo &quot;      Clear metrics command  failed &quot; &gt;&gt; $summary_file
-	export _RETURN_CODE_=$_CLEARMETRICS_RET_
-fi
+time ($VECTORCAST_DIR/vcdb clearmetrics --db=vcutil_metrics.db &gt; vcdb_clearmetrics.out.txt 2&gt;&amp;1 ) 2&gt;&gt; $summary_file || handle_error
 echo &gt;&gt; $summary_file
 
 #Execute and measure timings for vcutil addmetrics
 echo &quot;  Vcutil addmetrics &quot;  &gt;&gt; $summary_file
-time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db  --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all addmetrics &gt; vcutil_addmetrics.txt 2&gt;&amp;1)&gt; 2 &gt;&gt; $summary_file || export _VCUTIL_ADDMETRICS_RET_=$?
-if [ ! &quot;$_VCUTIL_ADDMETRICS_RET_&quot; == &quot;0&quot; ];then
-	echo &quot;      Vctuil addmetrics command  failed &quot; &gt;&gt; $summary_file
-	export _RETURN_CODE_=$_VCUTIL_ADDMETRICS_RET_
-fi
+time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db  --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all addmetrics &gt; vcutil_addmetrics.out.txt 2&gt;&amp;1)&gt; 2 &gt;&gt; $summary_file || handle_error
 echo &gt;&gt; $summary_file
 
 #Verify metrics recorded in vcutil
 echo &quot;   Vcdb Getmetrics for vcutil addmetrics &quot;  &gt;&gt; $summary_file
-time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_for_vcshell_metrics.txt 2&gt;&amp;1 ) 2 &gt;&gt;$summary_file || handle_error
+time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_for_vcshell_metrics.out.txt 2&gt;&amp;1 ) 2 &gt;&gt;$summary_file || handle_error
 echo &gt;&gt; $summary_file
 
 exit /b $_RETURN_CODE_
