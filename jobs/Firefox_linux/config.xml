@@ -41,6 +41,14 @@ $VECTORCAST_DIR/clicast --version
 
 #Copy the firefox source 
 cp -r /home/vectorindia/firefox/firefox/* $WORKSPACE/.
+handle_error()
+{
+export _error_=$?
+if [ ! &quot;$_error_&quot; == &quot;0&quot; ];then
+	echo &quot;      Command failed &quot; &gt;&gt; $summary_file
+	export _RETURN_CODE_=$_error_
+fi
+}
 
 
 . ./make_config
@@ -98,17 +106,10 @@ echo &gt;&gt; $summary_file
 
 #Verify metrics recorded in vcutil
 echo &quot;   Vcdb Getmetrics for vcutil addmetrics &quot;  &gt;&gt; $summary_file
-time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_for_vcshell_metrics.txt 2&gt;&amp;1 ) 2 &gt;&gt;$summary_file || goto : handle_error
+time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_for_vcshell_metrics.txt 2&gt;&amp;1 ) 2 &gt;&gt;$summary_file || handle_error
 echo &gt;&gt; $summary_file
 
 exit /b $_RETURN_CODE_
-
-:handle_error
-export _error_=$?
-if [ ! &quot;$_error_&quot; == &quot;0&quot; ];then
-	echo &quot;      Command failed &quot; &gt;&gt; $summary_file
-	export _RETURN_CODE_=$_error_
-fi
 
 
 
