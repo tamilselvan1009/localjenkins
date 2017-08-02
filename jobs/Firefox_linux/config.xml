@@ -52,8 +52,6 @@ $VECTORCAST_DIR/vcdb clearmetrics
 (../../utilinstcmd) &gt; ../../firefoxutilinstcmd.txt 2&gt;../../firefoxvcutilinstcmdtiming.txt
 
 
-(../../utilincrinstcmd) &gt; ../../firefoxutilincrinstcmd.txt 2&gt; ../../firefoxutilincrinstcmdtiming.txt
-
 </command>
     </hudson.tasks.Shell>
   </builders>
