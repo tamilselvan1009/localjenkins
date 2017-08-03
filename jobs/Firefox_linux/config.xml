@@ -16,6 +16,11 @@
           <description></description>
           <defaultValue>summary.txt</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>top_level_archive_dir</name>
+          <description></description>
+          <defaultValue>/mnt/nfs/shared/firefox_results/linux</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
@@ -73,6 +78,7 @@ echo  &gt;&gt; $summary_file
 #Execute and mesaure timings for getmetrics
 echo &quot;   Vcdb Getmetrics for vcshell --metrics &quot;  &gt;&gt; $summary_file
 time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_for_vcshell_metrics.out.txt 2&gt;&amp;1) 2&gt;&gt;$summary_file || handle_error
+echo &quot;  Metrics collected : `cat  vcdb_getmetrics_for_vcshell_metrics.out.txt | wc -l`&quot; &gt;&gt; $summary_file
 echo &gt;&gt; $summary_file
 
 #Execute and measure timings for clearmetrics
@@ -89,7 +95,18 @@ echo &gt;&gt; $summary_file
 #Verify metrics recorded in vcutil
 echo &quot;   Vcdb Getmetrics for vcutil addmetrics &quot;  &gt;&gt; $summary_file
 time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_for_vcshell_metrics.out.txt 2&gt;&amp;1) 2&gt;&gt;$summary_file || handle_error
+echo &quot;  Metrics collected : `cat  vcdb_getmetrics_for_vcshell_metrics.out.txt | wc -l`&quot; &gt;&gt; $summary_file
 echo &gt;&gt; $summary_file
+
+#Archive the artifacts
+cd $top_level_archive_dir
+archive_dir=$(date +%d)
+if [ -d $archive_dir ];then
+	rm -rf $archive_dir
+fi
+mkdir $archive_dir
+cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/summary.txt $archive_dir/.
+cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/*.out.txt $archive_dir/.
 
 exit /b $_RETURN_CODE_
 
@@ -99,14 +116,6 @@ exit /b $_RETURN_CODE_
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.ArtifactArchiver>
-      <artifacts>mozilla-release/obj-x86_64-unknown-linux-gnu/*.out.txt, mozilla-release/obj-x86_64-unknown-linux-gnu/summary.txt</artifacts>
-      <allowEmptyArchive>false</allowEmptyArchive>
-      <onlyIfSuccessful>false</onlyIfSuccessful>
-      <fingerprint>false</fingerprint>
-      <defaultExcludes>true</defaultExcludes>
-      <caseSensitive>true</caseSensitive>
-    </hudson.tasks.ArtifactArchiver>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
       <recipientList>shekhar.singh@vectorcast.com</recipientList>
       <configuredTriggers>
