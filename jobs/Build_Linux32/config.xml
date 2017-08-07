@@ -64,6 +64,19 @@ cd build
     	false
     fi
     
+# Install vctools in vcinst build also
+export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/vcinst/linux/release
+
+cd $WORKSPACE/build
+./release-package.sh --test_release || if [[ $? == 1 ]]; then 
+		true
+    else
+    	false
+    fi
+    
+# Set back the VC
+export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
+    
 # copy the build to the shared location
 cd ../release-packages
 mkdir &quot;${LINUX_PACKAGE_DIR}&quot;
