@@ -59,8 +59,8 @@ cp -r /home/vectorindia/firefox/firefox/* $WORKSPACE/.
 
 #printing date 
 echo &gt;&gt; $summary_file
-&quot;BUILD DATE IS :&quot; &gt;&gt; $summary_file
-$(date) &gt;&gt; $summary_file 
+echo &quot;BUILD DATE IS : &apos;$(date)&apos;&quot; &gt;&gt; $summary_file
+ 
 . ./make_config
 
 #print VcTools version in log file
