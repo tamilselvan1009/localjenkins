@@ -121,7 +121,7 @@ exit /b $_RETURN_CODE_
   </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
-      <recipientList>vectorindia@vectorcast.com</recipientList>
+      <recipientList>shekhar.singh@vectorcast.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
