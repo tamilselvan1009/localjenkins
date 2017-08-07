@@ -58,7 +58,7 @@ echo &quot;Test starts here&quot; &#xd;
 %VECTORCAST_DIR%\vpython VcCollectResult.py --db=N:\shared\Jenkins_Result\vcshell.db --tag=windows32_msvc10&#xd;
 &#xd;
 set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\vcinst\windows\release&#xd;
-cd %workspace%\tbuild\vcInstTest&#xd;
+cd %workspace%\tbuild32_msvc10\vcInstTest&#xd;
 %VECTORCAST_DIR%\vpython ..\VcRunTests.py --metrics&#xd;
 &#xd;
 set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
