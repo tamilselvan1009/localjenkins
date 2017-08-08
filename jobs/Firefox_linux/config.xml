@@ -112,11 +112,57 @@ echo &quot;   Quick parsing respective files        &quot; &gt;&gt; $summary_fil
 time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick.out 2 &gt;&amp;1) 2&gt;&gt; $summary_file || handle_error
 echo &gt;&gt; $summary_file
 
-#performance script
-chmod +x ../../perf.sh
-echo &gt;&gt; &quot; Performance script   &quot;  &gt;&gt; $summary_file
-../../perf.sh
-echo &gt;&gt; $summary_file
+
+echo &quot;Time: getfiles&quot; &gt;&gt; summary.txt
+time ($VECTORCAST_DIR/vcdb getfiles &gt;vcdb_getfiles.out.txt 2&gt;&amp;1) 2 &gt;&gt; summary.txt
+echo &quot;Time: dumpcommands&quot; &gt;&gt; summary.txt
+time ($VECTORCAST_DIR/vcdb dumpcommands &gt;vcdb_dumpcommand.out.txt 2&gt;&amp;1) 2 &gt;&gt; summary.txt
+echo &quot;Time: dumpverbs&quot;
+time ($VECTORCAST_DIR/vcdb dumpverbs &gt; vcdb_dumpverbs.out.txt 2&gt;&amp;1) 2 &gt;&gt; summary.txt
+echo &quot;Time: getapps&quot; &gt;&gt; summary.txt
+time ($VECTORCAST_DIR/vcdb getapps &gt;vcdb_getapps.out.txt 2&gt;&amp;1) 2 &gt;&gt; summary.txt
+echo &quot;Time: getcommentdata&quot; &gt;&gt; summary.txt
+time ($VECTROCAST_DIR/vcdb getcommentdata &gt; vcdb_getcommentdata.out.txt 2&gt;&amp;1 ) 2 &gt;&gt; summary.txt
+echo &quot;Time: getmetrics&quot; &gt;&gt; summary.txt
+time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_data.out.txt 2&gt;&amp;1 ) 2 &gt;&gt; summary.txt
+echo &quot;Time: getpaths&quot; &gt;&gt; summary.txt
+time ($VECTORCAST_DIR/vcdb getpaths &gt; vcdb_getpaths_data.out.txt 2&gt;&amp;1) 2 &gt;&gt; summary.txt
+awk -F &quot; &quot; {&apos;print $2;&apos;} paths &gt; justpaths
+echo &quot;Time: gettags&quot; &gt;&gt; summary.txt
+time ($VECTORCAST_DIR/vcdb gettags &gt; vcdb_gettags_data.out.txt 2&gt;&amp;1) 2 &gt;&gt; summary.txt
+echo &quot;Time: getlinkcmd&quot; &gt;&gt; summary.txt
+time ($VECTORCAST_DIR/vcdb getlinkcmd &gt; vcdb_getlinkcmd_data.out.txt 2&gt;&amp;1) 2 &gt;&gt;summary.txt
+echo &quot;Time: list-prefixes&quot;
+time ($VECTORCAST_DIR/vcdb list-prefixes &gt; vcdb_list-prefixes_data.out.txt 2&gt;&amp;1) 2 &gt;&gt; summary.txt
+echo &quot;Time: getcommands&quot; &gt;&gt; summary.txt
+chmod +x ../../getcmd.sh
+time (../../getcmd.sh &lt; files &gt; cmds &gt; getcommands_data.out.txt 2&gt;&amp;1) 2 &gt;&gt; summary.txt
+chmod +x ../../getcommentdensity.sh
+echo &quot;Time: getcommentdensity&quot; &gt;&gt; summary.txt
+time (../../getcommentdensity.sh &lt; files &gt; commentdensity &gt; get_commentdensit_out.txt 2&gt;&amp;1) 2 &gt;&gt; summary.txt
+chmod +x ../../getincludes.sh
+echo &quot;Time: getincludes&quot; &gt;&gt; summary.txt
+time (../../getincludes.sh &lt; files &gt; includes &gt; get_includes_out.txt 2&gt;&amp;1) 2 &gt;&gt;summary.txt 
+chmod +x ../../getdefines.sh
+echo &quot;Time: getdefines&quot; &gt;&gt; summary.txt
+time (../../getdefines.sh &lt; files &gt; defines &gt; get_defines_out.txt 2&gt;&amp;1) 2 &gt;&gt; summary.txt
+chmod +x ../../getoptions.sh
+echo &quot;Time: getoptions&quot; &gt;&gt;summary.txt
+time (../../getoption.sh &lt; files &gt; options &gt; get_options_out.txt 2&gt;&amp;1) 2 &gt;&gt; summary.txt
+chmod +x ../../getppopt.sh
+echo &quot;Time: getppoptions&quot; &gt;&gt; summary.txt
+time (../../getppopt.sh &lt; files &gt; ppoptions &gt;get_poptions_out.txt 2&gt;&amp;1) 2 &gt;&gt; summary.txt
+chmod +x ../../getunitindex.sh
+echo &quot;Time: getunitindex&quot; &gt;&gt; summary.txt
+time (../../getunitindex.sh &lt; files &gt; unitindex &gt;get_unitindex_out.txt 2&gt;&amp;1) 2 &gt;&gt; summary.txt
+chmod +x ../../getpathtype
+echo &quot;Time: getpathtype&quot; &gt;&gt; summary.txt
+time (../../getpathtype.sh &lt; justpaths &gt; pathtypes &gt;get_pathtypes_out.txt 2&gt;&amp;1) 2 &gt;&gt; summary.txt
+chmod +x ../../setpathtype.sh
+echo &quot;Time: setpathtype&quot; &gt;&gt; summary.txt
+time (../../setpathtype.sh &lt; justpaths &gt; setpaths &gt; set_pathtypes_out.txt 2&gt;&amp;1) 2 &gt;&gt; summary.txt
+
+
 
 #quick 
 #Archive the artifacts
