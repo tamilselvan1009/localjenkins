@@ -113,6 +113,7 @@ time ($VECTORCAST_DIR/vcutil --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=
 echo &gt;&gt; $summary_file
 
 #performance script
+chmod +x ../../perf.sh
 echo &gt;&gt; &quot; Performance script   &quot;  &gt;&gt; $summary_file
 ../../perf.sh
 echo &gt;&gt; $summary_file
