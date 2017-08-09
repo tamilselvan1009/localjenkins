@@ -59,7 +59,7 @@ cp -r /home/vectorindia/firefox/firefox/* $WORKSPACE/.
 
 #printing date 
 echo &gt;&gt; $summary_file
-echo &quot;BUILD DATE IS : $(date)&quot; &gt;&gt; $summary_file
+echo &quot;BUILD DATE IS : `$(date)`&quot; &gt;&gt; $summary_file
  
 . ./make_config
 
