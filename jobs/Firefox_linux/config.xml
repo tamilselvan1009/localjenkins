@@ -122,9 +122,9 @@ time ($VECTORCAST_DIR/vcdb dumpverbs &gt; vcdb_dumpverbs.out.txt 2&gt;&amp;1) 2&
 echo &quot;Time: getapps&quot; &gt;&gt; summary.txt
 time ($VECTORCAST_DIR/vcdb getapps &gt;vcdb_getapps.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt
 echo &quot;Time: getcommentdata&quot; &gt;&gt; summary.txt
-time ($VECTROCAST_DIR/vcdb getcommentdata &gt; vcdb_getcommentdata.out.txt 2&gt;&amp;1 ) 2&gt;&gt; summary.txt
+time ($VECTROCAST_DIR/vcdb getcommentdata &gt; vcdb_getcommentdata.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt
 echo &quot;Time: getmetrics&quot; &gt;&gt; summary.txt
-time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_data.out.txt 2&gt;&amp;1 ) 2&gt;&gt; summary.txt
+time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_data.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt
 echo &quot;Time: getpaths&quot; &gt;&gt; summary.txt
 time ($VECTORCAST_DIR/vcdb getpaths &gt; vcdb_getpaths_data.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt
 awk -F &quot; &quot; {&apos;print $2;&apos;} paths &gt; justpaths
