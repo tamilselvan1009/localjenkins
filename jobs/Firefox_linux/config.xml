@@ -139,28 +139,28 @@ chmod +x ../../getcmd.sh
 time (../.././getcmd.sh vcdb_getfiles.out.txt &gt; getcommands_data.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
 chmod +x ../../getcommentdensity.sh
 echo &quot;Time: getcommentdensity&quot; &gt;&gt; summary.txt
-time (../.././getcommentdensity.sh getcommands_data.out.txt &gt; get_commentdensit_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
+time (../.././getcommentdensity.sh vcdb_getfiles.out.txt &gt; get_commentdensit_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
 chmod +x ../../getincludes.sh
 echo &quot;Time: getincludes&quot; &gt;&gt; summary.txt
-time (../.././getincludes.sh getcommands_data.out.txt &gt; get_includes_out.txt 2&gt;&amp;1) 2&gt;&gt;summary.txt || handle_error
+time (../.././getincludes.sh vcdb_getfiles.out.txt &gt; get_includes_out.txt 2&gt;&amp;1) 2&gt;&gt;summary.txt || handle_error
 chmod +x ../../getdefines.sh
 echo &quot;Time: getdefines&quot; &gt;&gt; summary.txt
-time (../.././getdefines.sh getcommands_data.out.txt &gt; get_defines_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
+time (../.././getdefines.sh vcdb_getfiles.out.txt &gt; get_defines_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
 chmod +x ../../getoptions.sh
 echo &quot;Time: getoptions&quot; &gt;&gt;summary.txt
-time (../.././getoption.sh getcommands_data.out.txt &gt; get_options_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
+time (../.././getoption.sh vcdb_getfiles.out.txt &gt; get_options_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
 chmod +x ../../getppopt.sh
 echo &quot;Time: getppoptions&quot; &gt;&gt; summary.txt
-time (../.././getppopt.sh getcommands_data.out.txt &gt;get_poptions_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
+time (../.././getppopt.sh vcdb_getfiles.out.txt &gt;get_poptions_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
 chmod +x ../../getunitindex.sh
 echo &quot;Time: getunitindex&quot; &gt;&gt; summary.txt
-time (../.././getunitindex.sh getcommands_data.out.txt &gt;get_unitindex_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
+time (../.././getunitindex.sh vcdb_getfiles.out.txt &gt;get_unitindex_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
 chmod +x ../../getpathtype
 echo &quot;Time: getpathtype&quot; &gt;&gt; summary.txt
-time (../.././getpathtype.sh getcommands_data.out.txt &gt;get_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
+time (../.././getpathtype.sh vcdb_getfiles.out.txt &gt;get_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
 chmod +x ../../setpathtype.sh
 echo &quot;Time: setpathtype&quot; &gt;&gt; summary.txt
-time (../.././setpathtype.sh getcommands_data.out.txt &gt; set_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
+time (../.././setpathtype.sh vcdb_getfiles.out.txt &gt; set_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
 
 
 
