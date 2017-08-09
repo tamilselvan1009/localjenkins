@@ -127,7 +127,6 @@ echo &quot;Time: getmetrics&quot; &gt;&gt; summary.txt
 time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_data.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt  || handle_error
 echo &quot;Time: getpaths&quot; &gt;&gt; summary.txt
 time ($VECTORCAST_DIR/vcdb getpaths &gt; vcdb_getpaths_data.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt  || handle_error
-awk -F &quot; &quot; {&apos;print $2;&apos;} paths &gt; justpaths
 echo &quot;Time: gettags&quot; &gt;&gt; summary.txt
 time ($VECTORCAST_DIR/vcdb gettags &gt; vcdb_gettags_data.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
 echo &quot;Time: getlinkcmd&quot; &gt;&gt; summary.txt
