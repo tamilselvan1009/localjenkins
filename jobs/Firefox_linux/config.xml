@@ -93,7 +93,7 @@ echo &gt;&gt; $summary_file
 
 #Execute and measure timings for vcutil addmetrics
 echo &quot;  Vcutil addmetrics &quot;  &gt;&gt; $summary_file
-time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db  --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all addmetrics &gt; vcutil_addmetrics.out.txt 2&gt;&amp;1) 2&gt;&gt; $summary_file || handle_error
+time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db  --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all addmetrics -j4 &gt; vcutil_addmetrics.out.txt 2&gt;&amp;1) 2&gt;&gt; $summary_file || handle_error
 echo &gt;&gt; $summary_file
 
 #Verify metrics recorded in vcutil
