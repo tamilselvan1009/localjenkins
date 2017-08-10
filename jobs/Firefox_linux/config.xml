@@ -145,7 +145,7 @@ time (../.././getincludes.sh vcdb_getfiles.out.txt &gt; get_includes_out.txt 2&g
 chmod +x ../../getdefines.sh
 echo &quot;Time: getdefines&quot; &gt;&gt; summary.txt
 time (../.././getdefines.sh vcdb_getfiles.out.txt &gt; get_defines_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
-chmod +x ../../getoptions.sh
+chmod +x ../../getoption.sh
 echo &quot;Time: getoptions&quot; &gt;&gt;summary.txt
 time (../.././getoption.sh vcdb_getfiles.out.txt &gt; get_options_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
 chmod +x ../../getppopt.sh
