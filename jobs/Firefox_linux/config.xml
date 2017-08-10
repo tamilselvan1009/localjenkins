@@ -46,6 +46,13 @@ handle_error()
 	fi
 }
 
+#function to run commands
+VcRun()
+{
+
+
+
+}
 #Set up Environment varaibles
 export VECTOR_LICENSE_FILE=/home/vectorindia/vector-license/vector-VECTORINDIA.lic
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
