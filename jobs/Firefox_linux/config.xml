@@ -123,7 +123,7 @@ time ($VECTORCAST_DIR/vcdb dumpverbs &gt; vcdb_dumpverbs.out.txt 2&gt;&amp;1) 2&
 echo &quot;Time: getapps&quot; &gt;&gt; summary.txt
 time ($VECTORCAST_DIR/vcdb getapps &gt;vcdb_getapps.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt  || handle_error
 echo &quot;Time: getcommentdata&quot; &gt;&gt; summary.txt
-time ($VECTROCAST_DIR/vcdb getcommentdata &gt; vcdb_getcommentdata.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
+time ($VECTORCAST_DIR/vcdb getcommentdata &gt; vcdb_getcommentdata.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
 echo &quot;Time: getmetrics&quot; &gt;&gt; summary.txt
 time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_data.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt  || handle_error
 echo &quot;Time: getpaths&quot; &gt;&gt; summary.txt
@@ -184,7 +184,7 @@ exit /b $_RETURN_CODE_
   </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
-      <recipientList>shekhar.singh@vectorcast.com</recipientList>
+      <recipientList>vectorindia@vectorcast.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
