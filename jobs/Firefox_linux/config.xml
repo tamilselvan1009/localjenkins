@@ -103,12 +103,12 @@ time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_for_vcshell_metrics.o
 echo &quot;  Metrics collected : `cat  vcdb_getmetrics_for_vcshell_metrics.out.txt | wc -l`&quot; &gt;&gt; $summary_file
 echo &gt;&gt; $summary_file
 
-#Instrumenting 
+#Vcutil Instrument 
 echo &quot;   Instrumenting respective files        &quot;  &gt;&gt; $summary_file
 time ($VECTORCAST_DIR/vcutil  --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=InstFiles --coverage_type=statement instrument &gt; vcutil_instr.out.txt 2&gt;&amp;1) 2&gt;&gt; $summary_file || handle_error
 echo &gt;&gt; $summary_file
 
-#Quick parsing
+#Vcutil Quick parse
 echo &quot;   Quick parsing respective files        &quot; &gt;&gt; $summary_file
 time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick.out 2&gt;&amp;1) 2&gt;&gt; $summary_file || handle_error
 echo &gt;&gt; $summary_file
