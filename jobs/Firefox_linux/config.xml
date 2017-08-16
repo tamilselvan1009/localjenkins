@@ -7,7 +7,7 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>VECTORCAST_DIR</name>
+          <name>LINUX_VECTORCAST_DIR</name>
           <description>Vectorcast directory</description>
           <defaultValue>/home/vectorindia/newvca/release</defaultValue>
         </hudson.model.StringParameterDefinition>
@@ -20,6 +20,11 @@
           <name>top_level_archive_dir</name>
           <description></description>
           <defaultValue>/mnt/nfs/shared/firefox_results/linux</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_NAME</name>
+          <description></description>
+          <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -48,6 +53,7 @@ handle_error()
 
 #function to run commands
 #Set up Environment varaibles
+export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
 export VECTOR_LICENSE_FILE=/home/vectorindia/vector-license/vector-VECTORINDIA.lic
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 
@@ -226,5 +232,10 @@ Jenkins</body>
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
+      <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
+      <runAtStart>true</runAtStart>
+      <runAtEnd>false</runAtEnd>
+    </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
   </buildWrappers>
 </project>
