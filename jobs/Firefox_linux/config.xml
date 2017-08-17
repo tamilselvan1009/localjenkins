@@ -50,8 +50,12 @@ handle_error()
 		export _RETURN_CODE_=$_error_
 	fi
 }
-
-#function to run commands
+#function to generate tabular file
+Table()
+{
+grep $1 $2 | awk &apos;{printf(&quot;\t         %s    \t&quot;,$2)}&apos;&gt;&gt;$summary_file
+echo -e &quot;       $3    &quot;&gt;&gt;$summary_file
+}
 #Set up Environment varaibles
 export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
 export VECTOR_LICENSE_FILE=/home/vectorindia/vector-license/vector-VECTORINDIA.lic
@@ -63,10 +67,6 @@ $VECTORCAST_DIR/clicast --version
 
 #Copy the firefox source 
 cp -r /home/vectorindia/firefox/firefox/* $WORKSPACE/.
-
-#printing date 
-echo &gt;&gt; $summary_file
-echo &quot;BUILD DATE IS : `$(date)`&quot; &gt;&gt; $summary_file
  
 . ./make_config
 
@@ -74,100 +74,139 @@ echo &quot;BUILD DATE IS : `$(date)`&quot; &gt;&gt; $summary_file
 echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --version | grep Version | awk &apos;{print $3}&apos;` &quot; &gt;&gt; $summary_file
 echo  &gt;&gt; $summary_file
 
+#tabular format for the file
+echo -e  &quot;Command            \t           Time      \t  Artifact&quot; &gt;&gt;$summary_file
 
 #Execute and measure timings for vcshell make -j4
-echo &quot;    Vcshell make -j4 &quot; &gt;&gt; $summary_file
-time ($VECTORCAST_DIR/vcshell --db=pristine_vcshell.db make -j4 &gt;vcshell_make.out.txt 2&gt;&amp;1) 2&gt;&gt; $summary_file || handle_error
-echo  &gt;&gt; $summary_file
+echo -n -e &quot;Vchell make \t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcshell --db=pristine_vcshell.db make -j4 &gt;vcshell_make.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_make || handle_error
+Table &quot;user&quot; vcshell_make &quot;--&quot;
 
 #Execute and measure timings for vcshell metrics -j4
 make clean
-echo &quot;    Vcshell metrics -j4 &quot; &gt;&gt; $summary_file
-time ($VECTORCAST_DIR/vcshell --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --metrics make -j4 &gt;vcshell_metrics.out.txt 2&gt;&amp;1) 2&gt;&gt; $summary_file || handle_error
-echo  &gt;&gt; $summary_file
+echo -n -e &quot;Vcshell metrics\t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcshell --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --metrics make -j4 &gt;vcshell_metrics.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_metrics || handle_error
+Table &quot;user&quot; vcshell_metrics &quot;--&quot;
 
 #Execute and mesaure timings for getmetrics
-echo &quot;   Vcdb Getmetrics for vcshell --metrics &quot;  &gt;&gt; $summary_file
-time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_for_vcshell_metrics.out.txt 2&gt;&amp;1) 2&gt;&gt;$summary_file || handle_error
-echo &quot;  Metrics collected : `cat  vcdb_getmetrics_for_vcshell_metrics.out.txt | wc -l`&quot; &gt;&gt; $summary_file
-echo &gt;&gt; $summary_file
+echo -n -e &quot;Vcdb getmetrics\t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_for_vcshell_metrics.out.txt 2&gt;&amp;1) 2&gt;&gt;vcdb_getmetrics || handle_error
+Table &quot;user&quot; vcdb_metrics &quot;`cat  vcdb_getmetrics_for_vcshell_metrics.out.txt | wc -l`&quot; || handle error
+
 
 #Execute and measure timings for clearmetrics
 cp vcshell.db vcutil_metrics.db
-echo &quot;   Vcdb clearmetrics &quot;  &gt;&gt; $summary_file
-time ($VECTORCAST_DIR/vcdb clearmetrics --db=vcutil_metrics.db &gt; vcdb_clearmetrics.out.txt 2&gt;&amp;1) 2&gt;&gt; $summary_file || handle_error
-echo &gt;&gt; $summary_file
+echo -n -e &quot;Vcdb clearmetrics&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcdb clearmetrics --db=vcutil_metrics.db &gt; vcdb_clearmetrics.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_clearmetrics || handle_error
+Table &quot;user&quot; vcdb_clearmetrics &quot;--&quot; || handle_error
 
 #Execute and measure timings for vcutil addmetrics
-echo &quot;  Vcutil addmetrics &quot;  &gt;&gt; $summary_file
-time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db  --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all addmetrics  &gt; vcutil_addmetrics.out.txt 2&gt;&amp;1) 2&gt;&gt; $summary_file || handle_error
-echo &gt;&gt; $summary_file
+echo  -n -e &quot;Vcutil Addmetrics&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db  --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all addmetrics  &gt; vcutil_addmetrics.out.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_addmetrics || handle_error
+Table &quot;user&quot; vcutil_addmetrics &quot;--&quot; || handle_error
+
 
 #Verify metrics recorded in vcutil
-echo &quot;   Vcdb Getmetrics for vcutil addmetrics &quot;  &gt;&gt; $summary_file
-time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_for_vcshell_metrics.out.txt 2&gt;&amp;1) 2&gt;&gt;$summary_file || handle_error
-echo &quot;  Metrics collected : `cat  vcdb_getmetrics_for_vcshell_metrics.out.txt | wc -l`&quot; &gt;&gt; $summary_file
-echo &gt;&gt; $summary_file
+echo -n -e &quot;Vcdb getmetrics\t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_for_vcshell_metrics.out.txt 2&gt;&amp;1) 2&gt;&gt;vcdb_getmetrics_vcutil || handle_error
+Table &quot;user&quot; vcdb_getmetrics_vcutil &quot;`cat  vcdb_getmetrics_for_vcshell_metrics.out.txt | wc -l`&quot; || handle error
+
 
 #Vcutil Instrument 
-echo &quot;   Instrumenting respective files        &quot;  &gt;&gt; $summary_file
-time ($VECTORCAST_DIR/vcutil  --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=InstFiles --coverage_type=statement instrument &gt; vcutil_instr.out.txt 2&gt;&amp;1) 2&gt;&gt; $summary_file || handle_error
-echo &gt;&gt; $summary_file
+echo -n -e &quot;Vcutil Instrument&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcutil  --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=InstFiles --coverage_type=statement instrument &gt; vcutil_instr.out.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_instrument || handle_error
+Table &quot;user&quot; vcutil_instrument &quot;--&quot; || handle_error
 
 #Vcutil Quick parse
-echo &quot;   Quick parsing respective files        &quot; &gt;&gt; $summary_file
-time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick.out 2&gt;&amp;1) 2&gt;&gt; $summary_file || handle_error
-echo &gt;&gt; $summary_file
+echo -n -e &quot;Vcutil qikparse\t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse || handle_error
+Table &quot;user&quot; vcutil_qikparse &quot;--&quot; || handle_error
 
-
-echo &quot;Time: getfiles&quot; &gt;&gt; summary.txt
-time ($VECTORCAST_DIR/vcdb getfiles &gt;vcdb_getfiles.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
-echo &quot;Time: dumpcommands&quot; &gt;&gt; summary.txt
-time ($VECTORCAST_DIR/vcdb dumpcommands &gt;vcdb_dumpcommand.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
-echo &quot;Time: dumpverbs&quot;
-time ($VECTORCAST_DIR/vcdb dumpverbs &gt; vcdb_dumpverbs.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt  || handle_error
-echo &quot;Time: getapps&quot; &gt;&gt; summary.txt
-time ($VECTORCAST_DIR/vcdb getapps &gt;vcdb_getapps.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt  || handle_error
-echo &quot;Time: getcommentdata&quot; &gt;&gt; summary.txt
-time ($VECTORCAST_DIR/vcdb getcommentdata &gt; vcdb_getcommentdata.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
-echo &quot;Time: getmetrics&quot; &gt;&gt; summary.txt
-time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_data.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt  || handle_error
-echo &quot;Time: getpaths&quot; &gt;&gt; summary.txt
-time ($VECTORCAST_DIR/vcdb getpaths &gt; vcdb_getpaths_data.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt  || handle_error
-echo &quot;Time: gettags&quot; &gt;&gt; summary.txt
-time ($VECTORCAST_DIR/vcdb gettags &gt; vcdb_gettags_data.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
-echo &quot;Time: getlinkcmd&quot; &gt;&gt; summary.txt
-time ($VECTORCAST_DIR/vcdb getlinkcmd &gt; vcdb_getlinkcmd_data.out.txt 2&gt;&amp;1) 2&gt;&gt;summary.txt || handle_error
-echo &quot;Time: list-prefixes&quot;
-time ($VECTORCAST_DIR/vcdb list-prefixes &gt; vcdb_list-prefixes_data.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
-echo &quot;Time: getcommands&quot; &gt;&gt; summary.txt
+#vcdb getfiles
+echo -n -e &quot;Vcdb getfiles\t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcdb getfiles &gt;vcdb_getfiles.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb__getfiles || handle_error
+Table &quot;user&quot; vcdb__getfiles &quot;`cat vcdb_getfiles | grep &quot;Count&quot; | awk &apos;{print $3}&apos;`&quot;
+#vcdb dumpcmd
+echo -n -e &quot;Vcdb dumpcmd\t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcdb dumpcommands &gt;vcdb_dumpcommand.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_dump || handle_error
+Table &quot;user&quot; vcdb_dump &quot;--&quot;
+#vcdb dumpverb
+echo -n -e &quot;Vcdb dumpverb\t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcdb dumpverbs &gt; vcdb_dumpverbs.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_dumpv  || handle_error
+Table &quot;user&quot; vcdb_dumpv &quot;--&quot;
+#vcdb getapps
+echo -n -e &quot;Vcdb getapps\t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcdb getapps &gt;vcdb_getapps.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getapps  || handle_error
+Table &quot;user&quot; vcdb_getapps &quot;--&quot;
+#get commentdata
+echo -n -e &quot;Vcdb getcommentdata&quot;&gt;&gt;$summary_files
+time ($VECTORCAST_DIR/vcdb getcommentdata &gt; vcdb_getcommentdata.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getcommentdata || handle_error
+Table &quot;user&quot; vcdb_getcommentdata &quot;--&quot;
+#get vcdb metrics
+echo -n -e &quot;Vcdb getmetrics\t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_data.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_met  || handle_error
+Table &quot;user&quot; vcdb_met &quot;--&quot;
+#get vcdb path
+echo -n -e &quot;Vcdb getpaths\t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcdb getpaths &gt; vcdb_getpaths_data.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getpath  || handle_error
+Table &quot;user&quot; vcdb_getpath &quot;--&quot;
+#get vcdb tags
+echo -n -e &quot;Vcdb gettags\t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcdb gettags &gt; vcdb_gettags_data.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_gettags || handle_error
+Table &quot;user&quot; vcdb_gettags &quot;--&quot;
+#get linkcmd
+echo -n -e &quot;Vcdb getlinkcmd\t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcdb getlinkcmd &gt; vcdb_getlinkcmd_data.out.txt 2&gt;&amp;1) 2&gt;&gt;vcdb_getlinkcmd || handle_error
+Table &quot;user&quot; vcdb_getlinkcmd &quot;--&quot;
+#get list
+echo -n -e &quot;Vcdb list-prefixes&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcdb list-prefixes &gt; vcdb_list-prefixes_data.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getlist || handle_error
+Table &quot;user&quot; vcdb_getlist &quot;--&quot;
+#getcmd.sh
+echo -n -e &quot;Getcmd.sh\t&quot;&gt;&gt;$summary_file
 chmod +x ../../getcmd.sh
-time (../.././getcmd.sh vcdb_getfiles.out.txt &gt; getcommands_data.out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
+time (../.././getcmd.sh vcdb_getfiles.out.txt &gt; getcommands_data.out.txt 2&gt;&amp;1) 2&gt;&gt; getcmd || handle_error
+Table &quot;user&quot; getcmd &quot;--&quot;
+#getcommentdensity
+echo -n -e &quot;GetcommentDensity.sh&quot;&gt;&gt;$summary_file
 chmod +x ../../getcommentdensity.sh
-echo &quot;Time: getcommentdensity&quot; &gt;&gt; summary.txt
-time (../.././getcommentdensity.sh vcdb_getfiles.out.txt &gt; get_commentdensit_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
+time (../.././getcommentdensity.sh vcdb_getfiles.out.txt &gt; get_commentdensit_out.txt 2&gt;&amp;1) 2&gt;&gt; getcomment || handle_error
+Table &quot;user&quot; getcomment &quot;--&quot;
+#getincludes
+echo -n -e &quot;Getincludes.sh\t&quot;&gt;&gt;$summary_file
 chmod +x ../../getincludes.sh
-echo &quot;Time: getincludes&quot; &gt;&gt; summary.txt
-time (../.././getincludes.sh vcdb_getfiles.out.txt &gt; get_includes_out.txt 2&gt;&amp;1) 2&gt;&gt;summary.txt || handle_error
+time (../.././getincludes.sh vcdb_getfiles.out.txt &gt; get_includes_out.txt 2&gt;&amp;1) 2&gt;&gt;vcdb_getinclude || handle_error
+Table &quot;user&quot; vcdb_getinclude &quot;--&quot;
+#getdefines
+echo -n -e &quot;Getdefines.sh\t&quot;&gt;&gt;$summary_file
 chmod +x ../../getdefines.sh
-echo &quot;Time: getdefines&quot; &gt;&gt; summary.txt
-time (../.././getdefines.sh vcdb_getfiles.out.txt &gt; get_defines_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
+time (../.././getdefines.sh vcdb_getfiles.out.txt &gt; get_defines_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getdefine || handle_error
+Table &quot;user&quot; vcdb_getdefine &quot;--&quot;
+#getoptions
+echo -n -e &quot;Getoptions.sh\t&quot;&gt;&gt;$summary_file
 chmod +x ../../getoption.sh || handle_error
-echo &quot;Time: getoptions&quot; &gt;&gt;summary.txt
-time (../.././getoption.sh vcdb_getfiles.out.txt &gt; get_options_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
+time (../.././getoption.sh vcdb_getfiles.out.txt &gt; get_options_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getoption || handle_error
+Table &quot;user&quot; vcdb_getoption &quot;--&quot;
+#getpopt
+echo -n -e &quot;Getpoptions.sh\t&quot;&gt;&gt;$summary_file
 chmod +x ../../getppopt.sh || handle_error
-echo &quot;Time: getppoptions&quot; &gt;&gt; summary.txt
-time (../.././getppopt.sh vcdb_getfiles.out.txt &gt;get_poptions_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
+time (../.././getppopt.sh vcdb_getfiles.out.txt &gt;get_poptions_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getpoption || handle_error
+Table &quot;user&quot; vcdb_getpoption &quot;--&quot;
+#getuniindex
+echo -n -e &quot;Getunitindex.sh\t&quot;&gt;&gt;$summary_file
 chmod +x ../../getunitindex.sh || handle_error
-echo &quot;Time: getunitindex&quot; &gt;&gt; summary.txt
-time (../.././getunitindex.sh vcdb_getfiles.out.txt &gt;get_unitindex_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
+time (../.././getunitindex.sh vcdb_getfiles.out.txt &gt;get_unitindex_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getunitindex || handle_error
+Table &quot;user&quot; vcdb_getunitindex &quot;--&quot;
+#getpathtype
+echo -n -e &quot;GetPathtype.sh\t&quot;&gt;&gt;$summary_file
 chmod +x ../../getpathtype || handle_error
-echo &quot;Time: getpathtype&quot; &gt;&gt; summary.txt
-time (../.././getpathtype.sh vcdb_getfiles.out.txt &gt;get_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
+time (../.././getpathtype.sh vcdb_getfiles.out.txt &gt;get_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getpathtype || handle_error
+Table &quot;user&quot; vcdb_getpathtype &quot;--&quot;
+#setpathtype
+echo -n -e &quot;Setpathtype.sh\t&quot;&gt;&gt;$summary_file
 chmod +x ../../setpathtype.sh || handle_error
-echo &quot;Time: setpathtype&quot; &gt;&gt; summary.txt
-time (../.././setpathtype.sh vcdb_getfiles.out.txt &gt; set_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; summary.txt || handle_error
-
+time (../.././setpathtype.sh vcdb_getfiles.out.txt &gt; set_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_setpathtype || handle_error
+Table &quot;user&quot; vcdb_setpathtype &quot;--&quot;
 
 
 #quick 
