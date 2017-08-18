@@ -46,7 +46,7 @@ handle_error()
 {
 	export _error_=$?
 	if [ ! &quot;$_error_&quot; == &quot;0&quot; ];then
-		echo &quot;      Command failed &quot; &gt;&gt; $summary_file
+		echo -n &quot;         Command failed &quot; &gt;&gt; $summary_file
 		export _RETURN_CODE_=$_error_
 	fi
 }
@@ -79,13 +79,13 @@ echo -e  &quot;Command            \t           Time      \t  Artifact&quot; &gt;
 
 #Execute and measure timings for vcshell make -j8
 echo -n -e &quot;Vchell make \t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcshell --db=pristine_vcshell.db make -j8 &gt;vcshell_make.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_make || handle_error
+time ($VECTORCAST_DIR/vcshell --db=pristine_vcshell.db make -j16 &gt;vcshell_make.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_make || handle_error
 Table &quot;user&quot; vcshell_make &quot;--&quot;
 
 #Execute and measure timings for vcshell metrics -j8
 make clean
 echo -n -e &quot;Vcshell metrics\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcshell --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --metrics make -j8 &gt;vcshell_metrics.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_metrics || handle_error
+time ($VECTORCAST_DIR/vcshell --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --metrics make -j16 &gt;vcshell_metrics.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_metrics || handle_error
 Table &quot;user&quot; vcshell_metrics &quot;--&quot;
 
 #Execute and mesaure timings for getmetrics
@@ -114,12 +114,12 @@ Table &quot;user&quot; vcdb_getmetrics_vcutil &quot;`cat  vcdb_getmetrics_for_vc
 
 #Vcutil Instrument 
 echo -n -e &quot;Vcutil Instrument&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcutil  --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=InstFiles --coverage_type=statement instrument &gt; vcutil_instr.out.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_instrument || handle_error
+time ($VECTORCAST_DIR/vcutil  --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=InstFiles --coverage_type=statement instrument -j16 &gt; vcutil_instr.out.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_instrument || handle_error
 Table &quot;user&quot; vcutil_instrument &quot;--&quot;
 
 #Vcutil Quick parse
 echo -n -e &quot;Vcutil qikparse\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse || handle_error
+time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=Quick quickparse -j16 &gt; vcutil_quick.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse || handle_error
 Table &quot;user&quot; vcutil_qikparse &quot;--&quot;
 
 #vcdb getfiles
