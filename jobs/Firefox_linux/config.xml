@@ -47,7 +47,7 @@ handle_error()
 	export _error_=$?
 	if [ ! &quot;$_error_&quot; == &quot;0&quot; ];then
 		echo -n &quot;         Command failed &quot; &gt;&gt; $summary_file
-		export _RETURN_CODE_=$_error_
+		export _RETURN_CODE_=0
 	fi
 }
 #function to generate tabular file
