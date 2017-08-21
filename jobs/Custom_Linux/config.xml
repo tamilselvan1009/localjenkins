@@ -14,23 +14,7 @@
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.1.0">
-    <configVersion>2</configVersion>
-    <userRemoteConfigs>
-      <hudson.plugins.git.UserRemoteConfig>
-        <url>git@github.com:VectorSoftwareRI/Harvester.git</url>
-        <credentialsId>git</credentialsId>
-      </hudson.plugins.git.UserRemoteConfig>
-    </userRemoteConfigs>
-    <branches>
-      <hudson.plugins.git.BranchSpec>
-        <name>*/master</name>
-      </hudson.plugins.git.BranchSpec>
-    </branches>
-    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
-    <submoduleCfg class="list"/>
-    <extensions/>
-  </scm>
+  <scm class="hudson.scm.NullSCM"/>
   <assignedNode>Ubuntu32bit_71</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
@@ -59,7 +43,8 @@ cp -r /mnt/nfs/shared/Jenkins_Harvester/Git/tests $WORKSPACE
 mkdir tbuild32
 cd tbuild32
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-$VECTORCAST_DIR/vpython VcRunTests.py --metrics --accumulate=commands.txt
+cd vcInstTest
+$VECTORCAST_DIR/vpython ../VcRunTests.py --metrics --accumulate=commands.txt
 </command>
     </hudson.tasks.Shell>
   </builders>
