@@ -52,7 +52,7 @@
     <com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand plugin="vectorcast-execution@0.18">
       <winCommand>call &quot;C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\vcvarsall.bat&quot;
 
-set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\VCAST_COVERAGE\VCAST_WINDOWS
+set VECTORCAST_DIR=V:\VCAST_REGRESSION
 rmdir /q /s %VECTORCAST_DIR%
 xcopy /s %WIN_VECTORCAST_DIR% %VECTORCAST_DIR%
 
