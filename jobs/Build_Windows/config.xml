@@ -49,6 +49,7 @@
 xcopy /s &quot;%WIN_GIT_DIR%\\harvester&quot;  harvester\&#xd;
 xcopy /s &quot;%WIN_GIT_DIR%\\imports&quot; imports\&#xd;
 copy &quot;%WIN_GIT_DIR%\\buildWin.bat&quot; .&#xd;
+set VC_ERROR_LEVEL=0&#xd;
 &#xd;
 :: This job assumes that all envs are set globally in the system&#xd;
 call buildWin.bat msvc9 --arch=all&#xd;
@@ -59,7 +60,7 @@ call install.bat)&#xd;
 &#xd;
 set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\vcinst\windows\release&#xd;
 cd %workspace%\build&#xd;
-call install.bat&#xd;
+call install.bat&apos;|| call:handle_error&#xd;
 &#xd;
 set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
 &#xd;
@@ -67,12 +68,17 @@ call release-package.bat --test_release&#xd;
 cd ..\release-packages&#xd;
 7z a harvester.win.zip release&#xd;
 mkdir &quot;%WIN_PACKAGE_DIR%&quot;&#xd;
-copy harvester.win.zip &quot;%WIN_PACKAGE_DIR%\\.&quot;</command>
+copy harvester.win.zip &quot;%WIN_PACKAGE_DIR%\\.&quot;&#xd;
+&#xd;
+:handle_error&#xd;
+if NOT %ERRORLEVEL% EQU 0 (set VC_ERROR_LEVEL=%ERRORLEVEL%&#xd;
+echo &quot;Command exited with %VC_ERROR_LEVEL%&quot;)&#xd;
+goto:EOF</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.19">
-      <recipients>vectorindia@vectorcast.com</recipients>
+      <recipients>kavya@vectorcast.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
