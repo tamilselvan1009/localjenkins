@@ -60,7 +60,7 @@ call install.bat)&#xd;
 &#xd;
 set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\vcinst\windows\release&#xd;
 cd %workspace%\build&#xd;
-call install.bat || call:handle_error&#xd;
+install.bat || call:handle_error&#xd;
 &#xd;
 set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
 &#xd;
