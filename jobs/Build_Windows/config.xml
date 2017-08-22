@@ -46,13 +46,13 @@
     <hudson.tasks.BatchFile>
       <command>call &quot;C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\vcvarsall.bat&quot; &#xd;
 ::copy artifacts from git&#xd;
-REM xcopy /s &quot;%WIN_GIT_DIR%\\harvester&quot;  harvester\&#xd;
-REM xcopy /s &quot;%WIN_GIT_DIR%\\imports&quot; imports\&#xd;
+xcopy /s &quot;%WIN_GIT_DIR%\\harvester&quot;  harvester\&#xd;
+xcopy /s &quot;%WIN_GIT_DIR%\\imports&quot; imports\&#xd;
 copy &quot;%WIN_GIT_DIR%\\buildWin.bat&quot; .&#xd;
 set VC_ERROR_LEVEL=0&#xd;
 &#xd;
 :: This job assumes that all envs are set globally in the system&#xd;
-REM call buildWin.bat msvc9 --arch=all&#xd;
+call buildWin.bat msvc9 --arch=all&#xd;
 cd build&#xd;
 &#xd;
 if not &quot;%WIN_VECTORCAST_DIR%&quot; == &quot;&quot; ( set &quot;VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&quot;&#xd;
@@ -74,12 +74,17 @@ goto:EOF</command>
   </builders>
   <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.19">
-      <recipients>kavya@vectorcast.com</recipients>
+      <recipients>vectorindia@vectorcast.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
   </publishers>
   <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
       <template>${ENV, var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
