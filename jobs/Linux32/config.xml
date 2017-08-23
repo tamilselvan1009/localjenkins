@@ -59,12 +59,6 @@ export _VC_RUNTEST_RETURN_CODE_=0
 $VECTORCAST_DIR/vpython VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
 $VECTORCAST_DIR/vpython VcCollectResult.py --db=/mnt/nfs/shared/Jenkins_Result/vcshell.db --tag=linux32
 
-export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/vcinst/linux/release
-cd $WORKSPACE/tbuild32/vcInstTest
-$VECTORCAST_DIR/vpython ../VcRunTests.py --metrics
-
-export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
-
 exit /b $_VC_RUNTEST_RETURN_CODE_</command>
     </hudson.tasks.Shell>
   </builders>
