@@ -20,15 +20,19 @@
     <hudson.tasks.BatchFile>
       <command>REM This deletes the workspace of all the jobs on this machine&#xd;
 &#xd;
+set VC_ERROR_LEVEL=0&#xd;
+&#xd;
 rem rmdir /q /s v:\slavejenkins\workspace\Windows32_msvc10&#xd;
 rmdir /q /s v:\slavejenkins\workspace\Windows32_msvc9&#xd;
-rmdir /q /s v:\slavejenkins\workspace\Windows64_msvc9&#xd;
+rem rmdir /q /s v:\slavejenkins\workspace\Windows64_msvc9&#xd;
+echo %errorlevel%&#xd;
+&#xd;
 </command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.19">
-      <recipients>vectorindia@vectorcast.com</recipients>
+      <recipients>kavya@vectorcast.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
