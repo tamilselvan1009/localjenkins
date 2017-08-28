@@ -60,7 +60,7 @@ grep &quot;user&quot; $1 | awk &apos;{printf(&quot;\t         %s    \t&quot;,$2)
 echo -n -e &quot;        $_var_       &quot; &gt;&gt;$summary_file
 _var_=&quot;--&quot;
 out=`echo $output | awk &apos;{split ($0,a,&quot;m&quot;);print a[1]}&apos;`
-if  [ $out -ge $3 ] &amp;&amp; [ $out -le $4 ] 
+if  [ $out -ge $2 ] &amp;&amp; [ $out -le $3 ] 
 then 
 echo -e &quot;Passed&quot;&gt;&gt;$summary_file
 else
