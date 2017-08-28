@@ -20,7 +20,7 @@
     <hudson.tasks.BatchFile>
       <command>REM This deletes the workspace of all the jobs on this machine&#xd;
 &#xd;
-rmdir /q /s c:\slavejenkins\workspace\Cygwin32&#xd;
+rem rmdir /q /s c:\slavejenkins\workspace\Cygwin32&#xd;
 rmdir /q /s c:\slavejenkins\workspace\Cygwin64</command>
     </hudson.tasks.BatchFile>
   </builders>
