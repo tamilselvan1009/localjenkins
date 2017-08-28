@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>This job does a cleanup of workspace of all jobs</description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM"/>
+  <assignedNode>Windows_54</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.BatchFile>
+      <command>REM This deletes the workspace of all the jobs on this machine&#xd;
+&#xd;
+rem rmdir /q /s v:\slavejenkins\workspace\Windows32_msvc10&#xd;
+rem rmdir /q /s v:\slavejenkins\workspace\Windows32_msvc9&#xd;
+rmdir /q /s v:\slavejenkins\workspace\Windows64_msvc9&#xd;
+</command>
+    </hudson.tasks.BatchFile>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>
