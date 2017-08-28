@@ -14,8 +14,8 @@
     <hudson.tasks.BatchFile>
       <command>REM This deletes the workspace of all the jobs on this machine&#xd;
 &#xd;
-rmdir /q /s v:\slavejenkins\workspace\Windows32_msvc10&#xd;
-rmdir /q /s v:\slavejenkins\workspace\Windows32_msvc9&#xd;
+rem rmdir /q /s v:\slavejenkins\workspace\Windows32_msvc10&#xd;
+rem rmdir /q /s v:\slavejenkins\workspace\Windows32_msvc9&#xd;
 rmdir /q /s v:\slavejenkins\workspace\Windows64_msvc9&#xd;
 </command>
     </hudson.tasks.BatchFile>
