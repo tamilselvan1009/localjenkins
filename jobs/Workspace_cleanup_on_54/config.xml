@@ -1,10 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
+  <actions/>
   <description>This job does a cleanup of workspace of all jobs</description>
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.scm.NullSCM"/>
-  <canRoam>true</canRoam>
+  <assignedNode>Windows_54</assignedNode>
+  <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
