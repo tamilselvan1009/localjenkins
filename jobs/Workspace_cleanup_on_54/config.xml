@@ -36,7 +36,7 @@ xcopy /S /I /E %WIN_GIT_DIR%\harvester\src\scripts\handle.exe . /Q /Y&#xd;
 cd %workspace%&#xd;
 python kill_open_handle.py v:\slavejenkins\workspace\Job_to_test&#xd;
 &#xd;
-exit&#xd;
+rmdir /q /s v:\slavejenkins\workspace\Job_to_test&#xd;
 &#xd;
 rem python kill_open_handle.py v:\slavejenkins\workspace\Windows32_msvc10&#xd;
 rem python kill_open_handle.py v:\slavejenkins\workspace\Windows32_msvc9&#xd;
