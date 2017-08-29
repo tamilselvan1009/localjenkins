@@ -33,6 +33,7 @@
 xcopy /S /I /E %WIN_GIT_DIR%\harvester\src\scripts\kill_open_handle.py . /Q /Y&#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\harvester\src\scripts\handle.exe . /Q /Y&#xd;
 &#xd;
+cd %workspace%&#xd;
 python kill_open_handle.py v:\slavejenkins\workspace\Job_to_test&#xd;
 rem python kill_open_handle.py v:\slavejenkins\workspace\Windows32_msvc10&#xd;
 rem python kill_open_handle.py v:\slavejenkins\workspace\Windows32_msvc9&#xd;
@@ -48,5 +49,11 @@ rem python kill_open_handle.py v:\slavejenkins\workspace\Windows64_msvc9&#xd;
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
   </publishers>
-  <buildWrappers/>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+  </buildWrappers>
 </project>
