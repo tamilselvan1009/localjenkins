@@ -10,18 +10,21 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers>
-    <hudson.triggers.TimerTrigger>
-      <spec>0 17 * * *</spec>
-    </hudson.triggers.TimerTrigger>
-  </triggers>
+  <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
       <command>REM This deletes the workspace of all the jobs on this machine&#xd;
+cd %workspace%&#xd;
 &#xd;
-rem rmdir /q /s c:\slavejenkins\workspace\Cygwin32&#xd;
-rmdir /q /s c:\slavejenkins\workspace\Cygwin64</command>
+xcopy /S /I /E %WIN_GIT_DIR%\harvester\src\scripts\kill_open_handle.py . /Q /Y&#xd;
+xcopy /S /I /E %WIN_GIT_DIR%\harvester\src\scripts\handle.exe . /Q /Y&#xd;
+&#xd;
+python kill_open_handle.py v:\slavejenkins\workspace\Cygwin32&#xd;
+python kill_open_handle.py v:\slavejenkins\workspace\Cygwin64&#xd;
+&#xd;
+rmdir /q /s v:\slavejenkins\workspace\Cygwin32&#xd;
+rmdir /q /s v:\slavejenkins\workspace\Cygwin64</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
