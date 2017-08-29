@@ -39,7 +39,9 @@ python kill_open_handle.py v:\slavejenkins\workspace\Windows32_msvc10&#xd;
 python kill_open_handle.py v:\slavejenkins\workspace\Windows32_msvc9&#xd;
 python kill_open_handle.py v:\slavejenkins\workspace\Windows64_msvc9&#xd;
 &#xd;
-</command>
+rmdir /q /s v:\slavejenkins\workspace\Windows32_msvc10&#xd;
+rmdir /q /s v:\slavejenkins\workspace\Windows32_msvc9&#xd;
+rmdir /q /s v:\slavejenkins\workspace\Windows64_msvc9</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
