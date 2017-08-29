@@ -18,16 +18,15 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>REM This deletes the workspace of all the jobs on this machine&#xd;
+      <command>REM This deletes the workspace of jobs on 54 machine&#xd;
 &#xd;
-xcopy /S /I /E %WIN_GIT_DIR%\tests\kill_open_handle.py . /Q /Y&#xd;
-xcopy /S /I /E %WIN_GIT_DIR%\tests\handle.exe . /Q /Y&#xd;
+xcopy /S /I /E %WIN_GIT_DIR%\harvester\src\scripts\kill_open_handle.py . /Q /Y&#xd;
+xcopy /S /I /E %WIN_GIT_DIR%\harvester\src\scripts\handle.exe . /Q /Y&#xd;
 &#xd;
-&#xd;
-rem rmdir /q /s v:\slavejenkins\workspace\Windows32_msvc10&#xd;
-rmdir /q /s v:\slavejenkins\workspace\Windows32_msvc9&#xd;
-rem rmdir /q /s v:\slavejenkins\workspace\Windows64_msvc9&#xd;
-echo %errorlevel%&#xd;
+python kill_open_handle.py v:\slavejenkins\workspace\Job_to_test&#xd;
+rem python kill_open_handle.py v:\slavejenkins\workspace\Windows32_msvc10&#xd;
+rem python kill_open_handle.py v:\slavejenkins\workspace\Windows32_msvc9&#xd;
+rem python kill_open_handle.py v:\slavejenkins\workspace\Windows64_msvc9&#xd;
 &#xd;
 </command>
     </hudson.tasks.BatchFile>
