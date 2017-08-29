@@ -28,6 +28,7 @@
 &#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\harvester\src\scripts\kill_open_handle.py . /Q /Y&#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\harvester\src\scripts\handle.exe . /Q /Y&#xd;
+cd %workspace%&#xd;
 &#xd;
 python kill_open_handle.py v:\slavejenkins\workspace\Windows32_msvc10&#xd;
 python kill_open_handle.py v:\slavejenkins\workspace\Windows32_msvc9&#xd;
