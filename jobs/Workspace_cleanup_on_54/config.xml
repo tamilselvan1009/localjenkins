@@ -30,24 +30,21 @@
     <hudson.tasks.BatchFile>
       <command>REM This deletes the workspace of jobs on 54 machine&#xd;
 &#xd;
+cd %workspace%&#xd;
+&#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\harvester\src\scripts\kill_open_handle.py . /Q /Y&#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\harvester\src\scripts\handle.exe . /Q /Y&#xd;
 &#xd;
-cd %workspace%&#xd;
-python kill_open_handle.py v:\slavejenkins\workspace\Job_to_test&#xd;
-&#xd;
-rmdir /q /s v:\slavejenkins\workspace\Job_to_test&#xd;
-&#xd;
-rem python kill_open_handle.py v:\slavejenkins\workspace\Windows32_msvc10&#xd;
-rem python kill_open_handle.py v:\slavejenkins\workspace\Windows32_msvc9&#xd;
-rem python kill_open_handle.py v:\slavejenkins\workspace\Windows64_msvc9&#xd;
+python kill_open_handle.py v:\slavejenkins\workspace\Windows32_msvc10&#xd;
+python kill_open_handle.py v:\slavejenkins\workspace\Windows32_msvc9&#xd;
+python kill_open_handle.py v:\slavejenkins\workspace\Windows64_msvc9&#xd;
 &#xd;
 </command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.19">
-      <recipients>kavya@vectorcast.com</recipients>
+      <recipients>vectorindia@vectorcast.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
