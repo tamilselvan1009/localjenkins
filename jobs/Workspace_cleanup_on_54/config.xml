@@ -26,8 +26,6 @@
     <hudson.tasks.BatchFile>
       <command>REM This deletes the workspace of jobs on 54 machine&#xd;
 &#xd;
-cd %workspace%&#xd;
-&#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\harvester\src\scripts\kill_open_handle.py . /Q /Y&#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\harvester\src\scripts\handle.exe . /Q /Y&#xd;
 &#xd;
