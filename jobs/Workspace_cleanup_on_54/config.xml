@@ -34,7 +34,7 @@ xcopy /S /I /E %WIN_GIT_DIR%\harvester\src\scripts\kill_open_handle.py . /Q /Y&#
 xcopy /S /I /E %WIN_GIT_DIR%\harvester\src\scripts\handle.exe . /Q /Y&#xd;
 &#xd;
 cd %workspace%&#xd;
-python kill_open_handle.py v:\slavejenkins\workspace\Job_to_test&#xd;
+python kill_open_handle.py v:\slavejenkins\workspace\Job_to_test --accepteula&#xd;
 &#xd;
 exit&#xd;
 &#xd;
