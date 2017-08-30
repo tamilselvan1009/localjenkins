@@ -35,10 +35,12 @@ xcopy /S /I /E %WIN_GIT_DIR%\harvester\src\scripts\kill_open_handle.py . /Q /Y&#
 xcopy /S /I /E %WIN_GIT_DIR%\harvester\src\scripts\handle.exe . /Q /Y&#xd;
 cd %workspace%&#xd;
 &#xd;
+REM Script kills all processes of the job &#xd;
 python kill_open_handle.py v:\slavejenkins\workspace\Windows32_msvc10&#xd;
 python kill_open_handle.py v:\slavejenkins\workspace\Windows32_msvc9&#xd;
 python kill_open_handle.py v:\slavejenkins\workspace\Windows64_msvc9&#xd;
 &#xd;
+REM Delete the old workspace&#xd;
 rmdir /q /s v:\slavejenkins\workspace\Windows32_msvc10&#xd;
 rmdir /q /s v:\slavejenkins\workspace\Windows32_msvc9&#xd;
 rmdir /q /s v:\slavejenkins\workspace\Windows64_msvc9</command>
