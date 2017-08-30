@@ -29,15 +29,17 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>REM This deletes the workspace of all the jobs on this machine&#xd;
+      <command>REM This deletes the workspace of all the jobs on 68 machine&#xd;
 &#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\harvester\src\scripts\kill_open_handle.py . /Q /Y&#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\harvester\src\scripts\handle.exe . /Q /Y&#xd;
 cd %workspace%&#xd;
 &#xd;
+REM Script kills all processes of the job &#xd;
 python kill_open_handle.py v:\slavejenkins\workspace\Cygwin32&#xd;
 python kill_open_handle.py v:\slavejenkins\workspace\Cygwin64&#xd;
 &#xd;
+REM Delete the old workspace&#xd;
 rmdir /q /s v:\slavejenkins\workspace\Cygwin32&#xd;
 rmdir /q /s v:\slavejenkins\workspace\Cygwin64</command>
     </hudson.tasks.BatchFile>
