@@ -56,7 +56,7 @@ rem bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 rem %VECTORCAST_DIR%\clicast -lc template GNU_C_46&#xd;
 rem %VECTORCAST_DIR%\vcutil set_option C_EDG_FLAGS -w --gcc --gnu_version 40600 --restrict&#xd;
 cd HelloTest&#xd;
-%VECTORCAST_DIR%\vpython ..\VcRunTests.py --metrics --cfg=.&#xd;
+%VECTORCAST_DIR%\vpython ..\VcRunTests.py --metrics --cfg=..\&#xd;
 </command>
     </hudson.tasks.BatchFile>
   </builders>
