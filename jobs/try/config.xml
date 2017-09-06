@@ -73,7 +73,15 @@
         <script>import hudson.FilePath
 
 def buildLog = manager.build.getLog()
-manager.listener.logger.println(buildLog)
+
+int coverage = 0;
+Pattern pattern = Pattern.compile(&apos;Coverage: Statement.*?[(](.*?)%[)]&apos;)
+output.eachMatch pattern, {
+    coverage = Integer.valueOf(it[2])
+    
+}
+manager.listener.logger.println(coverage)
+
 
 matcher = manager.getLogMatcher(&quot;Coverage: Statement.*?[(](.*?)%[)]&quot;)
 manager.listener.logger.println(matcher)
