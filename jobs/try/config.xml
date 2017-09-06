@@ -46,11 +46,28 @@
     <hudson.tasks.Shell>
       <command>export VECTORCAST_DIR=${VECTORCAST_DIR}
 
-$VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/gen-combined-cov.py&quot; &quot;VcTools_aggregate_report.html&quot;
-$VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/getTotals.py&quot; --api 2 &quot;VcTools_full_report.txt&quot;</command>
+</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
+    <com.vectorcast.plugins.vectorcastcoverage.VectorCASTPublisher plugin="vectorcast-coverage@0.10">
+      <includes>**/coverage_results_*.xml</includes>
+      <useThreshold>false</useThreshold>
+      <healthReports>
+        <minStatement>0</minStatement>
+        <maxStatement>100</maxStatement>
+        <minBranch>0</minBranch>
+        <maxBranch>70</maxBranch>
+        <minBasisPath>0</minBasisPath>
+        <maxBasisPath>80</maxBasisPath>
+        <minMCDC>0</minMCDC>
+        <maxMCDC>80</maxMCDC>
+        <minFunction>0</minFunction>
+        <maxFunction>80</maxFunction>
+        <minFunctionCall>0</minFunctionCall>
+        <maxFunctionCall>80</maxFunctionCall>
+      </healthReports>
+    </com.vectorcast.plugins.vectorcastcoverage.VectorCASTPublisher>
     <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
       <script plugin="script-security@1.27">
         <script>import hudson.FilePath
