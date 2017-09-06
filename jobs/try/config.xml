@@ -77,7 +77,7 @@ def buildLog = manager.build.getLog()
 
 int coverage = 0;
 Pattern pattern = Pattern.compile(&apos;Coverage: Statement.*?[(](.*?)%[)]&apos;)
-output.eachMatch pattern, {
+buildLog.eachMatch pattern, {
     coverage = Integer.valueOf(it[2])
     
 }
