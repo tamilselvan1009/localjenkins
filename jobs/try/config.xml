@@ -71,6 +71,12 @@
     <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
       <script plugin="script-security@1.27">
         <script>import hudson.FilePath
+import hudson.model.*
+
+// Get the out variable
+def config = new HashMap()
+def bindings = getBinding()
+config.putAll(bindings.getVariables())
 
 
 def out = config[&apos;out&apos;]
