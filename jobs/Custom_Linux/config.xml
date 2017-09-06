@@ -37,14 +37,11 @@ $VECTORCAST_DIR/clicast --version
 
 cp -r /mnt/nfs/shared/Jenkins_Harvester/Git/tests $WORKSPACE
 
-#export _VC_TEST_ENV_=1
-
 #CMake and run VcRunTests
 mkdir tbuild32
 cd tbuild32
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-cd vcInstTest
-$VECTORCAST_DIR/vpython ../VcRunTests.py --metrics --accumulate=commands.txt
+$VECTORCAST_DIR/vpython VcRunTests.py --metrics --vcshell_option=--vcdebug
 </command>
     </hudson.tasks.Shell>
   </builders>
