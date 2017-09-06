@@ -204,6 +204,7 @@ v:
     <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
       <script plugin="script-security@1.27">
         <script>import hudson.FilePath
+import java.util.regex.Pattern
 
 if(manager.logContains(&quot;.*py did not execute correctly.*&quot;) || manager.logContains(&quot;.*Traceback .most recent call last.*&quot;))
 {
@@ -271,7 +272,21 @@ else
     manager.buildUnstable()
     manager.build.description = &quot;General Failure, Incremental Build Report or Full Report Not Present. Please see the console for more information&quot;
     manager.addBadge(&quot;warning.gif&quot;, &quot;General Error&quot;)
-}</script>
+}
+
+def buildLog = manager.build.getLog()
+Pattern pattern = Pattern.compile(&apos;Coverage: Statement.*?[(](.*?)[%][)]&apos;)
+int coverage = 0
+buildLog.eachMatch pattern, {
+   manager.listener.logger.println(it)
+    coverage = Integer.valueOf(it[1])
+   }
+
+if ( coverage &lt; 60) {
+      manager.buildFailure()
+       manager.addBadge(&quot;error.gif&quot;, &quot;Coverage percentage dropped below 60%&quot;)
+ }
+</script>
         <sandbox>false</sandbox>
       </script>
       <behavior>2</behavior>
