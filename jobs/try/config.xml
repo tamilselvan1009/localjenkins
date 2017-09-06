@@ -73,7 +73,7 @@
         <script>import hudson.FilePath
 
 
-
+def out = config[&apos;out&apos;]
 matcher = manager.getLogMatcher(&quot;Coverage: Statement.*?[(](\\d+)%[)]&quot;)
 out.println matcher
 out.println &quot;matcher&quot;
