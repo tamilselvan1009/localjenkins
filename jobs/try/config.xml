@@ -71,18 +71,10 @@
     <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
       <script plugin="script-security@1.27">
         <script>import hudson.FilePath
-import hudson.model.*
 
-// Get the out variable
-def config = new HashMap()
-def bindings = getBinding()
-config.putAll(bindings.getVariables())
-
-
-def out = config[&apos;out&apos;]
 matcher = manager.getLogMatcher(&quot;Coverage: Statement.*?[(](\\d+)%[)]&quot;)
-out.println matcher
-out.println &quot;matcher&quot;
+manager.listener.logger.println(matcher)
+manager.listener.logger.println(&quot;some output&quot;)
 
 if(matcher != null &amp;&amp; matcher.matches()) {
          coverage = matcher.group(2)
