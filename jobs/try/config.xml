@@ -72,6 +72,9 @@
       <script plugin="script-security@1.27">
         <script>import hudson.FilePath
 
+def buildLog = manager.build.getLog()
+manager.listener.logger.println(buildLog)
+
 matcher = manager.getLogMatcher(&quot;Coverage: Statement.*?[(](.*?)%[)]&quot;)
 manager.listener.logger.println(matcher)
 manager.listener.logger.println(&quot;some output&quot;)
