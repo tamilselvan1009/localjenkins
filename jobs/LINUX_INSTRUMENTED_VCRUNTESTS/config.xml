@@ -7,7 +7,7 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>LINUX_VECTORCAST_DIR</name>
+          <name>VECTORCAST_DIR</name>
           <description></description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
@@ -37,7 +37,6 @@
       <command>#!/bin/bash -xe
 
 cd $LINUX_HARVESTER_DIR
-export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
 export VECTOR_LICENSE_FILE=/home/linuxregressionmac/flexlm/vector-UBUNTU.lic
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 echo $VECTORCAST_DIR
