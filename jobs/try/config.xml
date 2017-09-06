@@ -80,7 +80,7 @@ Pattern pattern = Pattern.compile(&apos;Coverage: Statement.*?[(](.*?)[%][)]&apo
 manager.listener.logger.println(&quot;coverage&quot;)
 buildLog.eachMatch pattern, {
    manager.listener.logger.println(it)
-    coverage = Integer.valueOf(it[2])
+    coverage = Integer.valueOf(it[1])
     
 }
 </script>
