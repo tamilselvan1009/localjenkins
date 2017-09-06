@@ -41,81 +41,8 @@
     <com.vectorcast.plugins.vectorcastexecution.VectorCASTSetup plugin="vectorcast-execution@0.18"/>
     <com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand plugin="vectorcast-execution@0.18">
       <winCommand></winCommand>
-      <unixCommand>
-export PATH=/home/vectorindia/gcc-4.1.2/bin:$PATH
-
-
-rm -rf $VECTORCAST_DIR
-cp -r $LINUX_VECTORCAST_DIR/. $VECTORCAST_DIR/
-export VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
-cd ${LINUX_HARVESTER_DIR}
-
-$VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --status 
-$VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --release-locks 
-$VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --disable-instrument-in-place
-
-
-git checkout -- harvester/inc/vcVersion.h
-git stash
-git pull origin develop
-
-# change the vctools version to the git commit id
-export COMMIT_ID=$(git rev-parse --short HEAD)
-sed -i &quot;s/.*#define _VCTOOLS_VERSION_.*/#define _VCTOOLS_VERSION_ \&quot;${COMMIT_ID}\&quot;/&quot; harvester/inc/vcVersion.h
-
-rm vcshell.*
-$VECTORCAST_DIR/vcshell  bash &quot;./build.sh --enable_threads&quot;
-
-
-$VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --enable-instrument-in-place
-cd cover
-$VECTORCAST_DIR/clicast -lc -e harvester cover instrument statement
-cd ..
-./build_instrumented.sh
-
-cd build
-./install.sh || if [[ $? == 1 ]]; then 
-	true
-    else
-    	false
-    fi
-
-</unixCommand>
+      <unixCommand></unixCommand>
     </com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand>
-    <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.33">
-      <configs>
-        <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
-          <configs>
-            <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
-          </configs>
-          <projects>LINUX_INSTRUMENTED_VCRUNTESTS</projects>
-          <condition>ALWAYS</condition>
-          <triggerWithNoParameters>false</triggerWithNoParameters>
-          <triggerFromChildProjects>false</triggerFromChildProjects>
-          <block>
-            <buildStepFailureThreshold>
-              <name>FAILURE</name>
-              <ordinal>2</ordinal>
-              <color>RED</color>
-              <completeBuild>true</completeBuild>
-            </buildStepFailureThreshold>
-            <unstableThreshold>
-              <name>UNSTABLE</name>
-              <ordinal>1</ordinal>
-              <color>YELLOW</color>
-              <completeBuild>true</completeBuild>
-            </unstableThreshold>
-            <failureThreshold>
-              <name>FAILURE</name>
-              <ordinal>2</ordinal>
-              <color>RED</color>
-              <completeBuild>true</completeBuild>
-            </failureThreshold>
-          </block>
-          <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
-        </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
-      </configs>
-    </hudson.plugins.parameterizedtrigger.TriggerBuilder>
     <hudson.tasks.Shell>
       <command>export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
 $VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/generate-results.py&quot; --api 2 &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; 
@@ -242,16 +169,5 @@ if(matcher != null &amp;&amp; matcher.matches()) {
       <runForMatrixParent>false</runForMatrixParent>
     </org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder>
   </publishers>
-  <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
-      <deleteDirs>true</deleteDirs>
-      <cleanupParameter></cleanupParameter>
-      <externalDelete></externalDelete>
-    </hudson.plugins.ws__cleanup.PreBuildCleanup>
-    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
-      <template>${ENV, var=&quot;BUILD_NAME&quot;}</template>
-      <runAtStart>true</runAtStart>
-      <runAtEnd>true</runAtEnd>
-    </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
-  </buildWrappers>
+  <buildWrappers/>
 </project>
