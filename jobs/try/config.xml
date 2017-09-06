@@ -76,27 +76,12 @@ import java.util.regex.Pattern
 def buildLog = manager.build.getLog()
 
 int coverage = 0;
-Pattern pattern = Pattern.compile(&apos;Coverage: Statement.*?[(](.*?)%[)]&apos;)
+Pattern pattern = Pattern.compile(&apos;Coverage: Statement.*?[(](.*?)[%][)]&apos;)
 buildLog.eachMatch pattern, {
     coverage = Integer.valueOf(it[2])
     
 }
-manager.listener.logger.println(coverage)
-
-
-matcher = manager.getLogMatcher(&quot;Coverage: Statement.*?[(](.*?)%[)]&quot;)
-manager.listener.logger.println(matcher)
-manager.listener.logger.println(&quot;some output&quot;)
-
-if(matcher != null &amp;&amp; matcher.matches()) {
-         coverage = matcher.group(2)
-         println coverage
-         println &quot;here&quot;
-         if (coverage &lt; 60){
-                  manager.buildFailure()
-                   manager.addBadge(&quot;error.gif&quot;, &quot;Coverage percentage dropped below 60%&quot;)
-          }
-}</script>
+</script>
         <sandbox>false</sandbox>
       </script>
       <behavior>2</behavior>
