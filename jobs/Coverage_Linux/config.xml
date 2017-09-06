@@ -21,6 +21,11 @@
           <description></description>
           <defaultValue>VectorCAST coverage for Harvester</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>VECTORCAST_DIR</name>
+          <description>Specify the vectorcast_dir in which to install the instrumented build</description>
+          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/VCAST_COVERAGE/VCAST_LINUX</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
@@ -39,7 +44,6 @@
       <unixCommand>
 export PATH=/home/vectorindia/gcc-4.1.2/bin:$PATH
 
-export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/VCAST_COVERAGE/VCAST_LINUX
 
 rm -rf $VECTORCAST_DIR
 cp -r $LINUX_VECTORCAST_DIR/. $VECTORCAST_DIR/
