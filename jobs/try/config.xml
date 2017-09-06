@@ -79,7 +79,7 @@ int coverage = 0;
 Pattern pattern = Pattern.compile(&apos;Coverage: Statement.*?[(](.*?)[%][)]&apos;)
 manager.listener.logger.println(&quot;coverage&quot;)
 buildLog.eachMatch pattern, {
-   manager.listener.logger.println(&quot;coverage&quot;)
+   manager.listener.logger.println(it)
     coverage = Integer.valueOf(it[2])
     
 }
