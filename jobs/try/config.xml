@@ -71,6 +71,7 @@
     <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
       <script plugin="script-security@1.27">
         <script>import hudson.FilePath
+import java.util.regex.Pattern
 
 def buildLog = manager.build.getLog()
 
