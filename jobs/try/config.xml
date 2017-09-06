@@ -77,6 +77,8 @@
 matcher = manager.getLogMatcher(&quot;Coverage: Statement.*?[(](\\d+)%[)]&quot;)
 if(matcher != null &amp;&amp; matcher.matches()) {
          coverage = matcher.group(2)
+         println coverage
+         println &quot;here&quot;
          if (coverage &lt; 60){
                   manager.buildFailure()
                    manager.addBadge(&quot;warning.gif&quot;, &quot;Coverage percentage dropped below 60%&quot;)
