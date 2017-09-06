@@ -226,6 +226,15 @@ else
     manager.buildUnstable()
     manager.build.description = &quot;General Failure, Incremental Build Report or Full Report Not Present. Please see the console for more information&quot;
     manager.addBadge(&quot;warning.gif&quot;, &quot;General Error&quot;)
+}
+
+matcher = manager.getLogMatcher(&quot;Coverage: Statement.*?[(](\\d+)%[)]&quot;)
+if(matcher != null &amp;&amp; matcher.matches()) {
+         coverage = matcher.group(2)
+         if (coverage &lt; 60){
+                  manager.buildFailure()
+                   manager.addBadge(&quot;warning.gif&quot;, &quot;Coverage percentage dropped below 60%&quot;)
+          }
 }</script>
         <sandbox>false</sandbox>
       </script>
