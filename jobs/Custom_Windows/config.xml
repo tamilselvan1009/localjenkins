@@ -37,7 +37,7 @@
       <command>cd %WORKSPACE%&#xd;
 set path=%path:&quot;=%&#xd;
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
-set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\custom\VCAST_WINDOWS&#xd;
+set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\vcinst\windows\install&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
 &#xd;
@@ -52,7 +52,7 @@ cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --metrics --accumulate=win_commands.txt&#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py --metrics --vcshell_option=--vcdebug&#xd;
 &#xd;
 </command>
     </hudson.tasks.BatchFile>
