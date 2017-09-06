@@ -72,7 +72,7 @@
       <script plugin="script-security@1.27">
         <script>import hudson.FilePath
 
-matcher = manager.getLogMatcher(&quot;Coverage: Statement.*?[(](\\d+)%[)]&quot;)
+matcher = manager.getLogMatcher(&quot;Coverage: Statement.*?[(](.*?)%[)]&quot;)
 manager.listener.logger.println(matcher)
 manager.listener.logger.println(&quot;some output&quot;)
 
@@ -82,7 +82,7 @@ if(matcher != null &amp;&amp; matcher.matches()) {
          println &quot;here&quot;
          if (coverage &lt; 60){
                   manager.buildFailure()
-                   manager.addBadge(&quot;warning.gif&quot;, &quot;Coverage percentage dropped below 60%&quot;)
+                   manager.addBadge(&quot;error.gif&quot;, &quot;Coverage percentage dropped below 60%&quot;)
           }
 }</script>
         <sandbox>false</sandbox>
