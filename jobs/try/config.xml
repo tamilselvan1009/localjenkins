@@ -83,7 +83,7 @@ buildLog.eachMatch pattern, {
     coverage = Integer.valueOf(it[1])
    }
 
-if ( coverage &lt; 60) {
+if ( coverage &gt; 60) {
       manager.buildFailure()
        manager.addBadge(&quot;error.gif&quot;, &quot;Coverage percentage dropped below 60%&quot;)
  }
