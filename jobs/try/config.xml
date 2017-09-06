@@ -75,8 +75,8 @@
 
 
 matcher = manager.getLogMatcher(&quot;Coverage: Statement.*?[(](\\d+)%[)]&quot;)
-println matcher
-println &quot;matcher&quot;
+out.println matcher
+out.println &quot;matcher&quot;
 
 if(matcher != null &amp;&amp; matcher.matches()) {
          coverage = matcher.group(2)
