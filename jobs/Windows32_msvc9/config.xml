@@ -74,7 +74,7 @@ goto:EOF&#xd;
           <configs>
             <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
           </configs>
-          <projects>Cygwin64</projects>
+          <projects>Cygwin64,Windows64_msvc10</projects>
           <condition>ALWAYS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>
