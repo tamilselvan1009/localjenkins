@@ -74,7 +74,7 @@ exit /b $_VC_RUNTEST_RETURN_CODE_</command>
           <configs>
             <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
           </configs>
-          <projects>Linux64,Linux_ValgrindTest</projects>
+          <projects>Linux64,Linux_ValgrindTest,Linux_EnvCreate</projects>
           <condition>ALWAYS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>
