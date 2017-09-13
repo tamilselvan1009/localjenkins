@@ -76,7 +76,7 @@ goto:EOF</command>
           <configs>
             <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
           </configs>
-          <projects>Windows64_msvc9</projects>
+          <projects>Windows64_msvc9,WinCyg_EnvCreate</projects>
           <condition>ALWAYS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>
