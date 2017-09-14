@@ -59,7 +59,7 @@ cd tbuild_cygenv&#xd;
 echo %PATH%&#xd;
 set PATH=C:\cygwin\bin;%PATH%&#xd;
 echo %PATH%&#xd;
-bash -c &quot;cmake ..\tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
+bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
 cd EnvCreateTests&#xd;
 %VECTORCAST_DIR%\vpython EnvCreateTest.py --env=cygwin&#xd;
 &#xd;
