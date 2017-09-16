@@ -19,8 +19,18 @@
       <unixCommand>#!/bin/bash
 echo &quot;select count (*) from files;&quot;
 echo &quot;1835&quot;
+echo &quot;select count (a.FILEID) from files a INNER JOIN COMPILATION b INNER JOIN commands c on a.FILEID=b.FILEID and b.cmdid=c.cmdid and c.cmd like %gcc.exe%;&quot;
+echo &quot;1&quot;
+echo &quot;select count (a.FILEID) from files a INNER JOIN COMPILATION b INNER JOIN commands c on a.FILEID=b.FILEID and b.cmdid=c.cmdid and c.cmd like %cl.exe%;&quot;
+echo &quot;1830&quot;
 echo &quot;select count (*) from commands;&quot;
-echo &quot;7079&quot; </unixCommand>
+echo &quot;7079&quot;
+echo &quot;select count (*) from comment_density;&quot;
+echo &quot;1761&quot;
+echo &quot;select count (*) from vcmetrics;&quot;
+echo &quot;7780&quot;
+echo &quot;select count (DISTINCT FILENAME) from vcmetrics;&quot;
+echo &quot;1350&quot;</unixCommand>
     </com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand>
   </builders>
   <publishers>
@@ -43,19 +53,12 @@ expected_count[&quot;commands&quot;] = 7079
 
 
 buildLog.eachMatch pattern, {
-   manager.listener.logger.println(it)
     table = it[1]
-     manager.listener.logger.println(table)
     count = Integer.valueOf(it[2])
-   
-    manager.listener.logger.println(count)
-    manager.listener.logger.println(expected_count[table])
     if (count != expected_count[table]){
       manager.listener.logger.println (&quot;here&quot;)
     }
-    
-
-   }
+}
 
 </script>
         <sandbox>false</sandbox>
