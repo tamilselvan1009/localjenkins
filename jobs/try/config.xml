@@ -38,8 +38,8 @@ String table = &quot;&quot;
 int count  = 0
 
 def expected_count = [:]
-expected_count[&quot;files&quot;] = [1835]
-expected_count[&quot;commands&quot;] = [7079]
+expected_count[&quot;files&quot;] = 1835
+expected_count[&quot;commands&quot;] = 7079
 
 
 buildLog.eachMatch pattern, {
