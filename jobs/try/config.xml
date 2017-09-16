@@ -44,9 +44,9 @@ manager.listener.logger.println(&quot;hete&quot;)
 
 buildLog.eachMatch pattern, {
    manager.listener.logger.println(it)
-    table = it[2]
+    table = it[1]
      manager.listener.logger.println(table)
-    count = Integer.valueOf(it[3])
+    count = Integer.valueOf(it[2])
    
     manager.listener.logger.println(count)
     if (count != expected_count[table])
