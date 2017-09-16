@@ -67,6 +67,7 @@ buildLog.eachMatch pattern, {
 Pattern pattern_1 = Pattern.compile(&apos;(?m)select.*?gcc.exe%;\\s(\\d+)&apos;)
 buildLog.eachMatch pattern, {
     table = &quot;files_associated_with_gcc&quot;
+    manager.listener.logger.println(it)
     count = Integer.valueOf(it[1])
      manager.listener.logger.println(table)
      manager.listener.logger.println(count)
