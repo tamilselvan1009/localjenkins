@@ -16,7 +16,8 @@
     <com.vectorcast.plugins.vectorcastexecution.VectorCASTSetup plugin="vectorcast-execution@0.18"/>
     <com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand plugin="vectorcast-execution@0.18">
       <winCommand></winCommand>
-      <unixCommand>echo &quot;select count (*) from files;&quot;
+      <unixCommand>#!/bin/bash
+echo &quot;select count (*) from files;&quot;
 echo &quot;1835&quot;
 echo &quot;select count (*) from commands;&quot;
 echo &quot;7079&quot; </unixCommand>
