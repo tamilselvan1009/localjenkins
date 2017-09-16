@@ -49,6 +49,7 @@ buildLog.eachMatch pattern, {
     count = Integer.valueOf(it[2])
    
     manager.listener.logger.println(count)
+    manager.listener.logger.println(expected_count[table])
     if (count != expected_count[table]){
       manager.listener.logger.println (&quot;here&quot;)
     }
