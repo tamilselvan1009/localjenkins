@@ -52,7 +52,7 @@ expected_count[&quot;files&quot;] = 1835
 expected_count[&quot;commands&quot;] = 7079
 expected_count[&quot;comment_density&quot;] = 1761
 expected_count[&quot;vcmetrics&quot;] = 7780
-expected_count[&quot;files associated with gcc&quot;] = 1
+expected_count[&quot;files_associated_with_gcc&quot;] = 1
 
 
 buildLog.eachMatch pattern, {
@@ -66,7 +66,7 @@ buildLog.eachMatch pattern, {
 }
 Pattern pattern_1 = Pattern.compile(&apos;(?m)select.*?gcc.exe%;\\s(\\d+)&apos;)
 buildLog.eachMatch pattern, {
-    table = &quot;files associated with gcc&quot;
+    table = &quot;files_associated_with_gcc&quot;
     count = Integer.valueOf(it[1])
      manager.listener.logger.println(table)
      manager.listener.logger.println(count)
