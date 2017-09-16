@@ -38,15 +38,15 @@ String table = &quot;&quot;
 int count  =0 
 
 def expected_count = [:]
-expected_count[&quot;filecount&quot;] = [1835]
-expected_count[&quot;commands&quot;] = [7079]
-manager.listener.logger.println(&quot;hete&quot;)
+expected_count[&quot;files&quot;] = [&quot;1835&quot;]
+expected_count[&quot;commands&quot;] = [&quot;7079&quot;]
+
 
 buildLog.eachMatch pattern, {
    manager.listener.logger.println(it)
     table = it[1]
      manager.listener.logger.println(table)
-    count = Integer.valueOf(it[2])
+    count = it[2]
    
     manager.listener.logger.println(count)
     if (count != expected_count[table])
