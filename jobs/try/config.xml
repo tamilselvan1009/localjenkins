@@ -28,23 +28,6 @@ echo &quot;7079&quot; </unixCommand>
         <script>import hudson.FilePath
 import java.util.regex.Pattern
 
-import hudson.model.*
-
-// Get the out variable
-def config = new HashMap()
-def bindings = getBinding()
-config.putAll(bindings.getVariables())
-
-def out = config[&apos;out&apos;]
-
-class OutputClass
-{
-    OutputClass(out)  // Have to pass the out variable to the class
-    {
-    out.println (&quot;Inside class&quot;)
-    }
-}
-
 
 
 def buildLog = manager.build.getLog()
@@ -56,16 +39,16 @@ int count  =0
 def expected_count = [:]
 expected_count[&quot;filecount&quot;] = [1835]
 expected_count[&quot;commands&quot;] = [7079]
-out.println(&quot;hete&quot;)
+manager.listener.logger.println(&quot;hete&quot;)
 
 buildLog.eachMatch pattern, {
    manager.listener.logger.println(it)
     table = it[0]
     count = Integer.valueOf(it[1])
-    out.println(table)
-    out.println(count)
+    manager.listener.logger.println(table)
+    manager.listener.logger.println(count)
     if (count != expected_count[table])
-      out.println (&quot;here&quot;)
+      manager.listener.logger.println (&quot;here&quot;)
     
 
    }
