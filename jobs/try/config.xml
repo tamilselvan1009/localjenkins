@@ -44,7 +44,7 @@ expected_count[&quot;commands&quot;] = [7079]
 
 buildLog.eachMatch pattern, {
    manager.listener.logger.println(it)
-    table = Integer.ValueOf(it[1])
+    table = Integer.valueOf(it[1])
      manager.listener.logger.println(table)
     count = it[2]
    
