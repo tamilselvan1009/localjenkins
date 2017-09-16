@@ -3,32 +3,7 @@
   <actions/>
   <description>Single job to run the manage project: /mnt/nfs/shared/Harvester_Coverage/VcTools.vcm</description>
   <keepDependencies>false</keepDependencies>
-  <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>LINUX_VECTORCAST_DIR</name>
-          <description></description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>LINUX_HARVESTER_DIR</name>
-          <description></description>
-          <defaultValue>/mnt/nfs/shared/Harvester_Coverage/Linux/Harvester</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>BUILD_NAME</name>
-          <description></description>
-          <defaultValue>VectorCAST coverage for Harvester</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>VECTORCAST_DIR</name>
-          <description>Specify the vectorcast_dir in which to install the instrumented build</description>
-          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/VCAST_COVERAGE/VCAST_LINUX</defaultValue>
-        </hudson.model.StringParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
-  </properties>
+  <properties/>
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>Redhat_32</assignedNode>
   <canRoam>false</canRoam>
@@ -57,8 +32,8 @@ import java.util.regex.Pattern
 def buildLog = manager.build.getLog()
 Pattern pattern = Pattern.compile(&apos;/(?m)select count [(][*][)] from (.*?);(\\d+)&apos;)
 
-string table;
-int count ; 
+string table = &quot;&quot;
+int count  =0 
 
 def expected_count = [:]
 expected_count[&quot;filecount&quot;] = [1835]
@@ -87,10 +62,5 @@ buildLog.eachMatch pattern, {
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
-    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
-      <template>${ENV, var=&quot;BUILD_NAME&quot;}</template>
-      <runAtStart>true</runAtStart>
-      <runAtEnd>true</runAtEnd>
-    </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
   </buildWrappers>
 </project>
