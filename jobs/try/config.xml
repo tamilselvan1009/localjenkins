@@ -62,7 +62,7 @@ buildLog.eachMatch pattern, {
     count = Integer.valueOf(it[2])
      manager.listener.logger.println(table)
      manager.listener.logger.println(count)
-    if (count != expected_count[table]){
+    if ((expected_count[table] - 10) &lt; count &amp;&amp; count &gt; (expected_count[table] + 10)){
       manager.listener.logger.println (&quot;here&quot;)
     }
 }
@@ -85,7 +85,7 @@ buildLog.eachMatch pattern_2, {
     count = Integer.valueOf(it[1])
      manager.listener.logger.println(table)
      manager.listener.logger.println(count)
-    if (count != expected_count[table]){
+     if ((expected_count[table] - 10) &lt; count &amp;&amp; count &gt; (expected_count[table] + 10)){
       manager.listener.logger.println (&quot;here&quot;)
     }
 }
@@ -96,7 +96,7 @@ buildLog.eachMatch pattern_3, {
     count = Integer.valueOf(it[1])
      manager.listener.logger.println(table)
      manager.listener.logger.println(count)
-    if (count != expected_count[table]){
+     if ((expected_count[table] - 10) &lt; count &amp;&amp; count &gt; (expected_count[table] + 10)){
       manager.listener.logger.println (&quot;here&quot;)
     }
 }</script>
