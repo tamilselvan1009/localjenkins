@@ -55,6 +55,8 @@ expected_count[&quot;commands&quot;] = 7079
 buildLog.eachMatch pattern, {
     table = it[1]
     count = Integer.valueOf(it[2])
+     manager.listener.logger.println(table)
+     manager.listener.logger.println(count)
     if (count != expected_count[table]){
       manager.listener.logger.println (&quot;here&quot;)
     }
