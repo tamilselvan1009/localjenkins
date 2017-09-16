@@ -32,7 +32,7 @@ import java.util.regex.Pattern
 
 
 def buildLog = manager.build.getLog()
-Pattern pattern = Pattern.compile(&apos;/(?m)select count \\(\\*\\) from (.*?);\\s(\\d+)&apos;)
+Pattern pattern = Pattern.compile(&apos;(?m)select count \\(\\*\\) from (.*?);\\s(\\d+)&apos;)
 
 String table = &quot;&quot;
 int count  =0 
