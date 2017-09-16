@@ -63,7 +63,8 @@ buildLog.eachMatch pattern, {
      manager.listener.logger.println(table)
      manager.listener.logger.println(count)
     if ((expected_count[table] - 10) &lt; count &amp;&amp; count &gt; (expected_count[table] + 10)){
-      manager.listener.logger.println (&quot;here&quot;)
+       manager.buildFailure()
+       manager.addBadge(&quot;error.gif&quot;, &quot;Entry in table &quot; + table + &quot; not in range&quot;)
     }
 }
 Pattern pattern_1 = Pattern.compile(&apos;(?m)select.*?gcc.exe%;\\s(\\d+)&apos;)
@@ -73,7 +74,8 @@ buildLog.eachMatch pattern_1, {
      manager.listener.logger.println(table)
      manager.listener.logger.println(count)
     if (count != expected_count[table]){
-      manager.listener.logger.println (&quot;here&quot;)
+      manager.buildFailure()
+       manager.addBadge(&quot;error.gif&quot;, &quot;Files associated with gcc not in range&quot;)
     }
 }
 
@@ -84,18 +86,20 @@ buildLog.eachMatch pattern_2, {
      manager.listener.logger.println(table)
      manager.listener.logger.println(count)
      if ((expected_count[table] - 10) &lt; count &amp;&amp; count &gt; (expected_count[table] + 10)){
-      manager.listener.logger.println (&quot;here&quot;)
+      manager.buildFailure()
+       manager.addBadge(&quot;error.gif&quot;, &quot;Files associated with cl not in range&quot;)
     }
 }
 
-Pattern pattern_3 = Pattern.compile(&apos;(?m)select count .*?from vcmetrics;\\s(\\d+)&apos;)
+Pattern pattern_3 = Pattern.compile(&apos;(?m)select count (DISTINCT FILENAME) from vcmetrics;\\s(\\d+)&apos;)
 buildLog.eachMatch pattern_3, {
     table = &quot;vcmetrics_recorded_for_files&quot;
     count = Integer.valueOf(it[1])
      manager.listener.logger.println(table)
      manager.listener.logger.println(count)
      if ((expected_count[table] - 10) &lt; count &amp;&amp; count &gt; (expected_count[table] + 10)){
-      manager.listener.logger.println (&quot;here&quot;)
+      manager.buildFailure()
+       manager.addBadge(&quot;error.gif&quot;, &quot;Metrics recorded for files not in range&quot;)
     }
 }</script>
         <sandbox>false</sandbox>
