@@ -56,6 +56,7 @@ int count  =0
 def expected_count = [:]
 expected_count[&quot;filecount&quot;] = [1835]
 expected_count[&quot;commands&quot;] = [7079]
+out.println(&quot;hete&quot;)
 
 buildLog.eachMatch pattern, {
    manager.listener.logger.println(it)
