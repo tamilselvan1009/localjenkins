@@ -50,6 +50,8 @@ int count  = 0
 def expected_count = [:]
 expected_count[&quot;files&quot;] = 1835
 expected_count[&quot;commands&quot;] = 7079
+expected_count[&quot;comment_density&quot;] = 1761
+expected_count[&quot;vcmetrics&quot;] = 7780
 
 
 buildLog.eachMatch pattern, {
