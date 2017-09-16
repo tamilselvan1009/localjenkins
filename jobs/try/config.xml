@@ -18,7 +18,7 @@
       <winCommand></winCommand>
       <unixCommand>#!/bin/bash
 echo &quot;select count (*) from files;&quot;
-echo &quot;1835&quot;
+echo &quot;18&quot;
 echo &quot;select count (a.FILEID) from files a INNER JOIN COMPILATION b INNER JOIN commands c on a.FILEID=b.FILEID and b.cmdid=c.cmdid and c.cmd like %gcc.exe%;&quot;
 echo &quot;1&quot;
 echo &quot;select count (a.FILEID) from files a INNER JOIN COMPILATION b INNER JOIN commands c on a.FILEID=b.FILEID and b.cmdid=c.cmdid and c.cmd like %cl.exe%;&quot;
