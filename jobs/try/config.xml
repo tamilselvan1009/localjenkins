@@ -65,7 +65,7 @@ buildLog.eachMatch pattern, {
      manager.listener.logger.println(expected_count[table] - 10)
     if ( count &lt; (expected_count[table] - 10) || count &gt; (expected_count[table] + 10)){
        manager.buildFailure()
-       manager.addBadge(&quot;error.gif&quot;, &quot;Entry in table &quot; + table + &quot; not in range&quot;)
+       manager.addBadge(&quot;error.gif&quot;, &quot;Entry in &quot; + table + &quot; table not in range&quot;)
     }
 }
 Pattern pattern_1 = Pattern.compile(&apos;(?m)select.*?gcc.exe%;\\s(\\d+)&apos;)
