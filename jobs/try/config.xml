@@ -32,7 +32,7 @@ import java.util.regex.Pattern
 def buildLog = manager.build.getLog()
 Pattern pattern = Pattern.compile(&apos;/(?m)select count [(][*][)] from (.*?);(\\d+)&apos;)
 
-string table = &quot;&quot;
+String table = &quot;&quot;
 int count  =0 
 
 def expected_count = [:]
