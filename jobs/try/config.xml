@@ -18,7 +18,7 @@
       <winCommand></winCommand>
       <unixCommand>echo &quot;select count (*) from files;&quot;
 echo &quot;1835&quot;
-echo &quot;select count (*) from commands;
+echo &quot;select count (*) from commands;&quot;
 echo &quot;7079&quot; </unixCommand>
     </com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand>
   </builders>
