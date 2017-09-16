@@ -63,7 +63,7 @@ buildLog.eachMatch pattern, {
      manager.listener.logger.println(table)
      manager.listener.logger.println(count)
      manager.listener.logger.println(expected_count[table] - 10)
-    if ( count &lt; (expected_count[table] - 10) &amp;&amp; count &gt; (expected_count[table] + 10)){
+    if ( count &lt; (expected_count[table] - 10) || count &gt; (expected_count[table] + 10)){
        manager.buildFailure()
        manager.addBadge(&quot;error.gif&quot;, &quot;Entry in table &quot; + table + &quot; not in range&quot;)
     }
@@ -86,7 +86,7 @@ buildLog.eachMatch pattern_2, {
     count = Integer.valueOf(it[1])
      manager.listener.logger.println(table)
      manager.listener.logger.println(count)
-     if ( count &lt; (expected_count[table] - 10) &amp;&amp; count &gt; (expected_count[table] + 10)){
+      if ( count &lt; (expected_count[table] - 10) || count &gt; (expected_count[table] + 10)){
       manager.buildFailure()
        manager.addBadge(&quot;error.gif&quot;, &quot;Files associated with cl not in range&quot;)
     }
@@ -98,7 +98,7 @@ buildLog.eachMatch pattern_3, {
     count = Integer.valueOf(it[1])
      manager.listener.logger.println(table)
      manager.listener.logger.println(count)
-     if ( count &lt; (expected_count[table] - 10) &amp;&amp; count &gt; (expected_count[table] + 10)){
+     if ( count &lt; (expected_count[table] - 10) || count &gt; (expected_count[table] + 10)){
       manager.buildFailure()
        manager.addBadge(&quot;error.gif&quot;, &quot;Metrics recorded for files not in range&quot;)
     }
