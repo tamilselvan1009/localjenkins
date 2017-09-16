@@ -62,6 +62,7 @@ buildLog.eachMatch pattern, {
     count = Integer.valueOf(it[2])
      manager.listener.logger.println(table)
      manager.listener.logger.println(count)
+     manager.listener.logger.println(expected_count[table] - 10)
     if ((expected_count[table] - 10) &lt; count &amp;&amp; count &gt; (expected_count[table] + 10)){
        manager.buildFailure()
        manager.addBadge(&quot;error.gif&quot;, &quot;Entry in table &quot; + table + &quot; not in range&quot;)
