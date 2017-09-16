@@ -35,7 +35,7 @@ def buildLog = manager.build.getLog()
 Pattern pattern = Pattern.compile(&apos;(?m)select count \\(\\*\\) from (.*?);\\s(\\d+)&apos;)
 
 String table = &quot;&quot;
-String count  = &quot;&quot;
+int count  = 0
 
 def expected_count = [:]
 expected_count[&quot;files&quot;] = [1835]
@@ -44,13 +44,14 @@ expected_count[&quot;commands&quot;] = [7079]
 
 buildLog.eachMatch pattern, {
    manager.listener.logger.println(it)
-    table = it[1]
+    table = Integer.ValueOf(it[1])
      manager.listener.logger.println(table)
     count = it[2]
    
     manager.listener.logger.println(count)
-    if (count != expected_count[table])
+    if (count != expected_count[table]){
       manager.listener.logger.println (&quot;here&quot;)
+    }
     
 
    }
