@@ -45,18 +45,17 @@ set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-IDCWIN2.lic&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 &#xd;
-rem xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
+xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 echo %vectorcast_dir%&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
-rem mkdir tbuild64_cyg&#xd;
+mkdir tbuild64_cyg&#xd;
 cd tbuild64_cyg&#xd;
 set PATH=C:\cygwin64\bin;%PATH%&#xd;
-rem bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
+bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
 %VECTORCAST_DIR%\clicast -lc template GNU_C_46&#xd;
 %VECTORCAST_DIR%\vcutil set_option C_EDG_FLAGS -w --gcc --gnu_version 40600 --restrict&#xd;
-cd HelloTest&#xd;
-%VECTORCAST_DIR%\vpython ..\VcRunTests.py --metrics --cfg=..\&#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py --metrics --cfg=.&#xd;
 </command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -80,5 +79,11 @@ cd HelloTest&#xd;
       </configs>
     </hudson.plugins.parameterizedtrigger.BuildTrigger>
   </publishers>
-  <buildWrappers/>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+  </buildWrappers>
 </project>
