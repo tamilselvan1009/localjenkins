@@ -37,11 +37,9 @@ cd %workspace%&#xd;
 &#xd;
 REM Script kills all processes of the job &#xd;
 python kill_open_handle.py v:\slavejenkins\workspace\Cygwin32&#xd;
-python kill_open_handle.py v:\slavejenkins\workspace\Cygwin64&#xd;
 &#xd;
 REM Delete the old workspace&#xd;
-rmdir /q /s v:\slavejenkins\workspace\Cygwin32&#xd;
-rmdir /q /s v:\slavejenkins\workspace\Cygwin64</command>
+rmdir /q /s v:\slavejenkins\workspace\Cygwin32</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
