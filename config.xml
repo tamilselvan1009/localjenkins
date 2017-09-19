@@ -110,7 +110,7 @@
   <globalNodeProperties>
     <org.jenkinsci.plugins.mailwatcher.WatcherNodeProperty plugin="mail-watcher-plugin@1.16">
       <onlineAddresses></onlineAddresses>
-      <offlineAddresses>vectorindia@vectorcast.com</offlineAddresses>
+      <offlineAddresses>kavya@vectorcast.com</offlineAddresses>
     </org.jenkinsci.plugins.mailwatcher.WatcherNodeProperty>
   </globalNodeProperties>
   <noUsageStatistics>true</noUsageStatistics>
