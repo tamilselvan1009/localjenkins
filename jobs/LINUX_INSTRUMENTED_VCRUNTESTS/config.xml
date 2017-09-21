@@ -34,7 +34,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>#!/bin/bash -xe
+      <command> #!/bin/bash -xe
 
 cd $LINUX_HARVESTER_DIR
 export VECTOR_LICENSE_FILE=/home/linuxregressionmac/flexlm/vector-UBUNTU.lic
@@ -60,29 +60,29 @@ mkdir tbuild
 cd tbuild
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 export _VC_RUNTEST_RETURN_CODE_=0
-$VECTORCAST_DIR/vpython VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
+time $VECTORCAST_DIR/vpython VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
 find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/VCRUNTESTS.DAT &apos;;&apos;
 
 mkdir longcmd
 cd longcmd
 cmake  -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ ../../tests/LongCmd
-$VECTORCAST_DIR/vpython ../VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
+time $VECTORCAST_DIR/vpython ../VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
 find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/LONGCMD.DAT &apos;;&apos;
 cd ..
 
 cd MathTest/Matrix
 find . -name &quot;TESTINSS*&quot; -exec rm &apos;{}&apos; &apos;;&apos;
-$VECTORCAST_DIR/vpython ../../VcRunTests.py --cmdverb || export _VC_RUNTEST_RETURN_CODE_=$?
+time $VECTORCAST_DIR/vpython ../../VcRunTests.py --cmdverb || export _VC_RUNTEST_RETURN_CODE_=$?
 find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/CMDVERB.DAT &apos;;&apos;
 
 find . -name &quot;TESTINSS*&quot; -exec rm &apos;{}&apos; &apos;;&apos;
 export _VC_OLD_VCAPP_DB_IF_=1
-$VECTORCAST_DIR/vpython ../../VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
+time $VECTORCAST_DIR/vpython ../../VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
 find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/OLD_VCAPP.DAT &apos;;&apos;
 
 find . -name &quot;TESTINSS*&quot; -exec rm &apos;{}&apos; &apos;;&apos;
 export _VC_SEQ_DISPATCHER_=1
-$VECTORCAST_DIR/vpython ../../VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
+time $VECTORCAST_DIR/vpython ../../VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
 find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/SEQ_DISPATCHER.DAT &apos;;&apos;
 
 cd ../../../build
