@@ -108,7 +108,7 @@ declare -a results=(&quot;VCRUNTESTS&quot; &quot;LONGCMD&quot; &quot;CMDVERB&quo
 for result in &quot;${results[@]}&quot;
 do
 $VECTORCAST_DIR/clicast -lc -e harvester cover result remove $result ${VC_RESULT_DIR}/$result.DAT || export _VC_RUNTEST_RETURN_CODE_=$?
-$VECTORCAST_DIR/clicast -lc -e harvester cover result add  ${VC_RESULT_DIR}/$result.DAT
+time $VECTORCAST_DIR/clicast -lc -e harvester cover result add  ${VC_RESULT_DIR}/$result.DAT
 done
 
 echo The return code from VcRunTests: $_VC_RUNTEST_RETURN_CODE_</command>
