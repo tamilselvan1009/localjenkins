@@ -64,12 +64,12 @@ export COMMIT_ID=$(git rev-parse --short HEAD)
 sed -i &quot;s/.*#define _VCTOOLS_VERSION_.*/#define _VCTOOLS_VERSION_ \&quot;${COMMIT_ID}\&quot;/&quot; harvester/inc/vcVersion.h
 
 rm vcshell.*
-$VECTORCAST_DIR/vcshell  bash &quot;./build.sh --enable_threads&quot;
+time $VECTORCAST_DIR/vcshell  bash &quot;./build.sh --enable_threads&quot;
 
 
 $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --enable-instrument-in-place
 cd cover
-$VECTORCAST_DIR/clicast -lc -e harvester cover instrument statement
+time $VECTORCAST_DIR/clicast -lc -e harvester cover instrument statement
 cd ..
 ./build_instrumented.sh
 
