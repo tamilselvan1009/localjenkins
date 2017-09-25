@@ -34,7 +34,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command> #!/bin/bash -xe
+      <command>#!/bin/bash -xe
 
 cd $LINUX_HARVESTER_DIR
 export VECTOR_LICENSE_FILE=/home/linuxregressionmac/flexlm/vector-UBUNTU.lic
