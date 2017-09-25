@@ -29,6 +29,7 @@
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
         <url>git@github.com:VectorSoftwareRI/Harvester.git</url>
+        <credentialsId>4ea2aec6-4495-43f3-b99c-4caf3d3417c9</credentialsId>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
