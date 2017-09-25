@@ -52,8 +52,7 @@ cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests&#xd;
-cd NPVDispatcherTests&#xd;
-%VECTORCAST_DIR%\vpython ..\VcRunTests.py --metrics &#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py --metrics &#xd;
 &#xd;
 </command>
     </hudson.tasks.BatchFile>
