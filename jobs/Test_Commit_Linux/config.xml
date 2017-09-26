@@ -74,11 +74,7 @@ cd tbuild
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 cd HelloTest
 $VECTORCAST_DIR/vpython ../VcRunTests.py
-
-cd $WORKSPACE
-cd tbuild
-cd UnitIndex
-$VECTORCAST_DIR/vpython ../VcRunTests.py</command>
+</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
