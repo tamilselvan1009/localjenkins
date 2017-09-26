@@ -51,7 +51,7 @@ rem xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
 rem mkdir tbuild32_msvc10 || call:handle_error&#xd;
-cd tbuild32_msvc10&#xd;
+rem cd tbuild32_msvc10&#xd;
 rem cmake ..\tests || call:handle_error&#xd;
 cd t&#xd;
 echo &quot;Test starts here&quot; &#xd;
