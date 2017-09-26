@@ -253,6 +253,8 @@ chmod +x ../../setpathtype.sh || handle_error
 time (../.././setpathtype.sh vcdb_getfiles.out.txt &gt; set_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_setpathtype || true
 Extract vcdb_setpathtype 0 1
 
+#parsing summary.txt to get the fail
+grep &quot;Failed&quot; $summary_file &gt;&gt; sol.txt
 
 #quick 
 #Archive the artifacts
@@ -299,7 +301,7 @@ Jenkins</body>
       </configuredTriggers>
       <contentType>text/plain</contentType>
       <defaultSubject>Firefox Linux Result</defaultSubject>
-      <defaultContent>$DEFAULT_CONTENT</defaultContent>
+      <defaultContent>mozilla-release/obj-x86_64-unknown-linux-gnu/sol.txt</defaultContent>
       <attachmentsPattern>mozilla-release/obj-x86_64-unknown-linux-gnu/summary.txt</attachmentsPattern>
       <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
