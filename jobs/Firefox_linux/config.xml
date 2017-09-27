@@ -90,8 +90,8 @@ export VECTOR_LICENSE_FILE=/home/vectorindia/vector-license/vector-VECTORINDIA.l
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 
 #Print tools version in console for reference
-$VECTORCAST_DIR/vcshell --version
-$VECTORCAST_DIR/clicast --version
+#$VECTORCAST_DIR/vcshell --version
+#$VECTORCAST_DIR/clicast --version
 
 #Copy the firefox source 
 cp -r /home/vectorindia/firefox/firefox/* $WORKSPACE/.
@@ -101,8 +101,8 @@ vcshelltime=45
 . ./make_config
 
 #print VcTools version in log file
-echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --version | grep Version | awk &apos;{print $3}&apos;` &quot; &gt;&gt; $summary_file
-echo  &gt;&gt; $summary_file
+#echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --version | grep Version | awk &apos;{print $3}&apos;` &quot; &gt;&gt; $summary_file
+#echo  &gt;&gt; $summary_file
 
 #tabular format for the file
 echo -e  &quot;Command            \t           Time        \t  Artifact    \t Result  &quot; &gt;&gt;summary.txt
