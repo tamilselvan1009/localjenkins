@@ -288,7 +288,7 @@ exit /b $_RETURN_CODE_
             <body>Hello All,
 
 ${FILE,path=&quot;mozilla-release/obj-x86_64-unknown-linux-gnu/sol.txt&quot;}
-cat $FILE
+cat &quot;mozilla-release/obj-x86_64-unknown-linux-gnu/sol.txt&quot;
 Thanks,
 Jenkins</body>
             <recipientProviders>
