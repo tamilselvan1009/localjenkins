@@ -47,16 +47,15 @@ set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
 set VC_ERROR_LEVEL=0&#xd;
 &#xd;
-rem xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
+xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
-rem mkdir tbuild32_msvc10 || call:handle_error&#xd;
-rem cd tbuild32_msvc10&#xd;
-rem cmake ..\tests || call:handle_error&#xd;
-cd t&#xd;
+mkdir tbuild32_msvc10 || call:handle_error&#xd;
+cd tbuild32_msvc10&#xd;
+cmake ..\tests || call:handle_error&#xd;
 echo &quot;Test starts here&quot; &#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics || call:handle_error&#xd;
-rem %VECTORCAST_DIR%\vpython VcCollectResult.py --db=N:\shared\Jenkins_Result\vcshell.db --tag=windows32_msvc10&#xd;
+%VECTORCAST_DIR%\vpython VcCollectResult.py --db=N:\shared\Jenkins_Result\vcshell.db --tag=windows32_msvc10&#xd;
 &#xd;
 exit %VC_ERROR_ERROR%&#xd;
 :handle_error&#xd;
@@ -73,6 +72,11 @@ goto:EOF</command>
     </hudson.tasks.Mailer>
   </publishers>
   <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
       <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
