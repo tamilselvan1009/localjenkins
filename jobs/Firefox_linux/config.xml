@@ -9,7 +9,7 @@
         <hudson.model.StringParameterDefinition>
           <name>LINUX_VECTORCAST_DIR</name>
           <description>Vectorcast directory</description>
-          <defaultValue>/home/vectorindia/.VCAST_REGRESSIO</defaultValue>
+          <defaultValue>/home/vectorindia/.VCAST_REGRESSION</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>summary_file</name>
@@ -90,8 +90,8 @@ export VECTOR_LICENSE_FILE=/home/vectorindia/vector-license/vector-VECTORINDIA.l
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 
 #Print tools version in console for reference
-#$VECTORCAST_DIR/vcshell --version
-#$VECTORCAST_DIR/clicast --version
+$VECTORCAST_DIR/vcshell --version
+$VECTORCAST_DIR/clicast --version
 
 #Copy the firefox source 
 cp -r /home/vectorindia/firefox/firefox/* $WORKSPACE/.
@@ -101,7 +101,7 @@ vcshelltime=45
 . ./make_config
 
 #print VcTools version in log file
-#echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --version | grep Version | awk &apos;{print $3}&apos;` &quot; &gt;&gt; $summary_file
+echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --version | grep Version | awk &apos;{print $3}&apos;` &quot; &gt;&gt; $summary_file
 echo  &gt;&gt; $summary_file
 
 #tabular format for the file
@@ -125,7 +125,7 @@ Extract2 vcdb_getmetrics vcdb_getmetrics_for_vcshell_metrics.out.txt 0 1
 
 
 #Execute and measure timings for clearmetrics
-#cp vcshell.db vcutil_metrics.db
+cp vcshell.db vcutil_metrics.db
 echo -n -e &quot;Vcdb clearmetrics&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcdb clearmetrics --db=vcutil_metrics.db &gt; vcdb_clearmetrics.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_clearmetrics || handle_error
 Extract vcdb_clearmetrics 0 1
@@ -279,7 +279,7 @@ exit /b $_RETURN_CODE_
   </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
-      <recipientList>shekhar.singh@vectorcast.com</recipientList>
+      <recipientList>vectorindia@vectorcast.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
@@ -310,7 +310,7 @@ Jenkins</body>
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo>shekhar.singh@vectorcast.com</replyTo>
+      <replyTo>vectorindia@vectorcast.com</replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
