@@ -287,7 +287,7 @@ exit /b $_RETURN_CODE_
             <subject>Firefox Linux Result</subject>
             <body>Hello All,
 
-${FILE,path=&quot;mozilla-release/obj-x86_64-unknown-linux-gnu/summary.txt&quot;}
+${FILE,path=&quot;mozilla-release/obj-x86_64-unknown-linux-gnu/sol.txt&quot;}
 
 Thanks,
 Jenkins</body>
@@ -298,14 +298,14 @@ Jenkins</body>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <replyTo>vectorinida@vectorcast.com</replyTo>
-            <contentType>both</contentType>
+            <contentType>text/html</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
       </configuredTriggers>
       <contentType>text/plain</contentType>
       <defaultSubject>Firefox Linux Result</defaultSubject>
-      <defaultContent>cat  mozilla-release/obj-x86_64-unknown-linux-gnu/sol.txt</defaultContent>
-      <attachmentsPattern>mozilla-release/obj-x86_64-unknown-linux-gnu/summary.txt</attachmentsPattern>
+      <defaultContent>$DEFAULT_CONTENT</defaultContent>
+      <attachmentsPattern></attachmentsPattern>
       <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
       <attachBuildLog>false</attachBuildLog>
