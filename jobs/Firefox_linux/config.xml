@@ -125,7 +125,7 @@ Extract2 vcdb_getmetrics vcdb_getmetrics_for_vcshell_metrics.out.txt 0 1
 
 
 #Execute and measure timings for clearmetrics
-cp vcshell.db vcutil_metrics.db
+cp vcshell.db vcutil_metrics.db || handle_error
 echo -n -e &quot;Vcdb clearmetrics&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcdb clearmetrics --db=vcutil_metrics.db &gt; vcdb_clearmetrics.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_clearmetrics || handle_error
 Extract vcdb_clearmetrics 0 1
