@@ -304,7 +304,7 @@ Jenkins</body>
       </configuredTriggers>
       <contentType>text/plain</contentType>
       <defaultSubject>Firefox Linux Result</defaultSubject>
-      <defaultContent>mozilla-release/obj-x86_64-unknown-linux-gnu/sol.txt</defaultContent>
+      <defaultContent>cat  mozilla-release/obj-x86_64-unknown-linux-gnu/sol.txt</defaultContent>
       <attachmentsPattern>mozilla-release/obj-x86_64-unknown-linux-gnu/summary.txt</attachmentsPattern>
       <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
