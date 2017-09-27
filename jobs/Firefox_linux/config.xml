@@ -298,7 +298,7 @@ Jenkins</body>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <replyTo>vectorinida@vectorcast.com</replyTo>
-            <contentType>both</contentType>
+            <contentType>text/plain</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
       </configuredTriggers>
