@@ -287,18 +287,18 @@ exit /b $_RETURN_CODE_
             <subject>Firefox Linux Result</subject>
             <body>Hello All,
 
-${FILE,path=&quot;mozilla-release/obj-x86_64-unknown-linux-gnu/summary.txt&quot;}
+${FILE,path=&quot;mozilla-release/obj-x86_64-unknown-linux-gnu/sol.txt&quot;}
 
 Thanks,
 Jenkins</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern>mozilla-release/obj-x86_64-unknown-linux-gnu/summary.txt</attachmentsPattern>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <replyTo>vectorinida@vectorcast.com</replyTo>
-            <contentType>both</contentType>
+            <contentType>text/plain</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
       </configuredTriggers>
