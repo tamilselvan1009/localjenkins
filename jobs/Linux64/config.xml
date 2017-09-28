@@ -42,7 +42,7 @@
       <command>#!/bin/bash -xe
 
 cd $WORKSPACE
-export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
+#export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
 
 export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/custom/VCAST_LINUX
 
