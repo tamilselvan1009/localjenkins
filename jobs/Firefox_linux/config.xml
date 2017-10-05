@@ -257,7 +257,7 @@ time (../.././setpathtype.sh vcdb_getfiles.out.txt &gt; set_pathtypes_out.txt 2&
 Extract vcdb_setpathtype 0 1
 
 #parsing summary.txt to get the fail
-grep &quot;Failed&quot; $summary_file &gt;&gt; sol.txt || handle_error
+grep &quot;Failed&quot; $summary_file &gt;&gt; sol.txt
 check=$?
 if [ $check -ne 0 ];then
 	echo &quot;no failure&quot;&gt;&gt;sol.txt
