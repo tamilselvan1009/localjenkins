@@ -9,7 +9,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>8eb7ede0-543e-410f-a639-f43d52f4475f</uuid>
+          <uuid>6285fd02-e4ca-415f-b19a-bafef8d023a6</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -51,7 +51,8 @@
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>git@github.com:VectorSoftwareRI/Harvester.git</url>
+        <url>https://github.com/VectorSoftwareRI/Harvester</url>
+        <credentialsId>4ea2aec6-4495-43f3-b99c-4caf3d3417c9</credentialsId>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
@@ -61,16 +62,7 @@
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
     <submoduleCfg class="list"/>
-    <extensions>
-      <hudson.plugins.git.extensions.impl.CloneOption>
-        <shallow>true</shallow>
-        <noTags>true</noTags>
-        <reference></reference>
-        <timeout>20</timeout>
-        <depth>1</depth>
-        <honorRefspec>false</honorRefspec>
-      </hudson.plugins.git.extensions.impl.CloneOption>
-    </extensions>
+    <extensions/>
   </scm>
   <assignedNode>master</assignedNode>
   <canRoam>false</canRoam>
