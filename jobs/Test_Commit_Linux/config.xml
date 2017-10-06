@@ -57,6 +57,7 @@
 export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/VC_latest/linux
 export VECTOR_LICENSE_FILE=/home/linuxregressionmac/flexlm/vector-UBUNTU.lic
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
+ulimit -c unlimited
 cd $WORKSPACE
 cp -r * /mnt/nfs/shared/Git_Latest/.
 
