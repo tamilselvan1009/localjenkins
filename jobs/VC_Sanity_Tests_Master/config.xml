@@ -108,7 +108,7 @@ $VECTORCAST_DIR/vpython VcRunTests.py</command>
           <configs>
             <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
           </configs>
-          <projects>Linux32_on_VC, Win32_on_VC</projects>
+          <projects>Linux32_on_VC,Win32_on_VC</projects>
           <condition>ALWAYS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>
