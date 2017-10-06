@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>VcRunTests on 32bit msvc9 platform. </description>
+  <description>VcRunTests on 32/64bit msvc9 platform. </description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.model.ParametersDefinitionProperty>
@@ -18,11 +18,6 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
-          <description></description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>WIN_RELEASE_DIR</name>
           <description></description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
@@ -45,21 +40,13 @@ call &quot;C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\vcvarsall.bat&q
 set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
-set VC_ERROR_LEVEL=0&#xd;
-&#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 &#xd;
-mkdir tbuild32_msvc9 || call:handle_error&#xd;
+mkdir tbuild32_msvc9&#xd;
 cd tbuild32_msvc9&#xd;
-cmake -G&quot;Visual Studio 9 2008&quot; ..\tests || call:handle_error&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --metrics || call:handle_error&#xd;
-exit %VC_ERROR_ERROR%&#xd;
-:handle_error&#xd;
-if NOT %ERRORLEVEL% EQU 0 (set VC_ERROR_LEVEL=%ERRORLEVEL%&#xd;
-echo &quot;Command exited with %VC_ERROR_LEVEL%&quot;)&#xd;
-goto:EOF&#xd;
-&#xd;
-</command>
+cmake -G&quot;Visual Studio 9 2008&quot; ..\tests&#xd;
+copy N:\\shared\\Jenkins\\vc_wtest_add_dir vc_test_add_dir&#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
