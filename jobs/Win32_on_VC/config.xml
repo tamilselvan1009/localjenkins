@@ -42,9 +42,18 @@ set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 &#xd;
-mkdir tbuild32_msvc9&#xd;
-cd tbuild32_msvc9&#xd;
+cd %workspace%&#xd;
+mkdir tbuild32&#xd;
+cd tbuild32&#xd;
 cmake -G&quot;Visual Studio 9 2008&quot; ..\tests&#xd;
+copy N:\\shared\\Jenkins\\vc_wtest_add_dir vc_test_add_dir&#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py&#xd;
+&#xd;
+call &quot;C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\vcvarsall.bat&quot; amd64&#xd;
+cd %workspace%&#xd;
+mkdir tbuild64&#xd;
+cd tbuild64&#xd;
+cmake -G&quot;Visual Studio 9 2008&quot; Win64 ..\tests&#xd;
 copy N:\\shared\\Jenkins\\vc_wtest_add_dir vc_test_add_dir&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py</command>
     </hudson.tasks.BatchFile>
