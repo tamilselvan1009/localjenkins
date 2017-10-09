@@ -9,7 +9,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>8066868f-3e77-48c4-a945-dc7ce3af0aa3</uuid>
+          <uuid>56bda547-5197-4282-86f3-c8a1d53f5603</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -90,6 +90,7 @@ export COMMIT_ID=$(git rev-parse --short HEAD)
 sed -i &quot;s/.*#define _VCTOOLS_VERSION_.*/#define _VCTOOLS_VERSION_ \&quot;${COMMIT_ID}\&quot;/&quot; harvester/inc/vcVersion.h
 
 # copy all the files to git dir
+rm -rf &quot;${LINUX_GIT_DIR}&quot;
 mkdir &quot;${LINUX_GIT_DIR}&quot;
 cp -r * &quot;${LINUX_GIT_DIR}/.&quot;
 
@@ -125,6 +126,11 @@ $VECTORCAST_DIR/vpython VcRunTests.py</command>
   </builders>
   <publishers/>
   <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
       <template>${ENV, var=&quot;BUILD_NAME&quot;}</template>
