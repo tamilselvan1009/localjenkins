@@ -9,7 +9,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>f4120eb6-d927-49c2-adad-8c7a462d340c</uuid>
+          <uuid>e085c7a7-0067-4838-b0a5-6cbce274e13f</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -99,6 +99,7 @@ cp -r * &quot;${LINUX_GIT_DIR}/.&quot;
 # Run tests
 export VECTOR_LICENSE_FILE=7650@licenseserver
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:$PYTHONPATH
+export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
 
 cd $WORKSPACE
 rm -rf tbuild64
