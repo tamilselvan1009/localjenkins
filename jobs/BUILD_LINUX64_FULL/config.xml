@@ -60,7 +60,11 @@ cp -r &quot;${LINUX_GIT_DIR}/build.sh&quot; .
 
 # Create 64-bit release package
 cd build64
-./release-package.sh
+./release-package.sh|| if [[ $? == 1 ]]; then 
+		true
+    else
+    	false
+    fi
 cd ..
 
 # Copy the 64-bit package to share drive
