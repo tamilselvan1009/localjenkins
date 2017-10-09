@@ -9,7 +9,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>fb9095a5-1cf1-4e63-82f2-e2a06edca0aa</uuid>
+          <uuid>556de309-4406-4a05-902f-dacbcd012b25</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -51,8 +51,7 @@
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>https://github.com/VectorSoftwareRI/Harvester</url>
-        <credentialsId>git</credentialsId>
+        <url>git@github.com:VectorSoftwareRI/Harvester.git</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
