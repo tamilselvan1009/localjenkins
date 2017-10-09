@@ -9,7 +9,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>50903b48-33aa-466e-8962-22e38afb2571</uuid>
+          <uuid>fea20981-845c-4960-8267-85d154172303</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -85,6 +85,7 @@
       <command>#!/bin/bash -xe
 
 # change the vctools version to the git commit id
+ulimit -c unlimited
 export COMMIT_ID=$(git rev-parse --short HEAD)
 sed -i &quot;s/.*#define _VCTOOLS_VERSION_.*/#define _VCTOOLS_VERSION_ \&quot;${COMMIT_ID}\&quot;/&quot; harvester/inc/vcVersion.h
 
@@ -95,6 +96,9 @@ cp -r * &quot;${LINUX_GIT_DIR}/.&quot;
 #-----------------------------------------------------------------------------------------------------------#
 
 # Run tests
+export VECTOR_LICENSE_FILE=7650@licenseserver
+export PYTHONPATH=/usr/lib/python2.7/dist-packages:$PYTHONPATH
+
 cd $WORKSPACE
 rm -rf tbuild64
 mkdir tbuild64
