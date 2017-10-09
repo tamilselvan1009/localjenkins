@@ -120,7 +120,7 @@ cp -r release &quot;${LINUX_PACKAGE_DIR}/.&quot;
   </builders>
   <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.19">
-      <recipients>kavya@vectorcast.com</recipients>
+      <recipients>vectorindia@vectorcast.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
