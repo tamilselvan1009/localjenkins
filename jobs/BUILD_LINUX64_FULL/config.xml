@@ -46,6 +46,9 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
+# Linux 64-bit package dir
+export LINUX_64BIT_PACKAGE_DIR=$LINUX_PACKAGE_DIR/64_bit
+
 # copy the required files from git repo
 cp -r &quot;${LINUX_GIT_DIR}/harvester&quot;  .
 cp -r &quot;${LINUX_GIT_DIR}/imports&quot;  .
@@ -53,22 +56,27 @@ cp -r &quot;${LINUX_GIT_DIR}/build.sh&quot; .
 
 # This job assumes that env like BOOST64_DIR are
 # set as globals in the system
-./build.sh --arch=x64_lib --static_cpp_lib=${VC_STDCPLUS_PLUS_STATIC_DIR}
+./build.sh --arch=x64 --link_static
 
-# copy the 64-bit recorder lib to package
-cp build64/lib64/libVcRecorderLib.so &quot;${LINUX_PACKAGE_DIR}/release/lib64/.&quot;
-cd &quot;${LINUX_PACKAGE_DIR}&quot;
+# Create 64-bit release package
+cd build64
+./release-package.sh
+cd ..
+
+# Copy the 64-bit package to share drive
+if [ -d &quot;$LINUX_64BIT_PACKAGE_DIR&quot; ] ; then
+	rm -rf &quot;$LINUX_64BIT_PACKAGE_DIR&quot;
+fi
+mkdir &quot;$LINUX_64BIT_PACKAGE_DIR&quot;
+cp -r release-packages/release/. &quot;$LINUX_64BIT_PACKAGE_DIR/.&quot;
+
+# copy the 32-bit recorder lib to package
+cp &quot;$LINUX_PACKAGE_DIR/release/lib/libVcRecorderLib.so&quot; &quot;${LINUX_64BIT_PACKAGE_DIR}/release/lib/.&quot;
+cd &quot;$LINUX_64BIT_PACKAGE_DIR&quot;
 tar -cvzf harvester.linux.tgz release
 
-# install VcTools in Vectorcast dir 
-if [ ! -z &quot;$LINUX_VECTORCAST_DIR&quot; ]; then
-export VECTORCAST_DIR=&quot;${LINUX_VECTORCAST_DIR}&quot;
-cd release
-./install.sh
-fi
 
-# remove the release to avoid cannot delete error
-rm -rf release</command>
+</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
