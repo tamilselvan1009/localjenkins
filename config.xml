@@ -79,7 +79,7 @@
       <regexToIgnoreOnColorComputing></regexToIgnoreOnColorComputing>
       <categorizationCriteria>
         <org.jenkinsci.plugins.categorizedview.GroupingRule>
-          <groupRegex>^Regression_6pm_Master|Windows32_msvc10|Cygwin32|(Linux32)|Windows32_msvc9|Windows64_msvc10|Windows64_msvc9|Linux64|Cygwin64|(Cygwin_homepath)$</groupRegex>
+          <groupRegex>^Regression_6pm_Master|Windows32_msvc10|Cygwin32|(Linux32)|Windows32_msvc9|Windows64_msvc10|Windows64_msvc9|Linux64|Cygwin64|(Cygwin_homepath)|Workspace_cleanup_on_68|Workspace_cleanup_on_54|Result_Collector$</groupRegex>
           <namingRule>Regression_6PM</namingRule>
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
@@ -99,7 +99,7 @@
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
         <org.jenkinsci.plugins.categorizedview.GroupingRule>
-          <groupRegex>^Linux_ValgrindTest|Coverage_Linux|Coverage_Windows|LINUX_INSTRUMENTED_VCRUNTESTS|Linux_EnvCreate|WinCyg_EnvCreate$</groupRegex>
+          <groupRegex>^Linux_ValgrindTest|Coverage_Linux|Coverage_Windows|LINUX_INSTRUMENTED_VCRUNTESTS|Linux_EnvCreate|WinCyg_EnvCreate|Firefox_linux$</groupRegex>
           <namingRule>Performance_jobs</namingRule>
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
