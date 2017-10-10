@@ -111,7 +111,7 @@
       </categorizationCriteria>
     </org.jenkinsci.plugins.categorizedview.CategorizedJobsView>
   </views>
-  <primaryView>All</primaryView>
+  <primaryView>Categorized View</primaryView>
   <slaveAgentPort>0</slaveAgentPort>
   <label></label>
   <crumbIssuer class="hudson.security.csrf.DefaultCrumbIssuer">
