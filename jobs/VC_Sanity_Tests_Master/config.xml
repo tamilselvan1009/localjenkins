@@ -9,7 +9,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>4e396488-05f6-429b-be3b-cf2ac7eb3634</uuid>
+          <uuid>1c3f94fc-571c-4184-8fe4-dea22e4723a3</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -42,7 +42,7 @@
         <hudson.model.StringParameterDefinition>
           <name>WIN_VECTORCAST_DIR</name>
           <description>Enter value of VC. Extract new VC in N:\\hared\\.VCAST_REGRESSION\\VC_Releases\\windows\\ for every VectorCAST Release</description>
-          <defaultValue>N:\\hared\\.VCAST_REGRESSION\\VC_Releases\\windows\\vc64x</defaultValue>
+          <defaultValue>N:\\shared\\.VCAST_REGRESSION\\VC_Releases\\windows\\vc64x</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
