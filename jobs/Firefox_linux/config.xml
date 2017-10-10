@@ -230,7 +230,7 @@ Extract vcdb_getdefine 0 1
 echo -n -e &quot;Getoptions.sh\t&quot;&gt;&gt;$summary_file
 chmod +x ../../getoption.sh || handle_error
 time (../.././getoption.sh vcdb_getfiles.out.txt &gt; get_options_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getoption || handle_error
-Extract vcdb_getoption 1 4
+Extract vcdb_getoption 0 3
 
 #getpopt
 echo -n -e &quot;Getpoptions.sh\t&quot;&gt;&gt;$summary_file
