@@ -36,6 +36,7 @@
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>Build_Linux32</string>
         <string>Build_Linux64</string>
+        <string>BUILD_LINUX64_FULL</string>
         <string>Build_Windows</string>
         <string>Coverage_Linux</string>
         <string>Coverage_Windows</string>
@@ -45,8 +46,10 @@
         <string>Cygwin32</string>
         <string>Cygwin64</string>
         <string>Cygwin_homepath</string>
+        <string>Firefox_linux</string>
         <string>Git_Clone</string>
         <string>Linux32</string>
+        <string>Linux32_on_VC</string>
         <string>Linux64</string>
         <string>Linux_EnvCreate</string>
         <string>LINUX_INSTRUMENTED_VCRUNTESTS</string>
@@ -55,11 +58,14 @@
         <string>Result_Collector</string>
         <string>Test_Commit_Linux</string>
         <string>Test_Commit_WinCyg</string>
+        <string>Win32_64_on_VC</string>
         <string>WinCyg_EnvCreate</string>
         <string>Windows32_msvc10</string>
         <string>Windows32_msvc9</string>
         <string>Windows64_msvc10</string>
         <string>Windows64_msvc9</string>
+        <string>Workspace_cleanup_on_54</string>
+        <string>Workspace_cleanup_on_68</string>
       </jobNames>
       <jobFilters/>
       <columns>
@@ -95,6 +101,11 @@
         <org.jenkinsci.plugins.categorizedview.GroupingRule>
           <groupRegex>^Linux_ValgrindTest|Coverage_Linux|Coverage_Windows|LINUX_INSTRUMENTED_VCRUNTESTS|Linux_EnvCreate|WinCyg_EnvCreate$</groupRegex>
           <namingRule>Performance_jobs</namingRule>
+          <useDisplayName>false</useDisplayName>
+        </org.jenkinsci.plugins.categorizedview.GroupingRule>
+        <org.jenkinsci.plugins.categorizedview.GroupingRule>
+          <groupRegex>^VectorCAST_Release_tests_master|Linux32_on_VC|Win32_64_on_VC$</groupRegex>
+          <namingRule>VectorCAST_Release_test_jobs</namingRule>
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
       </categorizationCriteria>
