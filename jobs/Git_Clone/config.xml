@@ -9,7 +9,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>f768ec30-6789-4e52-86e6-92d08ce08870</uuid>
+          <uuid>fe498faf-9c46-422f-bff5-24bc7aa8b1fd</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -68,6 +68,11 @@
           <name>WIN_VECTORCAST_DIR</name>
           <description></description>
           <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>WIN64_PACKAGE_DIR</name>
+          <description></description>
+          <defaultValue>${WIN_PACKAGE_DIR}\\64_bit</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
