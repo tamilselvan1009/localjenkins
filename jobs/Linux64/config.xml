@@ -44,7 +44,7 @@
 cd $WORKSPACE
 #export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
 ulimit -c unlimited
-export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/custom/VCAST_LINUX
+export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/VC_64bit/linux/vc32
 
 export VECTOR_LICENSE_FILE=7650@licenseserver
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:$PYTHONPATH
