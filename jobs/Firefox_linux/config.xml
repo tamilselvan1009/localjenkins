@@ -98,8 +98,8 @@ cp -r /home/vectorindia/firefox/firefox/* $WORKSPACE/.
 
 #timing constant
 vcshelltime=45
-
-. ./make_config
+#please remove the comment
+#. ./make_config
 
 #print date 
 echo $(date) &gt;&gt;$summary_file &gt;&gt;sol.txt
@@ -266,7 +266,7 @@ Extract vcdb_setpathtype 0 1
 &apos;
 #parsing summary.txt to get the fail
 grep &quot;Failed&quot; $summary_file &gt;&gt; sol.txt || handle_error
-check=$?
+check=${PIPESTATUS[0]}
 echo &quot;printing check value&quot;
 echo $check
 if [  ! &quot;$check&quot; == &quot;0&quot; ];then
