@@ -98,8 +98,8 @@ cp -r /home/vectorindia/firefox/firefox/* $WORKSPACE/.
 
 #timing constant
 vcshelltime=45
-#please remove the comment
-#. ./make_config
+
+. ./make_config
 
 #print date 
 echo $(date) &gt;&gt;$summary_file &gt;&gt;sol.txt
