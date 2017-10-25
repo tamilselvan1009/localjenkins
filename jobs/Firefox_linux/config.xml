@@ -267,8 +267,8 @@ Extract vcdb_setpathtype 0 1
 #parsing summary.txt to get the fail
 grep &quot;Failed&quot; $summary_file &gt;&gt; sol.txt || handle_error
 check=$?
-if [ $check -ne 0 ];then
-	echo &quot;no failure&quot; &gt;&gt;sol.txt
+if [  ! &quot;$check&quot; == &quot;0&quot; ];then
+	echo &quot;no failure&quot; &gt;&gt; sol.txt
 else
 	echo &quot;i am not here&quot;
 fi    
@@ -283,7 +283,7 @@ fi
 mkdir $archive_dir
 cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/summary.txt $archive_dir/.
 cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/*.out.txt $archive_dir/.
-
+cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/sol.txt $archive_dir/.
 exit /b $_RETURN_CODE_
 
 
