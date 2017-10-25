@@ -100,13 +100,19 @@ cp -r /home/vectorindia/firefox/firefox/* $WORKSPACE/.
 vcshelltime=45  
 . ./make_config
 
+#print date 
+echo $(date) &gt;&gt;$summary_file &gt;&gt;sol.txt
+
 #print VcTools version in log file
-echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --version | grep Version | awk &apos;{print $3}&apos;` &quot; &gt;&gt; $summary_file
+echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --version | grep Version | awk &apos;{print $3}&apos;` &quot; &gt;&gt; $summary_file &gt;&gt; sol.txt
 echo  &gt;&gt; $summary_file
 
 #tabular format for the file
 echo -e  &quot;Command            \t           Time        \t  Artifact    \t Result  &quot; &gt;&gt;summary.txt
 
+#commenting for experiments
+
+: &apos;
 #Execute and measure timings for vcshell make -j8
 echo -n -e &quot;Vchell make \t&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcshell --db=pristine_vcshell.db make &gt;vcshell_make.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_make || handle_error
@@ -256,11 +262,14 @@ chmod +x ../../setpathtype.sh || handle_error
 time (../.././setpathtype.sh vcdb_getfiles.out.txt &gt; set_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_setpathtype || true
 Extract vcdb_setpathtype 0 1
 
+&apos;
 #parsing summary.txt to get the fail
 grep &quot;Failed&quot; $summary_file &gt;&gt; sol.txt
 check=$?
 if [ $check -ne 0 ];then
-	echo &quot;no failure&quot;&gt;&gt;sol.txt
+	echo &quot;no failure&quot; &gt;&gt;sol.txt
+else
+	echo &quot;i am not here&quot;
 fi    
 
 #quick 
@@ -283,7 +292,7 @@ exit /b $_RETURN_CODE_
   </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
-      <recipientList>vectorindia@vectorcast.com</recipientList>
+      <recipientList>shekhar.singh@vectorcast.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
@@ -314,7 +323,7 @@ Jenkins</body>
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo>vectorindia@vectorcast.com</replyTo>
+      <replyTo>shekhar.singh@vectorcast.com</replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
