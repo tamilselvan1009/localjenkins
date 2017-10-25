@@ -97,8 +97,9 @@ $VECTORCAST_DIR/clicast --version
 cp -r /home/vectorindia/firefox/firefox/* $WORKSPACE/.
 
 #timing constant
-vcshelltime=45  
-. ./make_config
+vcshelltime=45
+#please remove the comment
+#. ./make_config
 
 #print date 
 echo $(date) &gt;&gt;$summary_file &gt;&gt;sol.txt
@@ -264,7 +265,7 @@ Extract vcdb_setpathtype 0 1
 
 &apos;
 #parsing summary.txt to get the fail
-grep &quot;Failed&quot; $summary_file &gt;&gt; sol.txt
+grep &quot;Failed&quot; $summary_file &gt;&gt; sol.txt || handle_error
 check=$?
 if [ $check -ne 0 ];then
 	echo &quot;no failure&quot; &gt;&gt;sol.txt
