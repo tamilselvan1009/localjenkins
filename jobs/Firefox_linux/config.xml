@@ -265,12 +265,8 @@ Extract vcdb_setpathtype 0 1
 
 &apos;
 #parsing summary.txt to get the fail
-grep &quot;Failed&quot; $summary_file &gt;&gt; sol.txt || handle_error
-check=${PIPESTATUS[0]}
-echo &quot;printing check value&quot;
-echo $check
-echo ${PIPESTATUS[1]}
-if [  ! &quot;$check&quot; == &quot;0&quot; ];then
+
+if [ grep &quot;Failed&quot; $summary_file &gt;&gt; sol.txt ];then
 	echo &quot;no failure&quot; &gt;&gt; sol.txt
 else
 	echo &quot;i am not here&quot;
