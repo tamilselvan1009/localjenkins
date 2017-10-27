@@ -52,7 +52,7 @@ xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 mkdir tbuild64_msvc10 || call:handle_error&#xd;
 cd tbuild64_msvc10&#xd;
 cmake -G&quot;Visual Studio 10 Win64&quot; ..\tests || call:handle_error&#xd;
-copy ..\tests\vc_w64_test_add_dir vc_test_add_dir&#xd;
+copy vc_w64_test_add_dir vc_test_add_dir&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics || call:handle_error&#xd;
 exit %VC_ERROR_ERROR%&#xd;
 :handle_error&#xd;
