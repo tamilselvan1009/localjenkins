@@ -44,13 +44,14 @@
 cd $WORKSPACE
 #export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
 ulimit -c unlimited
-export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/VC_64bit/linux/vc32
+#export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/VC_64bit/linux/vc32
+export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/custom/VCAST_LINUX
 
 export VECTOR_LICENSE_FILE=7650@licenseserver
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:$PYTHONPATH
 echo $VECTORCAST_DIR
 $VECTORCAST_DIR/vcshell --version
-#$VECTORCAST_DIR/clicast --version
+$VECTORCAST_DIR/clicast --version
 
 cp -r ${LINUX_GIT_DIR}/tests $WORKSPACE
 
@@ -59,7 +60,7 @@ mkdir tbuild64
 cd tbuild64
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 export _VC_RUNTEST_RETURN_CODE_=0
-#mv vc_l64_test_add_dir vc_test_add_dir
+mv vc_l64_test_add_dir vc_test_add_dir
 $VECTORCAST_DIR/vpython VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
 exit /b $_VC_RUNTEST_RETURN_CODE_</command>
     </hudson.tasks.Shell>
