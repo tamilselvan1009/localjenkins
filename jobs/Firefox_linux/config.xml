@@ -113,7 +113,7 @@ echo -e  &quot;Command            \t           Time        \t  Artifact    \t Re
 
 #commenting for experiments
 
-: &apos;
+
 #Execute and measure timings for vcshell make -j8
 echo -n -e &quot;Vchell make \t&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcshell --db=pristine_vcshell.db make &gt;vcshell_make.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_make || handle_error
@@ -263,7 +263,7 @@ chmod +x ../../setpathtype.sh || handle_error
 time (../.././setpathtype.sh vcdb_getfiles.out.txt &gt; set_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_setpathtype || true
 Extract vcdb_setpathtype 0 1
 
-&apos;
+
 #parsing summary.txt to get the fail
 
 if ! grep &quot;Failed&quot; $summary_file &gt;&gt; sol.txt 
