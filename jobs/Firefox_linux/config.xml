@@ -266,10 +266,8 @@ Extract vcdb_setpathtype 0 1
 &apos;
 #parsing summary.txt to get the fail
 
-if [ grep &quot;Failed&quot; $summary_file &gt;&gt; sol.txt ];then
+if ! grep &quot;Failed&quot; $summary_file &gt;&gt; sol.txt 
 	echo &quot;no failure&quot; &gt;&gt; sol.txt
-else
-	echo &quot;i am not here&quot;
 fi    
 
 #quick 
