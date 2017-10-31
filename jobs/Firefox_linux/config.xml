@@ -268,7 +268,7 @@ Extract vcdb_setpathtype 0 1
 
 if ! grep &quot;Failed&quot; $summary_file &gt;&gt; sol.txt 
 then
-	echo &quot;no failure&quot; &gt;&gt; sol.txt
+	echo &quot;NO FAILURE FOUND&quot; &gt;&gt; sol.txt
 fi    
 
 #quick 
