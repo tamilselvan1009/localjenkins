@@ -43,7 +43,7 @@ cp -r /mnt/nfs/shared/Jenkins_Harvester/Git/tests $WORKSPACE
 mkdir tbuild32
 cd tbuild32
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-echo vcQuickParseTest &gt;&gt; vc_test_add_dir
+echo vcQuickParseTest &gt; vc_test_add_dir
 echo vcInstTest &gt;&gt; vc_test_add_dir
 $VECTORCAST_DIR/vpython VcRunTests.py --metrics
 </command>
