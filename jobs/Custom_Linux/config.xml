@@ -36,15 +36,16 @@ echo $VECTORCAST_DIR
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
-#cp -r /mnt/nfs/shared/Jenkins_Harvester/Git/tests $WORKSPACE
-cp -r /home/vectorindia/workspace/Harvester/tests $WORKSPACE
+cp -r /mnt/nfs/shared/Jenkins_Harvester/Git/tests $WORKSPACE
+#cp -r /home/vectorindia/workspace/Harvester/tests $WORKSPACE
 
 #CMake and run VcRunTests
 mkdir tbuild32
 cd tbuild32
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-cd NewPortabilityTest
-$VECTORCAST_DIR/vpython ../VcRunTests.py --metrics
+echo vcQuickParseTest &gt;&gt; vc_test_add_dir
+echo vcInstTest &gt;&gt; vc_test_add_dir
+$VECTORCAST_DIR/vpython VcRunTests.py --metrics
 </command>
     </hudson.tasks.Shell>
   </builders>
