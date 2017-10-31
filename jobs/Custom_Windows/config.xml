@@ -52,7 +52,7 @@ cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests&#xd;
-echo vcQuickParseTest &gt;&gt; vc_test_add_dir&#xd;
+echo vcQuickParseTest &gt; vc_test_add_dir&#xd;
 echo vcInstTest &gt;&gt; vc_test_add_dir&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics &#xd;
 &#xd;
