@@ -46,36 +46,61 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
+artifact=(&quot;Metrics Collected&quot; &quot;successful for&quot; &quot;failed for&quot;)
+_expected=(&quot;Passed&quot; &quot;Failed&quot; &quot;Failed due to lesser artifact&quot;)
+_result=$_expected[0]
+_threshold=4800
+
 #function to handle error 
 handle_error()
 {
 	export _error_=$?
 	if [ ! &quot;$_error_&quot; == &quot;0&quot; ];then
 		echo &quot;      Command failed &quot;
+        _result=$_expected[1]
 		export _RETURN_CODE_=$_error_
 	fi
 }
+
 #global variable to hold variable
 _var_=&quot;--&quot;
 #function to generate tabular file
 Extract()
 {
+
 output=`grep &quot;user&quot; $1 | awk &apos;{printf(&quot;%s&quot;,$2)}&apos;`
-grep &quot;user&quot; $1 | awk &apos;{printf(&quot;\t         %s    \t&quot;,$2)}&apos;&gt;&gt;$summary_file
+grep &quot;user&quot; $1 | awk &apos;{printf(&quot;         %s    &quot;,$2)}&apos;&gt;&gt;$summary_file
+echo &quot;i am before first  if &quot;
+if [ ! -z &quot;$4&quot; ] &amp;&amp; [ ! -z &quot;$5&quot; ]
+then
+echo &quot;i am in first  if &quot;
+_var_=`grep &quot;$5&quot; $4 | grep -o &apos;[0-9]\+&apos;`
+if [ &quot;$5&quot; == &quot;${artifact[1]}&quot; ]
+then 
+if [ &quot;$_var_&quot; -ge &quot;$_threshold&quot; ]
+then
+_result=$_expected[0]
+else
+_result=$_expected[2]
+fi
+fi
+fi
 echo -n -e &quot;        $_var_       &quot; &gt;&gt;$summary_file
 _var_=&quot;--&quot;
 out=`echo $output | awk &apos;{split ($0,a,&quot;m&quot;);print a[1]}&apos;`
 if  [ $out -ge $2 ] &amp;&amp; [ $out -le $3 ] 
 then 
-echo -e &quot;Passed&quot;&gt;&gt;$summary_file
+echo -n  -e &quot;Passed   &quot;&gt;&gt;$summary_file
 else
-echo -e &quot;Failed&quot;&gt;&gt;$summary_file
+echo  -n -e &quot;Failed   &quot;&gt;&gt;$summary_file
 fi
+echo $_result &gt;&gt;$summary_file 
+
 }
 #secondary function to help generate Extract format
 Extract2()
 {
-if [ &quot;$2&quot; == &quot;vcdb__getfiles&quot; ]
+if [ ! &quot;$2&quot; == &quot;vcdb_getfiles.out.txt&quot; ]
 then  
 _var_=`cat $2 | grep &quot;Count&quot; | awk &apos;{print $3}&apos;`
 else
@@ -109,7 +134,7 @@ echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --versio
 echo  &gt;&gt; $summary_file
 
 #tabular format for the file
-echo -e  &quot;Command            \t           Time        \t  Artifact    \t Result  &quot; &gt;&gt;summary.txt
+echo -e  &quot;Command            \t           Time        \t  Artifact    \t TimmingResult  \t  ArtiResult  &quot; &gt;&gt;summary.txt
 
 #commenting for experiments
 
@@ -123,7 +148,7 @@ Extract vcshell_make $vcshelltime `expr $vcshelltime + 30`
 make clean
 echo -n -e &quot;Vcshell metrics\t&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcshell --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --metrics make &gt;vcshell_metrics.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_metrics || handle_error
-Extract vcshell_metrics `expr $vcshelltime + 55`  `expr $vcshelltime + 100`
+Extract vcshell_metrics `expr $vcshelltime + 55`  `expr $vcshelltime + 100` vcshell_metrics.out.txt &quot;${artifact[0]}&quot;
 
 #Execute and mesaure timings for getmetrics
 echo -n -e &quot;Vcdb getmetrics\t&quot;&gt;&gt;$summary_file
@@ -140,7 +165,7 @@ Extract vcdb_clearmetrics 0 1
 #Execute and measure timings for vcutil addmetrics
 echo  -n -e &quot;Vcutil Addmetrics&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db  --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all addmetrics  &gt; vcutil_addmetrics.out.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_addmetrics || true
-Extract vcutil_addmetrics `expr $vcshelltime + 90`  `expr $vcshelltime + 130`
+Extract vcutil_addmetrics `expr $vcshelltime + 90`  `expr $vcshelltime + 130` vcutil_addmetrics.out.txt &quot;${artifact[0]}&quot;
 
 
 #Verify metrics recorded in vcutil
@@ -152,17 +177,17 @@ Extract2 vcdb_getmetrics_vcutil vcdb_getmetrics_for_vcshell_metrics.out.txt 0 1
 #Vcutil Instrument 
 echo -n -e &quot;Vcutil Instrument&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcutil  --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=InstFiles --coverage_type=statement instrument  &gt; vcutil_instr.out.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_instrument || handle_error
-Extract vcutil_instrument `expr $vcshelltime + 50` `expr $vcshelltime + 130`
+Extract vcutil_instrument `expr $vcshelltime + 50` `expr $vcshelltime + 130` &quot;${artifact[1]}&quot;
 
 #Vcutil Quick parse
 echo -n -e &quot;Vcutil qikparse\t&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse || handle_error
-Extract vcutil_qikparse `expr $vcshelltime + 5` `expr $vcshelltime + 45`
+Extract vcutil_qikparse `expr $vcshelltime + 5` `expr $vcshelltime + 45` &quot;${artifact[1]}&quot;
 
 #vcdb getfiles
 echo -n -e &quot;Vcdb getfiles\t&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcdb getfiles &gt;vcdb_getfiles.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb__getfiles || handle_error
-Extract2 vcdb__getfiles vcdb__getfiles 0 1
+Extract2 vcdb__getfiles vcdb_getfiles.out.txt 0 1
 
 #vcdb dumpcmd
 echo -n -e &quot;Vcdb dumpcmd\t&quot;&gt;&gt;$summary_file
