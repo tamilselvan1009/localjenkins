@@ -68,11 +68,9 @@ Extract()
 {
 
 output=`grep &quot;user&quot; $1 | awk &apos;{printf(&quot;%s&quot;,$2)}&apos;`
-grep &quot;user&quot; $1 | awk &apos;{printf(&quot;         %s    &quot;,$2)}&apos;&gt;&gt;$summary_file
-echo &quot;i am before first  if &quot;
+grep &quot;user&quot; $1 | awk &apos;{printf(&quot;         %s         &quot;,$2)}&apos;&gt;&gt;$summary_file
 if [ ! -z &quot;$4&quot; ] &amp;&amp; [ ! -z &quot;$5&quot; ]
 then
-echo &quot;i am in first  if &quot;
 _var_=`grep &quot;$5&quot; $4 | grep -o &apos;[0-9]\+&apos;`
 if [ &quot;$5&quot; == &quot;${artifact[1]}&quot; ]
 then 
@@ -84,14 +82,14 @@ _result=${_expected[1]}
 fi
 fi
 fi
-echo -n -e &quot;        $_var_       &quot; &gt;&gt;$summary_file
+echo -n -e &quot;         $_var_         &quot; &gt;&gt;$summary_file
 _var_=&quot;--&quot;
 out=`echo $output | awk &apos;{split ($0,a,&quot;m&quot;);print a[1]}&apos;`
 if  [ $out -ge $2 ] &amp;&amp; [ $out -le $3 ] 
 then 
-echo -n  -e &quot;Passed   &quot;&gt;&gt;$summary_file
+echo -n  -e &quot;        Passed         &quot;&gt;&gt;$summary_file
 else
-echo  -n -e &quot;Failed   &quot;&gt;&gt;$summary_file
+echo  -n -e &quot;        Failed         &quot;&gt;&gt;$summary_file
 fi
 echo $_result &gt;&gt;$summary_file 
 
