@@ -48,7 +48,7 @@
 
 artifact=(&quot;Metrics Collected&quot; &quot;successful for&quot; &quot;failed for&quot;)
 _expected=(&quot;Passed&quot; &quot;Failed&quot; &quot;Failed due to lesser artifact&quot;)
-_result=$_expected[0]
+_result=${_expected[0]}
 _threshold=4800
 
 #function to handle error 
@@ -78,9 +78,9 @@ if [ &quot;$5&quot; == &quot;${artifact[1]}&quot; ]
 then 
 if [ &quot;$_var_&quot; -ge &quot;$_threshold&quot; ]
 then
-_result=$_expected[0]
+_result=${_expected[0]}
 else
-_result=$_expected[1]
+_result=${_expected[1]}
 fi
 fi
 fi
@@ -176,12 +176,12 @@ Extract2 vcdb_getmetrics_vcutil vcdb_getmetrics_for_vcshell_metrics.out.txt 0 1
 #Vcutil Instrument 
 echo -n -e &quot;Vcutil Instrument&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcutil  --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=InstFiles --coverage_type=statement instrument  &gt; vcutil_instr.out.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_instrument || handle_error
-Extract vcutil_instrument `expr $vcshelltime + 50` `expr $vcshelltime + 130` &quot;${artifact[1]}&quot;
+Extract vcutil_instrument `expr $vcshelltime + 50` `expr $vcshelltime + 130` vcutil_instr.out.txt &quot;${artifact[1]}&quot;
 
 #Vcutil Quick parse
 echo -n -e &quot;Vcutil qikparse\t&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse || handle_error
-Extract vcutil_qikparse `expr $vcshelltime + 5` `expr $vcshelltime + 45` &quot;${artifact[1]}&quot;
+Extract vcutil_qikparse `expr $vcshelltime + 5` `expr $vcshelltime + 45` vcutil_quick.out &quot;${artifact[1]}&quot;
 
 #vcdb getfiles
 echo -n -e &quot;Vcdb getfiles\t&quot;&gt;&gt;$summary_file
