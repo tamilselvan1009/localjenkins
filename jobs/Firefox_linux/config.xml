@@ -57,7 +57,6 @@ handle_error()
 	export _error_=$?
 	if [ ! &quot;$_error_&quot; == &quot;0&quot; ];then
 		echo &quot;      Command failed &quot;
-        _result=$_expected[1]
 		export _RETURN_CODE_=$_error_
 	fi
 }
@@ -81,7 +80,7 @@ if [ &quot;$_var_&quot; -ge &quot;$_threshold&quot; ]
 then
 _result=$_expected[0]
 else
-_result=$_expected[2]
+_result=$_expected[1]
 fi
 fi
 fi
