@@ -99,7 +99,7 @@ Extract2()
 {
 if [ ! &quot;$2&quot; == &quot;vcdb_getfiles.out.txt&quot; ]
 then  
-_var_=`cat $2 | grep &quot;Count&quot; | awk &apos;{print $3}&apos;`
+_var_=`cat $2 | wc -l`
 else
 _var_=`cat $2 | wc -l`
 fi
