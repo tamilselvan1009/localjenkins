@@ -9,7 +9,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>f69210e6-c2e3-46b8-b479-e943be993667</uuid>
+          <uuid>7bf16e32-97e6-419a-8754-8c7680ff1cfe</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -148,6 +148,9 @@ fi
               <useMatrixChild>false</useMatrixChild>
               <onlyExactRuns>false</onlyExactRuns>
             </hudson.plugins.parameterizedtrigger.FileBuildParameters>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>VCTOOLS_VERSION=${VERSION}</properties>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
           <projects>Build_Linux32,Build_Windows</projects>
           <condition>ALWAYS</condition>
