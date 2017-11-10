@@ -9,7 +9,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>32836a20-078b-4817-9128-60990d869131</uuid>
+          <uuid>f69210e6-c2e3-46b8-b479-e943be993667</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -115,7 +115,9 @@
 
 # change the vctools version to the git commit id
 export COMMIT_ID=$(git rev-parse --short HEAD)
-sed -i &quot;s/.*#define _VCTOOLS_VERSION_.*/#define _VCTOOLS_VERSION_ \&quot;${COMMIT_ID}\&quot;/&quot; harvester/inc/vcVersion.h
+export COMMIT_DATE=$(git show -s --format=%ci $COMMIT_ID)
+export VERSION=$(echo $COMMIT_ID $COMMIT_DATE | awk &apos;BEGIN{FS=&quot; &quot;} {print $1&quot;___&quot;$2&quot;___&quot;$3}&apos;)
+sed -i &quot;s/.*#define _VCTOOLS_VERSION_.*/#define _VCTOOLS_VERSION_ \&quot;${VERSION}\&quot;/&quot; harvester/inc/vcVersion.h
 
 # delete the old release package dir if it exists
 if [[ -d &quot;${LINUX_RELEASE_DIR}&quot; ]];then
