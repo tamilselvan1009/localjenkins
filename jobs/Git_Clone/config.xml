@@ -9,7 +9,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>439408ad-87a1-48f3-b14f-6735606fb512</uuid>
+          <uuid>e04dc12e-21fe-4d8a-b960-9aa27579190b</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -134,7 +134,7 @@ if [ -f &quot;$WORKSPACE/build_harvester.txt&quot; ]; then
 	rm &quot;$WORKSPACE/build_harvester.txt&quot;
 fi
 if [ &quot;$BUILD_HARVESTER&quot; != &quot;false&quot; ]; then
-touch $WORKSPACE/build_harvester.txt
+echo VCTOOLS_VERSION=$VERSION &gt; $WORKSPACE/build_harvester.txt
 fi
 </command>
     </hudson.tasks.Shell>
@@ -149,9 +149,6 @@ fi
               <useMatrixChild>false</useMatrixChild>
               <onlyExactRuns>false</onlyExactRuns>
             </hudson.plugins.parameterizedtrigger.FileBuildParameters>
-            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-              <properties>VCTOOLS_VERSION=${VERSION}</properties>
-            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
           <projects>Build_Linux32,Build_Windows</projects>
           <condition>ALWAYS</condition>
