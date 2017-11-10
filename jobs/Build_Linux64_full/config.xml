@@ -31,6 +31,11 @@
           <description></description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>VCTOOLS_VERSION</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
@@ -77,7 +82,7 @@ cp -r release-packages/release &quot;$LINUX_64BIT_PACKAGE_DIR/.&quot;
 # copy the 32-bit recorder lib to package
 cp &quot;$LINUX_PACKAGE_DIR/release/lib/libVcRecorderLib.so&quot; &quot;${LINUX_64BIT_PACKAGE_DIR}/release/lib/.&quot;
 cd &quot;$LINUX_64BIT_PACKAGE_DIR&quot;
-tar -cvzf harvester.linux.tgz release
+tar -cvzf harvester.linux_$VCTOOLS_VERSION.tgz release
 
 
 </command>
