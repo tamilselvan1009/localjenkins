@@ -31,6 +31,11 @@
           <description>Specify the VECTORCAST_DIR on which VcTools to be installed. Leaving blank will skip the vcTools installation.</description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>VCTOOLS_VERSION</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
