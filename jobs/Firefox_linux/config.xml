@@ -47,7 +47,7 @@
       <command>#!/bin/bash -xe
 
 
-VCTOOLS_PACKAGE=`find /mnt/nfs/shared/Jenkins_Harvester/Linux -name *.tgz`
+VCTOOLS_PACKAGE=`find /mnt/nfs/shared/Jenkins_Harvester/Linux -maxdepth 1 -name *.tgz`
 
 if [ -f  $VCTOOLS_PACKAGE ];then
 	tar xvzf $VCTOOLS_PACKAGE
