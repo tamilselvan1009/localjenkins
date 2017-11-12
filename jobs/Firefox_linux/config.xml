@@ -46,7 +46,8 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
-VCTOOLS_PACKAGE=&apos;/mnt/nfs/shared/Jenkins_Harvester/Linux/harvester.linux.tgz&apos;
+
+VCTOOLS_PACKAGE=`find /mnt/nfs/shared/Jenkins_Harvester/Linux -name *.tgz`
 
 if [ -f  $VCTOOLS_PACKAGE];then
 	tar xvzf $VCTOOLS_PACKAGE
