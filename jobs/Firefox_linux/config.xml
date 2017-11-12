@@ -48,6 +48,7 @@
 
 
 VCTOOLS_PACKAGE=`find /mnt/nfs/shared/Jenkins_Harvester/Linux -maxdepth 1 -name *.tgz`
+export BOOST_DIR=&quot;/mnt/nfs/TOOLS/boost-1.53.0&quot;
 
 if [ -f  $VCTOOLS_PACKAGE ];then
 	tar xvzf $VCTOOLS_PACKAGE
