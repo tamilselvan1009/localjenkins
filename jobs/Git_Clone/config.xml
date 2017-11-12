@@ -9,7 +9,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>8d7b6e14-3c30-44db-956d-e3362a142f6f</uuid>
+          <uuid>070b2ae2-4f34-4ce1-b4c4-61d52a6bccf6</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -121,7 +121,7 @@
 # change the vctools version to the git commit id
 export COMMIT_ID=$(git rev-parse --short HEAD)
 export COMMIT_DATE=$(git show -s --format=%ci $COMMIT_ID)
-if [ $USE_COMMIT_DATE_FOR_VERSION ]; then
+if [ &quot;$USE_COMMIT_DATE_FOR_VERSION&quot; != &quot;false&quot; ]; then
 	export VERSION=$(echo $COMMIT_ID $COMMIT_DATE | awk &apos;BEGIN{FS=&quot; &quot;} {print $1&quot;_&quot;$2&quot;_&quot;$3}&apos;)
 	export VERSION=$(echo $VERSION | tr :- _)
 	sed -i &quot;s/.*#define _VCTOOLS_VERSION_.*/#define _VCTOOLS_VERSION_ \&quot;${VERSION}\&quot;/&quot; harvester/inc/vcVersion.h
