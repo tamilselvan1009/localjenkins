@@ -49,7 +49,7 @@
 
 VCTOOLS_PACKAGE=`find /mnt/nfs/shared/Jenkins_Harvester/Linux -name *.tgz`
 
-if [ -f  $VCTOOLS_PACKAGE];then
+if [ -f  $VCTOOLS_PACKAGE ];then
 	tar xvzf $VCTOOLS_PACKAGE
     cd release
     ./install.sh
@@ -345,7 +345,7 @@ Jenkins</body>
             <attachmentsPattern>mozilla-release/obj-x86_64-unknown-linux-gnu/summary.txt</attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo>vectorinida@vectorcast.com</replyTo>
+            <replyTo>vectorindia@vectorcast.com</replyTo>
             <contentType>text/plain</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
