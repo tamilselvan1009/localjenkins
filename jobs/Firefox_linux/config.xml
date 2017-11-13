@@ -53,7 +53,7 @@ export BOOST_DIR=&quot;/mnt/nfs/TOOLS/boost-1.53.0&quot;
 if [ -f  $VCTOOLS_PACKAGE ];then
 	tar xvzf $VCTOOLS_PACKAGE
     cd release
-    . ./install.sh
+    ./install.sh
     cd ..
 else
 	echo &quot;VcTools package not available in $VCTOOLS_PACKAGE&quot;
