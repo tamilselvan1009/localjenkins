@@ -309,9 +309,9 @@ then
 	echo &quot;NO FAILURE FOUND&quot; &gt;&gt; sol.txt
 fi    
 
-($column -t $summary_file) &gt; temp.txt
-rm -rf $summary_file
-cp temp.txt $summary_file
+(column -t $summary_file) &gt; temp.txt || handle_error
+rm -rf $summary_file || handle_error
+cp temp.txt $summary_file || handle_error
 #quick 
 #Archive the artifacts
 cd $top_level_archive_dir
