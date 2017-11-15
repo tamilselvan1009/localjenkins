@@ -147,7 +147,7 @@ echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --versio
 echo  &gt;&gt; $summary_file
 
 #tabular format for the file
-echo -e  &quot;Command            \t           Time        \t  Artifact    \t TimmingResult  \t  ArtiResult  &quot; &gt;&gt;summary.txt
+echo -e  &quot;Command            \t           Time        \t  Artifact    \t TimmingResult  \t  ArtiResult  &quot; &gt;&gt;summary.txt &gt;&gt; sol.txt
 
 #commenting for experiments
 
