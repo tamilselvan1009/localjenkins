@@ -61,7 +61,7 @@ cp -r &quot;${LINUX_GIT_DIR}/build.sh&quot; .
 ./build.sh --arch=x64_lib --static_cpp_lib=${VC_STDCPLUS_PLUS_STATIC_DIR}
 
 # copy the 64-bit recorder lib to package
-cp build64/lib64/libVcRecorderLib.so &quot;${LINUX_PACKAGE_DIR}/release/recorder/lib64/.&quot;
+cp build64/recorder/lib64/libVcRecorderLib.so &quot;${LINUX_PACKAGE_DIR}/release/recorder/lib64/.&quot;
 cd &quot;${LINUX_PACKAGE_DIR}&quot;
 tar -cvzf harvester.linux_$VCTOOLS_VERSION.tgz release
 
