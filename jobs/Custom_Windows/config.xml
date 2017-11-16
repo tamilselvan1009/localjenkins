@@ -54,7 +54,7 @@ cmake ..\tests&#xd;
 rem echo vcQuickParseTest &gt; vc_test_add_dir&#xd;
 rem echo vcInstTest &gt;&gt; vc_test_add_dir&#xd;
 rem echo PortabilityTest &gt;&gt; vc_test_add_dir&#xd;
-echo LogFileTests &gt;&gt; vc_test_add_dir&#xd;
+echo LogFileTests &gt; vc_test_add_dir&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics &#xd;
 &#xd;
 </command>
