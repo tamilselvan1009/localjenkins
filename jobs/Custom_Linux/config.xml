@@ -46,7 +46,7 @@ cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 #echo vcQuickParseTest &gt; vc_test_add_dir
 #echo vcInstTest &gt;&gt; vc_test_add_dir
 #echo PortabilityTest &gt;&gt; vc_test_add_dir
-#echo IncludeTypes &gt; vc_test_add_dir
+echo LogFileTests &gt; vc_test_add_dir
 $VECTORCAST_DIR/vpython VcRunTests.py --metrics
 </command>
     </hudson.tasks.Shell>
