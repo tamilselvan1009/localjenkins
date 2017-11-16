@@ -30,7 +30,7 @@
     </hudson.model.ParametersDefinitionProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
-  <assignedNode>Firefox_linux</assignedNode>
+  <assignedNode>new_firefox_mac</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -124,15 +124,15 @@ Extract $1 $3 $4
 
 #Set up Environment varaibles
 export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
-export VECTOR_LICENSE_FILE=/home/vectorindia/vector-license/vector-VECTORINDIA.lic
-export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
+#export VECTOR_LICENSE_FILE=/home/vectorindia/vector-license/vector-VECTORINDIA.lic
+#export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 
 #Print tools version in console for reference
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
 #Copy the firefox source 
-cp -r /home/vectorindia/firefox/firefox/* $WORKSPACE/.
+cp -r /home/vectorindia/firefox/* $WORKSPACE/.
 
 #timing constant
 vcshelltime=45
@@ -374,6 +374,14 @@ Jenkins</body>
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.18">
+      <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
+        <timeoutMinutes>600</timeoutMinutes>
+      </strategy>
+      <operationList>
+        <hudson.plugins.build__timeout.operations.FailOperation/>
+      </operationList>
+    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
       <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
