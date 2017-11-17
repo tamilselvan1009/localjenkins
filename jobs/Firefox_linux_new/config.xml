@@ -84,11 +84,11 @@ _var_=&quot;--&quot;
 Extract()
 {
 
-output=`grep &quot;user&quot; $1 | awk &apos;{printf(&quot;%s&quot;,$2)}&apos;`
+output=`grep &quot;user&quot; $1 | awk &apos;{printf(&quot;%s&quot;,$2)}&apos;` || handle_error
 grep &quot;user&quot; $1 | awk &apos;{printf(&quot;         %s         &quot;,$2)}&apos;&gt;&gt;$summary_file
 if [ ! -z &quot;$4&quot; ] &amp;&amp; [ ! -z &quot;$5&quot; ]
 then
-_var_=`grep &quot;$5&quot; $4 | grep -o &apos;[0-9]\+&apos;`
+_var_=`grep &quot;$5&quot; $4 | grep -o &apos;[0-9]\+&apos;` || handle_error
 if [ &quot;$5&quot; == &quot;${artifact[1]}&quot; ]
 then 
 if [ &quot;$_var_&quot; -ge &quot;$_threshold&quot; ]
@@ -101,7 +101,7 @@ fi
 fi
 echo -n -e &quot;         $_var_         &quot; &gt;&gt;$summary_file
 _var_=&quot;--&quot;
-out=`echo $output | awk &apos;{split ($0,a,&quot;m&quot;);print a[1]}&apos;`
+out=`echo $output | awk &apos;{split ($0,a,&quot;m&quot;);print a[1]}&apos;` || handle_error
 if  [ $out -ge $2 ] &amp;&amp; [ $out -le $3 ] 
 then 
 echo -n  -e &quot;        Passed         &quot;&gt;&gt;$summary_file
