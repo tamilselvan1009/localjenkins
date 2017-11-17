@@ -39,6 +39,7 @@ $VECTORCAST_DIR/clicast --version
 cp -r /mnt/nfs/shared/Jenkins_Harvester/Git/tests $WORKSPACE
 #cp -r /home/vectorindia/workspace/Harvester/tests $WORKSPACE
 
+rm -rf tbuild32
 #CMake and run VcRunTests
 mkdir tbuild32
 cd tbuild32
