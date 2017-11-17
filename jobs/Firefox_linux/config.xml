@@ -193,7 +193,7 @@ time ($VECTORCAST_DIR/vcutil  --db=vcutil_metrics.db --flags=&quot;-include=1,-f
 Extract vcutil_instrument `expr $vcshelltime + 50` `expr $vcshelltime + 130` vcutil_instr.out.txt &quot;${artifact[1]}&quot;
 
 #Vcutil Quick parse
-echo -n -e &quot;VcutilQikparse\t--jobs=4&quot;&gt;&gt;$summary_file
+echo -n -e &quot;VcutilQikparse--jobs=4&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse || handle_error
 Extract vcutil_qikparse `expr $vcshelltime + 5` `expr $vcshelltime + 45` vcutil_quick.out &quot;${artifact[1]}&quot;
 
