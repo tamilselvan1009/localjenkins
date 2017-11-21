@@ -37,7 +37,7 @@ set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\custom\VCAST_WINDOWS&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-IDCWIN2.lic&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 &#xd;
-xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
+rem xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 &#xd;
 rem set _VC_DETOUR_CYGWIN_32_=1&#xd;
 REM echo %_VC_DETOUR_CYGWIN_32_%&#xd;
@@ -45,8 +45,8 @@ REM echo %_VC_DETOUR_CYGWIN_32_%&#xd;
 %VECTORCAST_DIR%\vcshell --version&#xd;
 %VECTORCAST_DIR%\clicast --version&#xd;
 &#xd;
-rem set _VC_NEW_CYGWIN_MODE_=1&#xd;
-rem echo %_VC_NEW_CYGWIN_MODE_%&#xd;
+set _VC_NEW_CYGWIN_MODE_=1&#xd;
+echo %_VC_NEW_CYGWIN_MODE_%&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
 rmdir tbuild32_cyg /s /q&#xd;
@@ -67,11 +67,6 @@ echo VcshellTest/CygwinTest&gt; vc_test_add_dir&#xd;
     </hudson.tasks.Mailer>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
-      <deleteDirs>false</deleteDirs>
-      <cleanupParameter></cleanupParameter>
-      <externalDelete></externalDelete>
-    </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
       <template>${ENV, var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
