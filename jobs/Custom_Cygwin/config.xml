@@ -37,7 +37,7 @@ set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\custom\VCAST_WINDOWS&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-IDCWIN2.lic&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 &#xd;
-rem xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
+xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 &#xd;
 rem set _VC_DETOUR_CYGWIN_32_=1&#xd;
 REM echo %_VC_DETOUR_CYGWIN_32_%&#xd;
@@ -49,13 +49,12 @@ set _VC_NEW_CYGWIN_MODE_=1&#xd;
 echo %_VC_NEW_CYGWIN_MODE_%&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
-rem rmdir tbuild32_cyg /s /q&#xd;
-rem mkdir tbuild32_cyg&#xd;
+rmdir tbuild32_cyg /s /q&#xd;
+mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
 set PATH=C:\cygwin\bin;%PATH%&#xd;
-rem bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
-rem  echo getpaths &gt; vc_test_add_dir&#xd;
-rem echo VcshellTest/CygwinTest&gt; vc_test_add_dir&#xd;
+bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
+echo getpaths &gt; vc_test_add_dir&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics</command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -67,6 +66,11 @@ rem echo VcshellTest/CygwinTest&gt; vc_test_add_dir&#xd;
     </hudson.tasks.Mailer>
   </publishers>
   <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
       <template>${ENV, var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
