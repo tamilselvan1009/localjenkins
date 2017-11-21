@@ -304,7 +304,7 @@ Extract vcdb_setpathtype 0 1
 #Getallcmdlines
 echo -n -e &quot;Getallcmdlines\t&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcdb getallcmdlines &gt; vcdb_getcommandlines.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getallcommandlines || handle_error
-Extract vcdb_getallcommandlines 1 2
+Extract vcdb_getallcommandlines 0 1
 
 
 #parsing summary.txt to get the fail
