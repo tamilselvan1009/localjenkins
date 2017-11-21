@@ -12,14 +12,9 @@
           <defaultValue>User_test</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>BRANCH</name>
-          <description></description>
-          <defaultValue>develop</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>WIN_GIT_DIR</name>
           <description></description>
-          <defaultValue>N:\shared\Jenkins_Harvester\Git</defaultValue>
+          <defaultValue>N:\shared\Jenkins_Harvester_getpaths\Git</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
