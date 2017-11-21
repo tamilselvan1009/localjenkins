@@ -29,7 +29,7 @@
 cd $WORKSPACE
 
 #export VECTORCAST_DIR=/mnt/nfs/shared/package_build/vc_remove_wrappers
-export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/VCAST_LINUX
+export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/custom/VCAST_LINUX
 export VECTOR_LICENSE_FILE=/home/linuxregressionmac/flexlm/vector-UBUNTU.lic
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 echo $VECTORCAST_DIR
@@ -44,9 +44,7 @@ rm -rf tbuild32
 mkdir tbuild32
 cd tbuild32
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-#echo vcQuickParseTest &gt; vc_test_add_dir
-#echo vcInstTest &gt;&gt; vc_test_add_dir
-#echo PortabilityTest &gt;&gt; vc_test_add_dir
+echo getpaths &gt; vc_test_add_dir
 $VECTORCAST_DIR/vpython VcRunTests.py --metrics
 </command>
     </hudson.tasks.Shell>
