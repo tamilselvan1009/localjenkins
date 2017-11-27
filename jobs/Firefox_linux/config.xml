@@ -320,7 +320,13 @@ time ($VECTORCAST_DIR/vcdb getallcmdlines &gt; vcdb_getnewcommandlines.out.txt 2
 Extract vcdb_getnewallcommandlines 0 1
 
 #finding differnece 
-diff vcdb_getcommandlines.out.txt  vcdb_getnewcommandlines.out.txt ||  handle_error
+diff vcdb_getcommandlines.out.txt  vcdb_getnewcommandlines.out.txt &gt; diff.txt ||  handle_error
+
+#taking 1000 files
+head -1000 vcdb_getfiles.out.txt &gt; first1000.txt 
+echo -n -e &quot;qikparse1000\t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=first1000.txt --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick1.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse1 || handle_error
+Extract vcutil_qikparse1 `expr $vcshelltime + 5` `expr $vcshelltime + 45` vcutil_quick.out &quot;${artifact[1]}&quot;
 
 #parsing summary.txt to get the fail
 
