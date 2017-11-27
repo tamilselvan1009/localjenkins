@@ -311,7 +311,7 @@ mv vcshell.db old.db
 
 #putcommand 
 echo -n -e &quot;putcommand\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcshell putcommand --inputcmds=vcdb_getcommandlines.out.txt &gt; vcdb_getcommandlines.out.txt 2&gt;&amp;1) 2 &gt;&gt;vcshell_putcommand  || handle_error
+time ($VECTORCAST_DIR/vcshell putcommand --inputcmds=vcdb_getcommandlines.out.txt &gt; vcdb_getcommandlines.out.txt 2&gt;&amp;1) 2&gt;&gt;vcshell_putcommand  || handle_error
 Extract vcshell_putcommand 2 4
 
 #Getallcmdlines for new db
