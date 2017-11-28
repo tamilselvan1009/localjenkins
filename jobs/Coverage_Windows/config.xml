@@ -57,6 +57,7 @@
       <winCommand>call &quot;C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\vcvarsall.bat&quot;
 
 set VECTORCAST_DIR=V:\VCAST_REGRESSION
+set VECTOR_LICENSE_FILE=C:\FLEXlm\vector-INDIAWINDOWSBUI.lic
 rmdir /q /s %VECTORCAST_DIR%
 mkdir %VECTORCAST_DIR%
 xcopy /s %WIN_VECTORCAST_DIR% %VECTORCAST_DIR%
