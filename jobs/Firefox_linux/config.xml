@@ -199,27 +199,27 @@ Extract vcutil_qikparse `expr $vcshelltime + 5` `expr $vcshelltime + 45` vcutil_
 
 #vcdb getfiles
 echo -n -e &quot;VcdbGetfiles\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb getfiles &gt;vcdb_getfiles.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb__getfiles || handle_error
+time ($VECTORCAST_DIR/vcdb getfiles --db=pristine_vcshell.db &gt;vcdb_getfiles.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb__getfiles || handle_error
 Extract2 vcdb__getfiles vcdb_getfiles.out.txt 0 1
 
 #vcdb dumpcmd
 echo -n -e &quot;VcdbDumpcmd\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb dumpcommands &gt;vcdb_dumpcommand.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_dump || handle_error
+time ($VECTORCAST_DIR/vcdb dumpcommands --db=pristine_vcshell.db &gt;vcdb_dumpcommand.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_dump || handle_error
 Extract vcdb_dump 0 1
 
 #vcdb dumpverb
 echo -n -e &quot;VcdbDumpverb\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb dumpverbs &gt; vcdb_dumpverbs.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_dumpv  || handle_error
+time ($VECTORCAST_DIR/vcdb dumpverbs --db=pristine_vcshell.db &gt; vcdb_dumpverbs.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_dumpv  || handle_error
 Extract vcdb_dumpv 0 1
 
 #vcdb getapps
 echo -n -e &quot;VcdbGetapps\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb getapps &gt;vcdb_getapps.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getapps  || handle_error
+time ($VECTORCAST_DIR/vcdb getapps --db=pristine_vcshell.db &gt;vcdb_getapps.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getapps  || handle_error
 Extract vcdb_getapps 0 1
 
 #get commentdata
 echo -n -e &quot;VcdbGetcommentdata&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb getcommentdata &gt; vcdb_getcommentdata.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getcommentdata || handle_error
+time ($VECTORCAST_DIR/vcdb getcommentdata  --db=pristine_vcshell.db &gt; vcdb_getcommentdata.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getcommentdata || handle_error
 Extract vcdb_getcommentdata 0 1
 
 #get vcdb metrics
@@ -229,22 +229,22 @@ Extract vcdb_met 0 1
 
 #get vcdb path
 echo -n -e &quot;VcdbGetpaths\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb getpaths &gt; vcdb_getpaths_data.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getpath  || handle_error
+time ($VECTORCAST_DIR/vcdb getpaths  --db=pristine_vcshell.db &gt; vcdb_getpaths_data.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getpath  || handle_error
 Extract vcdb_getpath 0 1
 
 #get vcdb tags
 echo -n -e &quot;VcdbGettags\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb gettags &gt; vcdb_gettags_data.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_gettags || handle_error
+time ($VECTORCAST_DIR/vcdb gettags  --db=pristine_vcshell.db &gt; vcdb_gettags_data.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_gettags || handle_error
 Extract vcdb_gettags 0 1
 
 #get linkcmd
 echo -n -e &quot;VcdbGetlinkcmd\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb getlinkcmd &gt; vcdb_getlinkcmd_data.out.txt 2&gt;&amp;1) 2&gt;&gt;vcdb_getlinkcmd || handle_error
+time ($VECTORCAST_DIR/vcdb getlinkcmd --db=pristine_vcshell.db &gt; vcdb_getlinkcmd_data.out.txt 2&gt;&amp;1) 2&gt;&gt;vcdb_getlinkcmd || handle_error
 Extract vcdb_getlinkcmd 0 1
 
 #get list
 echo -n -e &quot;VcdbList-prefixes&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb list-prefixes &gt; vcdb_list-prefixes_data.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getlist || handle_error
+time ($VECTORCAST_DIR/vcdb list-prefixes  --db=pristine_vcshell.db &gt; vcdb_list-prefixes_data.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getlist || handle_error
 Extract vcdb_getlist 0 1
 
 #getcmd.sh
