@@ -47,8 +47,7 @@
       <command>#!/bin/bash -xe
 
 echo $LINUX_VECTORCAST_DIR
-export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
-VCTOOLS_PACKAGE=`find /mnt/nfs/shared/1.15_master -maxdepth 1 -name *.tgz`
+VCTOOLS_PACKAGE=`find /mnt/nfs/shared/Jenkins_Harvester/Linux -maxdepth 1 -name *.tgz`
 #VCTOOLS_PACKAGE=`find /mnt/nfs/shared/1_14_dispatcher_fix -maxdepth 1 -name *.tgz`
 export BOOST_DIR=&quot;/mnt/nfs/TOOLS/boost-1.53.0&quot;
 
@@ -84,11 +83,11 @@ _var_=&quot;--&quot;
 Extract()
 {
 
-output=`grep &quot;user&quot; $1 | awk &apos;{printf(&quot;%s&quot;,$2)}&apos;` || handle_error
+output=`grep &quot;user&quot; $1 | awk &apos;{printf(&quot;%s&quot;,$2)}&apos;`
 grep &quot;user&quot; $1 | awk &apos;{printf(&quot;         %s         &quot;,$2)}&apos;&gt;&gt;$summary_file
 if [ ! -z &quot;$4&quot; ] &amp;&amp; [ ! -z &quot;$5&quot; ]
 then
-_var_=`grep &quot;$5&quot; $4 | grep -o &apos;[0-9]\+&apos;` || handle_error
+_var_=`grep &quot;$5&quot; $4 | grep -o &apos;[0-9]\+&apos;`
 if [ &quot;$5&quot; == &quot;${artifact[1]}&quot; ]
 then 
 if [ &quot;$_var_&quot; -ge &quot;$_threshold&quot; ]
@@ -101,7 +100,7 @@ fi
 fi
 echo -n -e &quot;         $_var_         &quot; &gt;&gt;$summary_file
 _var_=&quot;--&quot;
-out=`echo $output | awk &apos;{split ($0,a,&quot;m&quot;);print a[1]}&apos;` || handle_error
+out=`echo $output | awk &apos;{split ($0,a,&quot;m&quot;);print a[1]}&apos;`
 if  [ $out -ge $2 ] &amp;&amp; [ $out -le $3 ] 
 then 
 echo -n  -e &quot;        Passed         &quot;&gt;&gt;$summary_file
@@ -124,15 +123,16 @@ Extract $1 $3 $4
 }
 
 #Set up Environment varaibles
-#export VECTOR_LICENSE_FILE=/home/vectorindia/vector-license/vector-VECTORINDIA.lic
-#export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
+export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
+export VECTOR_LICENSE_FILE=/home/vectorindia/vector-license/vector-VECTORINDIA.lic
+export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 
 #Print tools version in console for reference
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
 #Copy the firefox source 
-cp -r /home/vectorindia/firefox/* $WORKSPACE/.
+cp -r /home/vectorindia/firefox/firefox/* $WORKSPACE/.
 
 #timing constant
 vcshelltime=45
@@ -147,7 +147,7 @@ echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --versio
 echo  &gt;&gt; $summary_file
 
 #tabular format for the file
-echo -e  &quot;Command            \t           Time        \t  Artifact    \t TimmingResult  \t  ArtiResult  &quot; &gt;&gt;summary.txt
+echo -e  &quot;Command            \t           Time        \t  Artifact    \t TimmingResult  \t  ArtiResult  &quot; &gt;&gt;summary.txt &gt;&gt; sol.txt
 
 #commenting for experiments
 
@@ -193,33 +193,44 @@ time ($VECTORCAST_DIR/vcutil  --db=vcutil_metrics.db --flags=&quot;-include=1,-f
 Extract vcutil_instrument `expr $vcshelltime + 50` `expr $vcshelltime + 130` vcutil_instr.out.txt &quot;${artifact[1]}&quot;
 
 #Vcutil Quick parse
-echo -n -e &quot;VcutilQikparse\t--jobs=4&quot;&gt;&gt;$summary_file
+echo -n -e &quot;VcutilQikparse--jobs=4&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse || handle_error
 Extract vcutil_qikparse `expr $vcshelltime + 5` `expr $vcshelltime + 45` vcutil_quick.out &quot;${artifact[1]}&quot;
 
+#Vcutil Instrument with pristine 
+echo -n -e &quot;VcutilInspristine--jobs=4&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcutil  --db=pristine_vcshell.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=InstFiles --coverage_type=statement instrument  &gt; vcutil_instr.out.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_instrument || handle_error
+Extract vcutil_instrument `expr $vcshelltime + 50` `expr $vcshelltime + 130` vcutil_instr.out.txt &quot;${artifact[1]}&quot;
+
+#Vcutil Quick parse with pristine
+echo -n -e &quot;VcutilQikpristine--jobs=4&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcutil --db=pristine_vcshell.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse || handle_error
+Extract vcutil_qikparse `expr $vcshelltime + 5` `expr $vcshelltime + 45` vcutil_quick.out &quot;${artifact[1]}&quot;
+
+
 #vcdb getfiles
 echo -n -e &quot;VcdbGetfiles\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb getfiles &gt;vcdb_getfiles.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb__getfiles || handle_error
+time ($VECTORCAST_DIR/vcdb getfiles --db=pristine_vcshell.db &gt;vcdb_getfiles.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb__getfiles || handle_error
 Extract2 vcdb__getfiles vcdb_getfiles.out.txt 0 1
 
 #vcdb dumpcmd
 echo -n -e &quot;VcdbDumpcmd\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb dumpcommands &gt;vcdb_dumpcommand.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_dump || handle_error
+time ($VECTORCAST_DIR/vcdb dumpcommands --db=pristine_vcshell.db &gt;vcdb_dumpcommand.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_dump || handle_error
 Extract vcdb_dump 0 1
 
 #vcdb dumpverb
 echo -n -e &quot;VcdbDumpverb\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb dumpverbs &gt; vcdb_dumpverbs.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_dumpv  || handle_error
+time ($VECTORCAST_DIR/vcdb dumpverbs --db=pristine_vcshell.db &gt; vcdb_dumpverbs.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_dumpv  || handle_error
 Extract vcdb_dumpv 0 1
 
 #vcdb getapps
 echo -n -e &quot;VcdbGetapps\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb getapps &gt;vcdb_getapps.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getapps  || handle_error
+time ($VECTORCAST_DIR/vcdb getapps --db=pristine_vcshell.db &gt;vcdb_getapps.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getapps  || handle_error
 Extract vcdb_getapps 0 1
 
 #get commentdata
 echo -n -e &quot;VcdbGetcommentdata&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb getcommentdata &gt; vcdb_getcommentdata.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getcommentdata || handle_error
+time ($VECTORCAST_DIR/vcdb getcommentdata  --db=pristine_vcshell.db &gt; vcdb_getcommentdata.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getcommentdata || handle_error
 Extract vcdb_getcommentdata 0 1
 
 #get vcdb metrics
@@ -229,22 +240,22 @@ Extract vcdb_met 0 1
 
 #get vcdb path
 echo -n -e &quot;VcdbGetpaths\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb getpaths &gt; vcdb_getpaths_data.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getpath  || handle_error
+time ($VECTORCAST_DIR/vcdb getpaths  --db=pristine_vcshell.db &gt; vcdb_getpaths_data.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getpath  || handle_error
 Extract vcdb_getpath 0 1
 
 #get vcdb tags
 echo -n -e &quot;VcdbGettags\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb gettags &gt; vcdb_gettags_data.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_gettags || handle_error
+time ($VECTORCAST_DIR/vcdb gettags  --db=pristine_vcshell.db &gt; vcdb_gettags_data.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_gettags || handle_error
 Extract vcdb_gettags 0 1
 
 #get linkcmd
 echo -n -e &quot;VcdbGetlinkcmd\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb getlinkcmd &gt; vcdb_getlinkcmd_data.out.txt 2&gt;&amp;1) 2&gt;&gt;vcdb_getlinkcmd || handle_error
+time ($VECTORCAST_DIR/vcdb getlinkcmd --db=pristine_vcshell.db &gt; vcdb_getlinkcmd_data.out.txt 2&gt;&amp;1) 2&gt;&gt;vcdb_getlinkcmd || handle_error
 Extract vcdb_getlinkcmd 0 1
 
 #get list
 echo -n -e &quot;VcdbList-prefixes&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb list-prefixes &gt; vcdb_list-prefixes_data.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getlist || handle_error
+time ($VECTORCAST_DIR/vcdb list-prefixes  --db=pristine_vcshell.db &gt; vcdb_list-prefixes_data.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getlist || handle_error
 Extract vcdb_getlist 0 1
 
 #getcmd.sh
@@ -301,6 +312,58 @@ chmod +x ../../setpathtype.sh || handle_error
 time (../.././setpathtype.sh vcdb_getfiles.out.txt &gt; set_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_setpathtype || true
 Extract vcdb_setpathtype 0 1
 
+#Getallcmdlines
+echo -n -e &quot;Getallcmdlines\t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcdb getallcmdlines &gt; vcdb_getcommandlines.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getallcommandlines || handle_error
+Extract vcdb_getallcommandlines 0 1
+
+#rename the vcshell.db
+mv vcshell.db old.db
+
+#putcommand 
+echo -n -e &quot;putcommand\t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcshell putcommand --inputcmds=vcdb_getcommandlines.out.txt &gt; vcdb_getcommandlines.out.txt 2&gt;&amp;1) 2&gt;&gt;vcshell_putcommand  || handle_error
+Extract vcshell_putcommand 2 4
+
+#Getallcmdlines for new db
+echo -n -e &quot;Getallcmdlines\t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcdb getallcmdlines &gt; vcdb_getnewcommandlines.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getnewallcommandlines || handle_error
+Extract vcdb_getnewallcommandlines 0 1
+
+#finding differnece 
+diff vcdb_getcommandlines.out.txt  vcdb_getnewcommandlines.out.txt &gt; diff.txt ||  handle_error
+
+#taking 1000 files
+head -1000 vcdb_getfiles.out.txt &gt; first1000.txt || handle_error 
+echo -n -e &quot;qikparse1000\t&quot;&gt;&gt;$summary_file || handle_error
+time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=first1000.txt --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick1.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse1 || handle_error
+Extract vcutil_qikparse1 `expr $vcshelltime + 5` `expr $vcshelltime + 45` vcutil_quick1.out &quot;${artifact[1]}&quot; || handle_error
+
+#next 1000 files
+sed -n -e &apos;1001,2000p&apos; vcdb_getfiles.out.txt &gt; second.txt || handle_error
+echo -n -e &quot;qikparse2000\t&quot;&gt;&gt;$summary_file || handle_error
+time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=second.txt --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick2.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse2 || handle_error
+Extract vcutil_qikparse2 `expr $vcshelltime + 5` `expr $vcshelltime + 45` vcutil_quick2.out &quot;${artifact[1]}&quot; || handle_error
+
+#next 1000 files
+sed -n -e &apos;2001,3000p&apos; vcdb_getfiles.out.txt &gt; third.txt || handle_error
+echo -n -e &quot;qikparse3000\t&quot;&gt;&gt;$summary_file || handle_error
+time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=third.txt --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick3.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse3 || handle_error
+Extract vcutil_qikparse3 `expr $vcshelltime + 5` `expr $vcshelltime + 45` vcutil_quick3.out &quot;${artifact[1]}&quot; || handle_error
+
+
+#next 1000 files
+sed -n -e &apos;3001,4000p&apos; vcdb_getfiles.out.txt &gt; fourth.txt || handle_error
+echo -n -e &quot;qikparse4000\t&quot;&gt;&gt;$summary_file || handle_error
+time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=fourth.txt --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick4.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse4 || handle_error
+Extract vcutil_qikparse4 `expr $vcshelltime + 5` `expr $vcshelltime + 45` vcutil_quick4.out &quot;${artifact[1]}&quot; || handle_error
+
+
+#next 1000 files
+sed -n -e &apos;4001,5000p&apos; vcdb_getfiles.out.txt &gt; fif.txt || handle_error
+echo -n -e &quot;qikparse5000\t&quot;&gt;&gt;$summary_file || handle_error
+time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=third.txt --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick5.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse5 || handle_error
+Extract vcutil_qikparse5 `expr $vcshelltime + 5` `expr $vcshelltime + 45` vcutil_quick5.out &quot;${artifact[1]}&quot; || handle_error
 
 #parsing summary.txt to get the fail
 
