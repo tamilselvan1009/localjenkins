@@ -28,16 +28,7 @@
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
     <submoduleCfg class="list"/>
-    <extensions>
-      <hudson.plugins.git.extensions.impl.CloneOption>
-        <shallow>true</shallow>
-        <noTags>true</noTags>
-        <reference></reference>
-        <timeout>20</timeout>
-        <depth>1</depth>
-        <honorRefspec>false</honorRefspec>
-      </hudson.plugins.git.extensions.impl.CloneOption>
-    </extensions>
+    <extensions/>
   </scm>
   <assignedNode>Ubuntu32bit_71</assignedNode>
   <canRoam>false</canRoam>
