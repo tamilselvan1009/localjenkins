@@ -39,7 +39,7 @@ $VECTORCAST_DIR/clicast --version
 export _VC_FAST_UTIL_ALL_FILES_=1
 echo $_VC_FAST_UTIL_ALL_FILES_
 
-cp -r /mnt/nfs/shared/Jenkins_Harvester_getpaths/Git/tests $WORKSPACE
+cp -r /mnt/nfs/shared/Jenkins_Harvester/Git/tests $WORKSPACE
 #cp -r /home/vectorindia/workspace/Harvester/tests $WORKSPACE
 
 rm -rf tbuild32
