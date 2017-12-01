@@ -29,12 +29,15 @@
 cd $WORKSPACE
 
 #export VECTORCAST_DIR=/mnt/nfs/shared/package_build/vc_remove_wrappers
-export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/custom/VCAST_LINUX
+export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/VCAST_6PM/VCAST_LINUX
 export VECTOR_LICENSE_FILE=/home/linuxregressionmac/flexlm/vector-UBUNTU.lic
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 echo $VECTORCAST_DIR
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
+
+export _VC_FAST_UTIL_ALL_FILES_=1
+echo $_VC_FAST_UTIL_ALL_FILES_
 
 cp -r /mnt/nfs/shared/Jenkins_Harvester_getpaths/Git/tests $WORKSPACE
 #cp -r /home/vectorindia/workspace/Harvester/tests $WORKSPACE
@@ -44,9 +47,8 @@ rm -rf tbuild32
 mkdir tbuild32
 cd tbuild32
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-echo MathTest/Matrix &gt; vc_test_add_dir
-echo IncludeTypes &gt;&gt; vc_test_add_dir
-echo vcInstTest &gt;&gt; vc_test_add_dir
+echo vcInstTest &gt; vc_test_add_dir
+echo vcQuickParseTest &gt;&gt; vc_test_add_dir
 $VECTORCAST_DIR/vpython VcRunTests.py --metrics
 </command>
     </hudson.tasks.Shell>
