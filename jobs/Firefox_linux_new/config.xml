@@ -132,7 +132,7 @@ $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
 #Copy the firefox source 
-cp -r /home/vectorindia/firefox/firefox/* $WORKSPACE/.
+cp -r /home/vectorindia/firefox/* $WORKSPACE/.
 
 #timing constant
 vcshelltime=45
