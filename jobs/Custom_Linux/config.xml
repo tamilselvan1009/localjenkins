@@ -49,7 +49,7 @@ cd tbuild32
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 echo vcInstTest &gt; vc_test_add_dir
 echo vcQuickParseTest &gt;&gt; vc_test_add_dir
-$VECTORCAST_DIR/vpython VcRunTests.py --metrics
+time $VECTORCAST_DIR/vpython VcRunTests.py --metrics
 </command>
     </hudson.tasks.Shell>
   </builders>
