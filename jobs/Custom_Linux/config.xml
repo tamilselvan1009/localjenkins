@@ -42,14 +42,12 @@ echo $_VC_FAST_UTIL_ALL_FILES_
 #cp -r /mnt/nfs/shared/Jenkins_Harvester/Git/tests $WORKSPACE
 #cp -r /home/vectorindia/workspace/Harvester/tests $WORKSPACE
 
-rm -rf tbuild32
+#rm -rf tbuild32
 #CMake and run VcRunTests
-mkdir tbuild32
+#mkdir tbuild32
 cd tbuild32
-cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-echo vcInstTest &gt; vc_test_add_dir
-echo vcQuickParseTest &gt;&gt; vc_test_add_dir
-time $VECTORCAST_DIR/vpython VcRunTests.py --metrics --gen_also
+#cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+time $VECTORCAST_DIR/vpython VcRunTests.py --metrics
 </command>
     </hudson.tasks.Shell>
   </builders>
