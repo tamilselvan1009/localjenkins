@@ -39,14 +39,14 @@ $VECTORCAST_DIR/clicast --version
 export _VC_FAST_UTIL_ALL_FILES_=1
 echo $_VC_FAST_UTIL_ALL_FILES_
 
-#cp -r /mnt/nfs/shared/Jenkins_Harvester/Git/tests $WORKSPACE
+cp -r /mnt/nfs/shared/Jenkins_Harvester/Git/tests $WORKSPACE
 #cp -r /home/vectorindia/workspace/Harvester/tests $WORKSPACE
 
-#rm -rf tbuild32
+rm -rf tbuild32
 #CMake and run VcRunTests
-#mkdir tbuild32
+mkdir tbuild32
 cd tbuild32
-#cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 time $VECTORCAST_DIR/vpython VcRunTests.py --metrics
 </command>
     </hudson.tasks.Shell>
@@ -59,6 +59,11 @@ time $VECTORCAST_DIR/vpython VcRunTests.py --metrics
     </hudson.tasks.Mailer>
   </publishers>
   <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
       <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
