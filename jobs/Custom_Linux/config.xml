@@ -44,9 +44,9 @@ echo $_VC_FAST_UTIL_ALL_FILES_
 
 rm -rf tbuild32
 #CMake and run VcRunTests
-#mkdir tbuild32
+mkdir tbuild32
 cd tbuild32
-#cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 echo vcInstTest &gt; vc_test_add_dir
 echo vcQuickParseTest &gt;&gt; vc_test_add_dir
 time $VECTORCAST_DIR/vpython VcRunTests.py --metrics --gen_also
