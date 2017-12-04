@@ -52,7 +52,7 @@ $VECTORCAST_DIR/vpython VcCollectResult.py --db=/mnt/nfs/shared/Jenkins_Result/v
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
-            <recipientList>vectorindia@vectorcast.com</recipientList>
+            <recipientList>kavya@vectorcast.com</recipientList>
             <subject>Regression result</subject>
             <body>${FILE,path=&quot;Summary.html&quot;}</body>
             <recipientProviders>
