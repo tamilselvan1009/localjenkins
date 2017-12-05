@@ -56,6 +56,7 @@
         <string>LINUX_INSTRUMENTED_VCRUNTESTS</string>
         <string>Linux_ValgrindTest</string>
         <string>Regression_6pm_Master</string>
+        <string>Regression_Other_Jobs_Master</string>
         <string>Result_Collector</string>
         <string>Test_Commit_Linux</string>
         <string>Test_Commit_WinCyg</string>
