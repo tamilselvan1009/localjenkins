@@ -9,12 +9,12 @@
         <hudson.model.StringParameterDefinition>
           <name>WIN_RELEASE_DIR</name>
           <description>Specify the location where artifacts will be stored. Location of the release dir in windows style path</description>
-          <defaultValue>N:\\shared\\Jenkins_Harvester</defaultValue>
+          <defaultValue>N:\\shared\\Jenkins_Harvester_other</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LINUX_RELEASE_DIR</name>
           <description>Specify the location where artifacts will be stored. Location of the release dir in linux style path</description>
-          <defaultValue>/mnt/nfs/shared/Jenkins_Harvester</defaultValue>
+          <defaultValue>/mnt/nfs/shared/Jenkins_Harvester_other</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WIN_GIT_DIR</name>
@@ -73,7 +73,7 @@
   <triggers>
     <org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger plugin="parameterized-scheduler@0.2">
       <spec></spec>
-      <parameterizedSpecification>00 18 * * * %BUILD_NAME=6pm_timer</parameterizedSpecification>
+      <parameterizedSpecification>H 11 * * 5 %BUILD_NAME=6pm_timer</parameterizedSpecification>
     </org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
