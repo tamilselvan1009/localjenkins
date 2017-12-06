@@ -265,11 +265,10 @@ if(manager.logContains(&quot;.*Abnormal Termination on Environment.*&quot;))
     manager.buildUnstable()
     manager.addBadge(&quot;warning.gif&quot;, &quot;Abnormal Termination of at least one Environment&quot;)
 }
-FilePath fp_i = new FilePath(manager.build.getWorkspace(),&apos;VcTools_Windows_manage_incremental_rebuild_report.html&apos;)
 FilePath fp_f = new FilePath(manager.build.getWorkspace(),&apos;VcTools_Windows_full_report.html&apos;)
 if ( fp_f.exists())
 {
-    manager.build.description = fp_i.readToString() + &quot;&lt;br&gt;&quot; + fp_f.readToString()}
+    manager.build.description =  fp_f.readToString()}
 else
 {
     manager.createSummary(&quot;warning.gif&quot;).appendText(&quot;General Failure&quot;, false, false, false, &quot;red&quot;)
