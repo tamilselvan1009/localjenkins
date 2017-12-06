@@ -14,7 +14,7 @@
         <hudson.model.StringParameterDefinition>
           <name>WIN_GIT_DIR</name>
           <description></description>
-          <defaultValue>N:\shared\Jenkins_Harvester_getpaths\Git</defaultValue>
+          <defaultValue>N:\shared\Jenkins_Harvester_69323\Git</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -45,16 +45,12 @@ REM echo %_VC_DETOUR_CYGWIN_32_%&#xd;
 %VECTORCAST_DIR%\vcshell --version&#xd;
 %VECTORCAST_DIR%\clicast --version&#xd;
 &#xd;
-set _VC_NEW_CYGWIN_MODE_=1&#xd;
-echo %_VC_NEW_CYGWIN_MODE_%&#xd;
-&#xd;
 cd %WORKSPACE%&#xd;
 rmdir tbuild32_cyg /s /q&#xd;
 mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
 set PATH=C:\cygwin\bin;%PATH%&#xd;
 bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
-echo getpaths &gt; vc_test_add_dir&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics</command>
     </hudson.tasks.BatchFile>
   </builders>
