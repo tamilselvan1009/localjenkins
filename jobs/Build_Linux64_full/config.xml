@@ -80,7 +80,7 @@ mkdir &quot;$LINUX_64BIT_PACKAGE_DIR&quot;
 cp -r release-packages/release &quot;$LINUX_64BIT_PACKAGE_DIR/.&quot;
 
 # copy the 32-bit recorder lib to package
-cp &quot;$LINUX_PACKAGE_DIR/release/recorder/lib/libVcRecorderLib.so&quot; &quot;${LINUX_64BIT_PACKAGE_DIR}/release/recorder/lib/.&quot;
+cp &quot;$LINUX_PACKAGE_DIR/release/lib/libVcRecorderLib.so&quot; &quot;${LINUX_64BIT_PACKAGE_DIR}/release/lib/.&quot;
 cd &quot;$LINUX_64BIT_PACKAGE_DIR&quot;
 tar -cvzf harvester.linux_$VCTOOLS_VERSION.tgz release
 
