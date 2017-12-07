@@ -62,7 +62,7 @@ rem copy vc_c64_test_add_dir vc_test_add_dir&#xd;
   </builders>
   <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.19">
-      <recipients>kavya@vectorcast.com</recipients>
+      <recipients>shweta.agarwal@vectorcast.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
