@@ -46,7 +46,7 @@ REM set _VC_TEST_ENV_=1&#xd;
 cd %WORKSPACE%&#xd;
 rem mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
-rem cmake ..\tests&#xd;
+cmake ..\tests&#xd;
 echo %VECTORCAST_DIR%\vpython VcRunTests.py --metrics&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics &#xd;
 &#xd;
