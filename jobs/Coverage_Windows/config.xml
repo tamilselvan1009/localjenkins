@@ -9,7 +9,7 @@
         <hudson.model.StringParameterDefinition>
           <name>WIN_VECTORCAST_DIR</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>N:\\shared\\.VCAST_REGRESSION\\JOB_6PM\\VCAST_WINDOWS</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>HARVESTER_DIR</name>
