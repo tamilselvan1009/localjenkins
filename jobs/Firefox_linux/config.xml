@@ -301,9 +301,15 @@ chmod +x ../../setpathtype.sh || handle_error
 time (../.././setpathtype.sh vcdb_getfiles.out.txt pristine_vcshell.db &gt; set_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_setpathtype || true
 Extract vcdb_setpathtype 0 1
 
+#command to be executed on 
+../.././per.sh || handle_error
+
+#command to be executed on shared drive
+. ./perf.sh /mnt/nfs/shared/shekhar/Firefox/pristine_vcshell.db || handle_error
+
 #Getallcmdlines
 echo -n -e &quot;Getallcmdlines\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb getallcmdlines  pristine_vcshell.db &gt; vcdb_getcommandlines.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getallcommandlines || handle_error
+time ($VECTORCAST_DIR/vcdb getallcmdlines  &gt; vcdb_getcommandlines.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getallcommandlines || handle_error
 Extract vcdb_getallcommandlines 0 1
 
 #rename the vcshell.db
@@ -354,11 +360,6 @@ echo -n -e &quot;qikparse5000\t&quot;&gt;&gt;$summary_file || handle_error
 time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=third.txt --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick5.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse5 || handle_error
 Extract vcutil_qikparse5 `expr $vcshelltime + 5` `expr $vcshelltime + 45` vcutil_quick5.out &quot;${artifact[1]}&quot; || handle_error
 
-if [ -f &quot;/mnt/nfs/shared/shekhar/Firefox/pristine_vcshell.db&quot; ];
-then
-	rm -rf /mnt/nfs/shared/shekhar/Firefox/pristine_vcshell.db
-	cp pristine_vcshell /
-#parsing summary.txt to get the fail
 
 if ! grep &quot;Failed&quot; $summary_file &gt;&gt; sol.txt 
 then
