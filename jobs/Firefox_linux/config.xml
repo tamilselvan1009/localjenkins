@@ -305,6 +305,7 @@ Extract vcdb_setpathtype 0 1
 ../.././per.sh || handle_error
 
 #command to be executed on shared drive
+cp ../../perf.sh . || handle_error
 . ./perf.sh /mnt/nfs/shared/shekhar/Firefox/pristine_vcshell.db || handle_error
 
 #Getallcmdlines
