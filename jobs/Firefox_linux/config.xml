@@ -383,6 +383,7 @@ mkdir $archive_dir
 cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/summary.txt $archive_dir/.
 cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/*.out.txt $archive_dir/.
 cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/sol.txt $archive_dir/.
+cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/sum.txt $archive_dir/.
 exit /b $_RETURN_CODE_
 
 
