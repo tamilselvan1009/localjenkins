@@ -69,7 +69,7 @@ cd tbuild64
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 export _VC_RUNTEST_RETURN_CODE_=0
 echo VcdbTest &gt; vc_test_add_dir
-echo VcutilTest &gt; vc_test_add_dir
+echo VcutilTest &gt;&gt; vc_test_add_dir
 $VECTORCAST_DIR/vpython VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
 exit /b $_VC_RUNTEST_RETURN_CODE_</command>
     </hudson.tasks.Shell>
