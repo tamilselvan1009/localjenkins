@@ -56,7 +56,7 @@ set PATH=C:\cygwin64\bin;%PATH%&#xd;
 mkdir tVcSanity&#xd;
 cd tVcSanity&#xd;
 bash -c &quot;cmake ../VcSanity -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
-%VECTORCAST_DIR%\vpython VcSanity.py --env=cygwin&#xd;
+%VECTORCAST_DIR%\vpython VcSanity.py --env=cygwin --template=GNU_CPP_49&#xd;
 cd ..\&#xd;
 &#xd;
 mkdir tbuild64_cyg&#xd;
