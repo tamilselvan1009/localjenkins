@@ -302,11 +302,11 @@ time (../.././setpathtype.sh vcdb_getfiles.out.txt pristine_vcshell.db &gt; set_
 Extract vcdb_setpathtype 0 1
 
 #command to be executed on 
-chmod +x ../../per.sh
+chmod +x ../../per.sh || handle_error
 ../.././per.sh || handle_error
 
 #command to be executed on shared drive
-chmod +x ../../perf.sh
+chmod +x ../../perf.sh || handle_error
 cp ../../perf.sh . || handle_error
 . ./perf.sh /mnt/nfs/shared/shekhar/Firefox/pristine_vcshell.db || handle_error
 
