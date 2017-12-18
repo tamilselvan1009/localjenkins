@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>This job runs VcCollectResult.py and sends out Regression Result mail</description>
+  <description>This job runs VcCollectResult.py and sends out Regression Result mail for other jobs</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.model.ParametersDefinitionProperty>
@@ -41,14 +41,14 @@ cd $WORKSPACE
 
 export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
 cp $LINUX_GIT_DIR/tests/VcCollectResult.py .
-$VECTORCAST_DIR/vpython VcCollectResult.py --db=/mnt/nfs/shared/Jenkins_Result/vcshell.db --latestdiff --tag=result
+$VECTORCAST_DIR/vpython VcCollectResult.py --db=/mnt/nfs/shared/Jenkins_Result_Other/vcshell.db --latestdiff --tag=result
 
 </command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
-      <recipientList>kavya@vectorcast.com</recipientList>
+      <recipientList>shweta.agarwal@vectorcast.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
