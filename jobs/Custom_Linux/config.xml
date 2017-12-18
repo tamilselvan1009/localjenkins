@@ -39,10 +39,10 @@ $VECTORCAST_DIR/clicast --version
 cp -r /mnt/nfs/shared/Jenkins_Harvester/Git/tests $WORKSPACE
 #cp -r /home/vectorindia/workspace/Harvester/tests $WORKSPACE
 
-cd tests
-cp VcRunTests.py.bak VcRunTests.py
-cp vc_known_failure.json.unx_32.bak vc_known_failure.json.unx_32
-cd ../
+#cd tests
+#cp VcRunTests.py.bak VcRunTests.py
+#cp vc_known_failure.json.unx_32.bak vc_known_failure.json.unx_32
+#cd ../
 
 rm -rf tbuild32
 #CMake and run VcRunTests
