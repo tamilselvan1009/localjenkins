@@ -48,6 +48,7 @@ rem mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests&#xd;
 echo %VECTORCAST_DIR%\vpython VcRunTests.py --metrics&#xd;
+echo HelloTest &gt; vc_test_add_dir&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics &#xd;
 &#xd;
 </command>
