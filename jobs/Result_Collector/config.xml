@@ -43,6 +43,8 @@ export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
 cp $LINUX_GIT_DIR/tests/VcCollectResult.py .
 $VECTORCAST_DIR/vpython VcCollectResult.py --db=/mnt/nfs/shared/Jenkins_Result/vcshell.db --latestdiff --tag=result
 
+$VECTORCAST_DIR/vpython VcRegressionResult.py --db=/mnt/nfs/shared/Jenkins_Result/regression.db --getresult
+
 </command>
     </hudson.tasks.Shell>
   </builders>
