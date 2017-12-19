@@ -36,7 +36,7 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
-export VECTOR_LICENSE_FILE=/home/linuxregressionmac/flexlm/vector-UBUNTU.lic
+export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UBUNTU.lic
 cd $WORKSPACE
 
 export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
@@ -52,7 +52,7 @@ $VECTORCAST_DIR/vpython VcCollectResult.py --db=/mnt/nfs/shared/Jenkins_Result/v
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
-            <recipientList>vectorindia@vectorcast.com</recipientList>
+            <recipientList>kavya@vectorcast.com</recipientList>
             <subject>Regression result</subject>
             <body>${FILE,path=&quot;Summary.html&quot;}</body>
             <recipientProviders>
