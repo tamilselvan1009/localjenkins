@@ -72,7 +72,7 @@ $VECTORCAST_DIR/vpython VcRegressionResult.py --db=/mnt/nfs/shared/Jenkins_Resul
       <contentType>text/html</contentType>
       <defaultSubject></defaultSubject>
       <defaultContent></defaultContent>
-      <attachmentsPattern>Summary.html</attachmentsPattern>
+      <attachmentsPattern>Summary.html,  NewSummary.html</attachmentsPattern>
       <presendScript></presendScript>
       <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
