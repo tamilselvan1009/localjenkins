@@ -57,7 +57,7 @@ cd tbuild32
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 export _VC_RUNTEST_RETURN_CODE_=0
 $VECTORCAST_DIR/vpython VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
-$VECTORCAST_DIR/vpython VcRunTests.py --metrics --vcast_dir=/home/vectorindia/vectorindia/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972 --run_tests=vcInstTest || export _VC_RUNTEST_RETURN_CODE_=$?
+$VECTORCAST_DIR/vpython VcRunTests.py --metrics --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972 --run_tests=vcInstTest || export _VC_RUNTEST_RETURN_CODE_=$?
 
 
 #Collect Result
