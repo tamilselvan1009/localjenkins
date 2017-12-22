@@ -52,11 +52,11 @@ $VECTORCAST_DIR/vpython VcRegressionResult.py --db=/mnt/nfs/shared/Jenkins_Resul
   </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
-      <recipientList>kavya@vectorcast.com, shweta@vectorcast.com</recipientList>
+      <recipientList>vectorindia@vectorcast.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
-            <recipientList>kavya@vectorcast.com, shweta@vectorcast.com</recipientList>
+            <recipientList>vectorindia@vectorcast.com</recipientList>
             <subject>Regression result</subject>
             <body>${FILE,path=&quot;Summary.html&quot;}</body>
             <recipientProviders>
