@@ -14,7 +14,7 @@
         <hudson.model.StringParameterDefinition>
           <name>WIN_GIT_DIR</name>
           <description></description>
-          <defaultValue>N:\shared\Jenkins_Harvester_69323\Git</defaultValue>
+          <defaultValue>N:\shared\Jenkins_Harvester\Git</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -48,7 +48,7 @@ rem mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests&#xd;
 echo %VECTORCAST_DIR%\vpython VcRunTests.py --metrics&#xd;
-echo HelloTest &gt; vc_test_add_dir&#xd;
+echo getpaths &gt; vc_test_add_dir&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics &#xd;
 &#xd;
 </command>
@@ -61,5 +61,11 @@ echo HelloTest &gt; vc_test_add_dir&#xd;
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
   </publishers>
-  <buildWrappers/>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+  </buildWrappers>
 </project>
