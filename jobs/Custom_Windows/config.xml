@@ -44,11 +44,11 @@ REM call install.bat&#xd;
 REM set _VC_TEST_ENV_=1&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
-mkdir tbuild32_msvc10&#xd;
+rem mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
-cmake ..\tests&#xd;
+rem cmake ..\tests&#xd;
 echo %VECTORCAST_DIR%\vpython VcRunTests.py --metrics&#xd;
-echo getpaths &gt; vc_test_add_dir&#xd;
+echo VcutilTest\\MultipleCmdVerbs &gt; vc_test_add_dir&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics &#xd;
 &#xd;
 </command>
