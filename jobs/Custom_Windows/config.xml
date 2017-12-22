@@ -37,7 +37,7 @@ set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\custom\VCAST_WINDOWS&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
 &#xd;
-rem xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
+xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 REM call buildWin.bat msvc9 --arch=all&#xd;
 REM cd build&#xd;
 REM call install.bat&#xd;
@@ -56,7 +56,7 @@ echo getpaths &gt; vc_test_add_dir&#xd;
   </builders>
   <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.19">
-      <recipients>kavya@vectorcast.com</recipients>
+      <recipients>shweta.agarwal@vectorcast.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
