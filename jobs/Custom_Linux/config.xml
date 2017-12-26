@@ -29,7 +29,7 @@
 cd $WORKSPACE
 
 #export VECTORCAST_DIR=/mnt/nfs/shared/package_build/vc_remove_wrappers
-export VECTORCAST_DIR=/home/vectorindia/VC_Russia/release
+export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/custom/VCAST_LINUX
 export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UBUNTU.lic
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 echo $VECTORCAST_DIR
