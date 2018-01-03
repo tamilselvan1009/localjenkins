@@ -61,6 +61,11 @@
           <description>specify the branch name</description>
           <defaultValue>origin/develop</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>LINUX64_VECTORCAST_DIR</name>
+          <description>specify the path for 64bit VECTORCAST</description>
+          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/VCAST_64bit</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
