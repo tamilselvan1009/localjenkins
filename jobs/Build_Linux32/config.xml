@@ -69,19 +69,6 @@ cd build
     	false
     fi
     
-# Install vctools in 54972_standalone VC also
-export VECTORCAST_DIR=/home/vectorindia/vectorindia/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972
-
-cd $WORKSPACE/build
-./release-package.sh --test_release || if [[ $? == 1 ]]; then 
-		true
-    else
-    	false
-    fi
-    
-# Set back the VC
-export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
-    
 # copy the build to the shared location
 cd ../release-packages
 mkdir &quot;${LINUX_PACKAGE_DIR}&quot;
