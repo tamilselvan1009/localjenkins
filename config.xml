@@ -52,6 +52,7 @@
         <string>Linux32</string>
         <string>Linux32_on_VC</string>
         <string>Linux64</string>
+        <string>Linux64_full_build</string>
         <string>Linux_EnvCreate</string>
         <string>LINUX_INSTRUMENTED_VCRUNTESTS</string>
         <string>Linux_ValgrindTest</string>
