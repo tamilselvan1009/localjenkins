@@ -73,6 +73,13 @@ cd release
 ./install.sh
 fi
 
+# Install vctools in 54972_standalone VC also
+export VECTORCAST_DIR=/home/vectorindia/vectorindia/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972
+./install.sh
+
+# Set back the VC
+export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
+
 </command>
     </hudson.tasks.Shell>
     <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.33">
