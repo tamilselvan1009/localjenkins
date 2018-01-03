@@ -78,7 +78,7 @@ export VECTORCAST_DIR=/home/vectorindia/vectorindia/shared/.VCAST_REGRESSION/JOB
 ./install.sh
 
 # Set back the VC
-export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
+export VECTORCAST_DIR=&quot;${LINUX_VECTORCAST_DIR}&quot;
 
 </command>
     </hudson.tasks.Shell>
