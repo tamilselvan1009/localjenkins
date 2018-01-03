@@ -74,7 +74,7 @@ cd release
 fi
 
 # Install vctools in 54972_standalone VC also
-export VECTORCAST_DIR=/home/vectorindia/vectorindia/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972
+export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972
 ./install.sh
 
 # Set back the VC
