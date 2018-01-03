@@ -76,6 +76,7 @@ if [ ! -z &quot;$LINUX_VECTORCAST_DIR&quot; ]; then
 export VECTORCAST_DIR=&quot;${LINUX_VECTORCAST_DIR}&quot;
 cd release
 ./install.sh
+cd ..
 fi
 
 # Install vctools in 54972_standalone VC also
