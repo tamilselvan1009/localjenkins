@@ -41,6 +41,7 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
+export BOOST64_DIR=/home/vectorindia/boost-1.55.0-x64
 cd $WORKSPACE
 export VECTORCAST_DIR=$LINUX64_VECTORCAST_DIR
 export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UBUNTU.lic
