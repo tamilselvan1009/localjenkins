@@ -42,6 +42,7 @@
       <command>#!/bin/bash -xe
 
 export BOOST64_DIR=/home/vectorindia/boost-1.55.0-x64
+export LD_LIBRARY_PATH=$BOOST64_DIR/lib
 cd $WORKSPACE
 export VECTORCAST_DIR=$LINUX64_VECTORCAST_DIR
 export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UBUNTU.lic
