@@ -253,7 +253,7 @@ if ( coverage &lt; 60) {
       <runForMatrixParent>false</runForMatrixParent>
     </org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
-      <recipientList>vectorindia@vectorcast.com</recipientList>
+      <recipientList>sheetal.gotkhindi@vectorcast.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.StatusChangedTrigger>
           <email>
@@ -292,7 +292,7 @@ if ( coverage &lt; 60) {
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo>vectorindia@vectorcast.com</replyTo>
+      <replyTo>sheetal.gotkhindi@vectorcast.com</replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
