@@ -51,10 +51,11 @@
         <string>Git_Clone</string>
         <string>Linux32</string>
         <string>Linux32_on_VC</string>
-        <string>Linux64_full_build</string>
+        <string>Linux64_full</string>
         <string>Linux64_lib_only</string>
         <string>Linux_EnvCreate</string>
         <string>LINUX_INSTRUMENTED_VCRUNTESTS</string>
+        <string>Linux_test_perf</string>
         <string>Linux_ValgrindTest</string>
         <string>Regression_6pm_Master</string>
         <string>Regression_Other_Jobs_Master</string>
