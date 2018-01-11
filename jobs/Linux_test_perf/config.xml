@@ -51,6 +51,7 @@ cp -r ${LINUX_GIT_DIR}/tests $WORKSPACE
 #CMake and run VcRunTests
 for i in {1..20}
 do
+   cd $WORKSPACE
    mkdir tbuild$i
    cd tbuild$i
    cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
