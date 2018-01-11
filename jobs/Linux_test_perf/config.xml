@@ -36,6 +36,8 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
+export _VC_CONCURRENT_INSTANCES_FOR_CMDLINES_=1
+
 cd $WORKSPACE
 export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/VCAST_LINUX_old
 export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UBUNTU.lic
