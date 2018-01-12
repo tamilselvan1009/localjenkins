@@ -49,14 +49,14 @@ $VECTORCAST_DIR/clicast --version
 cp -r ${LINUX_GIT_DIR}/tests $WORKSPACE
 
 #CMake and run VcRunTests
-for i in {1..5}
+for i in {1..2}
 do
    cd $WORKSPACE
    mkdir tbuild$i
    cd tbuild$i
    cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
    export _VC_RUNTEST_RETURN_CODE_=0
-   $VECTORCAST_DIR/vpython VcRunTests.py --metrics --run_tests=vcInstTest,PortabilityTest,vcQuickParseTest,VcutilTest || export _VC_RUNTEST_RETURN_CODE_=$?
+   $VECTORCAST_DIR/vpython VcRunTests.py --metrics --run_tests=vcInstTest,PortabilityTest,vcQuickParseTest,VcutilTest,AddmetricsTest || export _VC_RUNTEST_RETURN_CODE_=$?
 done
 
 exit /b $_VC_RUNTEST_RETURN_CODE_</command>
