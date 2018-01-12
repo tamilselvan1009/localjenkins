@@ -28,8 +28,9 @@
 
 cd $WORKSPACE
 
-#export VECTORCAST_DIR=/mnt/nfs/shared/package_build/vc_remove_wrappers
-export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/custom/VCAST_LINUX
+export _VC_CONCURRENT_INSTANCES_FOR_CMDLINES_=1
+
+export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/custom/linux_54972
 export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UBUNTU.lic
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 echo $VECTORCAST_DIR
@@ -37,7 +38,6 @@ $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
 cp -r /mnt/nfs/shared/Jenkins_Harvester/Git/tests $WORKSPACE
-#cp -r /home/vectorindia/workspace/Harvester/tests $WORKSPACE
 
 #cd tests
 #cp VcRunTests.py.bak VcRunTests.py
@@ -48,7 +48,6 @@ rm -rf tbuild32
 #CMake and run VcRunTests
 mkdir tbuild32
 cd tbuild32
-
 
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 time $VECTORCAST_DIR/vpython VcRunTests.py --metrics
