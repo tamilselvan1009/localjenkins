@@ -37,7 +37,7 @@ echo $VECTORCAST_DIR
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
-cp -r /mnt/nfs/shared/Jenkins_Harvester_68452/Git/tests $WORKSPACE
+cp -r /mnt/nfs/shared/Jenkins_Harvester_68452_new/Git/tests $WORKSPACE
 
 #cd tests
 #cp VcRunTests.py.bak VcRunTests.py
