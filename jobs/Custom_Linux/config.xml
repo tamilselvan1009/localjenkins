@@ -28,7 +28,7 @@
 
 cd $WORKSPACE
 
-export _VC_CONCURRENT_INSTANCES_FOR_CMDLINES_=1
+#export _VC_CONCURRENT_INSTANCES_FOR_CMDLINES_=1
 
 export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/custom/VCAST_LINUX
 export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UBUNTU.lic
