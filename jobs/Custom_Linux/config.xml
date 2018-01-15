@@ -30,14 +30,14 @@ cd $WORKSPACE
 
 export _VC_CONCURRENT_INSTANCES_FOR_CMDLINES_=1
 
-export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972
+export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/custom/VCAST_LINUX
 export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UBUNTU.lic
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 echo $VECTORCAST_DIR
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
-cp -r /mnt/nfs/shared/Jenkins_Harvester/Git/tests $WORKSPACE
+cp -r /mnt/nfs/shared/Jenkins_Harvester_68452/Git/tests $WORKSPACE
 
 #cd tests
 #cp VcRunTests.py.bak VcRunTests.py
