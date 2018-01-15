@@ -51,7 +51,7 @@ $VECTORCAST_DIR/clicast --version
 cp -r ${LINUX_GIT_DIR}/tests $WORKSPACE
 
 #CMake and run VcRunTests
-for i in {1..2}
+for i in {1..5}
 do
    cd $WORKSPACE
    mkdir tbuild$i
