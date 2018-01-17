@@ -311,25 +311,25 @@ cp ../../perf.sh . || handle_error
 . ./perf.sh /mnt/nfs/shared/shekhar/Firefox/pristine_vcshell.db || handle_error
 
 #Getallcmdlines
-echo -n -e &quot;Getallcmdlines\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb getallcmdlines  &gt; vcdb_getcommandlines.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getallcommandlines || handle_error
-Extract vcdb_getallcommandlines 0 1
+#echo -n -e &quot;Getallcmdlines\t&quot;&gt;&gt;$summary_file
+#time ($VECTORCAST_DIR/vcdb getallcmdlines  &gt; vcdb_getcommandlines.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getallcommandlines || handle_error
+#Extract vcdb_getallcommandlines 0 1
 
 #rename the vcshell.db
-mv vcshell.db old.db
+#mv vcshell.db old.db
 
 #putcommand 
-echo -n -e &quot;putcommand\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcshell putcommand --inputcmds=vcdb_getcommandlines.out.txt &gt; vcdb_getcommandlines.out.txt 2&gt;&amp;1) 2&gt;&gt;vcshell_putcommand  || handle_error
-Extract vcshell_putcommand 2 4
+#echo -n -e &quot;putcommand\t&quot;&gt;&gt;$summary_file
+#time ($VECTORCAST_DIR/vcshell putcommand --inputcmds=vcdb_getcommandlines.out.txt &gt; vcdb_getcommandlines.out.txt 2&gt;&amp;1) 2&gt;&gt;vcshell_putcommand  || handle_error
+#Extract vcshell_putcommand 2 4
 
 #Getallcmdlines for new db
-echo -n -e &quot;Getallcmdlines\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb getallcmdlines &gt; vcdb_getnewcommandlines.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getnewallcommandlines || handle_error
-Extract vcdb_getnewallcommandlines 0 1
+#echo -n -e &quot;Getallcmdlines\t&quot;&gt;&gt;$summary_file
+#time ($VECTORCAST_DIR/vcdb getallcmdlines &gt; vcdb_getnewcommandlines.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getnewallcommandlines || handle_error
+#Extract vcdb_getnewallcommandlines 0 1
 
 #finding differnece 
-diff vcdb_getcommandlines.out.txt  vcdb_getnewcommandlines.out.txt &gt; diff.txt ||  handle_error
+#diff vcdb_getcommandlines.out.txt  vcdb_getnewcommandlines.out.txt &gt; diff.txt ||  handle_error
 
 #taking 1000 files
 head -1000 vcdb_getfiles.out.txt &gt; first1000.txt || handle_error 
