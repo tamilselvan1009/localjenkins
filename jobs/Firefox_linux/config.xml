@@ -62,7 +62,7 @@ else
 fi
 
 
-artifact=(&quot;Metrics Collected&quot; &quot;successful for&quot; &quot;failed for&quot;)
+artifact=(&quot;Metrics Collected&quot; &quot; Successful for&quot; &quot;failed for&quot;)
 _expected=(&quot;Passed&quot; &quot;Failed&quot; &quot;Failed due to lesser artifact&quot;)
 _result=${_expected[0]}
 _threshold=4800
