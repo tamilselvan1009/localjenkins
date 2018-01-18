@@ -44,8 +44,8 @@
 export BOOST64_DIR=/home/vectorindia/boost-1.55.0-x64
 export LD_LIBRARY_PATH=$BOOST64_DIR/lib
 cd $WORKSPACE
-#export VECTORCAST_DIR=$LINUX64_VECTORCAST_DIR
-export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/VC_64bit
+export VECTORCAST_DIR=$LINUX64_VECTORCAST_DIR
+#export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/VC_64bit
 export VECTOR_LICENSE_FILE=7650@licenseserver
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 echo $VECTORCAST_DIR
