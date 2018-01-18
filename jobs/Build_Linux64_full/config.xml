@@ -58,6 +58,7 @@
 
 # Linux 64-bit package dir
 export LINUX_64BIT_PACKAGE_DIR=$LINUX_PACKAGE_DIR/64_bit
+export BOOST_DIR=/home/vectorindia/boost-1.55.0-x64
 
 # copy the required files from git repo
 cp -r &quot;${LINUX_GIT_DIR}/harvester&quot;  .
