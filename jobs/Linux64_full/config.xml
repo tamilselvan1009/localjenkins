@@ -9,17 +9,17 @@
         <hudson.model.StringParameterDefinition>
           <name>LINUX_GIT_DIR</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>/mnt/nfs/shared/Jenkins_Harvester/Git</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>Test</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LINUX_RELEASE_DIR</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>/mnt/nfs/shared/Jenkins_Harvester</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LINUX64_VECTORCAST_DIR</name>
