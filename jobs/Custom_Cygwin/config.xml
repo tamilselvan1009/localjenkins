@@ -14,7 +14,7 @@
         <hudson.model.StringParameterDefinition>
           <name>WIN_GIT_DIR</name>
           <description></description>
-          <defaultValue>N:\shared\Jenkins_Harvester_68452_new\Git</defaultValue>
+          <defaultValue>N:\shared\Jenkins_Harvester\Git</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -33,7 +33,8 @@
 &#xd;
 cd %WORKSPACE%&#xd;
 set path=%path:&quot;=%&#xd;
-set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\custom\VCAST_WINDOWS&#xd;
+rem set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\custom\VCAST_WINDOWS&#xd;
+set VECTORCAST_DIR=N:\\shared\\.VCAST_REGRESSION\JOB_6PM\win_54972&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-IDCWIN2.lic&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 &#xd;
@@ -51,12 +52,19 @@ mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
 set PATH=C:\cygwin\bin;%PATH%&#xd;
 bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --metrics</command>
+%VECTORCAST_DIR%\vpython VcRunTests.py --metrics --run_tests=vcInstTest,PortabilityTest,vcQuickParseTest,VcutilTest,AddmetricsTest&#xd;
+&#xd;
+cd %WORKSPACE%&#xd;
+&#xd;
+mkdir tbuild32_cyg_2&#xd;
+cd tbuild32_cyg_2&#xd;
+bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py --metrics --run_tests=vcInstTest,PortabilityTest,vcQuickParseTest,VcutilTest,AddmetricsTest</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.19">
-      <recipients>kavya@vectorcast.com</recipients>
+      <recipients>shweta.agarwal@vectorcast.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
