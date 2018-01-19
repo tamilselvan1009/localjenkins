@@ -52,14 +52,8 @@ mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
 set PATH=C:\cygwin\bin;%PATH%&#xd;
 bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --metrics --run_tests=vcInstTest,PortabilityTest,vcQuickParseTest,VcutilTest,AddmetricsTest&#xd;
-&#xd;
-cd %WORKSPACE%&#xd;
-&#xd;
-mkdir tbuild32_cyg_2&#xd;
-cd tbuild32_cyg_2&#xd;
-bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --metrics --run_tests=vcInstTest,PortabilityTest,vcQuickParseTest,VcutilTest,AddmetricsTest</command>
+%VECTORCAST_DIR%\vpython VcRunTests.py --metrics --vcast_dir=N:\\shared\\.VCAST_REGRESSION\\JOB_6PM\\win_54972 --run_tests=vcInstTest,VcutilTest&#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py --metrics</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
