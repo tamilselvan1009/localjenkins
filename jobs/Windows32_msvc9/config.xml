@@ -63,6 +63,8 @@ cmake -G&quot;Visual Studio 9 2008&quot; ..\tests || call:handle_error&#xd;
 rem copy vc_w64_test_add_dir vc_test_add_dir&#xd;
 echo VcdbTest &gt; vc_test_add_dir&#xd;
 echo VcutilTest &gt;&gt; vc_test_add_dir&#xd;
+echo vcInstTest &gt;&gt; vc_test_add_dir&#xd;
+echo vcQuickParseTest &gt;&gt; vc_test_add_dir&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics || call:handle_error&#xd;
 exit %VC_ERROR_ERROR%&#xd;
 :handle_error&#xd;
