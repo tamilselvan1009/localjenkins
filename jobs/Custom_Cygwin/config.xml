@@ -34,7 +34,7 @@
 cd %WORKSPACE%&#xd;
 set path=%path:&quot;=%&#xd;
 rem set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\custom\VCAST_WINDOWS&#xd;
-set VECTORCAST_DIR=N:\\shared\\.VCAST_REGRESSION\JOB_6PM\win_54972&#xd;
+set VECTORCAST_DIR=N:\\shared\\.VCAST_REGRESSION\JOB_6PM\VCAST_WINDOWS&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-IDCWIN2.lic&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 &#xd;
