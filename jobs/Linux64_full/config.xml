@@ -58,6 +58,7 @@ mkdir tbuild64_fullbuild
 cd tbuild64_fullbuild
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 
+$VECTORCAST_DIR/vpython VcRunTests.py --metrics --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972 --run_tests=vcInstTest,VcutilTest,VcshellTest/MixedBitnessTest
 $VECTORCAST_DIR/vpython VcRunTests.py --metrics
 </command>
     </hudson.tasks.Shell>
