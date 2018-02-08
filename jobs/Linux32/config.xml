@@ -50,6 +50,8 @@ echo $VECTORCAST_DIR
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
+export _VC_CMDLINE_IN_WORKER_THREAD_=1
+
 cp -r ${LINUX_GIT_DIR}/tests $WORKSPACE
 
 #CMake and run VcRunTests
