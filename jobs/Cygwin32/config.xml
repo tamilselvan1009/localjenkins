@@ -58,11 +58,8 @@ bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quo
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics&#xd;
 &#xd;
 rem Collect results&#xd;
-rem %VECTORCAST_DIR%\vpython VcCollectResult.py --db=N:\shared\Jenkins_Result\vcshell.db --tag=cygwin32&#xd;
-&#xd;
-%vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
-%vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
-%vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
+%VECTORCAST_DIR%\vpython VcCollectResult.py --db=N:\shared\Jenkins_Result\vcshell.db --tag=cygwin32&#xd;
+%VECTORCAST_DIR%\vpython VcRegressionResult.py --db=N:\shared\Jenkins_Result/regression.db --tag=cygwin32 --storeresult&#xd;
 </command>
     </hudson.tasks.BatchFile>
   </builders>
