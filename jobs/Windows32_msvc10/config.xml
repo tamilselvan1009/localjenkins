@@ -47,8 +47,6 @@ set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
 set VC_ERROR_LEVEL=0&#xd;
 &#xd;
-set _VC_CMDLINE_IN_WORKER_THREAD_=1&#xd;
-&#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
