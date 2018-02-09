@@ -52,7 +52,7 @@ cd tbuild32
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 
 
-$VECTORCAST_DIR/vpython VcRunTests.py --metrics --run_tests=DefineTests,IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests
+$VECTORCAST_DIR/vpython VcRunTests.py --metrics --tag=vcshell --run_tests=DefineTests,IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests
 </command>
     </hudson.tasks.Shell>
   </builders>
