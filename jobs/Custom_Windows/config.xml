@@ -38,7 +38,7 @@ set VECTORCAST_DIR=N:\\shared\\.VCAST_REGRESSION\JOB_6PM\win_54972&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
 &#xd;
-set _VC_CONCURRENT_INSTANCES_FOR_CMDLINES_=1&#xd;
+rem set _VC_CONCURRENT_INSTANCES_FOR_CMDLINES_=1&#xd;
 &#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 REM call buildWin.bat msvc9 --arch=all&#xd;
@@ -50,7 +50,11 @@ cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --metrics</command>
+rem %VECTORCAST_DIR%\vpython VcRunTests.py --metrics&#xd;
+&#xd;
+%vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
+%vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
+%vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
