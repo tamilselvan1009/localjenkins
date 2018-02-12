@@ -48,7 +48,7 @@ cd tbuild32
 
 #cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 
-for i in {1..10}
+for i in {1..50}
 do
   $VECTORCAST_DIR/vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests
 done
