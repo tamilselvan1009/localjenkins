@@ -51,7 +51,7 @@ cd tbuild32
 for i in {1..2}
 do
   #$VECTORCAST_DIR/vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests
-  $VECTORCAST_DIR/vpython VcRunTests.py --metrics --tag=vcshell --db=vcshell
+  $VECTORCAST_DIR/vpython VcRunTests.py --metrics --tag=vcshell --db=vcshell.db
 done
 </command>
     </hudson.tasks.Shell>
