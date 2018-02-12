@@ -40,17 +40,37 @@ set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
 &#xd;
 rem set _VC_CONCURRENT_INSTANCES_FOR_CMDLINES_=1&#xd;
 &#xd;
-xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
+rem xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 REM call buildWin.bat msvc9 --arch=all&#xd;
 REM cd build&#xd;
 REM call install.bat&#xd;
 REM set _VC_TEST_ENV_=1&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
-mkdir tbuild32_msvc10&#xd;
+rem mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
-cmake ..\tests&#xd;
+rem cmake ..\tests&#xd;
 rem %VECTORCAST_DIR%\vpython VcRunTests.py --metrics&#xd;
+&#xd;
+%vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
+%vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
+%vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
+&#xd;
+%vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
+%vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
+%vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
+&#xd;
+%vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
+%vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
+%vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
+&#xd;
+%vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
+%vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
+%vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
+&#xd;
+%vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
+%vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
+%vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
 &#xd;
 %vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
 %vectorcast_dir%\vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests&#xd;
@@ -64,11 +84,5 @@ rem %VECTORCAST_DIR%\vpython VcRunTests.py --metrics&#xd;
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
   </publishers>
-  <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
-      <deleteDirs>false</deleteDirs>
-      <cleanupParameter></cleanupParameter>
-      <externalDelete></externalDelete>
-    </hudson.plugins.ws__cleanup.PreBuildCleanup>
-  </buildWrappers>
+  <buildWrappers/>
 </project>
