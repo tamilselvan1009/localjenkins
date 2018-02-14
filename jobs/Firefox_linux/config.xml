@@ -364,10 +364,10 @@ time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=
 Extract vcutil_qikparse5 `expr $vcshelltime + 5` `expr $vcshelltime + 45` vcutil_quick5.out &quot;${artifact[1]}&quot; || handle_error
 
 
-if ! grep &quot;Failed&quot; $summary_file &gt;&gt; sol.txt 
-then
-	echo &quot;NO FAILURE FOUND&quot; &gt;&gt; sol.txt
-fi    
+#if ! grep &quot;Failed&quot; $summary_file &gt;&gt; sol.txt 
+#then
+#	echo &quot;NO FAILURE FOUND&quot; &gt;&gt; sol.txt
+#fi    
 
 (column -t $summary_file) &gt; temp.txt || handle_error
 rm -rf $summary_file || handle_error
