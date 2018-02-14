@@ -302,8 +302,8 @@ time (../.././setpathtype.sh vcdb_getfiles.out.txt pristine_vcshell.db &gt; set_
 Extract vcdb_setpathtype 0 1
 
 #command to be executed on 
-chmod +x ../../per.sh || handle_error
-../.././per.sh || handle_error
+#chmod +x ../../per.sh || handle_error
+#../.././per.sh || handle_error
 
 #command to be executed on shared drive
 chmod +x ../../perf.sh || handle_error
