@@ -306,9 +306,9 @@ Extract vcdb_setpathtype 0 1
 #../.././per.sh || handle_error
 
 #command to be executed on shared drive
-#chmod +x ../../perf.sh || handle_error
-#cp ../../perf.sh . || handle_error
-#. ./perf.sh /mnt/nfs/shared/shekhar/Firefox/pristine_vcshell.db || handle_error
+chmod +x ../../perf.sh || handle_error
+cp ../../perf.sh . || handle_error
+. ./perf.sh /mnt/nfs/shared/shekhar/Firefox/pristine_vcshell.db || handle_error
 
 
 # to be done and change sum.txt contains the output which perf.sh use to do
