@@ -256,49 +256,49 @@ Extract getcmd 1 3
 #getcommentdensity
 echo -n -e &quot;GetcommentDensity.sh&quot;&gt;&gt;$summary_file
 chmod +x ../../getcommentdensity.sh
-time (../.././getcommentdensity.sh vcdb_getfiles.out.txt pristine_vcshell.db &gt; get_commentdensit_out.txt 2&gt;&amp;1) 2&gt;&gt; getcomment || handle_error
+time (../.././getcommentdensity.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt; get_commentdensit_out.txt 2&gt;&amp;1) 2&gt;&gt; getcomment || handle_error
 Extract getcomment 2 4
 
 #getincludes
 echo -n -e &quot;Getincludes.sh\t&quot;&gt;&gt;$summary_file
 chmod +x ../../getincludes.sh
-time (../.././getincludes.sh vcdb_getfiles.out.txt pristine_vcshell.db &gt; get_includes_out.txt 2&gt;&amp;1) 2&gt;&gt;vcdb_getinclude || handle_error
+time (../.././getincludes.sh pristine_vcshell.db vcdb_getfiles.out.txt  &gt; get_includes_out.txt 2&gt;&amp;1) 2&gt;&gt;vcdb_getinclude || handle_error
 Extract vcdb_getinclude 0 1
 
 #getdefines
 echo -n -e &quot;Getdefines.sh\t&quot;&gt;&gt;$summary_file
 chmod +x ../../getdefines.sh
-time (../.././getdefines.sh vcdb_getfiles.out.txt pristine_vcshell.db &gt; get_defines_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getdefine || handle_error
+time (../.././getdefines.sh pristine_vcshell.db vcdb_getfiles.out.txt  &gt; get_defines_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getdefine || handle_error
 Extract vcdb_getdefine 0 1
 
 #getoptions
 echo -n -e &quot;Getoptions.sh\t&quot;&gt;&gt;$summary_file
 chmod +x ../../getoption.sh || handle_error
-time (../.././getoption.sh vcdb_getfiles.out.txt  pristine_vcshell.db &gt; get_options_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getoption || handle_error
+time (../.././getoption.sh pristine_vcshell.db vcdb_getfiles.out.txt  &gt; get_options_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getoption || handle_error
 Extract vcdb_getoption 0 3
 
 #getpopt
 echo -n -e &quot;Getpoptions.sh\t&quot;&gt;&gt;$summary_file
 chmod +x ../../getppopt.sh || handle_error
-time (../.././getppopt.sh vcdb_getfiles.out.txt  pristine_vcshell.db &gt;get_poptions_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getpoption || handle_error
+time (../.././getppopt.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt;get_poptions_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getpoption || handle_error
 Extract vcdb_getpoption 2 4
 
 #getuniindex
 echo -n -e &quot;Getunitindex.sh\t&quot;&gt;&gt;$summary_file
 chmod +x ../../getunitindex.sh || handle_error
-time (../.././getunitindex.sh vcdb_getfiles.out.txt pristine_vcshell.db &gt;get_unitindex_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getunitindex || handle_error
+time (../.././getunitindex.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt;get_unitindex_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getunitindex || handle_error
 Extract vcdb_getunitindex 0 1
 
 #getpathtype
 echo -n -e &quot;GetPathtype.sh\t&quot;&gt;&gt;$summary_file
 chmod +x ../../getpathtype || handle_error
-time (../.././getpathtype.sh vcdb_getfiles.out.txt pristine_vcshell.db &gt;get_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getpathtype || handle_error
+time (../.././getpathtype.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt;get_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getpathtype || handle_error
 Extract vcdb_getpathtype 0 1
 
 #setpathtype
 echo -n -e &quot;Setpathtype.sh\t&quot;&gt;&gt;$summary_file
 chmod +x ../../setpathtype.sh || handle_error
-time (../.././setpathtype.sh vcdb_getfiles.out.txt pristine_vcshell.db &gt; set_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_setpathtype || true
+time (../.././setpathtype.sh pristine_vcshell.db vcdb_getfiles.out.txt  &gt; set_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_setpathtype || true
 Extract vcdb_setpathtype 0 1
 
 #command to be executed on 
