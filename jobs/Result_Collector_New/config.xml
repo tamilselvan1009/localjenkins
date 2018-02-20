@@ -40,8 +40,6 @@ export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UBUNTU.lic
 cd $WORKSPACE
 
 export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
-cp $LINUX_GIT_DIR/tests/VcCollectResult.py .
-$VECTORCAST_DIR/vpython VcCollectResult.py --db=/mnt/nfs/shared/Jenkins_Result/vcshell.db --latestdiff --tag=result
 
 cp $LINUX_GIT_DIR/tests/template.txt .
 cp $LINUX_GIT_DIR/tests/VcRegressionResult.py .
@@ -57,8 +55,8 @@ $VECTORCAST_DIR/vpython VcRegressionResult.py --db=/mnt/nfs/shared/Jenkins_Resul
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
             <recipientList>vectorindia@vectorcast.com</recipientList>
-            <subject>Regression result</subject>
-            <body>${FILE,path=&quot;Summary.html&quot;}</body>
+            <subject>New Regression result</subject>
+            <body>${FILE,path=&quot;NewSummary.html&quot;}</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
@@ -72,7 +70,7 @@ $VECTORCAST_DIR/vpython VcRegressionResult.py --db=/mnt/nfs/shared/Jenkins_Resul
       <contentType>text/html</contentType>
       <defaultSubject></defaultSubject>
       <defaultContent></defaultContent>
-      <attachmentsPattern>Summary.html,  NewSummary.html</attachmentsPattern>
+      <attachmentsPattern>NewSummary.html</attachmentsPattern>
       <presendScript></presendScript>
       <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
