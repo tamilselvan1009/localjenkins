@@ -43,20 +43,17 @@ export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
 cp $LINUX_GIT_DIR/tests/VcCollectResult.py .
 $VECTORCAST_DIR/vpython VcCollectResult.py --db=/mnt/nfs/shared/Jenkins_Result/vcshell.db --latestdiff --tag=result
 
-cp $LINUX_GIT_DIR/tests/template.txt .
-cp $LINUX_GIT_DIR/tests/VcRegressionResult.py .
-$VECTORCAST_DIR/vpython VcRegressionResult.py --db=/mnt/nfs/shared/Jenkins_Result/regression.db --getresult
 
 </command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
-      <recipientList>vectorindia@vectorcast.com</recipientList>
+      <recipientList>prasannabp@vectorcast.com,kavya@vectorcast.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
-            <recipientList>vectorindia@vectorcast.com</recipientList>
+            <recipientList>prasannabp@vectorcast.com,kavya@vectorcast.com</recipientList>
             <subject>Regression result</subject>
             <body>${FILE,path=&quot;Summary.html&quot;}</body>
             <recipientProviders>
@@ -72,7 +69,7 @@ $VECTORCAST_DIR/vpython VcRegressionResult.py --db=/mnt/nfs/shared/Jenkins_Resul
       <contentType>text/html</contentType>
       <defaultSubject></defaultSubject>
       <defaultContent></defaultContent>
-      <attachmentsPattern>Summary.html,  NewSummary.html</attachmentsPattern>
+      <attachmentsPattern>Summary.html</attachmentsPattern>
       <presendScript></presendScript>
       <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
