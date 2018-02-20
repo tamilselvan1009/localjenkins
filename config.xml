@@ -60,6 +60,7 @@
         <string>Regression_6pm_Master</string>
         <string>Regression_Other_Jobs_Master</string>
         <string>Result_Collector</string>
+        <string>Result_Collector_New</string>
         <string>Result_Collector_Other</string>
         <string>Test_Commit_Linux</string>
         <string>Test_Commit_WinCyg</string>
