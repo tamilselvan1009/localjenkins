@@ -37,7 +37,7 @@ echo $VECTORCAST_DIR
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
-cp -r /mnt/nfs/shared/Jenkins_Harvester/Git/tests $WORKSPACE
+cp -r /mnt/nfs/shared/Jenkins_Harvester_72150/Git/tests $WORKSPACE
 
 rm -rf tbuild32
 #CMake and run VcRunTests
