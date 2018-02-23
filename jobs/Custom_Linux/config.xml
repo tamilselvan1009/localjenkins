@@ -48,10 +48,10 @@ cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 $VECTORCAST_DIR/vpython VcRunTests.py --metrics
 exit
 
-for i in {1..2}
-do
-  $VECTORCAST_DIR/vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests
-done
+#for i in {1..2}
+#do
+#  $VECTORCAST_DIR/vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests
+#done
 
 #$VECTORCAST_DIR/vpython VcRunTests.py --metrics --tag=vcshell --db=vcshell.db --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests
 </command>
