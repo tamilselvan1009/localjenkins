@@ -85,8 +85,8 @@
       <regexToIgnoreOnColorComputing></regexToIgnoreOnColorComputing>
       <categorizationCriteria>
         <org.jenkinsci.plugins.categorizedview.GroupingRule>
-          <groupRegex>^Regression_6pm_Master|Windows32_msvc10|Cygwin32|(Linux32)|Workspace_cleanup_on_68|Workspace_cleanup_on_54|Result_Collector|Result_Collector_New$</groupRegex>
-          <namingRule>Regression_6PM</namingRule>
+          <groupRegex>^Regression_6pm_Master|Windows32_msvc10|Cygwin32|(Linux32)|Workspace_cleanup_on_68|Workspace_cleanup_on_54|Result_Collector|(Result_Collector_New)$</groupRegex>
+          <namingRule>(Regression_6PM)</namingRule>
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
         <org.jenkinsci.plugins.categorizedview.GroupingRule>
