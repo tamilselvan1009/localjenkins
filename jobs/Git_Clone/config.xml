@@ -8,8 +8,8 @@
       <parameterDefinitions>
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
           <name>GIT_BRANCH_NAME</name>
-          <description>name of the branch. default is origin/develop</description>
-          <uuid>b8bd2533-f57c-437d-9451-45c5946545d8</uuid>
+          <description>develop__71654_vcshell_log_file_dev</description>
+          <uuid>6d9d2fa2-4c42-44c0-aedd-c3a4040bafdd</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -22,12 +22,12 @@
         <hudson.model.StringParameterDefinition>
           <name>WIN_RELEASE_DIR</name>
           <description>Specify the location where artifacts will be stored. Location of the release dir in windows style path</description>
-          <defaultValue>N:\\shared\\Jenkins_Harvester</defaultValue>
+          <defaultValue>N:\\shared\\Jenkins_Harvester_71654</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LINUX_RELEASE_DIR</name>
           <description>Specify the location where artifacts will be stored. Location of the release dir in linux style path</description>
-          <defaultValue>/mnt/nfs/shared/Jenkins_Harvester</defaultValue>
+          <defaultValue>/mnt/nfs/shared/Jenkins_Harvester_71654</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WIN_GIT_DIR</name>
