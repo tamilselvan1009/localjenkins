@@ -11,6 +11,16 @@
           <description></description>
           <defaultValue>User_test</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>HARVESTER_PATH</name>
+          <description></description>
+          <defaultValue>/mnt/nfs/shared/Jenkins_Harvester/Git</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>LINUX_VECTORCAST_DIR</name>
+          <description></description>
+          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/custom/VCAST_LINUX</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
@@ -28,16 +38,16 @@
 
 cd $WORKSPACE
 
-#export _VC_CONCURRENT_INSTANCES_FOR_CMDLINES_=1
-
-export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/custom/VCAST_LINUX
+ulimit -c unlimited
+export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
 export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UBUNTU.lic
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
+
 echo $VECTORCAST_DIR
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
-cp -r /mnt/nfs/shared/Jenkins_Harvester_72150/Git/tests $WORKSPACE
+cp -r ${HARVESTER_PATH}/tests $WORKSPACE
 
 rm -rf tbuild32
 #CMake and run VcRunTests
@@ -45,15 +55,14 @@ mkdir tbuild32
 cd tbuild32
 
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-$VECTORCAST_DIR/vpython VcRunTests.py --metrics --run_tests=AddmetricsTest/CommonTests,AddmetricsTest/ErrorTests,ClicastTest,LinkOptionsTest,VcutilTest/Retain,VcutilTest/Writable,VcutilTest/MultipleCmdVerbs,vcInstTest,VcdbTest/BackSlash-Test,vcQuickParseTest
+$VECTORCAST_DIR/vpython VcRunTests.py --metrics --run_tests=HelloTest
+#$VECTORCAST_DIR/vpython VcRunTests.py --metrics --run_tests=AddmetricsTest/CommonTests,AddmetricsTest/ErrorTests,ClicastTest,LinkOptionsTest,VcutilTest/Retain,VcutilTest/Writable,VcutilTest/MultipleCmdVerbs,vcInstTest,VcdbTest/BackSlash-Test,vcQuickParseTest
 exit
 
 #for i in {1..2}
 #do
 #  $VECTORCAST_DIR/vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests
 #done
-
-#$VECTORCAST_DIR/vpython VcRunTests.py --metrics --tag=vcshell --db=vcshell.db --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests
 </command>
     </hudson.tasks.Shell>
   </builders>
