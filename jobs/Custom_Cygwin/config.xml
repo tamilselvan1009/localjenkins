@@ -12,9 +12,14 @@
           <defaultValue>User_test</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>WIN_GIT_DIR</name>
+          <name>HARVESTER_PATH</name>
           <description></description>
           <defaultValue>N:\shared\Jenkins_Harvester\Git</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>WINDOWS_VECTORCAST_DIR</name>
+          <description></description>
+          <defaultValue>N:\\shared\\.VCAST_REGRESSION\\custom\\VCAST_WINDOWS</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -33,12 +38,11 @@
 &#xd;
 cd %WORKSPACE%&#xd;
 set path=%path:&quot;=%&#xd;
-rem set VECTORCAST_DIR=N:\shared\.VCAST_REGRESSION\custom\VCAST_WINDOWS&#xd;
-set VECTORCAST_DIR=N:\\shared\\.VCAST_REGRESSION\JOB_6PM\win_54972&#xd;
+set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-IDCWIN2.lic&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 &#xd;
-xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
+xcopy /S /I /E %HARVESTER_PATH%\tests tests /Q /Y&#xd;
 &#xd;
 %VECTORCAST_DIR%\vcshell --version&#xd;
 %VECTORCAST_DIR%\clicast --version&#xd;
