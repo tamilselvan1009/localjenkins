@@ -9,7 +9,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
           <name>GIT_BRANCH_NAME</name>
           <description>develop__71654_vcshell_log_file_dev</description>
-          <uuid>6d9d2fa2-4c42-44c0-aedd-c3a4040bafdd</uuid>
+          <uuid>3eb179a0-3759-412f-930d-db6c742e182b</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
