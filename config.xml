@@ -115,8 +115,8 @@
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
         <org.jenkinsci.plugins.categorizedview.GroupingRule>
-          <groupRegex>^Linux64_full|Linux64_lib_only|Cygwin64|Cygwin_homepath|Windows32_msvc9|Windows64_msvc10|Windows64_msvc9$</groupRegex>
-          <namingRule>Other_jobs</namingRule>
+          <groupRegex>^Regression_Other_Jobs_Master|Linux64_full|Linux64_lib_only|Cygwin64|Cygwin_homepath|Windows32_msvc9|Windows64_msvc10|Windows64_msvc9|Result_Collector_Other$</groupRegex>
+          <namingRule>Regression_Other_jobs</namingRule>
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
       </categorizationCriteria>
