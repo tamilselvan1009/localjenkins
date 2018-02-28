@@ -14,7 +14,7 @@
         <hudson.model.StringParameterDefinition>
           <name>HARVESTER_PATH</name>
           <description></description>
-          <defaultValue>/mnt/nfs/shared/Jenkins_Harvester/Git</defaultValue>
+          <defaultValue>N:\shared\Jenkins_Harvester\Git</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WINDOWS_VECTORCAST_DIR</name>
