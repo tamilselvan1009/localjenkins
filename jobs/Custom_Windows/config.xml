@@ -7,14 +7,14 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>BUILD_NAME</name>
+          <name>72150</name>
           <description></description>
           <defaultValue>User_test</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>HARVESTER_PATH</name>
           <description></description>
-          <defaultValue>N:\shared\Jenkins_Harvester\Git</defaultValue>
+          <defaultValue>N:\shared\Jenkins_Harvester_72150\Git</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WINDOWS_VECTORCAST_DIR</name>
@@ -49,7 +49,7 @@ cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --metrics</command>
+%VECTORCAST_DIR%\vpython VcRunTests.py --metrics --run_tests=AddmetricsTest/CommonTests,AddmetricsTest/ErrorTests,ClicastTest,LinkOptionsTest,VcutilTest/Retain,VcutilTest/Writable,VcutilTest/MultipleCmdVerbs,vcInstTest,VcdbTest/BackSlash-Test,vcQuickParseTest</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
