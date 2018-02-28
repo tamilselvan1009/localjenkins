@@ -7,14 +7,14 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>72150</name>
+          <name>BUILD NAME</name>
           <description></description>
-          <defaultValue>User_test</defaultValue>
+          <defaultValue>72150</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>HARVESTER_PATH</name>
           <description></description>
-          <defaultValue>N:\shared\Jenkins_Harvester_72150\Git</defaultValue>
+          <defaultValue>/mnt/nfs/shared/Jenkins_Harvester/Git</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WINDOWS_VECTORCAST_DIR</name>
