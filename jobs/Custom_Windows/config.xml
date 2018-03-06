@@ -51,12 +51,12 @@ cd tbuild32_msvc10&#xd;
 cmake ..\tests&#xd;
 rem %VECTORCAST_DIR%\vpython VcRunTests.py --metrics --run_tests=AddmetricsTest/CommonTests,AddmetricsTest/ErrorTests,ClicastTest,LinkOptionsTest,VcutilTest/Retain,VcutilTest/Writable,VcutilTest/MultipleCmdVerbs,vcInstTest,VcdbTest/BackSlash-Test,vcQuickParseTest&#xd;
 &#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --metrics --run_tests=VcutilTest,vcInstTest --vcast_dir=N:\\shared\\.VCAST_REGRESSION\\test_54972_win</command>
+%VECTORCAST_DIR%\vpython VcRunTests.py --metrics --run_tests=VcutilTest,vcInstTest</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.19">
-      <recipients>shweta.agarwal@vectorcast.com</recipients>
+      <recipients>kavya@vectorcast.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
