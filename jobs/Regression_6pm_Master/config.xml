@@ -49,12 +49,12 @@
         <hudson.model.StringParameterDefinition>
           <name>WIN_VECTORCAST_DIR</name>
           <description>Specify the path to VECTORCAST_DIR</description>
-          <defaultValue>N:\\shared\\.VCAST_REGRESSION\\JOB_6PM\\VCAST_WINDOWS</defaultValue>
+          <defaultValue>N:\\shared\\.VCAST_REGRESSION\\test_vc642_win</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LINUX_VECTORCAST_DIR</name>
           <description>Specify the path to VECTORCAST_DIR</description>
-          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/VCAST_LINUX</defaultValue>
+          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/test_vc642_linux</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>GIT_BRANCH_NAME</name>
