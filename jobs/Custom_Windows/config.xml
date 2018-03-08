@@ -49,7 +49,7 @@ cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --metrics --run_tests=ClicastTest,VcutilTest/MultipleCmdVerbs&#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py --metrics --run_tests=vcInstTest --vcast_dir=N:\\shared\\.VCAST_REGRESSION\\JOB_6PM\\win_54972&#xd;
 &#xd;
 rem %VECTORCAST_DIR%\vpython VcRunTests.py --metrics --run_tests=VcutilTest,vcInstTest</command>
     </hudson.tasks.BatchFile>
