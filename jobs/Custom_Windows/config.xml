@@ -52,7 +52,7 @@ cmake ..\tests&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics --run_tests=VcutilTest/MultipleCmdVerbs&#xd;
 #vcInstTest --vcast_dir=N:\\shared\\.VCAST_REGRESSION\\JOB_6PM\\win_54972&#xd;
 &#xd;
-rem %VECTORCAST_DIR%\vpython VcRunTests.py --metrics --run_tests=VcutilTest/MultipleCmdVerbs</command>
+#rem %VECTORCAST_DIR%\vpython VcRunTests.py --metrics --run_tests=VcutilTest/MultipleCmdVerbs</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
