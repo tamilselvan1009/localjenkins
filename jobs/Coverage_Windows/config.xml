@@ -176,7 +176,7 @@ v:
 %VECTORCAST_DIR%\vpython &quot;%WORKSPACE%\vc_scripts\gen-combined-cov.py&quot; &quot;VcTools_Windows_aggregate_report.html&quot;
 %VECTORCAST_DIR%\vpython &quot;%WORKSPACE%\vc_scripts\getTotals.py&quot; --api 2 &quot;VcTools_Windows_full_report.txt&quot;
 %VECTORCAST_DIR%\vcdash -p &quot;%MANAGE_PROJECT%&quot; --history-dir=&quot;%HARVESTER_DIR%\\history&quot; --save-history
-%VECTORCAST_DIR%\vcdash --project &quot;%MANAGE_PROJECT&quot; --history-dir=&quot;%HARVESTER_DIR%\\history&quot; --run-server --vcdb &quot;%HARVESTER_DIR%\vcshell.db&quot;</winCommand>
+start %VECTORCAST_DIR%\vcdash --project &quot;%MANAGE_PROJECT&quot; --history-dir=&quot;%HARVESTER_DIR%\\history&quot; --run-server --vcdb &quot;%HARVESTER_DIR%\vcshell.db&quot;</winCommand>
       <unixCommand></unixCommand>
     </com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand>
   </builders>
