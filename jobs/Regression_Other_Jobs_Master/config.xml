@@ -73,7 +73,7 @@
   <triggers>
     <org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger plugin="parameterized-scheduler@0.2">
       <spec></spec>
-      <parameterizedSpecification>H 22 * * 5 %BUILD_NAME=6pm_timer</parameterizedSpecification>
+      <parameterizedSpecification>H 22 * * 3 %BUILD_NAME=6pm_timer</parameterizedSpecification>
     </org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
@@ -118,7 +118,7 @@
           <configs>
             <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
           </configs>
-          <projects>Windows32_msvc9, Linux64, Cygwin64</projects>
+          <projects>Windows32_msvc9, Linux64_full, Cygwin64</projects>
           <condition>ALWAYS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>
