@@ -49,7 +49,7 @@
       <unixCommand>
 export PATH=/home/vectorindia/gcc-4.1.2/bin:$PATH
 
-killall -9 vcdash
+killall -9 vcdash || true
 rm -rf $VECTORCAST_DIR
 cp -r $LINUX_VECTORCAST_DIR/. $VECTORCAST_DIR/
 export VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
@@ -132,7 +132,9 @@ time $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/V
 time $VECTORCAST_DIR/vcdash --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --history-dir=&quot;/mnt/nfs/shared/Harvester_Coverage/Linux_Coverage_History&quot; --save-history 
 time $VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/gen-combined-cov.py&quot; &quot;VcTools_aggregate_report.html&quot;
 time $VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/getTotals.py&quot; --api 2 &quot;VcTools_full_report.txt&quot;
-time $VECTORCAST_DIR/vcdash --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --history-dir=&quot;/mnt/nfs/shared/Harvester_Coverage/Linux_Coverage_History&quot; --run-server --vcdb ${LINUX_HARVESTER_DIR}/vcshell.db &amp;</command>
+$VECTORCAST_DIR/vcdash --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --history-dir=&quot;/mnt/nfs/shared/Harvester_Coverage/Linux_Coverage_History&quot; --run-server --vcdb ${LINUX_HARVESTER_DIR}/vcshell.db &amp;
+#Sleep till the vcdash is started. If we dont wait for vcdash to be started it does not come up
+sleep 40</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
