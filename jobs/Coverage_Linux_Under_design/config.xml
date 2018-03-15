@@ -70,12 +70,13 @@
       <command>#!/bin/bash -xe
 
 #Common Variables used
+export VECTORCAST_TO_USE=&quot;$VECTORCAST_DIR&quot;
 export VECTORCAST_DIR=${WORKSPACE}/vcast
 
 # Set 4.1.2 GCC in PATH
 export PATH=/home/vectorindia/gcc-4.1.2/bin:$PATH
 
-cp -r $VECTORCAST_DIR/. $VECTORCAST_DIR/
+cp -r &quot;$VECTORCAST_TO_USE&quot; &quot;$VECTORCAST_DIR&quot;
 
 
 #Create cover project
