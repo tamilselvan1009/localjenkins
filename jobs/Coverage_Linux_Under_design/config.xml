@@ -81,6 +81,8 @@ cd build
 END
 
 #Archive the artifacts
+ssh vectorindia@192.168.163.61 &quot;mkdir /var/lib/jenkins/jobs/Coverage_Linux_Under_design/builds/${BUILD_NUMBER}&quot;
+ssh vectorindia@192.168.163.61 &quot;mkdir /var/lib/jenkins/jobs/Coverage_Linux_Under_design/builds/${BUILD_NUMBER}/archive&quot;
 scp -r tests vectorindia@192.168.163.61:/var/lib/jenkins/jobs/Coverage_Linux_Under_design/builds/${BUILD_NUMBER}/archive/.
 scp -r vcast vectorindia@192.168.163.61:/var/lib/jenkins/jobs/Coverage_Linux_Under_design/builds/${BUILD_NUMBER}/archive/.
 
