@@ -75,7 +75,7 @@ export VECTORCAST_DIR=${WORKSPACE}/vcast
 # Set 4.1.2 GCC in PATH
 export PATH=/home/vectorindia/gcc-4.1.2/bin:$PATH
 
-cp -r $LINUX_VECTORCAST_DIR/. $VECTORCAST_DIR/
+cp -r $VECTORCAST_DIR/. $VECTORCAST_DIR/
 
 
 #Create cover project
