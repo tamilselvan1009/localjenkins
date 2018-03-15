@@ -18,7 +18,17 @@
     <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
       <deleteDirs>false</deleteDirs>
       <cleanupParameter></cleanupParameter>
-      <externalDelete>killall -9 a.out; rm -rf *</externalDelete>
+      <externalDelete></externalDelete>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <EnvInjectBuildWrapper plugin="envinject@2.1">
+      <info>
+        <scriptContent>killall -9 a.out</scriptContent>
+        <secureGroovyScript plugin="script-security@1.27">
+          <script></script>
+          <sandbox>false</sandbox>
+        </secureGroovyScript>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+    </EnvInjectBuildWrapper>
   </buildWrappers>
 </project>
