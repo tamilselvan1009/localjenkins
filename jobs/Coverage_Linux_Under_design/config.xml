@@ -121,6 +121,33 @@ END
 export VECTORCAST_DIR=${WORKSPACE}/vcast
 export MANAGE_PROJECT=&quot;${WORKSPACE}/VcToolsProject.vcm&quot;
 export HISTORY_DIR=&quot;/mnt/nfs/shared/Harvester_Coverage_History/Linux&quot;
+export VC_RESULT_DIR=$PWD/results
+
+#Run the unit test cases
+cd ${WORKSPACE}/build
+./RunUnitTest.sh || export _VC_RUNTEST_RETURN_CODE_=$?
+find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/UNITTEST.DAT &apos;;&apos;
+
+#Run the examples
+if [ -d ../release-packages ]; then
+	rm -rf ../release-packages
+fi
+./release-package.sh || if [[ $? == 1 ]]; then 
+		true
+    else
+    	false
+    fi
+cd ../release-packages/release/examples
+./buildall.sh || export _VC_RUNTEST_RETURN_CODE_=$?
+find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/EXAMPLES.DAT &apos;;&apos;
+cd ${WORKSPACE}
+
+#Add TESTINSS.DAT to cover project
+declare -a results=(&quot;VCRUNTESTS&quot; &quot;LONGCMD&quot; &quot;CMDVERB&quot; &quot;OLD_VCAPP&quot; &quot;SEQ_DISPATCHER&quot; &quot;UNITTEST&quot; &quot;EXAMPLES&quot;)
+for result in &quot;${results[@]}&quot;
+do
+	$VECTORCAST_DIR/clicast -lc -e VcTools cover result add  ${VC_RESULT_DIR}/$result.DAT
+done
 
 #Create Manage project
 $VECTORCAST_DIR/manage -p &quot;${MANAGE_PROJECT}&quot; --create
