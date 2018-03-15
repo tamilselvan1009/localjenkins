@@ -95,7 +95,7 @@ sed -i &quot;s/.*#define _VCTOOLS_VERSION_.*/#define _VCTOOLS_VERSION_ \&quot;in
 $VECTORCAST_DIR/vcshell --metrics bash &quot;./build.sh --enable_threads&quot;
 
 $VECTORCAST_DIR/clicover add_source_vcdb VcTools vcshell.db vcHarvesterSrcFilesForCoverageLinux.txt
-$VECTORCAST_DIR/clicast -lc -e harvester cover instrument statement
+$VECTORCAST_DIR/clicast -lc -e VcTools cover instrument statement
 
 ./build_instrumented.sh
 cd build
