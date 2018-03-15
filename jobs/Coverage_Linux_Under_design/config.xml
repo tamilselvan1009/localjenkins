@@ -90,15 +90,15 @@ $VECTORCAST_DIR/clicast -lc option  VCAST_COVER_STATEMENTS_BY_BLOCK TRUE
 #Create vcshell.db for VcTools
 # change the vctools version to the git commit id
 export COMMIT_ID=$(git rev-parse --short HEAD)
-sed -i &quot;s/.*#define _VCTOOLS_VERSION_.*/#define _VCTOOLS_VERSION_ \&quot;${COMMIT_ID}\&quot;/&quot; harvester/inc/vcVersion.h
-$VECTORCAST_DIR/vcshell bash &quot;./build.sh --enable_threads&quot;
+sed -i &quot;s/.*#define _VCTOOLS_VERSION_.*/#define _VCTOOLS_VERSION_ \&quot;inst_${COMMIT_ID}\&quot;/&quot; harvester/inc/vcVersion.h
+$VECTORCAST_DIR/vcshell --metrics bash &quot;./build.sh --enable_threads&quot;
 
 $VECTORCAST_DIR/clicover add_source_vcdb VcTools vcshell.db vcHarvesterSrcFilesForCoverageLinux.txt
 $VECTORCAST_DIR/clicast -lc -e harvester cover instrument statement
 
 ./build_instrumented.sh
 cd build
-./release-package.sh || if [[ $? == 1 ]]; then 
+./install.sh || if [[ $? == 1 ]]; then 
 	true
     else
     	false
