@@ -4,6 +4,11 @@
   <description>Coverage Job for VcTools in Linux</description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.plugins.copyartifact.CopyArtifactPermissionProperty plugin="copyartifact@1.38.1">
+      <projectNameList>
+        <string>LINUX_INSTRUMENTED_VCRUNTESTS_UNDER_DESIGN</string>
+      </projectNameList>
+    </hudson.plugins.copyartifact.CopyArtifactPermissionProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
