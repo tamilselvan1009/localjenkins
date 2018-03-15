@@ -7,11 +7,6 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>VECTORCAST_DIR</name>
-          <description></description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description></description>
           <defaultValue>user_trigger</defaultValue>
@@ -55,59 +50,34 @@ mkdir tbuild
 cd tbuild
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 export _VC_RUNTEST_RETURN_CODE_=0
-time $VECTORCAST_DIR/vpython VcRunTests.py --metrics --run_tests=HelloTest|| export _VC_RUNTEST_RETURN_CODE_=$?
-
-exit 0
-
+$VECTORCAST_DIR/vpython VcRunTests.py --metrics --run_tests=HelloTest|| export _VC_RUNTEST_RETURN_CODE_=$?
 find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/VCRUNTESTS.DAT &apos;;&apos;
 
+#Run Longcmd
 mkdir longcmd
 cd longcmd
 cmake  -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ ../../tests/LongCmd
-time $VECTORCAST_DIR/vpython ../VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
+$VECTORCAST_DIR/vpython ../VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
 find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/LONGCMD.DAT &apos;;&apos;
 cd ..
 
+#Run Cmd-verb
 cd MathTest/Matrix
-find . -name &quot;TESTINSS*&quot; -exec rm &apos;{}&apos; &apos;;&apos;
-time $VECTORCAST_DIR/vpython ../../VcRunTests.py --cmdverb || export _VC_RUNTEST_RETURN_CODE_=$?
+$VECTORCAST_DIR/vpython ../../VcRunTests.py --cmdverb || export _VC_RUNTEST_RETURN_CODE_=$?
 find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/CMDVERB.DAT &apos;;&apos;
 
-find . -name &quot;TESTINSS*&quot; -exec rm &apos;{}&apos; &apos;;&apos;
+#Run old vcapp db interface
 export _VC_OLD_VCAPP_DB_IF_=1
 time $VECTORCAST_DIR/vpython ../../VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
 find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/OLD_VCAPP.DAT &apos;;&apos;
 
-find . -name &quot;TESTINSS*&quot; -exec rm &apos;{}&apos; &apos;;&apos;
+#Run Sequential dispatcher
 export _VC_SEQ_DISPATCHER_=1
-time $VECTORCAST_DIR/vpython ../../VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
+$VECTORCAST_DIR/vpython ../../VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
 find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/SEQ_DISPATCHER.DAT &apos;;&apos;
 
-cd ../../../build
-find . -name &quot;TESTINSS*&quot; -exec rm &apos;{}&apos; &apos;;&apos;
-./RunUnitTest.sh || export _VC_RUNTEST_RETURN_CODE_=$?
-find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/UNITTEST.DAT &apos;;&apos;
-
-if [ -d ../release-packages ]; then
-	rm -rf ../release-packages
-fi
-./release-package.sh || if [[ $? == 1 ]]; then 
-		true
-    else
-    	false
-    fi
-cd ../release-packages/release/examples
-./buildall.sh || export _VC_RUNTEST_RETURN_CODE_=$?
-find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/EXAMPLES.DAT &apos;;&apos;
-
-
-cd ${LINUX_HARVESTER_DIR}/cover
-declare -a results=(&quot;VCRUNTESTS&quot; &quot;LONGCMD&quot; &quot;CMDVERB&quot; &quot;OLD_VCAPP&quot; &quot;SEQ_DISPATCHER&quot; &quot;UNITTEST&quot; &quot;EXAMPLES&quot;)
-for result in &quot;${results[@]}&quot;
-do
-$VECTORCAST_DIR/clicast -lc -e harvester cover result remove $result ${VC_RESULT_DIR}/$result.DAT || export _VC_RUNTEST_RETURN_CODE_=$?
-time $VECTORCAST_DIR/clicast -lc -e harvester cover result add  ${VC_RESULT_DIR}/$result.DAT
-done
+#Copy the TESTINSS.DAT to the upstream job
+scp -r ${VC_RESULT_DIR} vectorindia@192.168.163.73:${HARVESTER_DIR}/.
 
 echo The return code from VcRunTests: $_VC_RUNTEST_RETURN_CODE_</command>
     </hudson.tasks.Shell>
