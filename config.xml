@@ -39,6 +39,7 @@
         <string>Build_Linux64_full</string>
         <string>Build_Windows</string>
         <string>Coverage_Linux</string>
+        <string>Coverage_Linux_Under_design</string>
         <string>Coverage_Windows</string>
         <string>Custom_Cygwin</string>
         <string>Custom_Linux</string>
