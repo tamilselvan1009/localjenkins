@@ -16,6 +16,11 @@
           <description></description>
           <defaultValue>user_trigger</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>HARVESTER_DIR</name>
+          <description>Directory containing the clone of Harvester</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
@@ -28,17 +33,6 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
-      <project>Coverage_Linux_Under_design</project>
-      <filter>tests,vcast</filter>
-      <target></target>
-      <excludes></excludes>
-      <selector class="hudson.plugins.copyartifact.TriggeredBuildSelector">
-        <upstreamFilterStrategy>UseGlobalSetting</upstreamFilterStrategy>
-        <allowUpstreamDependencies>false</allowUpstreamDependencies>
-      </selector>
-      <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
-    </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
@@ -47,6 +41,10 @@ export VECTORCAST_DIR=${WORKSPACE}/vcast
 export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UBUNTU.lic
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 export VC_RESULT_DIR=$PWD/results
+
+#Copy the artifacts
+scp -r vectorindia@192.168.163.73:$HARVESTER_DIR/tests .
+scp -r vectorindia@192.168.163.73:$HARVESTER_DIR/vcast .
 
 #Print the version
 $VECTORCAST_DIR/vcshell --version
