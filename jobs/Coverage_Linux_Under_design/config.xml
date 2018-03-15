@@ -1,99 +1,118 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Single job to run the manage project: /mnt/nfs/shared/Harvester_Coverage/VcTools.vcm</description>
+  <description>Coverage Job for VcTools in Linux</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>LINUX_VECTORCAST_DIR</name>
+          <name>VECTORCAST_DIR</name>
           <description></description>
           <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/VCAST_LINUX</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>LINUX_HARVESTER_DIR</name>
-          <description></description>
-          <defaultValue>/mnt/nfs/shared/Harvester_Coverage/Linux/Harvester</defaultValue>
+          <name>GIT_BRANCH_NAME</name>
+          <description>Specify the branch for which coverage is required</description>
+          <defaultValue>develop</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description></description>
-          <defaultValue>VectorCAST coverage for Harvester</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>VECTORCAST_DIR</name>
-          <description>Specify the vectorcast_dir in which to install the instrumented build</description>
-          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/VCAST_COVERAGE/VCAST_LINUX</defaultValue>
+          <defaultValue>user_trigger_${GIT_BRANCH_NAME}</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
-  <scm class="hudson.scm.NullSCM"/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.1.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>git@github.com:VectorSoftwareRI/Harvester.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>${GIT_BRANCH_NAME}</name>
+      </hudson.plugins.git.BranchSpec>
+      <hudson.plugins.git.BranchSpec>
+        <name>origin/${GIT_BRANCH_NAME}</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.CloneOption>
+        <shallow>true</shallow>
+        <noTags>true</noTags>
+        <reference></reference>
+        <timeout>20</timeout>
+        <depth>1</depth>
+        <honorRefspec>false</honorRefspec>
+      </hudson.plugins.git.extensions.impl.CloneOption>
+    </extensions>
+  </scm>
   <assignedNode>Redhat_32</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers>
-    <org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger plugin="parameterized-scheduler@0.2">
-      <spec></spec>
-      <parameterizedSpecification>00 02 * * * </parameterizedSpecification>
-    </org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger>
-  </triggers>
+  <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <com.vectorcast.plugins.vectorcastexecution.VectorCASTSetup plugin="vectorcast-execution@0.18"/>
-    <com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand plugin="vectorcast-execution@0.18">
-      <winCommand></winCommand>
-      <unixCommand>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash -xe
+
+#Common Variables used
+export VECTORCAST_DIR=${WORKSPACE}/vcast
+
+# Set 4.1.2 GCC in PATH
 export PATH=/home/vectorindia/gcc-4.1.2/bin:$PATH
 
+#Kill the vcdash running
 killall -9 vcdash || true
-rm -rf $VECTORCAST_DIR
+
+
 cp -r $LINUX_VECTORCAST_DIR/. $VECTORCAST_DIR/
-export VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
-cd ${LINUX_HARVESTER_DIR}
-
-$VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --status 
-$VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --release-locks 
-$VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --disable-instrument-in-place
 
 
-git checkout -- harvester/inc/vcVersion.h
-git stash
-git pull origin develop
+#Create cover project
+$VECTORCAST_DIR/clicast -lc cover env create VcTools
+$VECTORCAST_DIR/clicast -lc template GNU_CPP_41
+$VECTORCAST_DIR/clicast -lc option  COVERAGE_IO_TYPE VCAST_COVERAGE_IO_BUFFERED
+$VECTORCAST_DIR/clicast -lc option  VCAST_APPEND_TO_TESTINSS TRUE
+$VECTORCAST_DIR/clicast -lc option  VCAST_COVERAGE_FOR_HEADERS TRUE
+$VECTORCAST_DIR/clicast -lc option  VCAST_DUMP_COVERAGE_AT_EXIT TRUE
+$VECTORCAST_DIR/clicast -lc option  VCAST_COVER_STATEMENTS_BY_BLOCK TRUE
 
+#Create vcshell.db for VcTools
 # change the vctools version to the git commit id
 export COMMIT_ID=$(git rev-parse --short HEAD)
 sed -i &quot;s/.*#define _VCTOOLS_VERSION_.*/#define _VCTOOLS_VERSION_ \&quot;${COMMIT_ID}\&quot;/&quot; harvester/inc/vcVersion.h
+$VECTORCAST_DIR/vcshell bash &quot;./build.sh --enable_threads&quot;
 
-rm vcshell.*
-time $VECTORCAST_DIR/vcshell  bash &quot;./build.sh --enable_threads&quot;
+$VECTORCAST_DIR/clicover add_source_vcdb VcTools vcshell.db vcHarvesterSrcFilesForCoverageLinux.txt
+$VECTORCAST_DIR/clicast -lc -e harvester cover instrument statement
 
-
-$VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --enable-instrument-in-place
-cd cover
-time $VECTORCAST_DIR/clicast -lc -e harvester cover instrument statement
-cd ..
 ./build_instrumented.sh
-
 cd build
-./install.sh || if [[ $? == 1 ]]; then 
+./release-package.sh || if [[ $? == 1 ]]; then 
 	true
     else
     	false
     fi
 
-</unixCommand>
-    </com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand>
+
+</command>
+    </hudson.tasks.Shell>
     <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.33">
       <configs>
         <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
           <configs>
             <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
           </configs>
-          <projects>LINUX_INSTRUMENTED_VCRUNTESTS</projects>
+          <projects>LINUX_INSTRUMENTED_VCRUNTESTS_UNDER_DESIGN</projects>
           <condition>ALWAYS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>
@@ -122,17 +141,35 @@ cd build
       </configs>
     </hudson.plugins.parameterizedtrigger.TriggerBuilder>
     <hudson.tasks.Shell>
-      <command>export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
-time $VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/generate-results.py&quot; --api 2 &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; 
-time $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --full-status=&quot;VcTools_full_report.html&quot;
-time $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --create-report=aggregate   --output=&quot;VcTools_aggregate_report.html&quot;
-time $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --create-report=metrics     --output=&quot;VcTools_metrics_report.html&quot;
-time $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --create-report=environment --output=&quot;VcTools_environment_report.html&quot;
-time $VECTORCAST_DIR/manage --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --full-status &gt; &quot;VcTools_full_report.txt&quot;
-time $VECTORCAST_DIR/vcdash --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --history-dir=&quot;/mnt/nfs/shared/Harvester_Coverage/Linux_Coverage_History&quot; --save-history 
-time $VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/gen-combined-cov.py&quot; &quot;VcTools_aggregate_report.html&quot;
-time $VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/getTotals.py&quot; --api 2 &quot;VcTools_full_report.txt&quot;
-$VECTORCAST_DIR/vcdash --project &quot;/mnt/nfs/shared/Harvester_Coverage/VcTools.vcm&quot; --history-dir=&quot;/mnt/nfs/shared/Harvester_Coverage/Linux_Coverage_History&quot; --run-server --vcdb ${LINUX_HARVESTER_DIR}/vcshell.db &amp;
+      <command>#!/bin/bash -xe
+
+export VECTORCAST_DIR=${WORKSPACE}/vcast
+export MANAGE_PROJECT=&quot;${WORKSPACE}/VcToolsProject.vcm&quot;
+export HISTORY_DIR=&quot;/mnt/nfs/shared/Harvester_Coverage_History/Linux&quot;
+
+#Create Manage project
+$VECTORCAST_DIR/manage -p &quot;${MANAGE_PROJECT}&quot; --create
+$VECTORCAST_DIR/manage -p &quot;${MANAGE_PROJECT}&quot; --level Source/Linux --create
+$VECTORCAST_DIR/manage -p &quot;${MANAGE_PROJECT}&quot; --level Source/Linux/CompilerNode --create
+$VECTORCAST_DIR/manage -p &quot;${MANAGE_PROJECT}&quot; --level Source/Linux/CompilerNode/SystemTesting --create
+$VECTORCAST_DIR/manage -p &quot;${MANAGE_PROJECT}&quot; --group Cover --create
+$VECTORCAST_DIR/manage -p &quot;${MANAGE_PROJECT}&quot; --level Source/Linux/CompilerNode/SystemTesting --add Cover
+$VECTORCAST_DIR/manage -p &quot;${MANAGE_PROJECT}&quot; --import VcTools.vcp 
+$VECTORCAST_DIR/manage -p &quot;${MANAGE_PROJECT}&quot; --group Cover --add VcTools
+
+#Generate reports
+$VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/generate-results.py&quot; --api 2 &quot;${MANAGE_PROJECT}&quot; 
+$VECTORCAST_DIR/manage --project &quot;${MANAGE_PROJECT}&quot; --full-status=&quot;VcTools_full_report.html&quot;
+$VECTORCAST_DIR/manage --project &quot;${MANAGE_PROJECT}&quot; --create-report=aggregate   --output=&quot;VcTools_aggregate_report.html&quot;
+$VECTORCAST_DIR/manage --project &quot;${MANAGE_PROJECT}&quot; --create-report=metrics     --output=&quot;VcTools_metrics_report.html&quot;
+$VECTORCAST_DIR/manage --project &quot;${MANAGE_PROJECT}&quot; --create-report=environment --output=&quot;VcTools_environment_report.html&quot;
+$VECTORCAST_DIR/manage --project &quot;${MANAGE_PROJECT}&quot; --full-status &gt; &quot;VcTools_full_report.txt&quot;
+$VECTORCAST_DIR/vcdash --project &quot;${MANAGE_PROJECT}&quot; --history-dir=&quot;${HISTORY_DIR}&quot; --save-history 
+$VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/gen-combined-cov.py&quot; &quot;VcTools_aggregate_report.html&quot;
+$VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/getTotals.py&quot; --api 2 &quot;VcTools_full_report.txt&quot;
+
+#Start vcdash
+$VECTORCAST_DIR/vcdash --project &quot;${MANAGE_PROJECT}&quot; --history-dir=&quot;${HISTORY_DIR}&quot; --run-server --vcdb vcshell.db &amp;
 #Sleep till the vcdash is started. If we dont wait for vcdash to be started it does not come up
 sleep 40</command>
     </hudson.tasks.Shell>
@@ -256,7 +293,7 @@ if ( coverage &lt; 60) {
       <runForMatrixParent>false</runForMatrixParent>
     </org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
-      <recipientList>sheetal.gotkhindi@vectorcast.com</recipientList>
+      <recipientList>tamil.selvan@vectorcast.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.StatusChangedTrigger>
           <email>
@@ -269,7 +306,7 @@ if ( coverage &lt; 60) {
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
-            <contentType>project</contentType>
+            <contentType>both</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.StatusChangedTrigger>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
@@ -295,7 +332,7 @@ if ( coverage &lt; 60) {
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo>sheetal.gotkhindi@vectorcast.com</replyTo>
+      <replyTo>tamil.selvan@vectorcast.com</replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
