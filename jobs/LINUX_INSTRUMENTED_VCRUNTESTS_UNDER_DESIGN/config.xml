@@ -14,7 +14,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description></description>
-          <defaultValue>default</defaultValue>
+          <defaultValue>user_trigger</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -28,34 +28,39 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
+      <project>Coverage_Linux_Under_design</project>
+      <filter>tests,vcast</filter>
+      <target></target>
+      <excludes></excludes>
+      <selector class="hudson.plugins.copyartifact.TriggeredBuildSelector">
+        <upstreamFilterStrategy>UseGlobalSetting</upstreamFilterStrategy>
+        <allowUpstreamDependencies>false</allowUpstreamDependencies>
+      </selector>
+      <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
+    </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
-cd $LINUX_HARVESTER_DIR
+#Common Variables
+export VECTORCAST_DIR=${WORKSPACE}/vcast
 export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UBUNTU.lic
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
-echo $VECTORCAST_DIR
-$VECTORCAST_DIR/vcshell --version
-$VECTORCAST_DIR/clicast --version
 export VC_RESULT_DIR=$PWD/results
 
+#Print the version
+$VECTORCAST_DIR/vcshell --version
+$VECTORCAST_DIR/clicast --version
 
-if [ -d results ]; then
-	rm -rf ${VC_RESULT_DIR}
-fi
-mkdir ${VC_RESULT_DIR}
-
-
-#CMake and run VcRunTests
-if [ -d tbuild ]; then
-	rm -rf tbuild
-fi
-
+#Cmake and run tests
 mkdir tbuild
 cd tbuild
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 export _VC_RUNTEST_RETURN_CODE_=0
-time $VECTORCAST_DIR/vpython VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
+time $VECTORCAST_DIR/vpython VcRunTests.py --metrics --run_tests=HelloTest|| export _VC_RUNTEST_RETURN_CODE_=$?
+
+exit 0
+
 find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/VCRUNTESTS.DAT &apos;;&apos;
 
 mkdir longcmd
