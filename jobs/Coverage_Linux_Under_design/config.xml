@@ -83,6 +83,9 @@ END
         <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
           <configs>
             <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>HARVESTER_DIR=${WORKSPACE}</properties>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
           <projects>LINUX_INSTRUMENTED_VCRUNTESTS_UNDER_DESIGN</projects>
           <condition>ALWAYS</condition>
