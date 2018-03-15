@@ -56,6 +56,7 @@
         <string>Linux64_lib_only</string>
         <string>Linux_EnvCreate</string>
         <string>LINUX_INSTRUMENTED_VCRUNTESTS</string>
+        <string>LINUX_INSTRUMENTED_VCRUNTESTS_UNDER_DESIGN</string>
         <string>Linux_test_perf</string>
         <string>Linux_ValgrindTest</string>
         <string>Regression_6pm_Master</string>
