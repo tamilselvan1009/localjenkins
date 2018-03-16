@@ -1,15 +1,32 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.scm.NullSCM"/>
-  <canRoam>true</canRoam>
+  <assignedNode>Redhat_32</assignedNode>
+  <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <builders/>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+
+cd /home/vectorindia/SlaveJenkins/workspace/Coverage_Linux_Under_design
+export WORKSPACE1=/home/vectorindia/SlaveJenkins/workspace/Coverage_Linux_Under_design
+export VECTORCAST_DIR=${WORKSPACE1}/vcast
+export MANAGE_PROJECT=&quot;${WORKSPACE1}/VcToolsProject.vcm&quot;
+export HISTORY_DIR=&quot;/mnt/nfs/shared/Harvester_Coverage_History/Linux&quot;
+export VC_RESULT_DIR=$PWD/results
+
+echo &apos;$VECTORCAST_DIR/vcdash --project &quot;${MANAGE_PROJECT}&quot; --history-dir=&quot;${HISTORY_DIR}&quot; --run-server --vcdb vcshell.db&apos; &gt;vcdash.sh
+chmod +x vcdash.sh
+daemonize -E BUILD_ID=dontKillMe ./vcdash.sh</command>
+    </hudson.tasks.Shell>
+  </builders>
   <publishers/>
   <buildWrappers/>
 </project>
