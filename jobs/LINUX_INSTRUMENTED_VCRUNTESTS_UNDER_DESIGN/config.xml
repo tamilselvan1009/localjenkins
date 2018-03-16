@@ -52,7 +52,7 @@ mkdir tbuild
 cd tbuild
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 export _VC_RUNTEST_RETURN_CODE_=0
-$VECTORCAST_DIR/vpython VcRunTests.py --metrics --run_tests=HelloTest|| export _VC_RUNTEST_RETURN_CODE_=$?
+$VECTORCAST_DIR/vpython VcRunTests.py --metrics || export _VC_RUNTEST_RETURN_CODE_=$?
 find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/VCRUNTESTS.DAT &apos;;&apos;
 
 #Run Longcmd
