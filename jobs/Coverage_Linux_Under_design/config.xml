@@ -192,10 +192,13 @@ $VECTORCAST_DIR/vcdash --project &quot;${MANAGE_PROJECT}&quot; --history-dir=&qu
 $VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/gen-combined-cov.py&quot; &quot;VcTools_aggregate_report.html&quot;
 $VECTORCAST_DIR/vpython &quot;$WORKSPACE/vc_scripts/getTotals.py&quot; --api 2 &quot;VcTools_full_report.txt&quot;
 
-#Start vcdash
-$VECTORCAST_DIR/vcdash --project &quot;${MANAGE_PROJECT}&quot; --history-dir=&quot;${HISTORY_DIR}&quot; --run-server --vcdb vcshell.db &amp;
-#Sleep till the vcdash is started. If we dont wait for vcdash to be started it does not come up
-sleep 40</command>
+#Start vcdash as a daemon
+echo #!/bin/bash &gt; vcdash.sh
+echo cd $WORKSPACE &gt;&gt;vcdash.sh
+echo $VECTORCAST_DIR/vcdash --project &quot;${MANAGE_PROJECT}&quot; --history-dir=&quot;${HISTORY_DIR}&quot; --run-server --vcdb vcshell.db --port 8080 &gt;&gt; vcdash.sh
+chmod +x vcdash.sh
+daemonize -E BUILD_ID=dontKillMe -E VECTORCAST_DIR=$VECTORCAST_DIR $PWD/vcdash.sh
+</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
