@@ -25,7 +25,7 @@ export VC_RESULT_DIR=$PWD/results
 
 echo $VECTORCAST_DIR/vcdash --project &quot;${MANAGE_PROJECT}&quot; --history-dir=&quot;${HISTORY_DIR}&quot; --run-server --vcdb vcshell.db --port 8080 &gt;vcdash.sh
 chmod +x vcdash.sh
-daemonize -E BUILD_ID=dontKillMe $PWD/vcdash.sh</command>
+daemonize -E BUILD_ID=dontKillMe -E VECTORCAST_DIR=$VECTORCAST_DIR $PWD/vcdash.sh</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
