@@ -37,6 +37,8 @@ export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UBUNTU.lic
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 export VC_RESULT_DIR=$PWD/results
 
+mkdir &quot;${VC_RESULT_DIR}&quot;
+
 #Copy the artifacts
 scp -r vectorindia@192.168.163.73:$HARVESTER_DIR/tests .
 scp -r vectorindia@192.168.163.73:$HARVESTER_DIR/vcast .
