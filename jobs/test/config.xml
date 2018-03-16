@@ -14,7 +14,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>#!/bin/bash
+      <command>#!/bin/bash -xe
 
 cd /home/vectorindia/SlaveJenkins/workspace/Coverage_Linux_Under_design
 export WORKSPACE1=/home/vectorindia/SlaveJenkins/workspace/Coverage_Linux_Under_design
