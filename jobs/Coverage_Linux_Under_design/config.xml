@@ -24,7 +24,31 @@
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
-  <scm class="hudson.scm.NullSCM"/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.1.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>git@github.com:VectorSoftwareRI/Harvester.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>origin/${GIT_BRANCH_NAME}</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.CloneOption>
+        <shallow>true</shallow>
+        <noTags>true</noTags>
+        <reference></reference>
+        <timeout>20</timeout>
+        <depth>1</depth>
+        <honorRefspec>false</honorRefspec>
+      </hudson.plugins.git.extensions.impl.CloneOption>
+    </extensions>
+  </scm>
   <assignedNode>Redhat_32</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
@@ -37,7 +61,6 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
-: &lt;&lt;&apos;END&apos;
 #Common Variables used
 export VECTORCAST_TO_USE=&quot;$VECTORCAST_DIR&quot;
 export VECTORCAST_DIR=${WORKSPACE}/vcast
@@ -73,7 +96,6 @@ cd build
     else
     	false
     fi
-END
 
 
 </command>
