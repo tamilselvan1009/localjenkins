@@ -54,7 +54,12 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers/>
+  <triggers>
+    <org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger plugin="parameterized-scheduler@0.2">
+      <spec></spec>
+      <parameterizedSpecification>00 02 * * *  % BUILD_NAME=develop_timer</parameterizedSpecification>
+    </org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger>
+  </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <com.vectorcast.plugins.vectorcastexecution.VectorCASTSetup plugin="vectorcast-execution@0.18"/>
