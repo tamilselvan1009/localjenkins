@@ -14,7 +14,7 @@
         <hudson.model.StringParameterDefinition>
           <name>GIT_BRANCH_NAME</name>
           <description>Specify the branch for which coverage is required</description>
-          <defaultValue>develop</defaultValue>
+          <defaultValue>develop__73369_code_coverage_improvements</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
