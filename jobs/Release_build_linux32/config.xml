@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
+  <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -24,8 +25,23 @@
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
+          <name>RELEASE64_DIR</name>
+          <description>Specify the 64-bit linux release dir in linux path</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>PACKAGE_NAME</name>
+          <description>Specify the tgz file name for the package</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
           <name>BOOST_DIR</name>
           <description>Specify the directory containing Boost</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BOOST64_DIR</name>
+          <description>Specify the directory containing 64-bit boost</description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -71,6 +87,46 @@ cp -r $WORKSPACE/release-packages/release ${RELEASE_DIR}/.
 
 
 
+</command>
+    </hudson.tasks.Shell>
+    <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.33">
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
+          </configs>
+          <projects>Release_build_linux64</projects>
+          <condition>ALWAYS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+          <triggerFromChildProjects>false</triggerFromChildProjects>
+          <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+        </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.TriggerBuilder>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash -xe
+
+#Copy 64-bit recorder lib to 32-bit package
+cp &quot;${RELEASE64_DIR}/release/recorder/lib64/libVcRecorderLib.so&quot; &quot;${RELEASE_DIR}/release/recorder/lib64/.&quot;
+
+#Copy 32-bit recorder lib to 64-bit package
+cp &quot;${RELEASE_DIR}/release/recorder/lib/libVcRecorderLib.so&quot; &quot;${RELEASE64_DIR}/release/recorder/lib/.&quot;
+
+#zip the 32-bit package
+cd &quot;${RELEASE_DIR}&quot;
+tar -cvzf ${LINUX_PACKAGE} release
+
+#zip the 64-bit package
+cd &quot;${RELEASE64_DIR}&quot;
+tar -cvzf ${LINUX_PACKAGE} release
+
+#Check the 32-bit package
+cd &quot;${VCSANITY_PACKAGE_DIR_UNX_PATH}/checkRelease&quot;
+$VECTORCAST_DIR/vpython checkRelease.py --file=checkRelease.linux --release_path=&quot;${RELEASE_DIR}&quot;
+
+#Install the 32-bit package
+cd &quot;${RELEASE_DIR}/release&quot;
+./install.sh
 </command>
     </hudson.tasks.Shell>
   </builders>
