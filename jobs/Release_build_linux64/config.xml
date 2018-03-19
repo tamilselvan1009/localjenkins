@@ -19,12 +19,12 @@
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>RELEASE_DIR</name>
+          <name>RELEASE64_DIR</name>
           <description>Specify the release dir in linux path</description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>BOOST_DIR</name>
+          <name>BOOST64_DIR</name>
           <description>Specify the directory containing Boost</description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
@@ -42,7 +42,7 @@
     </hudson.model.ParametersDefinitionProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
-  <assignedNode>Remote_50</assignedNode>
+  <assignedNode>Redhat_64</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -53,19 +53,26 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
+############################################################################
+#set up the local share drive
+export LOCAL_SHARE_DRIVE=&quot;/mnt/nfs/.remote_reg/&quot;
+if[ -d &quot;${LOCAL_SHARE_DRIVE}&quot; ]; then
+	rm -rf &quot;${LOCAL_SHARE_DRIVE}&quot;
+fi
+mkdir &quot;${LOCAL_SHARE_DRIVE}&quot;
 ##############################################################################
 #Copy the Harvester
-unzip &quot;${HARVESTER_CLONE}&quot;
+ssh vectorindia@192.168.163.61 &quot;scp vectorindia@192.168.162.51:${HARVESTER_CLONE} ${LOCAL_SHARE_DRIVE}/.&quot;
+unzip &quot;${LOCAL_SHARE_DRIVE}/Harvester.zip&quot;
 
 ###############################################################################
 #Set cmake path
-export PATH=/home/GCC/gcc-4.1.2/bin:/home/TOOLS/cmake-2.8.11.2/bin:$PATH
-. ./setpath
-./build.sh --release --static_cpp_lib=/home/vectorindia/.static_cpp|| if [  $?==2 ];then true ;fi
+./build.sh --arch=x64 --link_static --release || if [  $?==2 ];then true ;fi
 
 ###############################################################################
 #Copy the package to the shared drive
-cp -r $WORKSPACE/release-packages/release ${RELEASE_DIR}/.
+cp -r $WORKSPACE/release-packages/release ${LOCAL_SHARE_DRIVE}.
+ssh vectorindia@192.168.163.61 &quot;scp -r ${LOCAL_SHARE_DRIVE}/release vectorindia@192.168.162.52:${RELEASE64_DIR}/.&quot;
 
 
 
