@@ -62,6 +62,7 @@
         <string>Regression_6pm_Master</string>
         <string>Regression_Other_Jobs_Master</string>
         <string>Release</string>
+        <string>Release_build_linux32</string>
         <string>Release_clone</string>
         <string>Release_copy_vectorcast_dir</string>
         <string>Release_test</string>
