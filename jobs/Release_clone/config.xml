@@ -15,8 +15,8 @@
           <defaultValue>origin/master</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>CLONE_DIR</name>
-          <description>Specify the directory into which the clone should be copied</description>
+          <name>HARVESTER_CLONE</name>
+          <description>Specify the zip file containing the clone of Harvester</description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -65,12 +65,7 @@
       <command>#!/bin/bash
 
 zip -r Harvester *
-if [ -d &quot;${CLONE_DIR}&quot; ];then
-rm -rf &quot;${CLONE_DIR}&quot;
-fi
-mkdir ${CLONE_DIR}
-cp Harvester.zip ${CLONE_DIR}/Harvester.zip
-
+cp Harvester.zip &quot;${HARVESTER_CLONE}&quot;
 </command>
     </hudson.tasks.Shell>
   </builders>
