@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
+  <actions/>
   <description>Does a Clone of Harvester and copies it to a shared dirve</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -8,19 +9,11 @@
     </org.jenkinsci.plugins.mailwatcher.WatcherJobProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
-        <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
+        <hudson.model.StringParameterDefinition>
           <name>GIT_BRANCH_NAME</name>
-          <description>Specify the branch name</description>
-          <uuid>839a307a-ba2f-46c4-acc2-fe83be56fb27</uuid>
-          <type>PT_BRANCH</type>
-          <branch></branch>
-          <tagFilter>*</tagFilter>
-          <branchFilter>.*</branchFilter>
-          <sortMode>NONE</sortMode>
+          <description>Specify the branch which needs to be built</description>
           <defaultValue>origin/master</defaultValue>
-          <selectedValue>NONE</selectedValue>
-          <quickFilterEnabled>false</quickFilterEnabled>
-        </net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition>
+        </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>CLONE_DIR</name>
           <description>Specify the directory into which the clone should be copied</description>
