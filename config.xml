@@ -65,6 +65,7 @@
         <string>Release_build_linux32</string>
         <string>Release_build_linux64</string>
         <string>Release_clone</string>
+        <string>Release_copy_sanity</string>
         <string>Release_copy_vectorcast_dir</string>
         <string>Release_test</string>
         <string>Result_Collector</string>
