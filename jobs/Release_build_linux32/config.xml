@@ -50,6 +50,11 @@
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
+          <name>VCSANITY_PACKAGE_DIR</name>
+          <description>Specify the directory containing VcSanity</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description>Specify a name for the build. No special char allowed. Use underscore for meaningful names</description>
           <defaultValue></defaultValue>
@@ -121,7 +126,7 @@ cd &quot;${RELEASE64_DIR}&quot;
 tar -cvzf ${LINUX_PACKAGE} release
 
 #Check the 32-bit package
-cd &quot;${VCSANITY_PACKAGE_DIR_UNX_PATH}/checkRelease&quot;
+cd &quot;${VCSANITY_PACKAGE_DIR}/checkRelease&quot;
 $VECTORCAST_DIR/vpython checkRelease.py --file=checkRelease.linux --release_path=&quot;${RELEASE_DIR}&quot;
 
 #Install the 32-bit package
