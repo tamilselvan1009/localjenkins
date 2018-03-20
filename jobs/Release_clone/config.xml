@@ -20,6 +20,11 @@
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
+          <name>VCSANITY_PACKAGE_DIR</name>
+          <description>Specify the directory containing VcSanity in release</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description>Specify a name for the build</description>
           <defaultValue></defaultValue>
@@ -66,15 +71,12 @@
 
 zip -r Harvester *
 cp Harvester.zip &quot;${HARVESTER_CLONE}&quot;
+cp -r VcSanity/. ${VCSANITY_PACKAGE_DIR}/.
+cp -r tests/checkRelease ${VCSANITY_PACKAGE_DIR}/.
 </command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.19">
-      <recipients></recipients>
-      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
-      <sendToIndividuals>false</sendToIndividuals>
-    </hudson.tasks.Mailer>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
       <recipientList>tamil.selvan@vectorcast.com, kavya@vectorcast.com</recipientList>
       <configuredTriggers>
