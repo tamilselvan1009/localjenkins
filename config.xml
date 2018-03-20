@@ -66,6 +66,7 @@
         <string>Release_build_linux64</string>
         <string>Release_build_windows</string>
         <string>Release_clone</string>
+        <string>Release_copy_package_to_idc</string>
         <string>Release_copy_vectorcast_dir</string>
         <string>Release_test</string>
         <string>Result_Collector</string>
