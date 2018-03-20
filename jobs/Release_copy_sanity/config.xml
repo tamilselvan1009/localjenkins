@@ -1,15 +1,183 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
+  <description>Build Harvester in Windows</description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <org.jenkinsci.plugins.mailwatcher.WatcherJobProperty plugin="mail-watcher-plugin@1.16">
+      <watcherAddresses>tamil.selvan@vectorcast.com</watcherAddresses>
+    </org.jenkinsci.plugins.mailwatcher.WatcherJobProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>HARVESTER_CLONE</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BOOST_DIR</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BOOST64_DIR</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>CYG_BOOST_DIR</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BOOST_VER</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>VECTORCAST_DIR</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>VCSANITY_PACKAGE_DIR</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>WIN_PACKAGE</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>RELEASE_DIR</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_NAME</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
   <scm class="hudson.scm.NullSCM"/>
-  <canRoam>true</canRoam>
+  <assignedNode>Remote_52</assignedNode>
+  <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <builders/>
-  <publishers/>
-  <buildWrappers/>
+  <builders>
+    <hudson.tasks.BatchFile>
+      <command>&#xd;
+REM ##########################################################################&#xd;
+set path=%path:&quot;=%&#xd;
+:: Above command is to remove quotes from path variable. Jenkins adds java to path variable which gives error when vcvarsall.bat is called&#xd;
+&#xd;
+REM ##########################################################################&#xd;
+call &quot;C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\vcvarsall.bat&quot; x86&#xd;
+copy %HARVESTER_CLONE% .&#xd;
+&quot;C:\Program Files\7-Zip\7z.exe&quot; x Harvester.zip&#xd;
+&#xd;
+&#xd;
+REM ##########################################################################&#xd;
+::Call build script with --package to build windows packages&#xd;
+call setpath&#xd;
+call buildWin.bat msvc9 --config=Release --arch=all --cyg_boost_dir=%CYG_BOOST_DIR% --config=Release --package || call:handle_error&#xd;
+&#xd;
+REM ##########################################################################&#xd;
+::Create zip file&#xd;
+cd %WORKSPACE%\\release-packages&#xd;
+&quot;C:\Program Files\7-Zip\7z.exe&quot; -tzip a %WIN_PACKAGE% release&#xd;
+&#xd;
+REM ##########################################################################&#xd;
+::Copy windows and cygwin release package zip file to release dir&#xd;
+xcopy %CD%\%WIN_PACKAGE% %RELEASE_DIR%\. /Q /Y&#xd;
+&#xd;
+&#xd;
+REM ##########################################################################&#xd;
+::unzip the windows release package&#xd;
+cd %RELEASE_DIR%&#xd;
+%cd:~0,2%&#xd;
+&quot;C:\Program Files\7-Zip\7z.exe&quot; x %WIN_PACKAGE%&#xd;
+&#xd;
+REM ##########################################################################&#xd;
+::check the package&#xd;
+cd &quot;%VCSANITY_PACKAGE_DIR%\\checkRelease&quot;&#xd;
+python checkRelease.py --file=checkRelease.win --release_path=&quot;%RELEASE_DIR%&quot; || call:handle_error&#xd;
+&#xd;
+REM #######################################################&#xd;
+::Install vctools from release package&#xd;
+cd &quot;%RELEASE_DIR%\\release&quot;&#xd;
+call install.bat || call:handle_error&#xd;
+&#xd;
+exit %VC_ERROR_LEVEL%&#xd;
+&#xd;
+:handle_error&#xd;
+if NOT %ERRORLEVEL% EQU 0 (set VC_ERROR_LEVEL=%ERRORLEVEL%&#xd;
+echo &quot;Command exited with %VC_ERROR_LEVEL%&quot;)&#xd;
+goto:EOF</command>
+    </hudson.tasks.BatchFile>
+  </builders>
+  <publishers>
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
+      <recipientList>tamil.selvan@vectorcast.com, kavya@vectorcast.com</recipientList>
+      <configuredTriggers>
+        <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+          <email>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern></attachmentsPattern>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+        <hudson.plugins.emailext.plugins.trigger.StatusChangedTrigger>
+          <email>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern></attachmentsPattern>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.StatusChangedTrigger>
+      </configuredTriggers>
+      <contentType>default</contentType>
+      <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
+      <defaultContent>$DEFAULT_CONTENT</defaultContent>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
+      <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
+      <attachBuildLog>false</attachBuildLog>
+      <compressBuildLog>false</compressBuildLog>
+      <replyTo>tamil.selvan@vectorcast.com</replyTo>
+      <saveOutput>false</saveOutput>
+      <disabled>false</disabled>
+    </hudson.plugins.emailext.ExtendedEmailPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
+      <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
+      <runAtStart>true</runAtStart>
+      <runAtEnd>false</runAtEnd>
+    </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
+  </buildWrappers>
 </project>
