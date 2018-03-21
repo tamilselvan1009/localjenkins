@@ -9,7 +9,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>b8bd2533-f57c-437d-9451-45c5946545d8</uuid>
+          <uuid>dc0b8dbb-c3d5-4e16-b66e-280f29517edd</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -18,7 +18,6 @@
           <defaultValue>origin/develop</defaultValue>
           <selectedValue>NONE</selectedValue>
           <quickFilterEnabled>false</quickFilterEnabled>
-          <customJobName>[ Git_Clone ] </customJobName>
         </net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WIN_RELEASE_DIR</name>
@@ -84,6 +83,16 @@
           <name>LINUX64_VECTORCAST_DIR</name>
           <description></description>
           <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/VCAST_64bit</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>LINUX_54972_VC</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>WINDOWS_54972_VC</name>
+          <description></description>
+          <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
