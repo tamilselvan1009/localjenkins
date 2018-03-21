@@ -71,6 +71,11 @@
           <description></description>
           <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>WINDOWS_54972_VC</name>
+          <description></description>
+          <defaultValue>N:\\shared\\.VCAST_REGRESSION\JOB_6PM\win_54972</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
