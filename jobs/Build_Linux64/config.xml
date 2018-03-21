@@ -79,11 +79,12 @@ cd release
 cd ..
 fi
 
-# Install vctools in 54972_standalone VC also
-export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972
+if [ ! -z &quot;$LINUX_54972_VC&quot; ]; then
+export VECTORCAST_DIR=&quot;${LINUX_54972_VC}&quot;
 cd release
 ./install.sh
-
+cd ..
+fi
 
 # Set back the VC
 export VECTORCAST_DIR=&quot;${LINUX_VECTORCAST_DIR}&quot;
