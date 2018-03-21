@@ -66,6 +66,11 @@
           <description>specify the path for 64bit VECTORCAST</description>
           <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/VCAST_64bit</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>LINUX_54972_VC</name>
+          <description></description>
+          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
