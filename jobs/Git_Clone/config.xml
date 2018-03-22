@@ -9,7 +9,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>05cd4dd9-73f8-453e-b9e3-0c63210de08d</uuid>
+          <uuid>e40f4bc8-5061-4f13-9edc-db7d4c00a344</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -156,6 +156,7 @@ mkdir &quot;${LINUX_RELEASE_DIR}&quot;
 # copy all the files to git dir
 mkdir &quot;${LINUX_GIT_DIR}&quot;
 cp -r * &quot;${LINUX_GIT_DIR}/.&quot;
+sleep 20s
 
 if [ -f &quot;$WORKSPACE/build_harvester.txt&quot; ]; then
 	rm &quot;$WORKSPACE/build_harvester.txt&quot;
