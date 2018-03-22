@@ -33,8 +33,9 @@
       </hudson.plugins.git.extensions.impl.PreBuildMerge>
       <hudson.plugins.git.extensions.impl.CloneOption>
         <shallow>true</shallow>
-        <noTags>false</noTags>
+        <noTags>true</noTags>
         <reference></reference>
+        <timeout>30</timeout>
         <depth>1</depth>
         <honorRefspec>false</honorRefspec>
       </hudson.plugins.git.extensions.impl.CloneOption>
