@@ -35,7 +35,7 @@
         <shallow>true</shallow>
         <noTags>true</noTags>
         <reference></reference>
-        <timeout>30</timeout>
+        <timeout>40</timeout>
         <depth>1</depth>
         <honorRefspec>false</honorRefspec>
       </hudson.plugins.git.extensions.impl.CloneOption>
