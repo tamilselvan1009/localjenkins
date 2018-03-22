@@ -31,6 +31,13 @@
           <fastForwardMode>FF</fastForwardMode>
         </options>
       </hudson.plugins.git.extensions.impl.PreBuildMerge>
+      <hudson.plugins.git.extensions.impl.CloneOption>
+        <shallow>true</shallow>
+        <noTags>false</noTags>
+        <reference></reference>
+        <depth>100</depth>
+        <honorRefspec>false</honorRefspec>
+      </hudson.plugins.git.extensions.impl.CloneOption>
     </extensions>
   </scm>
   <assignedNode>master</assignedNode>
