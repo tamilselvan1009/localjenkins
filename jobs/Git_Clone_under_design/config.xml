@@ -35,7 +35,7 @@
         <shallow>true</shallow>
         <noTags>false</noTags>
         <reference></reference>
-        <depth>100</depth>
+        <depth>1</depth>
         <honorRefspec>false</honorRefspec>
       </hudson.plugins.git.extensions.impl.CloneOption>
     </extensions>
