@@ -23,14 +23,6 @@
         <includedRegions>harvester/*</includedRegions>
         <excludedRegions></excludedRegions>
       </hudson.plugins.git.extensions.impl.PathRestriction>
-      <hudson.plugins.git.extensions.impl.PreBuildMerge>
-        <options>
-          <mergeRemote>git@github.com:VectorSoftwareRI/Harvester.git</mergeRemote>
-          <mergeTarget>develop</mergeTarget>
-          <mergeStrategy>default</mergeStrategy>
-          <fastForwardMode>FF</fastForwardMode>
-        </options>
-      </hudson.plugins.git.extensions.impl.PreBuildMerge>
       <hudson.plugins.git.extensions.impl.CloneOption>
         <shallow>true</shallow>
         <noTags>true</noTags>
