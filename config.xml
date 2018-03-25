@@ -129,46 +129,6 @@
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
       </categorizationCriteria>
     </org.jenkinsci.plugins.categorizedview.CategorizedJobsView>
-    <hudson.plugins.view.dashboard.Dashboard plugin="dashboard-view@2.9.11">
-      <owner class="hudson" reference="../../.."/>
-      <name>Release</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator"/>
-        <string>Release</string>
-        <string>Release_build_linux32</string>
-        <string>Release_build_linux64</string>
-        <string>Release_build_windows</string>
-        <string>Release_clone</string>
-        <string>Release_copy_package_to_idc</string>
-        <string>Release_copy_vectorcast_dir</string>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-        <org.jenkins.plugins.builton.BuiltOnColumn plugin="built-on-column@1.1"/>
-        <hudson.plugins.nodenamecolumn.NodeNameColumn plugin="nodenamecolumn@1.2"/>
-        <hudson.plugins.UpDownStreamViewColumn plugin="upstream-downstream-view@1.006"/>
-      </columns>
-      <recurse>false</recurse>
-      <useCssStyle>false</useCssStyle>
-      <includeStdJobList>false</includeStdJobList>
-      <hideJenkinsPanels>false</hideJenkinsPanels>
-      <leftPortletWidth>50%</leftPortletWidth>
-      <rightPortletWidth>50%</rightPortletWidth>
-      <leftPortlets/>
-      <rightPortlets/>
-      <topPortlets/>
-      <bottomPortlets/>
-    </hudson.plugins.view.dashboard.Dashboard>
   </views>
   <primaryView>Categorized View</primaryView>
   <slaveAgentPort>0</slaveAgentPort>
