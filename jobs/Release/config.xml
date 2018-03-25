@@ -221,10 +221,10 @@ echo PACKAGE_NAME=&quot;${WIN_PACKAGE}&quot;                           &gt;&gt; 
       <executionType>PARALLEL</executionType>
     </com.tikal.jenkins.plugins.multijob.MultiJobBuilder>
     <com.tikal.jenkins.plugins.multijob.MultiJobBuilder>
-      <phaseName>COPY_PACKAGE_TO_IDC</phaseName>
+      <phaseName>Integrated_build</phaseName>
       <phaseJobs>
         <com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
-          <jobName></jobName>
+          <jobName>Release_integrated_build</jobName>
           <currParams>true</currParams>
           <aggregatedTestResults>false</aggregatedTestResults>
           <exposedSCM>false</exposedSCM>
@@ -241,7 +241,7 @@ echo PACKAGE_NAME=&quot;${WIN_PACKAGE}&quot;                           &gt;&gt; 
           <applyConditionOnlyIfNoSCMChanges>false</applyConditionOnlyIfNoSCMChanges>
         </com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
       </phaseJobs>
-      <continuationCondition>ALWAYS</continuationCondition>
+      <continuationCondition>SUCCESSFUL</continuationCondition>
       <executionType>PARALLEL</executionType>
     </com.tikal.jenkins.plugins.multijob.MultiJobBuilder>
   </builders>
