@@ -1,7 +1,10 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <hudson>
   <disabledAdministrativeMonitors/>
-  <version>2.7.4</version>
+  <version>2.112</version>
+  <installState class="jenkins.install.InstallState$Restart">
+    <name>RESTART</name>
+  </installState>
   <numExecutors>5</numExecutors>
   <mode>NORMAL</mode>
   <useSecurity>true</useSecurity>
