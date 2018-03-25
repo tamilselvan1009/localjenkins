@@ -39,13 +39,13 @@
 #Commonly used varaibles
 
 #Vectorcast dir
-export WIN_VECTORCAST_DIR=&quot;H:\\VCAST_REGRESSION\\windows&quot;
-export LINUX_VECTORCAST_DIR=&quot;/home/vectorindia/VCAST_REGRESSION/linux&quot;
-export LINUX_VECTORCAST_DIR_WIN_PATH=&quot;H:\\VCAST_REGRESSION\\linux&quot;
+export WIN_VECTORCAST_DIR=&apos;H:\\VCAST_REGRESSION\\windows&apos;
+export LINUX_VECTORCAST_DIR=&apos;/home/vectorindia/VCAST_REGRESSION/linux&apos;
+export LINUX_VECTORCAST_DIR_WIN_PATH=&apos;H:\\VCAST_REGRESSION\\linux&apos;
 
 #Vectorcast build
-export WIN_VECTORCAST_BUILD=&quot;B:\VectorCAST\vc64\windows\install.tar.gz&quot;
-export LINUX_VECTORCAST_BUILD=&quot;B:\VectorCAST\vc64\linux\release.tar.gz&quot;
+export WIN_VECTORCAST_BUILD=&apos;B:\\VectorCAST\\vc64\\windows\\install.tar.gz&apos;
+export LINUX_VECTORCAST_BUILD=&apos;B:\\VectorCAST\\vc64\\linux\\release.tar.gz&apos;
 
 #Release dir
 export LINUX_RELEASE_DIR=/home/vectorindia/HarvesterDistribution/${RELEASE_DIR}
@@ -67,8 +67,8 @@ export BOOST_VER=1_53
 export LINUX_BOOST64_VER=1_55
 
 #Zip file of Harvester clone
-export LINUX_HARVESTER_CLONE=&quot;/home/vectorindia/Jenkins_Clone/Harvester.zip&quot;
-export WIN_HARVESTER_CLONE=&quot;H:\\Jenkins_Clone\\Harvester.zip&quot;
+export LINUX_HARVESTER_CLONE=&apos;/home/vectorindia/Jenkins_Clone/Harvester.zip&apos;
+export WIN_HARVESTER_CLONE=&apos;H:\\Jenkins_Clone\\Harvester.zip&apos;
 
 #Package dir
 export LINUX_PACKAGE_DIR=&quot;${LINUX_RELEASE_DIR}/linux&quot;
