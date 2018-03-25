@@ -28,7 +28,7 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>BOOST_DIR</name>
+          <name>BOOST64_DIR</name>
           <description>Specify the directory containing Boost</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
