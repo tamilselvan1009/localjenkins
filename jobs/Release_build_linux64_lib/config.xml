@@ -28,12 +28,6 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>BOOST64_DIR</name>
-          <description>Specify the directory containing Boost</description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>BOOST_VER</name>
           <description>Specify the boost version used</description>
           <defaultValue></defaultValue>
