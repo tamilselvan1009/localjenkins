@@ -22,13 +22,13 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>RELEASE64_DIR</name>
+          <name>RELEASE_DIR</name>
           <description>Specify the release dir in linux path</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>BOOST64_DIR</name>
+          <name>BOOST_DIR</name>
           <description>Specify the directory containing Boost</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
@@ -49,7 +49,7 @@
     </hudson.model.ParametersDefinitionProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
-  <assignedNode>Centos_5_11_x64_Build_machine</assignedNode>
+  <assignedNode>Redhat_64</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -60,26 +60,22 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
-############################################################################
-#set up the local share drive
-export LOCAL_SHARE_DRIVE=&quot;/mnt/nfs/.remote_reg/&quot;
-if[ -d &quot;${LOCAL_SHARE_DRIVE}&quot; ]; then
-	rm -rf &quot;${LOCAL_SHARE_DRIVE}&quot;
-fi
-mkdir &quot;${LOCAL_SHARE_DRIVE}&quot;
+
 ##############################################################################
 #Copy the Harvester
 ssh vectorindia@192.168.163.61 &quot;scp vectorindia@192.168.162.51:${HARVESTER_CLONE} ${LOCAL_SHARE_DRIVE}/.&quot;
 unzip &quot;${LOCAL_SHARE_DRIVE}/Harvester.zip&quot;
 
 ###############################################################################
-#Set cmake path
-./build.sh --arch=x64 --link_static --release || if [  $?==2 ];then true ;fi
+#Build
+./build.sh --arch=x64_lib --static_cpp_lib=${VC_STDCPLUS_PLUS_STATIC_DIR}
 
 ###############################################################################
 #Copy the package to the shared drive
+mkdir ${LOCAL_SHARE_DRIVE}/lib64
+cp build64/recorder/lib64/libVcRecorderLib.so ${LOCAL_SHARE_DRIVE}/lib64/.
 cp -r $WORKSPACE/release-packages/release ${LOCAL_SHARE_DRIVE}.
-ssh vectorindia@192.168.163.61 &quot;scp -r ${LOCAL_SHARE_DRIVE}/release vectorindia@192.168.162.52:${RELEASE64_DIR}/.&quot;
+ssh vectorindia@192.168.163.61 &quot;scp  ${LOCAL_SHARE_DRIVE}/lib64/libVcRecorderLib.so vectorindia@192.168.162.52:${RELEASE_DIR}/recorder/lib64/.&quot;
 
 
 
