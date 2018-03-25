@@ -118,7 +118,7 @@ export BOOST64_DIR=&quot;${LINUX_BOOST64_DIR}&quot;                      &gt;&gt
 export BOOST_VER=&quot;${BOOST_VER}&quot;                                &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
 export VCSANITY_PACKAGE_DIR=&quot;${VCSANITY_PACKAGE_DIR_UNX_PATH}&quot; &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
 export BUILD_NAME=&quot;${BUILD_NAME}&quot;                              &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
-export PACKAGE_NAME=&quot;${LINUX_PACKAGE_NAME}&quot;                    &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
+export PACKAGE_NAME=&quot;${LINUX_PACKAGE}&quot;                         &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
 
 #Parameters for Release_build_windows
 export HARVESTER_CLONE=&quot;${WIN_HARVESTER_CLONE}&quot;   			    &gt; ${WORKSPACE}/release_build_windows.txt
@@ -130,7 +130,7 @@ export CYG_BOOST_DIR=&quot;${CYG_BOOST_DIR}&quot;                        &gt;&gt
 export BOOST_VER=&quot;${BOOST_VER}&quot;                                &gt;&gt; ${WORKSPACE}/release_build_windows.txt
 export VCSANITY_PACKAGE_DIR=&quot;${VCSANITY_PACKAGE_DIR_WIN_PATH}&quot; &gt;&gt; ${WORKSPACE}/release_build_windows.txt
 export BUILD_NAME=&quot;${BUILD_NAME}&quot;                              &gt;&gt; ${WORKSPACE}/release_build_windows.txt
-export PACKAGE_NAME=&quot;${WIN_PACKAGE_NAME}&quot;                      &gt;&gt; ${WORKSPACE}/release_build_windows.txt
+export PACKAGE_NAME=&quot;${WIN_PACKAGE}&quot;                           &gt;&gt; ${WORKSPACE}/release_build_windows.txt
 
 
 </command>
