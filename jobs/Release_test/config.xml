@@ -82,7 +82,7 @@ export VCSANITY_PACKAGE_DIR_WIN_PATH=&quot;${WIN_PACKAGE_DIR}\\VcSanity&quot;
 if [ -d &quot;${LINUX_RELEASE_DIR}&quot; ];then
 	rm -rf &quot;${LINUX_RELEASE_DIR}&quot;
 fi
-export CLONE_DIR=`dirname &quot;${HARVESTER_CLONE}&quot;`
+export CLONE_DIR=`dirname &quot;${LINUX_HARVESTER_CLONE}&quot;`
 if [ -d &quot;${CLONE_DIR}&quot; ];then
 	rm -rf &quot;${CLONE_DIR}&quot;
 fi
