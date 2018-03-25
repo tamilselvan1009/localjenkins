@@ -158,6 +158,7 @@
         <hudson.plugins.nodenamecolumn.NodeNameColumn plugin="nodenamecolumn@1.2"/>
         <hudson.plugins.UpDownStreamViewColumn plugin="upstream-downstream-view@1.006"/>
       </columns>
+      <includeRegex>Release_.*</includeRegex>
       <recurse>false</recurse>
       <useCssStyle>false</useCssStyle>
       <includeStdJobList>false</includeStdJobList>
