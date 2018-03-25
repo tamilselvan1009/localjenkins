@@ -137,6 +137,13 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>Release</string>
+        <string>Release_build_linux32</string>
+        <string>Release_build_linux64</string>
+        <string>Release_build_windows</string>
+        <string>Release_clone</string>
+        <string>Release_copy_package_to_idc</string>
+        <string>Release_copy_vectorcast_dir</string>
       </jobNames>
       <jobFilters/>
       <columns>
