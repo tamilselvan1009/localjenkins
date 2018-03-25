@@ -29,7 +29,7 @@
       <filterQueue>false</filterQueue>
       <properties class="hudson.model.View$PropertyList"/>
     </hudson.model.AllView>
-    <org.jenkinsci.plugins.categorizedview.CategorizedJobsView plugin="categorized-view@1.9">
+    <org.jenkinsci.plugins.categorizedview.CategorizedJobsView plugin="categorized-view@1.10">
       <owner class="hudson" reference="../../.."/>
       <name>Categorized View</name>
       <filterExecutors>false</filterExecutors>
