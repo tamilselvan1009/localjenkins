@@ -220,6 +220,15 @@ echo PACKAGE_NAME=&quot;${WIN_PACKAGE}&quot;                           &gt;&gt; 
       <continuationCondition>SUCCESSFUL</continuationCondition>
       <executionType>PARALLEL</executionType>
     </com.tikal.jenkins.plugins.multijob.MultiJobBuilder>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash -xe
+
+export CUSTOM_DIR=/home/vectorindia/HarvesterDistribution/vcshell_custom
+if -d [ &quot;$CUSTOM_DIR&quot; ];then
+	rm -rf $CUSTOM_DIR
+fi
+cp -r /home/vectorindia/HarvesterDistribution/$RELEASE_DIR $CUSTOM_DIR</command>
+    </hudson.tasks.Shell>
     <com.tikal.jenkins.plugins.multijob.MultiJobBuilder>
       <phaseName>Integrated_build</phaseName>
       <phaseJobs>
