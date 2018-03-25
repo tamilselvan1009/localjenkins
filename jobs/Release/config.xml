@@ -1,5 +1,5 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<com.tikal.jenkins.plugins.multijob.MultiJobProject plugin="jenkins-multijob-plugin@1.24">
+<?xml version='1.1' encoding='UTF-8'?>
+<com.tikal.jenkins.plugins.multijob.MultiJobProject plugin="jenkins-multijob-plugin@1.29">
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
@@ -10,16 +10,19 @@
           <name>RELEASE_DIR</name>
           <description>Specify the directory name in HarvesterDistribution into which the build will be copied</description>
           <defaultValue>vcshell_master</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>GIT_BRANCH_NAME</name>
           <description>Specify the branch name that needs to be built</description>
           <defaultValue>develop</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description>Specify a name for the build. No special char allowed. Use underscore for meaningful names</description>
           <defaultValue>user_trigger</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -102,35 +105,35 @@ echo WIN_VECTORCAST_DIR=&quot;${WIN_VECTORCAST_DIR}&quot;        &gt;&gt; ${WORK
 echo BUILD_NAME=&quot;${BUILD_NAME}&quot;                        &gt;&gt; ${WORKSPACE}/release_copy_vectorcast_dir.txt
 
 #Parameters for Release clone job
-export GIT_BRANCH_NAME=&quot;origin/${GIT_BRANCH_NAME}&quot;                     &gt; ${WORKSPACE}/release_clone.txt
-export HARVESTER_CLONE=&quot;${LINUX_HARVESTER_CLONE}&quot;                     &gt;&gt; ${WORKSPACE}/release_clone.txt
-export VCSANITY_PACKAGE_DIR=&quot;${VCSANITY_PACKAGE_DIR_UNX_PATH}&quot;        &gt;&gt; ${WORKSPACE}/release_clone.txt
-export BUILD_NAME=&quot;${BUILD_NAME}&quot;                                     &gt;&gt; ${WORKSPACE}/release_clone.txt
+echo GIT_BRANCH_NAME=&quot;origin/${GIT_BRANCH_NAME}&quot;                     &gt; ${WORKSPACE}/release_clone.txt
+echo HARVESTER_CLONE=&quot;${LINUX_HARVESTER_CLONE}&quot;                     &gt;&gt; ${WORKSPACE}/release_clone.txt
+echo VCSANITY_PACKAGE_DIR=&quot;${VCSANITY_PACKAGE_DIR_UNX_PATH}&quot;        &gt;&gt; ${WORKSPACE}/release_clone.txt
+echo BUILD_NAME=&quot;${BUILD_NAME}&quot;                                     &gt;&gt; ${WORKSPACE}/release_clone.txt
 
 
 #Parameters for Release_build_linux32
-export HARVESTER_CLONE=&quot;${LINUX_HARVESTER_CLONE}&quot;       	    &gt; ${WORKSPACE}/release_build_linux32.txt
-export VECTORCAST_DIR=&quot;${LINUX_VECTORCAST_DIR}&quot;   			   &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
-export RELEASE_DIR=&quot;${LINUX_RELEASE_DIR}&quot;                      &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
-export RELEASE64_DIR=&quot;${LINUX64_RELEASE_DIR}&quot;                  &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
-export BOOST_DIR=&quot;${LINUX_BOOST_DIR}&quot;                          &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
-export BOOST64_DIR=&quot;${LINUX_BOOST64_DIR}&quot;                      &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
-export BOOST_VER=&quot;${BOOST_VER}&quot;                                &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
-export VCSANITY_PACKAGE_DIR=&quot;${VCSANITY_PACKAGE_DIR_UNX_PATH}&quot; &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
-export BUILD_NAME=&quot;${BUILD_NAME}&quot;                              &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
-export PACKAGE_NAME=&quot;${LINUX_PACKAGE}&quot;                         &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
+echo HARVESTER_CLONE=&quot;${LINUX_HARVESTER_CLONE}&quot;       	      &gt; ${WORKSPACE}/release_build_linux32.txt
+echo VECTORCAST_DIR=&quot;${LINUX_VECTORCAST_DIR}&quot;                &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
+echo RELEASE_DIR=&quot;${LINUX_RELEASE_DIR}&quot;                      &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
+echo RELEASE64_DIR=&quot;${LINUX64_RELEASE_DIR}&quot;                  &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
+echo BOOST_DIR=&quot;${LINUX_BOOST_DIR}&quot;                          &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
+echo BOOST64_DIR=&quot;${LINUX_BOOST64_DIR}&quot;                      &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
+echo BOOST_VER=&quot;${BOOST_VER}&quot;                                &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
+echo VCSANITY_PACKAGE_DIR=&quot;${VCSANITY_PACKAGE_DIR_UNX_PATH}&quot; &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
+echo BUILD_NAME=&quot;${BUILD_NAME}&quot;                              &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
+echo PACKAGE_NAME=&quot;${LINUX_PACKAGE}&quot;                         &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
 
 #Parameters for Release_build_windows
-export HARVESTER_CLONE=&quot;${WIN_HARVESTER_CLONE}&quot;   			    &gt; ${WORKSPACE}/release_build_windows.txt
-export VECTORCAST_DIR=&quot;${WIN_VECTORCAST_DIR}&quot;   			   &gt;&gt; ${WORKSPACE}/release_build_windows.txt
-export RELEASE_DIR=&quot;${WIN_RELEASE_DIR}&quot;                        &gt;&gt; ${WORKSPACE}/release_build_windows.txt
-export BOOST_DIR=&quot;${WIN_BOOST_DIR}&quot;                            &gt;&gt; ${WORKSPACE}/release_build_windows.txt
-export BOOST64_DIR=&quot;${WIN_BOOST64_DIR}&quot;                        &gt;&gt; ${WORKSPACE}/release_build_windows.txt
-export CYG_BOOST_DIR=&quot;${CYG_BOOST_DIR}&quot;                        &gt;&gt; ${WORKSPACE}/release_build_windows.txt
-export BOOST_VER=&quot;${BOOST_VER}&quot;                                &gt;&gt; ${WORKSPACE}/release_build_windows.txt
-export VCSANITY_PACKAGE_DIR=&quot;${VCSANITY_PACKAGE_DIR_WIN_PATH}&quot; &gt;&gt; ${WORKSPACE}/release_build_windows.txt
-export BUILD_NAME=&quot;${BUILD_NAME}&quot;                              &gt;&gt; ${WORKSPACE}/release_build_windows.txt
-export PACKAGE_NAME=&quot;${WIN_PACKAGE}&quot;                           &gt;&gt; ${WORKSPACE}/release_build_windows.txt
+echo HARVESTER_CLONE=&quot;${WIN_HARVESTER_CLONE}&quot;   			  &gt; ${WORKSPACE}/release_build_windows.txt
+echo VECTORCAST_DIR=&quot;${WIN_VECTORCAST_DIR}&quot;   			     &gt;&gt; ${WORKSPACE}/release_build_windows.txt
+echo RELEASE_DIR=&quot;${WIN_RELEASE_DIR}&quot;                        &gt;&gt; ${WORKSPACE}/release_build_windows.txt
+echo BOOST_DIR=&quot;${WIN_BOOST_DIR}&quot;                            &gt;&gt; ${WORKSPACE}/release_build_windows.txt
+echo BOOST64_DIR=&quot;${WIN_BOOST64_DIR}&quot;                        &gt;&gt; ${WORKSPACE}/release_build_windows.txt
+echo CYG_BOOST_DIR=&quot;${CYG_BOOST_DIR}&quot;                        &gt;&gt; ${WORKSPACE}/release_build_windows.txt
+echo BOOST_VER=&quot;${BOOST_VER}&quot;                                &gt;&gt; ${WORKSPACE}/release_build_windows.txt
+echo VCSANITY_PACKAGE_DIR=&quot;${VCSANITY_PACKAGE_DIR_WIN_PATH}&quot; &gt;&gt; ${WORKSPACE}/release_build_windows.txt
+echo BUILD_NAME=&quot;${BUILD_NAME}&quot;                              &gt;&gt; ${WORKSPACE}/release_build_windows.txt
+echo PACKAGE_NAME=&quot;${WIN_PACKAGE}&quot;                           &gt;&gt; ${WORKSPACE}/release_build_windows.txt
 
 
 </command>
@@ -141,6 +144,7 @@ export PACKAGE_NAME=&quot;${WIN_PACKAGE}&quot;                           &gt;&gt
         <com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
           <jobName>Release_copy_vectorcast_dir</jobName>
           <currParams>false</currParams>
+          <aggregatedTestResults>false</aggregatedTestResults>
           <exposedSCM>false</exposedSCM>
           <disableJob>false</disableJob>
           <parsingRulesPath></parsingRulesPath>
@@ -150,9 +154,10 @@ export PACKAGE_NAME=&quot;${WIN_PACKAGE}&quot;                           &gt;&gt
           <abortAllJob>true</abortAllJob>
           <condition></condition>
           <configs>
-            <hudson.plugins.parameterizedtrigger.FileBuildParameters plugin="parameterized-trigger@2.33">
+            <hudson.plugins.parameterizedtrigger.FileBuildParameters plugin="parameterized-trigger@2.35.2">
               <propertiesFile>release_copy_vectorcast_dir.txt</propertiesFile>
               <failTriggerOnMissing>false</failTriggerOnMissing>
+              <textParamValueOnNewLine>false</textParamValueOnNewLine>
               <useMatrixChild>false</useMatrixChild>
               <onlyExactRuns>false</onlyExactRuns>
             </hudson.plugins.parameterizedtrigger.FileBuildParameters>
@@ -164,6 +169,7 @@ export PACKAGE_NAME=&quot;${WIN_PACKAGE}&quot;                           &gt;&gt
         <com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
           <jobName>Release_clone</jobName>
           <currParams>false</currParams>
+          <aggregatedTestResults>false</aggregatedTestResults>
           <exposedSCM>false</exposedSCM>
           <disableJob>false</disableJob>
           <parsingRulesPath></parsingRulesPath>
@@ -173,9 +179,10 @@ export PACKAGE_NAME=&quot;${WIN_PACKAGE}&quot;                           &gt;&gt
           <abortAllJob>true</abortAllJob>
           <condition></condition>
           <configs>
-            <hudson.plugins.parameterizedtrigger.FileBuildParameters plugin="parameterized-trigger@2.33">
+            <hudson.plugins.parameterizedtrigger.FileBuildParameters plugin="parameterized-trigger@2.35.2">
               <propertiesFile>release_clone.txt</propertiesFile>
               <failTriggerOnMissing>false</failTriggerOnMissing>
+              <textParamValueOnNewLine>false</textParamValueOnNewLine>
               <useMatrixChild>false</useMatrixChild>
               <onlyExactRuns>false</onlyExactRuns>
             </hudson.plugins.parameterizedtrigger.FileBuildParameters>
@@ -194,6 +201,7 @@ export PACKAGE_NAME=&quot;${WIN_PACKAGE}&quot;                           &gt;&gt
         <com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
           <jobName>Release_build_linux32</jobName>
           <currParams>false</currParams>
+          <aggregatedTestResults>false</aggregatedTestResults>
           <exposedSCM>false</exposedSCM>
           <disableJob>false</disableJob>
           <parsingRulesPath></parsingRulesPath>
@@ -203,9 +211,10 @@ export PACKAGE_NAME=&quot;${WIN_PACKAGE}&quot;                           &gt;&gt
           <abortAllJob>true</abortAllJob>
           <condition></condition>
           <configs>
-            <hudson.plugins.parameterizedtrigger.FileBuildParameters plugin="parameterized-trigger@2.33">
+            <hudson.plugins.parameterizedtrigger.FileBuildParameters plugin="parameterized-trigger@2.35.2">
               <propertiesFile>release_build_linux32.txt</propertiesFile>
               <failTriggerOnMissing>false</failTriggerOnMissing>
+              <textParamValueOnNewLine>false</textParamValueOnNewLine>
               <useMatrixChild>false</useMatrixChild>
               <onlyExactRuns>false</onlyExactRuns>
             </hudson.plugins.parameterizedtrigger.FileBuildParameters>
@@ -217,6 +226,7 @@ export PACKAGE_NAME=&quot;${WIN_PACKAGE}&quot;                           &gt;&gt
         <com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
           <jobName>Release_build_windows</jobName>
           <currParams>false</currParams>
+          <aggregatedTestResults>false</aggregatedTestResults>
           <exposedSCM>false</exposedSCM>
           <disableJob>false</disableJob>
           <parsingRulesPath></parsingRulesPath>
@@ -226,9 +236,10 @@ export PACKAGE_NAME=&quot;${WIN_PACKAGE}&quot;                           &gt;&gt
           <abortAllJob>true</abortAllJob>
           <condition></condition>
           <configs>
-            <hudson.plugins.parameterizedtrigger.FileBuildParameters plugin="parameterized-trigger@2.33">
+            <hudson.plugins.parameterizedtrigger.FileBuildParameters plugin="parameterized-trigger@2.35.2">
               <propertiesFile>release_build_windows.txt</propertiesFile>
               <failTriggerOnMissing>false</failTriggerOnMissing>
+              <textParamValueOnNewLine>false</textParamValueOnNewLine>
               <useMatrixChild>false</useMatrixChild>
               <onlyExactRuns>false</onlyExactRuns>
             </hudson.plugins.parameterizedtrigger.FileBuildParameters>
@@ -247,6 +258,7 @@ export PACKAGE_NAME=&quot;${WIN_PACKAGE}&quot;                           &gt;&gt
         <com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
           <jobName></jobName>
           <currParams>true</currParams>
+          <aggregatedTestResults>false</aggregatedTestResults>
           <exposedSCM>false</exposedSCM>
           <disableJob>false</disableJob>
           <parsingRulesPath></parsingRulesPath>
@@ -273,7 +285,7 @@ export PACKAGE_NAME=&quot;${WIN_PACKAGE}&quot;                           &gt;&gt
       <externalDelete></externalDelete>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
-    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
       <runAtEnd>false</runAtEnd>
