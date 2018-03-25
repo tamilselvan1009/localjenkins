@@ -177,6 +177,7 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../hudson.plugins.view.dashboard.Dashboard/jobNames/comparator"/>
+        <string>Release</string>
       </jobNames>
       <jobFilters/>
       <columns>
