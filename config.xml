@@ -148,7 +148,8 @@
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
       </columns>
-      <recurse>false</recurse>
+      <includeRegex>Release.*</includeRegex>
+      <recurse>true</recurse>
       <groupingRules/>
       <regexToIgnoreOnColorComputing></regexToIgnoreOnColorComputing>
       <categorizationCriteria/>
