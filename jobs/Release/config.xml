@@ -63,8 +63,8 @@ export WIN_PACKAGE=harvester.win.zip
 #Boost dir
 export LINUX_BOOST_DIR=/home/TOOLS/boost-1.53.0
 export LINUX_BOOST64_DIR=/home/vectorindia/boost-1.55.0-x64
-export WIN_BOOST_DIR=C:\\boost\\boost-1.53.0
-export WIN_BOOST64_DIR=C:\\boost\\boost-1.53.0-x64
+export WIN_BOOST_DIR=&apos;C:\\boost\\boost-1.53.0&apos;
+export WIN_BOOST64_DIR=&apos;C:\\boost\\boost-1.53.0-x64&apos;
 export CYG_BOOST_DIR=/cygdrive/c/boost/boost_cyg_1_54
 export BOOST_VER=1_53
 export LINUX_BOOST64_VER=1_55
