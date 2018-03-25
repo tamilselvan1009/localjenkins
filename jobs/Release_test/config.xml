@@ -105,7 +105,7 @@ echo BUILD_NAME=&quot;${BUILD_NAME}&quot;                        &gt;&gt; ${WORK
 export GIT_BRANCH_NAME=&quot;origin/${GIT_BRANCH_NAME}&quot;                     &gt; ${WORKSPACE}/release_clone.txt
 export HARVESTER_CLONE=&quot;${LINUX_HARVESTER_CLONE}&quot;                     &gt;&gt; ${WORKSPACE}/release_clone.txt
 export VCSANITY_PACKAGE_DIR=&quot;${VCSANITY_PACKAGE_DIR_UNX_PATH}&quot;        &gt;&gt; ${WORKSPACE}/release_clone.txt
-export BUILD_NAME=&quot;${BUILD_NAME}&quot;                                     &gt;&gt; ${WORKSPAVE}/release_clone.txt
+export BUILD_NAME=&quot;${BUILD_NAME}&quot;                                     &gt;&gt; ${WORKSPACE}/release_clone.txt
 
 
 #Parameters for Release_build_linux32
