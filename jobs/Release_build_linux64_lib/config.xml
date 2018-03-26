@@ -57,7 +57,6 @@
 
 ##############################################################################
 #Copy the Harvester
-ssh vectorindia@192.168.163.61 &quot;scp vectorindia@192.168.162.51:${HARVESTER_CLONE} ${LOCAL_SHARE_DRIVE}/.&quot;
 unzip &quot;${LOCAL_SHARE_DRIVE}/Harvester.zip&quot;
 
 ###############################################################################
