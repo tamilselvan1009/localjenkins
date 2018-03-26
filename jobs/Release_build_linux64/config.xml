@@ -63,7 +63,7 @@
 ############################################################################
 #set up the local share drive
 export LOCAL_SHARE_DRIVE=&quot;/mnt/nfs/.remote_reg/&quot;
-if[ -d &quot;${LOCAL_SHARE_DRIVE}&quot; ]; then
+if [ -d &quot;${LOCAL_SHARE_DRIVE}&quot; ]; then
 	rm -rf &quot;${LOCAL_SHARE_DRIVE}&quot;
 fi
 mkdir &quot;${LOCAL_SHARE_DRIVE}&quot;
