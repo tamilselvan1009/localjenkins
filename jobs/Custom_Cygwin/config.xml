@@ -44,7 +44,7 @@ set path=%path:&quot;=%&#xd;
 set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-IDCWIN2.lic&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
-set -VC_NEW_CYGWIN_MODE_=1&#xd;
+set _VC_NEW_CYGWIN_MODE_=1&#xd;
 xcopy /S /I /E %HARVESTER_PATH%\tests tests /Q /Y&#xd;
 &#xd;
 %VECTORCAST_DIR%\vcshell --version&#xd;
