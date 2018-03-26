@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
   <description>Custom job which can be triggered at any instant of time. It does shallow clone, builds Harvester, installs VECTORCAST in shared/.VCAST_REGRESSION/custom</description>
@@ -10,16 +10,19 @@
           <name>BUILD_NAME</name>
           <description></description>
           <defaultValue>User_test</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>HARVESTER_PATH</name>
           <description></description>
           <defaultValue>N:\shared\Jenkins_Harvester\Git</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WINDOWS_VECTORCAST_DIR</name>
           <description></description>
           <defaultValue>N:\\shared\\.VCAST_REGRESSION\\custom\\VCAST_WINDOWS</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -41,6 +44,7 @@ set path=%path:&quot;=%&#xd;
 set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-IDCWIN2.lic&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
+set -VC_NEW_CYGWIN_MODE_=1&#xd;
 xcopy /S /I /E %HARVESTER_PATH%\tests tests /Q /Y&#xd;
 &#xd;
 %VECTORCAST_DIR%\vcshell --version&#xd;
@@ -52,11 +56,11 @@ mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
 set PATH=C:\cygwin\bin;%PATH%&#xd;
 bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --metrics </command>
+%VECTORCAST_DIR%\vpython VcRunTests.py --metrics --run_test=VcshellTest/CygwinTest</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.19">
+    <hudson.tasks.Mailer plugin="mailer@1.20">
       <recipients>kavya@vectorcast.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
@@ -68,7 +72,7 @@ bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quo
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
-    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>${ENV, var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
       <runAtEnd>true</runAtEnd>
