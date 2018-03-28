@@ -89,6 +89,7 @@ fi
 #Create the release and clone directory
 mkdir &quot;${LINUX_RELEASE_DIR}&quot;
 mkdir &quot;${LINUX_PACKAGE_DIR}&quot;
+mkdir &quot;${LINUX64_PACKAGE_DIR}&quot;
 mkdir &quot;${WIN_PACKAGE_DIR_UNX_PATH}&quot;
 mkdir &quot;${VCSANITY_PACKAGE_DIR_UNX_PATH}&quot;
 mkdir &quot;${CLONE_DIR}&quot;
