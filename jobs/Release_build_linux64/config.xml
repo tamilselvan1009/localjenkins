@@ -69,7 +69,7 @@ fi
 mkdir &quot;${LOCAL_SHARE_DRIVE}&quot;
 ##############################################################################
 #Copy the Harvester
-ssh vectorindia@192.168.163.61 &quot;scp vectorindia@192.168.162.51:${HARVESTER_CLONE} ${LOCAL_SHARE_DRIVE}/.&quot;
+ssh vectorindia@192.168.163.61 &quot;cd /mnt/nfs/Resources/Essentials/Linux/upload; ./upload --download ${LOCAL_SHARE_DRIVE}&quot;
 unzip &quot;${LOCAL_SHARE_DRIVE}/Harvester.zip&quot;
 
 ###############################################################################
@@ -79,7 +79,7 @@ unzip &quot;${LOCAL_SHARE_DRIVE}/Harvester.zip&quot;
 ###############################################################################
 #Copy the package to the shared drive
 cp -r $WORKSPACE/release-packages/release ${LOCAL_SHARE_DRIVE}.
-ssh vectorindia@192.168.163.61 &quot;scp -r ${LOCAL_SHARE_DRIVE}/release vectorindia@192.168.162.52:${RELEASE64_DIR}/.&quot;
+ssh vectorindia@192.168.163.61 &quot;scp -r ${LOCAL_SHARE_DRIVE}/release vectorindia@192.168.162.51:${RELEASE64_DIR}/.&quot;
 
 
 
