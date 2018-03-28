@@ -45,6 +45,7 @@
 export WIN_VECTORCAST_DIR=&apos;H:\\VCAST_REGRESSION\\windows&apos;
 export LINUX_VECTORCAST_DIR=&apos;/home/vectorindia/VCAST_REGRESSION/linux&apos;
 export LINUX_VECTORCAST_DIR_WIN_PATH=&apos;H:\\VCAST_REGRESSION\\linux&apos;
+export VECTOR_LICENSE_FILE=7650@licenseserver
 
 #Release dir
 export LINUX_RELEASE_DIR=/home/vectorindia/HarvesterDistribution/${RELEASE_DIR}
@@ -112,6 +113,7 @@ echo BOOST_VER=&quot;${BOOST_VER}&quot;                                &gt;&gt; 
 echo VCSANITY_PACKAGE_DIR=&quot;${VCSANITY_PACKAGE_DIR_UNX_PATH}&quot; &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
 echo BUILD_NAME=&quot;${BUILD_NAME}&quot;                              &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
 echo PACKAGE_NAME=&quot;${LINUX_PACKAGE}&quot;                         &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
+echo VECTOR_LICENSE_FILE=&quot;${VECTOR_LICENSE_FILE}&quot;            &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
 
 #Parameters for Release_build_windows
 echo HARVESTER_CLONE=&quot;${WIN_HARVESTER_CLONE}&quot;   			  &gt; ${WORKSPACE}/release_build_windows.txt
@@ -124,6 +126,7 @@ echo BOOST_VER=&quot;${BOOST_VER}&quot;                                &gt;&gt; 
 echo VCSANITY_PACKAGE_DIR=&quot;${VCSANITY_PACKAGE_DIR_WIN_PATH}&quot; &gt;&gt; ${WORKSPACE}/release_build_windows.txt
 echo BUILD_NAME=&quot;${BUILD_NAME}&quot;                              &gt;&gt; ${WORKSPACE}/release_build_windows.txt
 echo PACKAGE_NAME=&quot;${WIN_PACKAGE}&quot;                           &gt;&gt; ${WORKSPACE}/release_build_windows.txt
+echo VECTOR_LICENSE_FILE=&quot;${VECTOR_LICENSE_FILE}&quot;            &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
 
 
 </command>
