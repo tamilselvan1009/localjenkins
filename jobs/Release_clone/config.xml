@@ -78,8 +78,10 @@ zip -r Harvester *
 #Upload the clone to google drive for the local jobs to use
 cd /home/vectorindia/upload
 ./upload --delete
-./upload --upload Harvester.zip
+./upload --upload ${WORKSPACE}/Harvester.zip
+cd ${WORKSPACE}
 
+#Copy into share drive for remote jobs
 cp Harvester.zip &quot;${HARVESTER_CLONE}&quot;
 cp -r VcSanity/. ${VCSANITY_PACKAGE_DIR}/.
 cp -r tests/checkRelease ${VCSANITY_PACKAGE_DIR}/.
