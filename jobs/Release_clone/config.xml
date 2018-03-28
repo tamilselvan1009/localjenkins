@@ -74,6 +74,12 @@
       <command>#!/bin/bash -xe
 
 zip -r Harvester *
+
+#Upload the clone to google drive for the local jobs to use
+cd /home/vectorindia/upload
+./upload --delete
+./upload --upload Harvester.zip
+
 cp Harvester.zip &quot;${HARVESTER_CLONE}&quot;
 cp -r VcSanity/. ${VCSANITY_PACKAGE_DIR}/.
 cp -r tests/checkRelease ${VCSANITY_PACKAGE_DIR}/.
