@@ -54,7 +54,7 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
-
+export LOCAL_SHARE_DRIVE=&quot;/mnt/nfs/.remote_reg/&quot;
 ##############################################################################
 #Copy the Harvester
 unzip &quot;${LOCAL_SHARE_DRIVE}/Harvester.zip&quot;
