@@ -69,12 +69,6 @@
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>LINUX_PACKAGE</name>
-          <description></description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
@@ -186,11 +180,11 @@ cp &quot;${RELEASE_DIR}/release/recorder/lib/libVcRecorderLib.so&quot; &quot;${R
 
 #zip the 32-bit package
 cd &quot;${RELEASE_DIR}&quot;
-tar -cvzf ${LINUX_PACKAGE} release
+tar -cvzf ${PACKAGE_NAME} release
 
 #zip the 64-bit package
 cd &quot;${RELEASE64_DIR}&quot;
-tar -cvzf ${LINUX_PACKAGE} release
+tar -cvzf ${PACKAGE_NAME} release
 
 #Check the 32-bit package
 cd &quot;${VCSANITY_PACKAGE_DIR}/checkRelease&quot;
