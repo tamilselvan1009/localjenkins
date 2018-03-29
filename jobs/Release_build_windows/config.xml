@@ -117,6 +117,7 @@ xcopy %CD%\%PACKAGE_NAME% %RELEASE_DIR%\. /Q /Y&#xd;
 REM ##########################################################################&#xd;
 ::unzip the windows release package&#xd;
 cd %RELEASE_DIR%&#xd;
+H:&#xd;
 %cd:~0,2%&#xd;
 &quot;C:\Program Files\7-Zip\7z.exe&quot; x %PACKAGE_NAME%&#xd;
 &#xd;
