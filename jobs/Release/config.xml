@@ -49,7 +49,7 @@ export VECTOR_LICENSE_FILE=7650@licenseserver
 
 #Release dir
 export LINUX_RELEASE_DIR=/home/vectorindia/HarvesterDistribution/${RELEASE_DIR}
-export WIN_RELEASE_DIR=H:\\HarvesterDistribution\\${RELEASE_DIR}
+export WIN_RELEASE_DIR=&apos;H:\\HarvesterDistribution\\&apos;${RELEASE_DIR}
 
 export VECTOR_LICENSE_FILE=7650@licenseserver
 
@@ -73,10 +73,10 @@ export WIN_HARVESTER_CLONE=&apos;H:\\Jenkins_Clone\\Harvester.zip&apos;
 #Package dir
 export LINUX_PACKAGE_DIR=&quot;${LINUX_RELEASE_DIR}/linux&quot;
 export LINUX64_PACKAGE_DIR=&quot;${LINUX_PACKAGE_DIR}/64_bit&quot;
-export WIN_PACKAGE_DIR=&quot;${WIN_RELEASE_DIR}\\windows&quot;
+export WIN_PACKAGE_DIR=&quot;${WIN_RELEASE_DIR}&quot;&apos;\\windows&apos;
 export WIN_PACKAGE_DIR_UNX_PATH=&quot;${LINUX_RELEASE_DIR}/windows&quot;
 export VCSANITY_PACKAGE_DIR_UNX_PATH=&quot;${LINUX_RELEASE_DIR}/VcSanity&quot;
-export VCSANITY_PACKAGE_DIR_WIN_PATH=&quot;${WIN_PACKAGE_DIR}\\VcSanity&quot;
+export VCSANITY_PACKAGE_DIR_WIN_PATH=&quot;${WIN_PACKAGE_DIR}&quot;&apos;\\VcSanity&apos;
 
 #if the release and clone directory already exists delete it
 if [ -d &quot;${LINUX_RELEASE_DIR}&quot; ];then
@@ -118,7 +118,7 @@ echo VECTOR_LICENSE_FILE=&quot;${VECTOR_LICENSE_FILE}&quot;            &gt;&gt; 
 #Parameters for Release_build_windows
 echo HARVESTER_CLONE=&quot;${WIN_HARVESTER_CLONE}&quot;   			  &gt; ${WORKSPACE}/release_build_windows.txt
 echo VECTORCAST_DIR=&quot;${WIN_VECTORCAST_DIR}&quot;   			     &gt;&gt; ${WORKSPACE}/release_build_windows.txt
-echo RELEASE_DIR=&quot;${WIN_RELEASE_DIR}&quot;                        &gt;&gt; ${WORKSPACE}/release_build_windows.txt
+echo RELEASE_DIR=&quot;${WIN_PACKAGE_DIR}&quot;                        &gt;&gt; ${WORKSPACE}/release_build_windows.txt
 echo BOOST_DIR=&quot;${WIN_BOOST_DIR}&quot;                            &gt;&gt; ${WORKSPACE}/release_build_windows.txt
 echo BOOST64_DIR=&quot;${WIN_BOOST64_DIR}&quot;                        &gt;&gt; ${WORKSPACE}/release_build_windows.txt
 echo CYG_BOOST_DIR=&quot;${CYG_BOOST_DIR}&quot;                        &gt;&gt; ${WORKSPACE}/release_build_windows.txt
@@ -126,7 +126,7 @@ echo BOOST_VER=&quot;${BOOST_VER}&quot;                                &gt;&gt; 
 echo VCSANITY_PACKAGE_DIR=&quot;${VCSANITY_PACKAGE_DIR_WIN_PATH}&quot; &gt;&gt; ${WORKSPACE}/release_build_windows.txt
 echo BUILD_NAME=&quot;${BUILD_NAME}&quot;                              &gt;&gt; ${WORKSPACE}/release_build_windows.txt
 echo PACKAGE_NAME=&quot;${WIN_PACKAGE}&quot;                           &gt;&gt; ${WORKSPACE}/release_build_windows.txt
-echo VECTOR_LICENSE_FILE=&quot;${VECTOR_LICENSE_FILE}&quot;            &gt;&gt; ${WORKSPACE}/release_build_linux32.txt
+echo VECTOR_LICENSE_FILE=&quot;${VECTOR_LICENSE_FILE}&quot;            &gt;&gt; ${WORKSPACE}/release_build_windows.txt
 
 
 </command>
