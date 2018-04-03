@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
   <description>Custom job intended to be triggered at any instant of time. Git Clone and Build has to be done before triggering this job since Build is on RedHat mac. Uses VECTORCAST in /mnt/nfs/shared/.VCAST_REGRESSION/custom/VCAST_LINUX</description>
@@ -10,16 +10,19 @@
           <name>BUILD_NAME</name>
           <description></description>
           <defaultValue>User_test</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>HARVESTER_PATH</name>
           <description></description>
           <defaultValue>/mnt/nfs/shared/Jenkins_Harvester/Git</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LINUX_VECTORCAST_DIR</name>
           <description></description>
           <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/custom/VCAST_LINUX</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -55,7 +58,7 @@ mkdir tbuild32
 cd tbuild32
 
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-$VECTORCAST_DIR/vpython VcRunTests.py --metrics --run_tests=vcInstTest --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972
+#$VECTORCAST_DIR/vpython VcRunTests.py --metrics --run_tests=vcInstTest --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972
 $VECTORCAST_DIR/vpython VcRunTests.py --metrics
 #$VECTORCAST_DIR/vpython VcRunTests.py --metrics --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/test_54972_linux --run_tests=vcInstTest,VcutilTest
 exit
@@ -68,7 +71,7 @@ exit
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.19">
+    <hudson.tasks.Mailer plugin="mailer@1.20">
       <recipients>kavya@vectorcast.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
@@ -80,7 +83,7 @@ exit
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
-    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
       <runAtEnd>true</runAtEnd>
