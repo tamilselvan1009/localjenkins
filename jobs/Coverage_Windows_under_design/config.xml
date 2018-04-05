@@ -132,6 +132,7 @@ call install.bat
 
 REM ######################################################################################
 ::Configure tests to run
+cd %WORKSPACE%
 mkdir tbuild
 cd tbuild
 cmake -G&quot;Visual Studio 10&quot; ..\tests
