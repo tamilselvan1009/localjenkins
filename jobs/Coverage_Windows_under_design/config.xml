@@ -31,7 +31,7 @@
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>git@github.com:VectorSoftwareRI/Harvester.git</url>
+        <url>https://github.com/VectorSoftwareRI/Harvester.git</url>
         <credentialsId>git</credentialsId>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
@@ -66,8 +66,27 @@
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <com.vectorcast.plugins.vectorcastexecution.VectorCASTSetup plugin="vectorcast-execution@0.18"/>
-    <com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand plugin="vectorcast-execution@0.18">
+    <com.vectorcast.plugins.vectorcastexecution.VectorCASTSetup plugin="vectorcast-execution@0.33">
+      <environmentSetupWin></environmentSetupWin>
+      <environmentSetupUnix></environmentSetupUnix>
+      <executePreambleWin></executePreambleWin>
+      <executePreambleUnix></executePreambleUnix>
+      <environmentTeardownWin></environmentTeardownWin>
+      <environmentTeardownUnix></environmentTeardownUnix>
+      <optionUseReporting>false</optionUseReporting>
+      <optionErrorLevel>Unstable</optionErrorLevel>
+      <optionHtmlBuildDesc>HTML</optionHtmlBuildDesc>
+      <optionExecutionReport>false</optionExecutionReport>
+      <optionClean>false</optionClean>
+      <waitLoops>1</waitLoops>
+      <waitTime>30</waitTime>
+      <usingSCM>false</usingSCM>
+      <scm class="hudson.scm.NullSCM"/>
+      <manageProjectName></manageProjectName>
+      <jobName></jobName>
+      <nodeLabel></nodeLabel>
+    </com.vectorcast.plugins.vectorcastexecution.VectorCASTSetup>
+    <com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand plugin="vectorcast-execution@0.33">
       <winCommand>call &quot;C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\vcvarsall.bat&quot;
 
 REM######################################################################################
@@ -225,8 +244,8 @@ start %VECTORCAST_DIR%\vcdash --project &quot;%MANAGE_PROJECT%&quot; --history-d
         <maxFunctionCall>80</maxFunctionCall>
       </healthReports>
     </com.vectorcast.plugins.vectorcastcoverage.VectorCASTPublisher>
-    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
-      <script plugin="script-security@1.42">
+    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.4">
+      <script plugin="script-security@1.43">
         <script>import hudson.FilePath
 import java.util.regex.Pattern
 
@@ -315,7 +334,7 @@ if ( coverage &lt; 60) {
       <behavior>2</behavior>
       <runForMatrixParent>false</runForMatrixParent>
     </org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder>
-    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
       <recipientList>vectorindia@vectorcast.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
@@ -356,12 +375,13 @@ if ( coverage &lt; 60) {
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
       <replyTo>vectorindia@vectorcast.com</replyTo>
+      <from></from>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
     <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
       <buildSteps>
         <hudson.tasks.BatchFile>
