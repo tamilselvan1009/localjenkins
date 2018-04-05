@@ -97,7 +97,7 @@ set &quot;VC_RESULT_DIR=%WORKSPACE%\\result&quot;
 set &quot;VC_HISTORY_DIR=N:\\shared\\Harvester_Coverage_History\\Windows&quot;
 set &quot;MANAGE_PROJECT=%WORKSPACE%\\VcToolsProject.vcm&quot;
 
-xcopy /s %VECTORCAST_DIR_TO_USE% %VECTORCAST_DIR%
+xcopy /s %VECTORCAST_DIR_TO_USE% %VECTORCAST_DIR%\.
 
 REM######################################################################################
 ::Create vcshell.db
@@ -124,11 +124,13 @@ REM#############################################################################
 %VECTORCAST_DIR%\clicover add_source_vcdb VcTools vcshell.db vcHarvesterSrcFilesForCoverageWindows.txt
 %VECTORCAST_DIR%\clicast -lc -e VcTools cover instrument statement
 
+REM######################################################################################
 ::Build instrumented code
 call build_instrumented.bat
 cd build
 install.bat
 
+REM######################################################################################
 ::Configure tests to run
 mkdir tbuild
 cd tbuild
@@ -136,11 +138,13 @@ cmake -G&quot;Visual Studio 10&quot; ..\tests
 call powershell -Command &quot;(gc vc_test_add_dir) -replace &apos;VcshellTest/MixedBitnessTest&apos;, &apos;&apos;  | Out-File vc_test_add_dir&quot;
 call powershell -Command &quot;(gc vc_test_add_dir) | ? {$_.trim() -ne &apos;&apos; } | set-content vc_test_add_dir&quot;
 
+REM######################################################################################
 ::Run VcRunTests and collect results
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics
 mkdir &quot;%VC_RESULT_DIR%
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\VCRUNTESTS.DAT &apos;;&apos;
 
+REM######################################################################################
 ::Run LongCmd Testa and collect results
 mkdir longcmd
 cd longcmd
@@ -149,18 +153,21 @@ cmake -G&quot;Visual Studio 10&quot; ..\..\tests\LongCmd
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\LONGCMD.DAT &apos;;&apos;
 cd ..
 
+REM######################################################################################
 ::Run CMDVERB and collect results
 cd MathTest\Matrix
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\rm &apos;{}&apos; &apos;;&apos;
 %VECTORCAST_DIR%\vpython ..\..\VcRunTests.py --cmdverb
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\CMDVERB.DAT &apos;;&apos;
 
+REM######################################################################################
 ::Run OLD DB Interface and collect result
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\rm &apos;{}&apos; &apos;;&apos;
 set _VC_OLD_VCAPP_DB_IF_=1
 %VECTORCAST_DIR%\vpython ..\..\VcRunTests.py --metrics
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\OLD_VCAPP.DAT &apos;;&apos;
 
+REM######################################################################################
 ::Run Sequential Dispatcher and Collect Result
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\rm &apos;{}&apos; &apos;;&apos;
 set _VC_SEQ_DISPATCHER_=1
@@ -168,6 +175,7 @@ set _VC_SEQ_DISPATCHER_=1
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\SEQ_DISPATCHER.DAT &apos;;&apos;
 cd ..\..\..
 
+REM######################################################################################
 ::Run Cygwin and collect Result
 mkdir tcygwin
 cd tcygwin
@@ -179,6 +187,7 @@ python ..\..\VcRunTests.py --metrics
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\CYGWIN.DAT &apos;;&apos;
 set PATH=%BPATH%
 
+REM######################################################################################
 ::Run Examples and collect Result
 cd %WORKSPACE%\\build
 call release-package.bat
@@ -186,6 +195,7 @@ cd ..\release-packages\release\examples
 call buildall.bat msvc10
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\EXAMPLES.DAT &apos;;&apos;
 
+REM######################################################################################
 ::Add collected results to cover project
 cd &quot;%WORKSPACE%&quot;
 set results=VCRUNTESTS LONGCMD CMDVERB OLD_VCAPP SEQ_DISPATCHER EXAMPLES CYGWIN
@@ -193,6 +203,7 @@ for %%r in (%results%) do (
 %VECTORCAST_DIR%\clicast -lc -e VcTools cover result add &quot;%VC_RESULT_DIR%\%%r.DAT&quot;
 )
 
+REM######################################################################################
 ::Create Manage projects
 %VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --create
 %VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --level Source/Windows --create
@@ -203,6 +214,7 @@ for %%r in (%results%) do (
 %VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --import VcTools.vcp 
 %VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --group Cover --add VcTools
 
+REM######################################################################################
 ::Generate reports
 %VECTORCAST_DIR%\vpython &quot;%WORKSPACE%\vc_scripts\generate-results.py&quot; --api 2 &quot;%MANAGE_PROJECT%&quot; 
 %VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --full-status=&quot;VcTools_Windows_full_report.html&quot;
