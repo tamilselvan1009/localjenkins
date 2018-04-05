@@ -53,11 +53,11 @@
     <submoduleCfg class="list"/>
     <extensions>
       <hudson.plugins.git.extensions.impl.CloneOption>
-        <shallow>true</shallow>
+        <shallow>false</shallow>
         <noTags>true</noTags>
         <reference></reference>
         <timeout>20</timeout>
-        <depth>1</depth>
+        <depth>0</depth>
         <honorRefspec>false</honorRefspec>
       </hudson.plugins.git.extensions.impl.CloneOption>
     </extensions>
