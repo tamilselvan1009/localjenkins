@@ -1,54 +1,67 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Single job to run the manage project: N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm</description>
+  <description>Coverage Job for VcTools in Windows</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>WIN_VECTORCAST_DIR</name>
+          <name>VECTORCAST_DIR</name>
           <description></description>
           <defaultValue>N:\\shared\\.VCAST_REGRESSION\\JOB_6PM\\VCAST_WINDOWS</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>HARVESTER_DIR</name>
-          <description></description>
-          <defaultValue>N:\shared\Harvester_Coverage\Windows\Harvester</defaultValue>
+          <name>GIT_BRANCH_NAME</name>
+          <description>Specify the branch for which coverage is required</description>
+          <defaultValue>develop__73369_code_coverage_improvements</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description></description>
-          <defaultValue>VectorCAST coverage for Harvester</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>MANAGE_PROJECT</name>
-          <description></description>
-          <defaultValue>N:\shared\Harvester_Coverage\Windows\Harvester\VcTools_Windows.vcm</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>VECTOR_LICENSE_FILE</name>
-          <description></description>
-          <defaultValue>C:\FLEXlm\vector-INDIAWINDOWSBUI.lic</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>VC_RESULT_DIR</name>
-          <description></description>
-          <defaultValue>N:\shared\Harvester_Coverage\Windows\Harvester\result</defaultValue>
+          <defaultValue>user_trigger_${GIT_BRANCH_NAME}</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
-  <scm class="hudson.scm.NullSCM"/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.8.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>git@github.com:VectorSoftwareRI/Harvester.git</url>
+        <credentialsId>git</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>origin/${GIT_BRANCH_NAME}</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.CloneOption>
+        <shallow>true</shallow>
+        <noTags>false</noTags>
+        <reference></reference>
+        <timeout>20</timeout>
+        <depth>1</depth>
+        <honorRefspec>false</honorRefspec>
+      </hudson.plugins.git.extensions.impl.CloneOption>
+    </extensions>
+  </scm>
   <assignedNode>Windows_54</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
-    <org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger plugin="parameterized-scheduler@0.2">
+    <org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger plugin="parameterized-scheduler@0.5">
       <spec></spec>
-      <parameterizedSpecification>H 02 * * *</parameterizedSpecification>
+      <parameterizedSpecification>00 02 * * *  % BUILD_NAME=develop_timer</parameterizedSpecification>
     </org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
@@ -57,63 +70,59 @@
     <com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand plugin="vectorcast-execution@0.18">
       <winCommand>call &quot;C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\vcvarsall.bat&quot;
 
-taskkill /IM vcdash.exe /f
-set VECTORCAST_DIR=V:\VCAST_REGRESSION
-rmdir /q /s %VECTORCAST_DIR%
-mkdir %VECTORCAST_DIR%
-xcopy /s %WIN_VECTORCAST_DIR% %VECTORCAST_DIR%
+REM######################################################################################
+::Common variables used
+set &quot;VECTORCAST_DIR_TO_USE=%VECTORCAST_DIR%&quot;
+set &quot;VECTORCAST_DIR=%WORKSPACE%\\vcast&quot;
+set &quot;VC_RESULT_DIR=%WORKSPACE%\\result&quot;
+set &quot;VC_HISTORY_DIR=N:\\shared\\Harvester_Coverage_History\\Windows&quot;
+set &quot;MANAGE_PROJECT=%WORKSPACE%\\VcToolsProject.vcm&quot;
 
-set VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
-cd %HARVESTER_DIR%
-n:
+xcopy /s %VECTORCAST_DIR_TO_USE% %VECTORCAST_DIR%
 
-%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --status
-%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --release-locks
-%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --disable-instrument-in-place
-
-set BPATH=%PATH%
-set PATH=C:\cygwin_2_8_0_dont_delete_reg_uses_this_for_git\bin;%PATH%
-git checkout -- harvester/inc/vcVersion.h
-git stash
-git pull origin develop
-set PATH=%BPATH%
+REM######################################################################################
+::Create vcshell.db
+%VECTORCAST_DIR%\vcshell buildWin.bat msvc9 --arch=win32 --config=Release
+%VECTORCAST_DIR%\vcutil addmetrics --filelist=vcHarvesterSrcFilesForCoverageWindows.txt
 
 :: Change the VcTools version to the git commit id
 FOR /F &quot;delims=&quot; %%i IN (&apos;git rev-parse --short HEAD&apos;) DO set version=%%i
 call powershell -Command &quot;(gc ./harvester/inc/vcVersion.h) -replace &apos;.*#define _VCTOOLS_VERSION_.*&apos;, &apos;#define _VCTOOLS_VERSION_ \&quot;%version%\&quot;&apos;  | Out-File harvester\inc\vcVersion.h&quot;
 
-del vcshell.*
-%VECTORCAST_DIR%\vcshell buildWin.bat msvc9 --arch=win32 --config=Release
+REM######################################################################################
+::Create the cover project
+%VECTORCAST_DIR%\clicast -lc cover env create VcTools
+%VECTORCAST_DIR%\clicast -lc template VISUAL_CPP_CPP_2008
+%VECTORCAST_DIR%\clicast -lc option  COVERAGE_IO_TYPE VCAST_COVERAGE_IO_BUFFERED
+%VECTORCAST_DIR%\clicast -lc option  VCAST_APPEND_TO_TESTINSS TRUE
+%VECTORCAST_DIR%\clicast -lc option  VCAST_COVERAGE_FOR_HEADERS TRUE
+%VECTORCAST_DIR%\clicast -lc option  VCAST_DUMP_COVERAGE_AT_EXIT TRUE
+%VECTORCAST_DIR%\clicast -lc option  VCAST_COVER_STATEMENTS_BY_BLOCK TRUE
+%VECTORCAST_DIR%\clicast -lc option  C_ALT_COMPILE_CMD &quot;CL /c /Zi /EHsc /MD&quot;
+%VECTORCAST_DIR%\clicast -lc option  C_ALT_PREPROCESS_CMD &quot;CL /E /C /EHsc /MD&quot;
+%VECTORCAST_DIR%\clicast -lc option  C_COMPILE_CMD &quot;CL /c /Zi /EHsc /MD&quot;
+%VECTORCAST_DIR%\clicast -lc option  C_PREPROCESS_CMD &quot;CL /E /C /EHsc /MD&quot;
+%VECTORCAST_DIR%\clicover add_source_vcdb VcTools vcshell.db vcHarvesterSrcFilesForCoverageWindows.txt
+%VECTORCAST_DIR%\clicast -lc -e VcTools cover instrument statement
 
-%VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --enable-instrument-in-place
-cd cover
-%VECTORCAST_DIR%%\clicast -lc -e harvester_win32 cover instrument statement
-cd ..
-call buildWin.bat msvc9 --arch=win32 --config=Release
-
+::Build instrumented code
+call build_instrumented.bat
 cd build
-call install.bat
+install.bat
 
-call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;
-cd %WORKSPACE%
-v:
-mkdir tests
-cd tests
-xcopy /s %HARVESTER_DIR%\tests .
-cd ..
-if EXIST tbuild rmdir /q /s tbuild
+::Configure tests to run
 mkdir tbuild
-
-if EXIST %VC_RESULT_DIR% rmdir /q /s %VC_RESULT_DIR%
-mkdir %VC_RESULT_DIR%
-
 cd tbuild
 cmake -G&quot;Visual Studio 10&quot; ..\tests
 call powershell -Command &quot;(gc vc_test_add_dir) -replace &apos;VcshellTest/MixedBitnessTest&apos;, &apos;&apos;  | Out-File vc_test_add_dir&quot;
 call powershell -Command &quot;(gc vc_test_add_dir) | ? {$_.trim() -ne &apos;&apos; } | set-content vc_test_add_dir&quot;
+
+::Run VcRunTests and collect results
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics
+mkdir &quot;%VC_RESULT_DIR%
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\VCRUNTESTS.DAT &apos;;&apos;
 
+::Run LongCmd Testa and collect results
 mkdir longcmd
 cd longcmd
 cmake -G&quot;Visual Studio 10&quot; ..\..\tests\LongCmd
@@ -121,23 +130,26 @@ cmake -G&quot;Visual Studio 10&quot; ..\..\tests\LongCmd
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\LONGCMD.DAT &apos;;&apos;
 cd ..
 
+::Run CMDVERB and collect results
 cd MathTest\Matrix
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\rm &apos;{}&apos; &apos;;&apos;
 %VECTORCAST_DIR%\vpython ..\..\VcRunTests.py --cmdverb
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\CMDVERB.DAT &apos;;&apos;
 
+::Run OLD DB Interface and collect result
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\rm &apos;{}&apos; &apos;;&apos;
 set _VC_OLD_VCAPP_DB_IF_=1
 %VECTORCAST_DIR%\vpython ..\..\VcRunTests.py --metrics
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\OLD_VCAPP.DAT &apos;;&apos;
 
+::Run Sequential Dispatcher and Collect Result
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\rm &apos;{}&apos; &apos;;&apos;
 set _VC_SEQ_DISPATCHER_=1
 %VECTORCAST_DIR%\vpython ..\..\VcRunTests.py --metrics
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\SEQ_DISPATCHER.DAT &apos;;&apos;
 cd ..\..\..
 
-if EXIST tcygwin rmdir /q /s tcygwin
+::Run Cygwin and collect Result
 mkdir tcygwin
 cd tcygwin
 set BPATH=%PATH%
@@ -148,25 +160,31 @@ python ..\..\VcRunTests.py --metrics
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\CYGWIN.DAT &apos;;&apos;
 set PATH=%BPATH%
 
-n:
-if EXIST %HARVESTER_DIR%\\release-packages rmdir /q /s %HARVESTER_DIR%\\release-packages
-cd %HARVESTER_DIR%\\build
+::Run Examples and collect Result
+cd %WORKSPACE%\\build
 call release-package.bat
-
 cd ..\release-packages\release\examples
 call buildall.bat msvc10
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\EXAMPLES.DAT &apos;;&apos;
 
-cd %HARVESTER_DIR%\cover
+::Add collected results to cover project
+cd &quot;%WORKSPACE%&quot;
 set results=VCRUNTESTS LONGCMD CMDVERB OLD_VCAPP SEQ_DISPATCHER EXAMPLES CYGWIN
 for %%r in (%results%) do (
-%VECTORCAST_DIR%\clicast -lc -e harvester_win32 cover result remove %%r
-%VECTORCAST_DIR%\clicast -lc -e harvester_win32 cover result add ..\result\%%r.DAT
+%VECTORCAST_DIR%\clicast -lc -e VcTools cover result add &quot;%VC_RESULT_DIR%\%%r.DAT&quot;
 )
 
-cd %WORKSPACE%
-v:
+::Create Manage projects
+%VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --create
+%VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --level Source/Windows --create
+%VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --level Source/Windows/CompilerNode --create
+%VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --level Source/Windows/CompilerNode/SystemTesting --create
+%VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --group Cover --create
+%VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --level Source/Windows/CompilerNode/SystemTesting --add Cover
+%VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --import VcTools.vcp 
+%VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --group Cover --add VcTools
 
+::Generate reports
 %VECTORCAST_DIR%\vpython &quot;%WORKSPACE%\vc_scripts\generate-results.py&quot; --api 2 &quot;%MANAGE_PROJECT%&quot; 
 %VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --full-status=&quot;VcTools_Windows_full_report.html&quot;
 %VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --create-report=aggregate   --output=&quot;VcTools_Windows_aggregate_report.html&quot;
@@ -175,8 +193,8 @@ v:
 %VECTORCAST_DIR%\manage --project &quot;%MANAGE_PROJECT%&quot; --full-status &gt; &quot;VcTools_Windows_full_report.txt&quot;
 %VECTORCAST_DIR%\vpython &quot;%WORKSPACE%\vc_scripts\gen-combined-cov.py&quot; &quot;VcTools_Windows_aggregate_report.html&quot;
 %VECTORCAST_DIR%\vpython &quot;%WORKSPACE%\vc_scripts\getTotals.py&quot; --api 2 &quot;VcTools_Windows_full_report.txt&quot;
-%VECTORCAST_DIR%\vcdash -p &quot;%MANAGE_PROJECT%&quot; --history-dir=&quot;%HARVESTER_DIR%\\history&quot; --save-history
-start %VECTORCAST_DIR%\vcdash --project &quot;%MANAGE_PROJECT&quot; --history-dir=&quot;%HARVESTER_DIR%\\history&quot; --run-server --vcdb &quot;%HARVESTER_DIR%\vcshell.db&quot;</winCommand>
+%VECTORCAST_DIR%\vcdash -p &quot;%MANAGE_PROJECT%&quot; --history-dir=&quot;%VC_HISTORY_DIR%&quot; --save-history
+start %VECTORCAST_DIR%\vcdash --project &quot;%MANAGE_PROJECT&quot; --history-dir=&quot;%VC_HISTORY_DIR&quot; --run-server --vcdb &quot;%WORKSPACE%\vcshell.db&quot;</winCommand>
       <unixCommand></unixCommand>
     </com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand>
   </builders>
@@ -208,7 +226,7 @@ start %VECTORCAST_DIR%\vcdash --project &quot;%MANAGE_PROJECT&quot; --history-di
       </healthReports>
     </com.vectorcast.plugins.vectorcastcoverage.VectorCASTPublisher>
     <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
-      <script plugin="script-security@1.27">
+      <script plugin="script-security@1.42">
         <script>import hudson.FilePath
 import java.util.regex.Pattern
 
@@ -343,12 +361,21 @@ if ( coverage &lt; 60) {
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
-      <deleteDirs>true</deleteDirs>
-      <cleanupParameter></cleanupParameter>
-      <externalDelete></externalDelete>
-    </hudson.plugins.ws__cleanup.PreBuildCleanup>
-    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
+    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
+      <buildSteps>
+        <hudson.tasks.BatchFile>
+          <command>:: kill vcdash&#xd;
+taskkill /IM vcdash.exe /f&#xd;
+&#xd;
+:: Delete the workspace&#xd;
+cd %WORKSPACE%\\..&#xd;
+rmdir /q /s %WORKSPACE%</command>
+        </hudson.tasks.BatchFile>
+      </buildSteps>
+      <failOnError>false</failOnError>
+    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>${ENV, var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
       <runAtEnd>true</runAtEnd>
