@@ -97,7 +97,7 @@ set &quot;VC_RESULT_DIR=%WORKSPACE%\\result&quot;
 set &quot;VC_HISTORY_DIR=N:\\shared\\Harvester_Coverage_History\\Windows&quot;
 set &quot;MANAGE_PROJECT=%WORKSPACE%\\VcToolsProject.vcm&quot;
 
-xcopy /s %VECTORCAST_DIR_TO_USE% %VECTORCAST_DIR%
+xcopy /s %VECTORCAST_DIR_TO_USE% %VECTORCAST_DIR%\*
 
 REM ######################################################################################
 ::Create vcshell.db
