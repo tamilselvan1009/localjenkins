@@ -46,7 +46,6 @@
         <string>Build_Linux64</string>
         <string>Build_Linux64_full</string>
         <string>Build_Windows</string>
-        <string>Coverage_Linux</string>
         <string>Coverage_Linux_Under_design</string>
         <string>Coverage_Windows</string>
         <string>Coverage_Windows_under_design</string>
