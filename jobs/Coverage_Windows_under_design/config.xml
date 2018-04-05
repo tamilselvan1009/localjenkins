@@ -128,7 +128,7 @@ REM ############################################################################
 ::Build instrumented code
 call build_instrumented.bat
 cd build
-install.bat
+call install.bat
 
 REM ######################################################################################
 ::Configure tests to run
