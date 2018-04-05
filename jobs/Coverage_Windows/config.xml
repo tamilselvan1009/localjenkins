@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
   <description>Single job to run the manage project: N:/shared/Harvester_Coverage/Windows/Harvester/VcTools_Windows.vcm</description>
@@ -10,31 +10,37 @@
           <name>WIN_VECTORCAST_DIR</name>
           <description></description>
           <defaultValue>N:\\shared\\.VCAST_REGRESSION\\JOB_6PM\\VCAST_WINDOWS</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>HARVESTER_DIR</name>
           <description></description>
           <defaultValue>N:\shared\Harvester_Coverage\Windows\Harvester</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description></description>
           <defaultValue>VectorCAST coverage for Harvester</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>MANAGE_PROJECT</name>
           <description></description>
           <defaultValue>N:\shared\Harvester_Coverage\Windows\Harvester\VcTools_Windows.vcm</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>VECTOR_LICENSE_FILE</name>
           <description></description>
           <defaultValue>C:\FLEXlm\vector-INDIAWINDOWSBUI.lic</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>VC_RESULT_DIR</name>
           <description></description>
           <defaultValue>N:\shared\Harvester_Coverage\Windows\Harvester\result</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -42,11 +48,11 @@
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>Windows_54</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
-    <org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger plugin="parameterized-scheduler@0.2">
+    <org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger plugin="parameterized-scheduler@0.5">
       <spec></spec>
       <parameterizedSpecification>H 02 * * *</parameterizedSpecification>
     </org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger>
@@ -208,7 +214,7 @@ start %VECTORCAST_DIR%\vcdash --project &quot;%MANAGE_PROJECT&quot; --history-di
       </healthReports>
     </com.vectorcast.plugins.vectorcastcoverage.VectorCASTPublisher>
     <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
-      <script plugin="script-security@1.27">
+      <script plugin="script-security@1.42">
         <script>import hudson.FilePath
 import java.util.regex.Pattern
 
@@ -348,7 +354,7 @@ if ( coverage &lt; 60) {
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
-    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>${ENV, var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
       <runAtEnd>true</runAtEnd>
