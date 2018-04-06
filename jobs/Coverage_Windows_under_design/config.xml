@@ -168,8 +168,7 @@ set _VC_OLD_VCAPP_DB_IF_=1
 %VECTORCAST_DIR%\vpython ..\..\VcRunTests.py --metrics
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\OLD_VCAPP.DAT &apos;;&apos;
 
-REM 
- ######################################################################################
+REM ######################################################################################
 ::Run Sequential Dispatcher and Collect Result
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\rm &apos;{}&apos; &apos;;&apos;
 set _VC_SEQ_DISPATCHER_=1
@@ -194,7 +193,7 @@ REM ############################################################################
 cd %WORKSPACE%\\build
 call release-package.bat
 cd ..\release-packages\release\examples
-call buildall.bat msvc10
+call buildall.bat msvc9
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\EXAMPLES.DAT &apos;;&apos;
 
 REM 
