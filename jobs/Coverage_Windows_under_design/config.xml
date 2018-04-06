@@ -132,6 +132,7 @@ call install.bat
 
 REM ######################################################################################
 ::Configure tests to run
+call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;
 cd %WORKSPACE%
 mkdir tbuild
 cd tbuild
@@ -193,7 +194,7 @@ REM ############################################################################
 cd %WORKSPACE%\\build
 call release-package.bat
 cd ..\release-packages\release\examples
-call buildall.bat msvc9
+call buildall.bat msvc10
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\EXAMPLES.DAT &apos;;&apos;
 
 REM 
@@ -227,7 +228,10 @@ REM ############################################################################
 %VECTORCAST_DIR%\vpython &quot;%WORKSPACE%\vc_scripts\gen-combined-cov.py&quot; &quot;VcTools_Windows_aggregate_report.html&quot;
 %VECTORCAST_DIR%\vpython &quot;%WORKSPACE%\vc_scripts\getTotals.py&quot; --api 2 &quot;VcTools_Windows_full_report.txt&quot;
 %VECTORCAST_DIR%\vcdash -p &quot;%MANAGE_PROJECT%&quot; --history-dir=&quot;%VC_HISTORY_DIR%&quot; --save-history
-start %VECTORCAST_DIR%\vcdash --project &quot;%MANAGE_PROJECT%&quot; --history-dir=&quot;%VC_HISTORY_DIR%&quot; --run-server --vcdb &quot;%WORKSPACE%\vcshell.db&quot;</winCommand>
+set _ID_STORE_=%BUILD_ID%
+set BUILD_ID=unique
+%VECTORCAST_DIR%\vcdash --project &quot;%MANAGE_PROJECT%&quot; --history-dir=&quot;%VC_HISTORY_DIR%&quot; --run-server --vcdb &quot;%WORKSPACE%\vcshell.db&quot;
+set BUILD_ID=%_ID_STORE_%</winCommand>
       <unixCommand></unixCommand>
     </com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand>
   </builders>
