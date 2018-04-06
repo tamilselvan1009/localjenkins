@@ -102,6 +102,7 @@ xcopy /s %VECTORCAST_DIR_TO_USE% %VECTORCAST_DIR%\*
 REM ######################################################################################
 ::Create vcshell.db
 %VECTORCAST_DIR%\vcshell buildWin.bat msvc9 --arch=win32 --config=Release
+%VECTORCAST_DIR%\clicast -lc template VISUAL_CPP_CPP_2008
 %VECTORCAST_DIR%\vcutil addmetrics --filelist=vcHarvesterSrcFilesForCoverageWindows.txt
 
 :: Change the VcTools version to the git commit id
@@ -111,7 +112,6 @@ call powershell -Command &quot;(gc ./harvester/inc/vcVersion.h) -replace &apos;.
 REM ######################################################################################
 ::Create the cover project
 %VECTORCAST_DIR%\clicast -lc cover env create VcTools
-%VECTORCAST_DIR%\clicast -lc template VISUAL_CPP_CPP_2008
 %VECTORCAST_DIR%\clicast -lc option  COVERAGE_IO_TYPE VCAST_COVERAGE_IO_BUFFERED
 %VECTORCAST_DIR%\clicast -lc option  VCAST_APPEND_TO_TESTINSS TRUE
 %VECTORCAST_DIR%\clicast -lc option  VCAST_COVERAGE_FOR_HEADERS TRUE
