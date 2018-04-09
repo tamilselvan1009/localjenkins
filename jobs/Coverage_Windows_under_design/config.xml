@@ -145,15 +145,6 @@ REM ############################################################################
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics
 mkdir &quot;%VC_RESULT_DIR%
 C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\VCRUNTESTS.DAT &apos;;&apos;
-
-REM ######################################################################################
-::Run LongCmd Testa and collect results
-mkdir longcmd
-cd longcmd
-cmake -G&quot;Visual Studio 10&quot; ..\..\tests\LongCmd
-%VECTORCAST_DIR%\vpython ..\VcRunTests.py --metrics
-C:\cygwin\bin\find . -name &quot;TESTINSS*&quot; -exec C:\cygwin\bin\cat &apos;{}&apos; &gt;&gt; %VC_RESULT_DIR%\\LONGCMD.DAT &apos;;&apos;
-cd ..
   
 REM ######################################################################################
 ::Run CMDVERB and collect results
@@ -201,7 +192,7 @@ REM
 ######################################################################################
 ::Add collected results to cover project
 cd &quot;%WORKSPACE%&quot;
-set results=VCRUNTESTS LONGCMD CMDVERB OLD_VCAPP SEQ_DISPATCHER EXAMPLES CYGWIN
+set results=VCRUNTESTS CMDVERB OLD_VCAPP SEQ_DISPATCHER EXAMPLES CYGWIN
 for %%r in (%results%) do (
 %VECTORCAST_DIR%\clicast -lc -e VcTools cover result add &quot;%VC_RESULT_DIR%\%%r.DAT&quot;
 )
