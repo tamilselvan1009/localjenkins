@@ -40,7 +40,7 @@
       <command>@echo on&#xd;
 cd %WORKSPACE%&#xd;
 set path=%path:&quot;=%&#xd;
-call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
+call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot; amd64&#xd;
 &#xd;
 set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
@@ -49,9 +49,9 @@ set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
 xcopy /S /I /E %HARVESTER_PATH%\tests tests /Q /Y&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
-mkdir tbuild32_msvc10&#xd;
-cd tbuild32_msvc10&#xd;
-cmake ..\tests&#xd;
+mkdir tbuild64_msvc10&#xd;
+cd tbuild64_msvc10&#xd;
+cmake -G&quot;Visual Studio 10 Win64&quot;  ..\tests&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics </command>
     </hudson.tasks.BatchFile>
   </builders>
