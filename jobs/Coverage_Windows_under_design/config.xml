@@ -221,7 +221,7 @@ REM ############################################################################
 %VECTORCAST_DIR%\vcdash -p &quot;%MANAGE_PROJECT%&quot; --history-dir=&quot;%VC_HISTORY_DIR%&quot; --save-history
 set _ID_STORE_=%BUILD_ID%
 set BUILD_ID=unique
-start %VECTORCAST_DIR%\vcdash --project &quot;%MANAGE_PROJECT%&quot; --history-dir=&quot;%VC_HISTORY_DIR%&quot; --run-server --vcdb &quot;%WORKSPACE%\vcshell.db&quot;
+start /B %VECTORCAST_DIR%\vcdash --project &quot;%MANAGE_PROJECT%&quot; --history-dir=&quot;%VC_HISTORY_DIR%&quot; --run-server --vcdb &quot;%WORKSPACE%\vcshell.db&quot;
 set BUILD_ID=%_ID_STORE_%</winCommand>
       <unixCommand></unixCommand>
     </com.vectorcast.plugins.vectorcastexecution.VectorCASTCommand>
