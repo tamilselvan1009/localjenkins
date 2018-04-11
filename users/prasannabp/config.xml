@@ -1,25 +1,17 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <user>
   <fullName>prasannabp</fullName>
-  <description></description>
   <properties>
     <jenkins.security.ApiTokenProperty>
-      <apiToken>{AQAAABAAAAAwdgPaI04lG2mJBkKFRYGg7u1lJ3LEFP/omcAu+l6cTgXYEFHwDUPZm1GIzalFUb/eqCEECgtgCePRWhawbqOdAQ==}</apiToken>
+      <apiToken>{AQAAABAAAAAwHakv417Dxddzyruls5pFHftbtJPuAzrta6cHaQpPnzGNSk9BB57/Vqcz9xEGHkJHCZ/3fwK9p70SzbmarW46cg==}</apiToken>
     </jenkins.security.ApiTokenProperty>
-    <hudson.plugins.greenballs.ColorBlindProperty plugin="greenballs@1.15">
-      <enabledColorBlindSupport>false</enabledColorBlindSupport>
-    </hudson.plugins.greenballs.ColorBlindProperty>
     <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@2.1.16">
       <domainCredentialsMap class="hudson.util.CopyOnWriteMap$Hash"/>
     </com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty>
-    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.20">
-      <emailAddress>prasannabp@vectorcast.com</emailAddress>
-    </hudson.tasks.Mailer_-UserProperty>
-    <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.57">
+    <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.62">
       <triggers/>
     </hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty>
     <hudson.model.MyViewsProperty>
-      <primaryViewName></primaryViewName>
       <views>
         <hudson.model.AllView>
           <owner class="hudson.model.MyViewsProperty" reference="../../.."/>
@@ -36,14 +28,11 @@
     <hudson.model.PaneStatusProperties>
       <collapsed/>
     </hudson.model.PaneStatusProperties>
-    <hudson.security.HudsonPrivateSecurityRealm_-Details>
-      <passwordHash>#jbcrypt:$2a$10$UW0dAXIX/SoXedz2P9VCGu3tQnjJTKp/0qYB8sY1jPYJkoBfoLQqK</passwordHash>
-    </hudson.security.HudsonPrivateSecurityRealm_-Details>
-    <org.jenkinsci.main.modules.cli.auth.ssh.UserPropertyImpl>
-      <authorizedKeys></authorizedKeys>
-    </org.jenkinsci.main.modules.cli.auth.ssh.UserPropertyImpl>
     <hudson.search.UserSearchProperty>
       <insensitiveSearch>true</insensitiveSearch>
     </hudson.search.UserSearchProperty>
+    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.21">
+      <emailAddress>prasannabp@vectorcast.com</emailAddress>
+    </hudson.tasks.Mailer_-UserProperty>
   </properties>
 </user>
