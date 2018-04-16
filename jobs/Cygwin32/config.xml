@@ -64,9 +64,8 @@ rem %VECTORCAST_DIR%\vpython VcRunTests.py --metrics --vcast_dir=N:\\shared\\.VC
 rem %VECTORCAST_DIR%\vpython VcRunTests.py --metrics --run_tests=HelloTest&#xd;
 cd HelloTest&#xd;
 make clean&#xd;
-del ..\h.db&#xd;
-rem %VECTORCAST_DIR%\vcshell   --tag=&quot;HelloTest_2018Apr16-111103&quot; --db=&quot;C:\SlaveJenkins\workspace\Cygwin32\tbuild32_cyg\h.db&quot; --echo --metrics --cfg=&quot;C:\SlaveJenkins\workspace\Cygwin32\tbuild32_cyg&quot; make&#xd;
-make&#xd;
+del vcshell.db&#xd;
+%VECTORCAST_DIR%\vcshell   --metrics --cfg=&quot;C:\SlaveJenkins\workspace\Cygwin32\tbuild32_cyg&quot; make&#xd;
 &#xd;
 rem Collect results&#xd;
 rem %VECTORCAST_DIR%\vpython VcCollectResult.py --db=N:\shared\Jenkins_Result\vcshell.db --tag=cygwin32&#xd;
