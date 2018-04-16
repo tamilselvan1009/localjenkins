@@ -65,7 +65,7 @@ rem %VECTORCAST_DIR%\vpython VcRunTests.py --metrics --run_tests=HelloTest&#xd;
 cd HelloTest&#xd;
 make clean&#xd;
 del vcshell.db&#xd;
-%VECTORCAST_DIR%\vcshell  make --vcdebug&#xd;
+%VECTORCAST_DIR%\vcshell  make &#xd;
 &#xd;
 rem Collect results&#xd;
 rem %VECTORCAST_DIR%\vpython VcCollectResult.py --db=N:\shared\Jenkins_Result\vcshell.db --tag=cygwin32&#xd;
