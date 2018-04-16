@@ -64,8 +64,8 @@ rem %VECTORCAST_DIR%\vpython VcRunTests.py --metrics --vcast_dir=N:\\shared\\.VC
 %VECTORCAST_DIR%\vpython VcRunTests.py --metrics --run_tests=HelloTest&#xd;
 &#xd;
 rem Collect results&#xd;
-%VECTORCAST_DIR%\vpython VcCollectResult.py --db=N:\shared\Jenkins_Result\vcshell.db --tag=cygwin32&#xd;
-%VECTORCAST_DIR%\vpython VcRegressionResult.py --db=N:\shared\Jenkins_Result/regression.db --tag=cygwin32 --storeresult&#xd;
+rem %VECTORCAST_DIR%\vpython VcCollectResult.py --db=N:\shared\Jenkins_Result\vcshell.db --tag=cygwin32&#xd;
+rem %VECTORCAST_DIR%\vpython VcRegressionResult.py --db=N:\shared\Jenkins_Result/regression.db --tag=cygwin32 --storeresult&#xd;
 </command>
     </hudson.tasks.BatchFile>
   </builders>
