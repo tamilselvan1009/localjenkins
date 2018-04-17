@@ -44,10 +44,11 @@
   <builders>
     <hudson.tasks.BatchFile>
       <command>echo %WORKSPACE%&#xd;
+set path=%path:&quot;=%&#xd;
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
+&#xd;
 echo %WORKSPACE%&#xd;
 cd %WORKSPACE%&#xd;
-set path=%path:&quot;=%&#xd;
 set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-IDCWIN2.lic&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
@@ -83,18 +84,12 @@ rem Collect results&#xd;
   </publishers>
   <buildWrappers>
     <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
-      <patterns>
-        <hudson.plugins.ws__cleanup.Pattern>
-          <pattern></pattern>
-          <type>INCLUDE</type>
-        </hudson.plugins.ws__cleanup.Pattern>
-      </patterns>
       <deleteDirs>false</deleteDirs>
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
-      <template>${ENV, var=&quot;BUILD_NAME&quot;}</template>
+      <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
       <runAtEnd>true</runAtEnd>
     </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
