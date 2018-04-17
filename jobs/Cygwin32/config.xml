@@ -51,7 +51,12 @@ set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-IDCWIN2.lic&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 &#xd;
+echo %WORKSPACE%&#xd;
+&#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
+&#xd;
+echo %WORKSPACE%&#xd;
+exit&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
 mkdir tbuild32_cyg&#xd;
@@ -77,6 +82,12 @@ rem Collect results&#xd;
   </publishers>
   <buildWrappers>
     <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
+      <patterns>
+        <hudson.plugins.ws__cleanup.Pattern>
+          <pattern></pattern>
+          <type>INCLUDE</type>
+        </hudson.plugins.ws__cleanup.Pattern>
+      </patterns>
       <deleteDirs>false</deleteDirs>
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
