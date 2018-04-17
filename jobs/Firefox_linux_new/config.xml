@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
   <description></description>
@@ -10,21 +10,25 @@
           <name>LINUX_VECTORCAST_DIR</name>
           <description>Vectorcast directory</description>
           <defaultValue>/home/vectorindia/.VCAST_REGRESSION/</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>summary_file</name>
           <description></description>
           <defaultValue>summary.txt</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>top_level_archive_dir</name>
           <description></description>
           <defaultValue>/mnt/nfs/shared/firefox_results/linux</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description></description>
           <defaultValue>user_trigger</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -36,7 +40,7 @@
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
-    <org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger plugin="parameterized-scheduler@0.2">
+    <org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger plugin="parameterized-scheduler@0.5">
       <spec></spec>
       <parameterizedSpecification>0 20 * * *</parameterizedSpecification>
     </org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger>
@@ -386,6 +390,11 @@ mkdir $archive_dir
 cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/summary.txt $archive_dir/.
 cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/*.out.txt $archive_dir/.
 cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/sol.txt $archive_dir/.
+cd ~/clone/Harvester/tbuild/VcshellTest/finishing_up
+rm -rf *
+cmake -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ ../../../tests/VcshellTest/finishing_up/
+$VECTORCAST_DIR/vpython ../../VcRunTests.py
+
 exit /b $_RETURN_CODE_
 
 
@@ -394,7 +403,7 @@ exit /b $_RETURN_CODE_
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
       <recipientList>shekhar.singh@vectorcast.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
@@ -427,17 +436,18 @@ Jenkins</body>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
       <replyTo>shekhar.singh@vectorcast.com</replyTo>
+      <from></from>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
       <deleteDirs>false</deleteDirs>
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
-    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.18">
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.19">
       <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
         <timeoutMinutes>600</timeoutMinutes>
       </strategy>
@@ -445,7 +455,7 @@ Jenkins</body>
         <hudson.plugins.build__timeout.operations.FailOperation/>
       </operationList>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
-    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
       <runAtEnd>false</runAtEnd>
