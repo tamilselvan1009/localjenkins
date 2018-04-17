@@ -43,8 +43,9 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
-&#xd;
+      <command>echo %WORKSPACE%&#xd;
+call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
+echo %WORKSPACE%&#xd;
 cd %WORKSPACE%&#xd;
 set path=%path:&quot;=%&#xd;
 set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
