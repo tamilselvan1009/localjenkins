@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
   <description></description>
@@ -6,10 +6,10 @@
   <properties>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
-        <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.8.0">
+        <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.9.1">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>e40f4bc8-5061-4f13-9edc-db7d4c00a344</uuid>
+          <uuid>99bdd4a6-be0a-43e3-be64-38c4536a181d</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -23,36 +23,43 @@
           <name>WIN_RELEASE_DIR</name>
           <description>Specify the location where artifacts will be stored. Location of the release dir in windows style path</description>
           <defaultValue>N:\\shared\\Jenkins_Harvester</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LINUX_RELEASE_DIR</name>
           <description>Specify the location where artifacts will be stored. Location of the release dir in linux style path</description>
           <defaultValue>/mnt/nfs/shared/Jenkins_Harvester</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WIN_GIT_DIR</name>
           <description>Location of Git in windows path</description>
           <defaultValue>${WIN_RELEASE_DIR}\\Git</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LINUX_GIT_DIR</name>
           <description>Location of Git in linux path</description>
           <defaultValue>${LINUX_RELEASE_DIR}/Git</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WIN_PACKAGE_DIR</name>
           <description>Location of windows package dir in windows path</description>
           <defaultValue>${WIN_RELEASE_DIR}\\Windows</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LINUX_PACKAGE_DIR</name>
           <description>Location of linux package dir in linux path</description>
           <defaultValue>${LINUX_RELEASE_DIR}/Linux</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description>Specify a name for the jenkins build</description>
           <defaultValue>USER_TRIGGER_${GIT_BRANCH_NAME}</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>BUILD_HARVESTER</name>
@@ -63,16 +70,19 @@
           <name>LINUX_VECTORCAST_DIR</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WIN_VECTORCAST_DIR</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WIN64_PACKAGE_DIR</name>
           <description></description>
           <defaultValue>${WIN_PACKAGE_DIR}\\64_bit</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>USE_COMMIT_DATE_FOR_VERSION</name>
@@ -83,21 +93,24 @@
           <name>LINUX64_VECTORCAST_DIR</name>
           <description></description>
           <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/VCAST_64bit</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LINUX_54972_VC</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WINDOWS_54972_VC</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.1.0">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.8.0">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -128,9 +141,9 @@
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
-    <org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger plugin="parameterized-scheduler@0.2">
+    <org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger plugin="parameterized-scheduler@0.5">
       <spec></spec>
-      <parameterizedSpecification>00 9,13,17 * * *</parameterizedSpecification>
+      <parameterizedSpecification>00 9,13 * * *</parameterizedSpecification>
     </org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
@@ -167,7 +180,7 @@ echo VCTOOLS_VERSION=$VERSION &gt; $WORKSPACE/build_harvester.txt
 fi
 </command>
     </hudson.tasks.Shell>
-    <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.33">
+    <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.35.2">
       <configs>
         <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
           <configs>
@@ -175,6 +188,7 @@ fi
             <hudson.plugins.parameterizedtrigger.FileBuildParameters>
               <propertiesFile>build_harvester.txt</propertiesFile>
               <failTriggerOnMissing>true</failTriggerOnMissing>
+              <textParamValueOnNewLine>false</textParamValueOnNewLine>
               <useMatrixChild>false</useMatrixChild>
               <onlyExactRuns>false</onlyExactRuns>
             </hudson.plugins.parameterizedtrigger.FileBuildParameters>
@@ -209,15 +223,15 @@ fi
     </hudson.plugins.parameterizedtrigger.TriggerBuilder>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.19">
+    <hudson.tasks.Mailer plugin="mailer@1.21">
       <recipients>kavya@vectorcast.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
-    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>${ENV, var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
       <runAtEnd>false</runAtEnd>
