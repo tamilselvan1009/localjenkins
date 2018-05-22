@@ -68,7 +68,7 @@
         <hudson.model.StringParameterDefinition>
           <name>GIT_BRANCH_NAME</name>
           <description>specify the branch name</description>
-          <defaultValue>origin/develop__51303_get_option</defaultValue>
+          <defaultValue>origin/develop</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
