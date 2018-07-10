@@ -58,8 +58,8 @@ mkdir tbuild32_msvc10 || call:handle_error&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests || call:handle_error&#xd;
 echo &quot;Test starts here&quot; &#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --metrics --vcast_dir=N:\\shared\\.VCAST_REGRESSION\\JOB_6PM\\win_54972 --run_tests=vcInstTest,VcutilTest || call:handle_error&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --metrics || call:handle_error&#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py  --vcast_dir=N:\\shared\\.VCAST_REGRESSION\\JOB_6PM\\win_54972 --run_tests=vcInstTest,VcutilTest || call:handle_error&#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py  || call:handle_error&#xd;
 &#xd;
 &#xd;
 rem Collect Results&#xd;
@@ -75,14 +75,14 @@ goto:EOF</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.20">
+    <hudson.tasks.Mailer plugin="mailer@1.21">
       <recipients>kavya@vectorcast.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
       <deleteDirs>false</deleteDirs>
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
