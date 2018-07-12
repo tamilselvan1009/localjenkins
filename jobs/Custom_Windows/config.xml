@@ -45,14 +45,14 @@ call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&
 set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
-set PATH=V:\boost\boost-1.53.0\lib;%PATH%;&#xd;
+&#xd;
 xcopy /S /I /E %HARVESTER_PATH%\tests tests /Q /Y&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests -G&quot;Visual Studio 10 Win64&quot;&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=VcshellTest\env_test</command>
+%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=DispatcherTests,VcshellTest/env_test</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
