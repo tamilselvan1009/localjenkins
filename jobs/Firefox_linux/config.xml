@@ -163,21 +163,21 @@ Extract vcshell_make.out $vcshelltime `expr $vcshelltime + 30` || handle_error
 
 #Execute and measure timings for vcshell metrics -j8
 make clean
-echo -n -e &quot;VcshellMetrics-j4\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcshell --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --metrics make -j4 &gt;vcshell_metrics.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_metrics.out  || handle_error
-Extract vcshell_metrics.out `expr $vcshelltime + 55`  `expr $vcshelltime + 100` vcshell_metrics.out.txt &quot;${artifact[0]}&quot; || handle_error
+#echo -n -e &quot;VcshellMetrics-j4\t&quot;&gt;&gt;$summary_file
+#time ($VECTORCAST_DIR/vcshell --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --metrics make -j4 &gt;vcshell_metrics.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_metrics.out  || handle_error
+#Extract vcshell_metrics.out `expr $vcshelltime + 55`  `expr $vcshelltime + 100` vcshell_metrics.out.txt &quot;${artifact[0]}&quot; || handle_error
 
 #Execute and mesaure timings for getmetrics
-echo -n -e &quot;VcdbGetmetrics\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_for_vcshell_metrics.out.txt 2&gt;&amp;1) 2&gt;&gt;vcdb_getmetrics.out || handle_error
-Extract2 vcdb_getmetrics.out vcdb_getmetrics_for_vcshell_metrics.out.txt 0 1
+#echo -n -e &quot;VcdbGetmetrics\t&quot;&gt;&gt;$summary_file
+#time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_for_vcshell_metrics.out.txt 2&gt;&amp;1) 2&gt;&gt;vcdb_getmetrics.out || handle_error
+#Extract2 vcdb_getmetrics.out vcdb_getmetrics_for_vcshell_metrics.out.txt 0 1
 
 
 #Execute and measure timings for clearmetrics
-cp vcshell.db vcutil_metrics.db
-echo -n -e &quot;VcdbClearmetrics&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb clearmetrics --db=vcutil_metrics.db &gt; vcdb_clearmetrics.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_clearmetrics.out || handle_error
-Extract vcdb_clearmetrics.out 0 1
+cp pristine_vcshell.db vcutil_metrics.db
+#echo -n -e &quot;VcdbClearmetrics&quot;&gt;&gt;$summary_file
+#time ($VECTORCAST_DIR/vcdb clearmetrics --db=vcutil_metrics.db &gt; vcdb_clearmetrics.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_clearmetrics.out || handle_error
+#Extract vcdb_clearmetrics.out 0 1
 
 #Execute and measure timings for vcutil addmetrics
 echo  -n -e &quot;VcutilAddmetrics&quot;&gt;&gt;$summary_file
