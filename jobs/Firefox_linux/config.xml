@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
   <description></description>
@@ -10,21 +10,25 @@
           <name>LINUX_VECTORCAST_DIR</name>
           <description>Vectorcast directory</description>
           <defaultValue>/home/vectorindia/.VCAST_REGRESSION/</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>summary_file</name>
           <description></description>
           <defaultValue>summary.txt</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>top_level_archive_dir</name>
           <description></description>
           <defaultValue>/mnt/nfs/shared/firefox_results/linux</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description></description>
           <defaultValue>user_trigger</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -36,7 +40,7 @@
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
-    <org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger plugin="parameterized-scheduler@0.2">
+    <org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger plugin="parameterized-scheduler@0.5">
       <spec></spec>
       <parameterizedSpecification>0 20 * * *</parameterizedSpecification>
     </org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger>
@@ -161,7 +165,7 @@ Extract vcshell_make.out $vcshelltime `expr $vcshelltime + 30` || handle_error
 make clean
 echo -n -e &quot;VcshellMetrics-j4\t&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcshell --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --metrics make -j4 &gt;vcshell_metrics.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_metrics.out  || handle_error
-Extract vcshell_metrics.out `expr $vcshelltime + 55`  `expr $vcshelltime + 100` vcshell_metrics.out.txt &quot;${artifact[0]}&quot;
+Extract vcshell_metrics.out `expr $vcshelltime + 55`  `expr $vcshelltime + 100` vcshell_metrics.out.txt &quot;${artifact[0]}&quot; || handle_error
 
 #Execute and mesaure timings for getmetrics
 echo -n -e &quot;VcdbGetmetrics\t&quot;&gt;&gt;$summary_file
@@ -396,7 +400,7 @@ exit /b $_RETURN_CODE_
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
       <recipientList>shekhar.singh@vectorcast.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
@@ -429,17 +433,18 @@ Jenkins</body>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
       <replyTo>shekhar.singh@vectorcast.com</replyTo>
+      <from></from>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
       <deleteDirs>false</deleteDirs>
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
-    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
       <runAtEnd>false</runAtEnd>
