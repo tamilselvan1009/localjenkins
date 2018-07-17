@@ -59,7 +59,7 @@ cd tbuild32
 
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 #$VECTORCAST_DIR/vpython VcRunTests.py --metrics --run_tests=vcInstTest --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972
-$VECTORCAST_DIR/vpython VcRunTests.py --metrics 
+#$VECTORCAST_DIR/vpython VcRunTests.py --metrics 
 $VECTORCAST_DIR/vpython VcRunTests.py  --metrics --run_tests=VcutilTest,vcInstTest
 #$VECTORCAST_DIR/vpython VcRunTests.py --metrics --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/test_54972_linux --run_tests=vcInstTest,VcutilTest
 exit
