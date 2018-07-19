@@ -53,7 +53,7 @@ mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests&#xd;
 cd EnvCreateTests&#xd;
-%VECTORCAST_DIR%\vpython EnvCreateTest.py msvc10 --env</command>
+%VECTORCAST_DIR%\vpython EnvCreateTest.py --env msvc10</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
