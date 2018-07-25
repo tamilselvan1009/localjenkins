@@ -4,12 +4,18 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>true</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs>Release_git_clone</blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.9.1">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>88214572-6896-42f0-8f18-45249bbde38c</uuid>
+          <uuid>6e4ed735-f074-492e-8166-fb06bf42148c</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
