@@ -104,7 +104,7 @@
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
         <org.jenkinsci.plugins.categorizedview.GroupingRule>
-          <groupRegex>^Git_Clone|Build_Linux32|Build_Linux64|Build_Windows|BUILD_LINUX64_FULL$</groupRegex>
+          <groupRegex>^Git_Clone|Build_Linux32|Build_Linux64|Build_Windows|BUILD_LINUX64_FULL|Release_git_clone$</groupRegex>
           <namingRule>Harvester_Build</namingRule>
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
