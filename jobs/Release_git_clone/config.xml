@@ -101,6 +101,16 @@ fi
               <useMatrixChild>false</useMatrixChild>
               <onlyExactRuns>false</onlyExactRuns>
             </hudson.plugins.parameterizedtrigger.FileBuildParameters>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>WIN_RELEASE_DIR=N:\\shared\\Jenkins_Harvester
+LINUX_RELEASE_DIR=/mnt/nfs/shared/Jenkins_Harvester
+WIN_GIT_DIR=${WIN_RELEASE_DIR}\\Git
+LINUX_GIT_DIR=${LINUX_RELEASE_DIR}/Git
+WIN_PACKAGE_DIR=${WIN_RELEASE_DIR}\\Windows
+LINUX_PACKAGE_DIR=${LINUX_RELEASE_DIR}/Linux
+WIN64_PACKAGE_DIR=${WIN_PACKAGE_DIR}\\64_bit</properties>
+              <textParamValueOnNewLine>false</textParamValueOnNewLine>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
           <projects>Build_Linux32,Build_Windows</projects>
           <condition>ALWAYS</condition>
