@@ -63,11 +63,7 @@ export WIN64_PACKAGE_DIR=${WIN_PACKAGE_DIR}\\64_bit
 # change the vctools version to the git commit id
 export COMMIT_ID=$(git rev-parse --short HEAD)
 export COMMIT_DATE=$(git show -s --format=%ci $COMMIT_ID)
-if [ &quot;$USE_COMMIT_DATE_FOR_VERSION&quot; != &quot;false&quot; ]; then
-	export VERSION=$(echo $COMMIT_ID $COMMIT_DATE | awk &apos;BEGIN{FS=&quot; &quot;} {print $1&quot;_&quot;$2&quot;_&quot;$3}&apos;)
-	export VERSION=$(echo $VERSION | tr :- _)
-	sed -i &quot;s/.*#define _VCTOOLS_VERSION_.*/#define _VCTOOLS_VERSION_ \&quot;${VERSION}\&quot;/&quot; harvester/inc/vcVersion.h
-fi
+
 
 # delete the old release package dir if it exists
 if [[ -d &quot;${LINUX_RELEASE_DIR}&quot; ]];then
@@ -84,9 +80,6 @@ if [ -f &quot;$WORKSPACE/build_harvester.txt&quot; ]; then
 	rm &quot;$WORKSPACE/build_harvester.txt&quot;
 fi
 
-if [ &quot;$BUILD_HARVESTER&quot; != &quot;false&quot; ]; then
-echo VCTOOLS_VERSION=$VERSION &gt; $WORKSPACE/build_harvester.txt
-fi
 </command>
     </hudson.tasks.Shell>
     <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.35.2">
