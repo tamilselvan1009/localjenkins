@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
   <description></description>
@@ -10,41 +10,49 @@
           <name>WIN_RELEASE_DIR</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WIN_GIT_DIR</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WIN_PACKAGE_DIR</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WIN_VECTORCAST_DIR</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WIN64_PACKAGE_DIR</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>VCTOOLS_VERSION</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WINDOWS_54972_VC</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -77,7 +85,7 @@ call release-package.bat --test_release&#xd;
 cd ..\release-packages&#xd;
 7z a harvester.win.zip release&#xd;
 mkdir &quot;%WIN_PACKAGE_DIR%&quot;&#xd;
-copy harvester.win.zip &quot;%WIN_PACKAGE_DIR%\\harvester.win.%VCTOOLS_VERSION%.zip&quot;&#xd;
+copy harvester.win.zip &quot;%WIN_PACKAGE_DIR%\\harvester.win%VCTOOLS_VERSION%.zip&quot;&#xd;
 &#xd;
 cd %WORKSPACE%\\build&#xd;
 if not &quot;%WINDOWS_54972_VC%&quot; == &quot;&quot; ( set &quot;VECTORCAST_DIR=%WINDOWS_54972_VC%&quot;&#xd;
@@ -92,7 +100,7 @@ call release-package.bat --test_release&#xd;
 cd ..\release-packages&#xd;
 7z a harvester.win.zip release&#xd;
 mkdir &quot;%WIN64_PACKAGE_DIR%&quot;&#xd;
-copy harvester.win.zip &quot;%WIN64_PACKAGE_DIR%\\harvester.win.%VCTOOLS_VERSION%.zip&quot;&#xd;
+copy harvester.win.zip &quot;%WIN64_PACKAGE_DIR%\\harvester.win%VCTOOLS_VERSION%.zip&quot;&#xd;
 &#xd;
 &#xd;
 exit %VC_ERROR_LEVEL%&#xd;
@@ -104,19 +112,19 @@ goto:EOF</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.19">
+    <hudson.tasks.Mailer plugin="mailer@1.21">
       <recipients>kavya@vectorcast.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
       <deleteDirs>false</deleteDirs>
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
-    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.5">
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>${ENV, var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
       <runAtEnd>false</runAtEnd>
