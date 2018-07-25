@@ -70,6 +70,7 @@
         <string>Regression_6pm_Master</string>
         <string>Regression_Other_Jobs_Master</string>
         <string>Release_build_linux64_lib</string>
+        <string>Release_git_clone</string>
         <string>Release_integrated_build</string>
         <string>Result_Collector</string>
         <string>Result_Collector_New</string>
