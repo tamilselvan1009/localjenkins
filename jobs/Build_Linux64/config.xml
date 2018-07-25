@@ -74,7 +74,7 @@ cp -r &quot;${LINUX_GIT_DIR}/harvester&quot;  .
 cp -r &quot;${LINUX_GIT_DIR}/imports&quot;  .
 cp -r &quot;${LINUX_GIT_DIR}/build.sh&quot; .
 
-if [ ! -z &quot;${VCTOOLS_VERSION} ]; then
+if [ ! -z &quot;${VCTOOLS_VERSION}&quot; ]; then
 	export VCTOOLS_VERSION=_${VCTOOLS_VERSION}
 fi
 echo VCTOOLS_VERSION=${VCTOOLS_VERSION} &gt; build64full.txt
