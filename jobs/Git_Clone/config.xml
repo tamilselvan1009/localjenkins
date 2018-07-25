@@ -9,8 +9,8 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.9.1">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>9a50110c-5b70-4704-8266-b7b3120d7bdf</uuid>
-          <type>PT_BRANCH_TAG</type>
+          <uuid>88214572-6896-42f0-8f18-45249bbde38c</uuid>
+          <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
           <branchFilter>.*</branchFilter>
@@ -127,7 +127,7 @@
     <extensions>
       <hudson.plugins.git.extensions.impl.CloneOption>
         <shallow>true</shallow>
-        <noTags>false</noTags>
+        <noTags>true</noTags>
         <reference></reference>
         <timeout>20</timeout>
         <depth>1</depth>
