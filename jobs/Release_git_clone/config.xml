@@ -87,13 +87,6 @@ fi
         <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
           <configs>
             <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
-            <hudson.plugins.parameterizedtrigger.FileBuildParameters>
-              <propertiesFile>build_harvester.txt</propertiesFile>
-              <failTriggerOnMissing>true</failTriggerOnMissing>
-              <textParamValueOnNewLine>false</textParamValueOnNewLine>
-              <useMatrixChild>false</useMatrixChild>
-              <onlyExactRuns>false</onlyExactRuns>
-            </hudson.plugins.parameterizedtrigger.FileBuildParameters>
             <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
               <properties>WIN_RELEASE_DIR=N:\\shared\\Jenkins_Harvester
 LINUX_RELEASE_DIR=/mnt/nfs/shared/Jenkins_Harvester
