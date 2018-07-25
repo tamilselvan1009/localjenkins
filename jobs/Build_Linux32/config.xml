@@ -98,6 +98,10 @@ cp -r release &quot;${LINUX_PACKAGE_DIR}/.&quot;
         <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
           <configs>
             <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>VCTOOLS_VERSION=_${VCTOOLS_VERSION}</properties>
+              <textParamValueOnNewLine>false</textParamValueOnNewLine>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
           <projects>Build_Linux64</projects>
           <condition>ALWAYS</condition>
