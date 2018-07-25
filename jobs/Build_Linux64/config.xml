@@ -74,6 +74,11 @@ cp -r &quot;${LINUX_GIT_DIR}/harvester&quot;  .
 cp -r &quot;${LINUX_GIT_DIR}/imports&quot;  .
 cp -r &quot;${LINUX_GIT_DIR}/build.sh&quot; .
 
+if [ ! -z &quot;${VCTOOLS_VERSION} ]; then
+	export VCTOOLS_VERSION=_${VCTOOLS_VERSION}
+fi
+echo VCTOOLS_VERSION=${VCTOOLS_VERSION} &gt; build64full.txt
+
 # This job assumes that env like BOOST64_DIR are
 # set as globals in the system
 ./build.sh --arch=x64_lib --static_cpp_lib=${VC_STDCPLUS_PLUS_STATIC_DIR}
@@ -109,6 +114,13 @@ export VECTORCAST_DIR=&quot;${LINUX_VECTORCAST_DIR}&quot;
         <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
           <configs>
             <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
+            <hudson.plugins.parameterizedtrigger.FileBuildParameters>
+              <propertiesFile>build64full.txt</propertiesFile>
+              <failTriggerOnMissing>false</failTriggerOnMissing>
+              <textParamValueOnNewLine>false</textParamValueOnNewLine>
+              <useMatrixChild>false</useMatrixChild>
+              <onlyExactRuns>false</onlyExactRuns>
+            </hudson.plugins.parameterizedtrigger.FileBuildParameters>
           </configs>
           <projects>Build_Linux64_full</projects>
           <condition>ALWAYS</condition>
