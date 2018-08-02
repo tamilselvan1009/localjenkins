@@ -4,6 +4,12 @@
   <description>Coverage Job for VcTools in Linux</description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
@@ -15,7 +21,7 @@
         <hudson.model.StringParameterDefinition>
           <name>GIT_BRANCH_NAME</name>
           <description>Specify the branch for which coverage is required</description>
-          <defaultValue>develop__73369_code_coverage_improvements</defaultValue>
+          <defaultValue>develop</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -65,7 +71,26 @@
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <com.vectorcast.plugins.vectorcastexecution.VectorCASTSetup plugin="vectorcast-execution@0.18"/>
+    <com.vectorcast.plugins.vectorcastexecution.VectorCASTSetup plugin="vectorcast-execution@0.33">
+      <environmentSetupWin></environmentSetupWin>
+      <environmentSetupUnix></environmentSetupUnix>
+      <executePreambleWin></executePreambleWin>
+      <executePreambleUnix></executePreambleUnix>
+      <environmentTeardownWin></environmentTeardownWin>
+      <environmentTeardownUnix></environmentTeardownUnix>
+      <optionUseReporting>false</optionUseReporting>
+      <optionErrorLevel>Unstable</optionErrorLevel>
+      <optionHtmlBuildDesc>HTML</optionHtmlBuildDesc>
+      <optionExecutionReport>false</optionExecutionReport>
+      <optionClean>false</optionClean>
+      <waitLoops>1</waitLoops>
+      <waitTime>30</waitTime>
+      <usingSCM>false</usingSCM>
+      <scm class="hudson.scm.NullSCM"/>
+      <manageProjectName></manageProjectName>
+      <jobName></jobName>
+      <nodeLabel></nodeLabel>
+    </com.vectorcast.plugins.vectorcastexecution.VectorCASTSetup>
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
@@ -239,8 +264,8 @@ daemonize -E BUILD_ID=dontKillMe -E VECTORCAST_DIR=$VECTORCAST_DIR $PWD/vcdash.s
         <maxFunctionCall>0</maxFunctionCall>
       </healthReports>
     </com.vectorcast.plugins.vectorcastcoverage.VectorCASTPublisher>
-    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
-      <script plugin="script-security@1.42">
+    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.4">
+      <script plugin="script-security@1.43">
         <script>import hudson.FilePath
 import java.util.regex.Pattern
 
@@ -330,7 +355,7 @@ if ( coverage &lt; 60) {
       <behavior>2</behavior>
       <runForMatrixParent>false</runForMatrixParent>
     </org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder>
-    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
       <recipientList>tamil.selvan@vectorcast.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.StatusChangedTrigger>
@@ -371,12 +396,13 @@ if ( coverage &lt; 60) {
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
       <replyTo>tamil.selvan@vectorcast.com</replyTo>
+      <from></from>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
     <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
       <buildSteps>
         <hudson.tasks.Shell>
