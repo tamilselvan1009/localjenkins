@@ -58,6 +58,7 @@ cd %WORKSPACE%&#xd;
 rmdir tbuild32_cyg /s /q&#xd;
 mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
+bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
 set PATH=C:\cygwin\bin;%PATH%&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py  --run_tests=vcParseTest,vcInstTest</command>
     </hudson.tasks.BatchFile>
