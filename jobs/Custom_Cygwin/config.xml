@@ -50,7 +50,6 @@ set path=%path:&quot;=%&#xd;
 set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-IDCWIN2.lic&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
-#xcopy /S /I /E %HARVESTER_PATH%\tests tests /Q /Y&#xd;
 &#xd;
 %VECTORCAST_DIR%\vcshell --version&#xd;
 %VECTORCAST_DIR%\clicast --version&#xd;
@@ -60,7 +59,6 @@ rmdir tbuild32_cyg /s /q&#xd;
 mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
 set PATH=C:\cygwin\bin;%PATH%&#xd;
-bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py  --run_tests=vcParseTest,vcInstTest</command>
     </hudson.tasks.BatchFile>
   </builders>
