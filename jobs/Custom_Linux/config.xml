@@ -4,12 +4,6 @@
   <description>Custom job intended to be triggered at any instant of time. Git Clone and Build has to be done before triggering this job since Build is on RedHat mac. Uses VECTORCAST in /mnt/nfs/shared/.VCAST_REGRESSION/custom/VCAST_LINUX</description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
-      <useBuildBlocker>false</useBuildBlocker>
-      <blockLevel>GLOBAL</blockLevel>
-      <scanQueueFor>DISABLED</scanQueueFor>
-      <blockingJobs></blockingJobs>
-    </hudson.plugins.buildblocker.BuildBlockerProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
@@ -65,8 +59,8 @@ cd tbuild32
 
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 #$VECTORCAST_DIR/vpython VcRunTests.py --metrics --run_tests=vcInstTest --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972
-$VECTORCAST_DIR/vpython VcRunTests.py
-$VECTORCAST_DIR/vpython VcRunTests.py  --run_tests=VcutilTest,vcInstTest
+#$VECTORCAST_DIR/vpython VcRunTests.py 
+$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=VcutilTest,vcInstTest
 #$VECTORCAST_DIR/vpython VcRunTests.py --metrics --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/test_54972_linux --run_tests=vcInstTest,VcutilTest
 exit
 
