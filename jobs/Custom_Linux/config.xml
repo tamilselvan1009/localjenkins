@@ -38,7 +38,7 @@
       <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
       <throttleEnabled>true</throttleEnabled>
       <throttleOption>project</throttleOption>
-      <limitOneJobWithMatchingParams>true</limitOneJobWithMatchingParams>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
