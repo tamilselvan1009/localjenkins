@@ -54,6 +54,8 @@ export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UBUNTU.lic
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 
 echo $VECTORCAST_DIR
+echo $DUMMY_DIR
+
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
