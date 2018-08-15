@@ -1,5 +1,6 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <project>
+  <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -11,7 +12,6 @@
     </hudson.plugins.buildblocker.BuildBlockerProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>1</maxConcurrentPerNode>
-      <maxConcurrentTotal>2</maxConcurrentTotal>
       <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
       <throttleEnabled>true</throttleEnabled>
       <throttleOption>project</throttleOption>
