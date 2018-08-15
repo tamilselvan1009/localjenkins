@@ -32,6 +32,13 @@
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>Ubuntu32bit_71</assignedNode>
@@ -65,7 +72,7 @@ cd tbuild32
 
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 #$VECTORCAST_DIR/vpython VcRunTests.py --metrics --run_tests=vcInstTest --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972
-#$VECTORCAST_DIR/vpython VcRunTests.py 
+$VECTORCAST_DIR/vpython VcRunTests.py 
 $VECTORCAST_DIR/vpython VcRunTests.py --run_tests=VcutilTest,vcInstTest
 #$VECTORCAST_DIR/vpython VcRunTests.py --metrics --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/test_54972_linux --run_tests=vcInstTest,VcutilTest
 exit
