@@ -32,24 +32,15 @@
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
-      <maxConcurrentPerNode>1</maxConcurrentPerNode>
-      <maxConcurrentTotal>2</maxConcurrentTotal>
-      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
-      <throttleEnabled>true</throttleEnabled>
-      <throttleOption>project</throttleOption>
-      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
-      <paramsToUseForLimit></paramsToUseForLimit>
-    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
-  <assignedNode>(Ubuntu32bit_71) || (unx-reg32-1)</assignedNode>
+  <assignedNode>Ubuntu32bit_71</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
-  <concurrentBuild>true</concurrentBuild>
+  <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
@@ -58,15 +49,10 @@ cd $WORKSPACE
 
 ulimit -c unlimited
 export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
-export DUMMY_DIR=${LINUX_VECTORCAST_DIR}
-export PATH=$PATH:$VECTORCAST_DIR
 export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UBUNTU.lic
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 
 echo $VECTORCAST_DIR
-echo $DUMMY_DIR
-echo $PATH
-
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
@@ -78,11 +64,9 @@ mkdir tbuild32
 cd tbuild32
 
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-$VECTORCAST_DIR/clicast -lc template GNU_C_46
-unset 	VECTORCAST_DIR
 #$VECTORCAST_DIR/vpython VcRunTests.py --metrics --run_tests=vcInstTest --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972
-#python VcRunTests.py 
-#python VcRunTests.py --run_tests=VcutilTest,vcInstTest
+#$VECTORCAST_DIR/vpython VcRunTests.py 
+$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=VcutilTest,vcInstTest
 #$VECTORCAST_DIR/vpython VcRunTests.py --metrics --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/test_54972_linux --run_tests=vcInstTest,VcutilTest
 exit
 
