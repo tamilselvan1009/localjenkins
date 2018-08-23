@@ -70,6 +70,8 @@ export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 echo $VECTORCAST_DIR
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
+file $VECTORCAST_DIR/clicast
+exit
 
 cp -r ${LINUX_GIT_DIR}/tests $WORKSPACE
 
