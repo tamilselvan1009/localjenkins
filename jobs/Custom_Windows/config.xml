@@ -32,13 +32,6 @@
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
-      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
-      <throttleEnabled>false</throttleEnabled>
-      <throttleOption>project</throttleOption>
-      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
-      <paramsToUseForLimit></paramsToUseForLimit>
-    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>Windows_54</assignedNode>
@@ -65,7 +58,8 @@ cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py  --run_tests=PutcmdScalability</command>
+%VECTORCAST_DIR%\vpython VcRunTests.py &#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py  --run_tests=VcutilTest,vcInstTest</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
