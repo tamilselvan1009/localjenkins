@@ -66,7 +66,7 @@
       <command>#!/bin/bash -xe
 
 echo $LINUX_VECTORCAST_DIR
-VCTOOLS_PACKAGE=`find /mnt/nfs/shared/Jenkins_Harvester_78866/Linux -maxdepth 1 -name *.tgz`
+VCTOOLS_PACKAGE=`find /mnt/nfs/shared/Jenkins_Harvester/Linux -maxdepth 1 -name *.tgz`
 #VCTOOLS_PACKAGE=`find /mnt/nfs/shared/1_14_dispatcher_fix -maxdepth 1 -name *.tgz`
 export BOOST_DIR=&quot;/mnt/nfs/TOOLS/boost-1.53.0&quot;
 
@@ -79,7 +79,8 @@ else
 	echo &quot;VcTools package not available in $VCTOOLS_PACKAGE&quot;
     exit  1
 fi
-
+echo done
+exit
 
 artifact=(&quot;Metrics Collected&quot; &quot;Successful for&quot; &quot;failed for&quot;)
 _expected=(&quot;Passed&quot; &quot;Failed&quot; &quot;Failed due to lesser artifact&quot;)
