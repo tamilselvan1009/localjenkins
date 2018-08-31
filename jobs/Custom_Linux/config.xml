@@ -73,9 +73,9 @@ mkdir tbuild32
 cd tbuild32
 
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+%VECTORCAST_DIR%\vpython VcRunTests.py  --vcast_dir=N:\\shared\\.VCAST_REGRESSION\\JOB_6PM\\win_54972 --run_tests=vcInstTest,VcutilTest,VcshellPutCommandTest
 
-$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=EnvCreateTests
-#$VECTORCAST_DIR/vpython VcRunTests.py --metrics --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/test_54972_linux --run_tests=vcInstTest,VcutilTest
+$VECTORCAST_DIR/vpython VcRunTests.py
 exit
 
 #for i in {1..2}
