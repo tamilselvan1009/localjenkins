@@ -67,13 +67,13 @@ $VECTORCAST_DIR/clicast --version
 
 cp -r ${HARVESTER_PATH}/tests $WORKSPACE
 
-rm -rf tbuild32
+#rm -rf tbuild32
 #CMake and run VcRunTests
-mkdir tbuild32
+#mkdir tbuild32
 cd tbuild32
 
-cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-$VECTORCAST_DIR/vpython VcRunTests.py  --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972 --run_tests=vcInstTest,VcutilTest
+#cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+# $VECTORCAST_DIR/vpython VcRunTests.py  --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972 --run_tests=vcInstTest,VcutilTest
 $VECTORCAST_DIR/vpython VcRunTests.py
 exit
 
@@ -118,11 +118,6 @@ exit
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
-      <deleteDirs>false</deleteDirs>
-      <cleanupParameter></cleanupParameter>
-      <externalDelete></externalDelete>
-    </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
