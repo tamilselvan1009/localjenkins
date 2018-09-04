@@ -73,7 +73,6 @@ $VECTORCAST_DIR/clicast --version
 file $VECTORCAST_DIR/vcdb
 file $VECTORCAST_DIR/vcutil
 file $VECTORCAST_DIR/clicast
-exit
 
 cp -r ${LINUX_GIT_DIR}/tests $WORKSPACE
 
