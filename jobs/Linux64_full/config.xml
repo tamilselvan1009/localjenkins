@@ -33,7 +33,7 @@
         <hudson.model.StringParameterDefinition>
           <name>LINUX64_VECTORCAST_DIR</name>
           <description></description>
-          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/VCAST_64bit</defaultValue>
+          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/VCAST_LINUX</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -65,7 +65,7 @@ export BOOST64_DIR=/home/vectorindia/boost-1.55.0-x64
 export LD_LIBRARY_PATH=$BOOST64_DIR/lib
 cd $WORKSPACE
 export VECTORCAST_DIR=$LINUX64_VECTORCAST_DIR
-export VECTOR_LICENSE_FILE=7650@licenseserver
+export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-VECTORINDIA-X64-UBUNTU12.lic
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 echo $VECTORCAST_DIR
 $VECTORCAST_DIR/vcshell --version
@@ -80,8 +80,7 @@ cp -r ${LINUX_GIT_DIR}/tests $WORKSPACE
 mkdir tbuild64_fullbuild
 cd tbuild64_fullbuild
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-export VECTOR_LICENSE_FILE=7650@licenseserver
-export LM_LICENSE_FILE=7650@licenseserver
+export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-VECTORINDIA-X64-UBUNTU12.lic
 $VECTORCAST_DIR/vpython VcRunTests.py 
 
 $VECTORCAST_DIR/vpython VcRunTests.py --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972 --run_tests=vcInstTest,VcutilTest,VcshellTest/MixedBitnessTest || export _VC_RUNTEST_RETURN_CODE_=$?
