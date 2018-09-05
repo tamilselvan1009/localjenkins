@@ -83,7 +83,7 @@ cd tbuild64_fullbuild
 export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-VECTORINDIA-X64-UBUNTU12.lic
 
 
-$VECTORCAST_DIR/vpython VcRunTests.py --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972 --run_tests=vcInstTest,VcutilTest,VcshellTest/MixedBitnessTest || export _VC_RUNTEST_RETURN_CODE_=$?
+$VECTORCAST_DIR/vpython VcRunTests.py  --run_tests=vcInstTest,VcutilTest,VcshellTest/MixedBitnessTest || export _VC_RUNTEST_RETURN_CODE_=$?
 
 
 exit /b $_VC_RUNTEST_RETURN_CODE_
