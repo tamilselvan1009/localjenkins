@@ -1,5 +1,12 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <hudson>
+  <temporaryOfflineCause class="hudson.node_monitors.DiskSpaceMonitorDescriptor$DiskSpace">
+    <timestamp>1536213186928</timestamp>
+    <path>/var/lib/jenkins</path>
+    <size>856346624</size>
+    <triggered>true</triggered>
+    <trigger>hudson.node_monitors.DiskSpaceMonitor</trigger>
+  </temporaryOfflineCause>
   <disabledAdministrativeMonitors/>
   <version>2.112</version>
   <installState class="jenkins.install.InstallState$Restart">
