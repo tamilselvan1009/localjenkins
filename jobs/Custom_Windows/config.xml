@@ -66,9 +66,8 @@ xcopy /S /I /E %HARVESTER_PATH%\tests tests /Q /Y&#xd;
 cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
-cmake ..\tests&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py &#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py  --run_tests=VcutilTest,vcInstTest</command>
+cmake ..\tests &#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py  --run_tests=GetappsTest</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
