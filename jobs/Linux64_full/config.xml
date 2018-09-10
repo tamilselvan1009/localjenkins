@@ -33,7 +33,7 @@
         <hudson.model.StringParameterDefinition>
           <name>LINUX64_VECTORCAST_DIR</name>
           <description></description>
-          <defaultValue>/home/vectorindia/vectorindia/shared/.VCAST_REGRESSION/custom/VCAST_linux_64bit</defaultValue>
+          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/custom/VCAST_linux_64bit</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
