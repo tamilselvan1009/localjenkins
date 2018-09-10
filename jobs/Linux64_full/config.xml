@@ -74,12 +74,12 @@ file $VECTORCAST_DIR/vcdb
 file $VECTORCAST_DIR/vcutil
 file $VECTORCAST_DIR/clicast
 
-#cp -r ${LINUX_GIT_DIR}/tests $WORKSPACE
+cp -r ${LINUX_GIT_DIR}/tests $WORKSPACE
 
-#CMake and run VcRunTests
-#mkdir tbuild64_fullbuild
+CMake and run VcRunTests
+mkdir tbuild64_fullbuild
 cd tbuild64_fullbuild
-#cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UNX-REG64-61.lic
 
 
