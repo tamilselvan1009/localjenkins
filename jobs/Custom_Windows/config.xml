@@ -27,7 +27,7 @@
         <hudson.model.StringParameterDefinition>
           <name>WINDOWS_VECTORCAST_DIR</name>
           <description></description>
-          <defaultValue>N:\shared\.VCAST_REGRESSION\custom\VCAST-WINDOWS</defaultValue>
+          <defaultValue>N:\shared\.VCAST_REGRESSION\custom\VCAST_WINDOWS</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -40,6 +40,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -67,7 +68,8 @@ cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py</command>
+%VECTORCAST_DIR%\vpython VcRunTests.py &#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py  --run_tests=VcutilTest,vcInstTest</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
