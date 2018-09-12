@@ -84,7 +84,7 @@ cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UNX-REG64-61.lic
 
 
-$VECTORCAST_DIR/vpython VcRunTests.py  
+$VECTORCAST_DIR/vpython VcRunTests.py  --run_tests=vcInstTest,VcutilTest
 </command>
     </hudson.tasks.Shell>
   </builders>
