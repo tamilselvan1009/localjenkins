@@ -55,10 +55,9 @@
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
-    <org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger plugin="parameterized-scheduler@0.5">
-      <spec></spec>
-      <parameterizedSpecification></parameterizedSpecification>
-    </org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger>
+    <hudson.triggers.TimerTrigger>
+      <spec>15 19 * * *</spec>
+    </hudson.triggers.TimerTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
