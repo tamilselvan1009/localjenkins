@@ -33,7 +33,7 @@
         <hudson.model.StringParameterDefinition>
           <name>LINUX64_VECTORCAST_DIR</name>
           <description></description>
-          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/VCAST_64bit</defaultValue>
+          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/custom/VCAST_linux_64bit</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -46,6 +46,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -84,7 +85,8 @@ cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UNX-REG64-61.lic
 
 
-$VECTORCAST_DIR/vpython VcRunTests.py  --run_tests=VcshellTest/MixedBitnessTest</command>
+$VECTORCAST_DIR/vpython VcRunTests.py  
+</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
