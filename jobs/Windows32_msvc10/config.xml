@@ -39,6 +39,8 @@
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
       <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
       <throttleEnabled>false</throttleEnabled>
       <throttleOption>project</throttleOption>
@@ -72,7 +74,8 @@ cd tbuild32_msvc10&#xd;
 cmake ..\tests || call:handle_error&#xd;
 echo &quot;Test starts here&quot; &#xd;
 rem %VECTORCAST_DIR%\vpython VcRunTests.py  --vcast_dir=N:\\shared\\.VCAST_REGRESSION\\JOB_6PM\\win_54972 --run_tests=vcInstTest,VcutilTest || call:handle_error&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py  || call:handle_error&#xd;
+rem %VECTORCAST_DIR%\vpython VcRunTests.py  || call:handle_error&#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=HelloTest || call:handle_error&#xd;
 &#xd;
 &#xd;
 rem Collect Results&#xd;
