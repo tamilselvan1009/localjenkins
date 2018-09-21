@@ -4,6 +4,12 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
@@ -48,14 +54,15 @@
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>LINUX_54972_VC</name>
-          <description></description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>Redhat_64</assignedNode>
@@ -97,15 +104,15 @@ cd release
 cd ..
 fi
 
-if [ ! -z &quot;$LINUX_54972_VC&quot; ]; then
-export VECTORCAST_DIR=&quot;${LINUX_54972_VC}&quot;
-cd release
-./install.sh
-cd ..
-fi
+#if [ ! -z &quot;$LINUX_54972_VC&quot; ]; then
+#export VECTORCAST_DIR=&quot;${LINUX_54972_VC}&quot;
+#cd release
+#./install.sh
+#cd ..
+#fi
 
 # Set back the VC
-export VECTORCAST_DIR=&quot;${LINUX_VECTORCAST_DIR}&quot;
+#export VECTORCAST_DIR=&quot;${LINUX_VECTORCAST_DIR}&quot;
 
 </command>
     </hudson.tasks.Shell>
