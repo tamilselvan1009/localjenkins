@@ -4,6 +4,12 @@
   <description>VcRunTests on 32bit msvc10 platform. </description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
@@ -32,6 +38,13 @@
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>Windows_54</assignedNode>
@@ -58,7 +71,7 @@ mkdir tbuild32_msvc10 || call:handle_error&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests || call:handle_error&#xd;
 echo &quot;Test starts here&quot; &#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py  --vcast_dir=N:\\shared\\.VCAST_REGRESSION\\JOB_6PM\\win_54972 --run_tests=vcInstTest,VcutilTest || call:handle_error&#xd;
+rem %VECTORCAST_DIR%\vpython VcRunTests.py  --vcast_dir=N:\\shared\\.VCAST_REGRESSION\\JOB_6PM\\win_54972 --run_tests=vcInstTest,VcutilTest || call:handle_error&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py  || call:handle_error&#xd;
 &#xd;
 &#xd;
