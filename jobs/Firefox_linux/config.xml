@@ -153,7 +153,7 @@ $VECTORCAST_DIR/clicast --version
 cp -r /home/vectorindia/firefox/firefox/* $WORKSPACE/.
 
 #timing constant
-vcshelltime=45
+vcshelltime=20
 
 . ./make_config
 
