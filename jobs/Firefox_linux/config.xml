@@ -103,6 +103,10 @@ Extract()
 
 output=`grep &quot;real&quot; $1 | awk &apos;{printf(&quot;%s&quot;,$2)}&apos;`
 grep &quot;real&quot; $1 | awk &apos;{printf(&quot;         %s         &quot;,$2)}&apos;&gt;&gt;$summary_file
+echo -n -e  $2 &gt;&gt;$summary_file
+echo -n -e &quot;-&quot; &gt;&gt;$summary_file
+echo -n -e $3  &gt;&gt;$summary_file
+echo &quot;   &quot;&gt;&gt;$summary_file
 if [ ! -z &quot;$4&quot; ] &amp;&amp; [ ! -z &quot;$5&quot; ]
 then
 _var_=`grep &quot;$5&quot; $4 | grep -o &apos;[0-9]\+&apos;`
@@ -116,6 +120,7 @@ _result=${_expected[1]}
 fi
 fi
 fi
+echo -n -e &quot;         $_var_         &quot; &gt;&gt;$summary_file
 echo -n -e &quot;         $_var_         &quot; &gt;&gt;$summary_file
 _var_=&quot;--&quot;
 out=`echo $output | awk &apos;{split ($0,a,&quot;m&quot;);print a[1]}&apos;`
@@ -161,11 +166,13 @@ vcshelltime=20
 echo $(date) &gt;&gt;$summary_file &gt;&gt;sol.txt
 
 #print VcTools version in log file
-echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --version | grep Version | awk &apos;{print $3}&apos;` &quot; &gt;&gt; $summary_file &gt;&gt; sol.txt
+echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --version | grep Version | awk &apos;{print $3}&apos;` &quot; &gt;&gt; $summary_file
+echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --version | grep Version | awk &apos;{print $3}&apos;` &quot; &gt;&gt; sol.txt
 echo  &gt;&gt; $summary_file
 
 #tabular format for the file
-echo -e  &quot;Command            \t           Time        \t  Artifact    \t TimmingResult  \t  ArtiResult  &quot; &gt;&gt;summary.txt &gt;&gt; sol.txt
+echo -e  &quot;Command               Time      ExpectedTime  Artifact ExpectedArtifact   TimmingResult   ArtiResult  &quot; &gt;&gt;$summary_file
+echo -e  &quot;Command               Time      ExpectedTime  Artifact ExpectedArtifact   TimmingResult   ArtiResult  &quot; &gt;&gt;sol.txt
 
 #commenting for experiments
 
