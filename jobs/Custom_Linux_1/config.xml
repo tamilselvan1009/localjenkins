@@ -40,11 +40,10 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
-  <assignedNode>Ubuntu32bit_71</assignedNode>
+  <assignedNode>unx-reg32-1</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -59,7 +58,7 @@ cd $WORKSPACE
 
 ulimit -c unlimited
 export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
-export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UBUNTU.lic
+export VECTOR_LICENSE_FILE=7650@licenseserver
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 
 echo $VECTORCAST_DIR
@@ -75,17 +74,7 @@ cd tbuild32
 
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 
-
-#$VECTORCAST_DIR/vpython VcRunTests.py --metrics --run_tests=vcInstTest --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972
-$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=vcInstTest
-#$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=vcInstTest,VcutilTest
-#$VECTORCAST_DIR/vpython VcRunTests.py --metrics --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/test_54972_linux --run_tests=vcInstTest,VcutilTest
-exit
-
-#for i in {1..2}
-#do
-#  $VECTORCAST_DIR/vpython VcRunTests.py --metrics --tag=vcshell --run_tests=IncludeTests,ExpandTest,FilePathTests,GetApps-LinkTests,HelloTest,MathTest,MultiFileTest,OptionTests,UnitTests
-#done
+$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=HelloTest
 </command>
     </hudson.tasks.Shell>
   </builders>
