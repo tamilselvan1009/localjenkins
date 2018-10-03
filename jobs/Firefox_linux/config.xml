@@ -106,7 +106,7 @@ grep &quot;real&quot; $1 | awk &apos;{printf(&quot;         %s         &quot;,$2
 echo -n -e  $2 &gt;&gt;$summary_file
 echo -n -e &quot;-&quot; &gt;&gt;$summary_file
 echo -n -e $3  &gt;&gt;$summary_file
-echo &quot;   &quot;&gt;&gt;$summary_file
+echo -n -e  &quot;   &quot;&gt;&gt;$summary_file
 if [ ! -z &quot;$4&quot; ] &amp;&amp; [ ! -z &quot;$5&quot; ]
 then
 _var_=`grep &quot;$5&quot; $4 | grep -o &apos;[0-9]\+&apos;`
