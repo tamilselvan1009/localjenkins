@@ -46,7 +46,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -67,7 +66,7 @@ set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
 set VC_ERROR_LEVEL=0&#xd;
 &#xd;
-xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
+REM xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10 || call:handle_error&#xd;
@@ -75,7 +74,7 @@ cd tbuild32_msvc10&#xd;
 cmake ..\tests || call:handle_error&#xd;
 echo &quot;Test starts here&quot; &#xd;
 rem %VECTORCAST_DIR%\vpython VcRunTests.py  --vcast_dir=N:\\shared\\.VCAST_REGRESSION\\JOB_6PM\\win_54972 --run_tests=vcInstTest,VcutilTest || call:handle_error&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py  || call:handle_error&#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=VcshellPutCommandTest || call:handle_error&#xd;
 &#xd;
 rem Collect Results&#xd;
 %VECTORCAST_DIR%\vpython VcCollectResult.py --db=N:\shared\Jenkins_Result\vcshell.db --tag=windows32_msvc10&#xd;
@@ -97,11 +96,6 @@ goto:EOF</command>
     </hudson.tasks.Mailer>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
-      <deleteDirs>false</deleteDirs>
-      <cleanupParameter></cleanupParameter>
-      <externalDelete></externalDelete>
-    </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
