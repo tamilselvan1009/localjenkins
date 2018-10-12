@@ -67,7 +67,7 @@ cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests &#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=VcdbTest/getallcmdlineall,VcdbTest/getallcmdlines</command>
+%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=VcdbTest/getallcmdlineall,VcdbTest/getallcmdlines,EnvPrefixNew/PrefixPath/PrefixPath</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
