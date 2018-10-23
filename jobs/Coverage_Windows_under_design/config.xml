@@ -215,11 +215,10 @@ for %%r in (%results%) do (
 REM ######################################################################################
 ::Create Manage projects
 %VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --create
-   %VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --level Windows --create
-%VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --level Windows/CompilerNode --create
-%VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --level Windows/CompilerNode/SystemTesting --create
+%VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --level Windows --create
+%VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --level Windows/SystemTesting --create
 %VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --group Cover --create
-%VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --level Windows/CompilerNode/SystemTesting --add Cover
+%VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --level Windows/SystemTesting --add Cover
 %VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --import VcTools.vcp 
 %VECTORCAST_DIR%\manage -p &quot;%MANAGE_PROJECT%&quot; --group Cover --add VcTools
 
