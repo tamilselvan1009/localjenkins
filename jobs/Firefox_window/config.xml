@@ -59,15 +59,19 @@ d:&#xd;
 REM cd firefox-win/mozilla-release &#xd;
 &#xd;
 REM %VECTORCAST_DIR%\vcdb getfiles&#xd;
+ &#xd;
+cd %WORKSPACE%&#xd;
 &#xd;
-REM cd %WORKSPACE%&#xd;
+REM cd /C/SlaveJenkins/workspace/Firefox_window/mozilla-release&#xd;
 &#xd;
-cd /C/SlaveJenkins/workspace/Firefox_window/mozilla-release&#xd;
-dir&#xd;
 &#xd;
-7z x firefox-19.0.2.source.tar&#xd;
+&#xd;
+REM 7z x firefox-19.0.2.source.tar&#xd;
 &#xd;
 cd mozilla-release&#xd;
+&#xd;
+dir &#xd;
+&#xd;
 &#xd;
 %VECTORCAST_DIR%\vcshell &quot;python mach build&quot; </command>
     </hudson.tasks.BatchFile>
