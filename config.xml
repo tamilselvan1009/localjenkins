@@ -1,6 +1,8 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <hudson>
-  <disabledAdministrativeMonitors/>
+  <disabledAdministrativeMonitors>
+    <string>hudsonHomeIsFull</string>
+  </disabledAdministrativeMonitors>
   <version>2.112</version>
   <installState class="jenkins.install.InstallState$Restart">
     <name>RESTART</name>
