@@ -32,6 +32,13 @@
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@3.8.0">
     <configVersion>2</configVersion>
@@ -209,11 +216,10 @@ done
 
 #Create Manage project
 $VECTORCAST_DIR/manage -p &quot;${MANAGE_PROJECT}&quot; --create
-$VECTORCAST_DIR/manage -p &quot;${MANAGE_PROJECT}&quot; --level Source/Linux --create
-$VECTORCAST_DIR/manage -p &quot;${MANAGE_PROJECT}&quot; --level Source/Linux/CompilerNode --create
-$VECTORCAST_DIR/manage -p &quot;${MANAGE_PROJECT}&quot; --level Source/Linux/CompilerNode/SystemTesting --create
+$VECTORCAST_DIR/manage -p &quot;${MANAGE_PROJECT}&quot; --level Linux --create
+$VECTORCAST_DIR/manage -p &quot;${MANAGE_PROJECT}&quot; --level Linux/SystemTesting --create
 $VECTORCAST_DIR/manage -p &quot;${MANAGE_PROJECT}&quot; --group Cover --create
-$VECTORCAST_DIR/manage -p &quot;${MANAGE_PROJECT}&quot; --level Source/Linux/CompilerNode/SystemTesting --add Cover
+$VECTORCAST_DIR/manage -p &quot;${MANAGE_PROJECT}&quot; --level Linux/SystemTesting --add Cover
 $VECTORCAST_DIR/manage -p &quot;${MANAGE_PROJECT}&quot; --import VcTools.vcp 
 $VECTORCAST_DIR/manage -p &quot;${MANAGE_PROJECT}&quot; --group Cover --add VcTools
 
