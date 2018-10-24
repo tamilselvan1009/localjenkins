@@ -54,7 +54,8 @@
     <hudson.tasks.BatchFile>
       <command>REM xcopy D:\firefox-win\firefox-19.0.2.source.tar %WORKSPACE%&#xd;
 cd C:\mozilla-build&#xd;
-call start-shell-msvc2010.bat &#xd;
+call start-shell-msvc2010.bat&#xd;
+echo %PATH% &#xd;
 REM cd firefox-win/mozilla-release &#xd;
 REM %VECTORCAST_DIR%\vcdb getfiles&#xd;
 echo %WORKSPACE%&#xd;
