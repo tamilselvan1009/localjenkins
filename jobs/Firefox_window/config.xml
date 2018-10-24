@@ -65,6 +65,8 @@ dir&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
 &#xd;
+dir&#xd;
+&#xd;
 7z x firefox-19.0.2.source.tar</command>
     </hudson.tasks.BatchFile>
   </builders>
