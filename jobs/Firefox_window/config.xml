@@ -52,11 +52,14 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>cd C:\mozilla-build&#xd;
+      <command>xcopy  /O /X /E /H /K D:\firefox-win\mozilla-release %WORKSPACE%\.&#xd;
+cd C:\mozilla-build&#xd;
 start-shell-msvc2010&#xd;
 cd d:&#xd;
 cd firefox-win&#xd;
-cd mozilla-release&#xd;
+cp -r  mozilla-release &#xd;
+cd $WORKSPACE/.&#xd;
+&#xd;
 $VECTORCAST_DIR/vcdb getfiles &gt; shekhar.txt&#xd;
 </command>
     </hudson.tasks.BatchFile>
