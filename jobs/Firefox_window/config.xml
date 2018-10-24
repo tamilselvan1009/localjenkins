@@ -57,7 +57,7 @@ start-shell-msvc2010&#xd;
 cd d:&#xd;
 cd firefox-win&#xd;
 cd mozilla-release&#xd;
-$VECTORCAST_DIR/vcdb getfiles&#xd;
+$VECTORCAST_DIR/vcdb getfiles &gt; files.txt &#xd;
 </command>
     </hudson.tasks.BatchFile>
   </builders>
