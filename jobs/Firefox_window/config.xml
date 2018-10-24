@@ -55,7 +55,6 @@
       <command>REM xcopy D:\firefox-win\firefox-19.0.2.source.tar %WORKSPACE%&#xd;
 cd C:\mozilla-build&#xd;
 call start-shell-msvc2010.bat &#xd;
-d:&#xd;
 REM cd firefox-win/mozilla-release &#xd;
 &#xd;
 REM %VECTORCAST_DIR%\vcdb getfiles&#xd;
@@ -75,7 +74,7 @@ cd mozilla-release&#xd;
 dir &#xd;
 &#xd;
 &#xd;
-%VECTORCAST_DIR%\vcshell &quot;python mach build&quot; </command>
+bash -c %VECTORCAST_DIR%\vcshell &quot;python mach build&quot; </command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
