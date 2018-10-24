@@ -1,7 +1,7 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Firefox windows datat</description>
+  <description>Firefox windows data</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
@@ -59,7 +59,9 @@ d:&#xd;
 REM cd firefox-win/mozilla-release &#xd;
 &#xd;
 REM %VECTORCAST_DIR%\vcdb getfiles&#xd;
- &#xd;
+&#xd;
+echo %WORKSPACE%&#xd;
+echo $WORKSPACE &#xd;
 cd %WORKSPACE%&#xd;
 &#xd;
 REM cd /C/SlaveJenkins/workspace/Firefox_window/mozilla-release&#xd;
