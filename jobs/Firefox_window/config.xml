@@ -73,7 +73,7 @@ $VECTORCAST_DIR/vcdb getfiles &gt; shekhar.txt&#xd;
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern>files.txt</attachmentsPattern>
+            <attachmentsPattern>D:\firefox-win\mozilla-release\shekhar.txt</attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
