@@ -53,15 +53,12 @@
   <builders>
     <hudson.tasks.BatchFile>
       <command>xcopy D:\firefox-win\firefox-19.0.2.source.tar %WORKSPACE%&#xd;
-cd C:\mozilla-build&#xd;
-call start-shell-msvc2010.bat &#xd;
-d:&#xd;
-cd firefox-win/mozilla-release &#xd;
+REM cd C:\mozilla-build&#xd;
+REM call start-shell-msvc2010.bat &#xd;
+REM d:&#xd;
+REM cd firefox-win/mozilla-release &#xd;
 &#xd;
-dir&#xd;
-&#xd;
-&#xd;
-%VECTORCAST_DIR%\vcdb getfiles&#xd;
+REM %VECTORCAST_DIR%\vcdb getfiles&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
 &#xd;
