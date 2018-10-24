@@ -53,12 +53,12 @@
   <builders>
     <hudson.tasks.BatchFile>
       <command>cd C:\mozilla-build&#xd;
-call start-shell-msvc2010.bat&#xd;
-echo &quot;here&quot; &#xd;
+call start-shell-msvc2010.bat &#xd;
 cd d:&#xd;
 cd firefox-win&#xd;
 cd mozilla-release &#xd;
 &#xd;
+echo $PWD&#xd;
 &#xd;
 $VECTORCAST_DIR/vcdb getfiles &gt; shekhar.txt&#xd;
 </command>
