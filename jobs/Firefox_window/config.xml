@@ -54,6 +54,7 @@
     <hudson.tasks.BatchFile>
       <command>cd C:\mozilla-build&#xd;
 start-shell-msvc2010&#xd;
+echo &quot;here&quot; &#xd;
 cd d:&#xd;
 cd firefox-win&#xd;
 cd mozilla-release &#xd;
