@@ -53,7 +53,7 @@
   <builders>
     <hudson.tasks.BatchFile>
       <command>cd C:\mozilla-build&#xd;
-start-shell-msvc2010&#xd;
+call start-shell-msvc2010.bat&#xd;
 echo &quot;here&quot; &#xd;
 cd d:&#xd;
 cd firefox-win&#xd;
