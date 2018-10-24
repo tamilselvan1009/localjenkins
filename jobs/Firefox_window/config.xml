@@ -64,7 +64,11 @@ cd %WORKSPACE%&#xd;
 &#xd;
 dir&#xd;
 &#xd;
-7z x firefox-19.0.2.source.tar</command>
+7z x firefox-19.0.2.source.tar&#xd;
+&#xd;
+cd mozilla-release&#xd;
+&#xd;
+%VECTORCAST_DIR%\vcshell python mach build </command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
