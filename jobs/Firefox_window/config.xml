@@ -59,7 +59,8 @@ cd firefox-win/mozilla-release &#xd;
 &#xd;
 dir&#xd;
 &#xd;
-$VECTORCAST_DIR/vcdb getfiles &gt; shekhar.txt&#xd;
+&#xd;
+%VECTORCAST_DIR%\vcdb getfiles&#xd;
 </command>
     </hudson.tasks.BatchFile>
   </builders>
