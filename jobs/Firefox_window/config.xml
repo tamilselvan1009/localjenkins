@@ -56,24 +56,14 @@
 cd C:\mozilla-build&#xd;
 call start-shell-msvc2010.bat &#xd;
 REM cd firefox-win/mozilla-release &#xd;
-&#xd;
 REM %VECTORCAST_DIR%\vcdb getfiles&#xd;
-&#xd;
 echo %WORKSPACE%&#xd;
 REM echo $WORKSPACE &#xd;
 cd %WORKSPACE%&#xd;
-&#xd;
 REM cd /C/SlaveJenkins/workspace/Firefox_window/mozilla-release&#xd;
-&#xd;
-&#xd;
-&#xd;
 REM 7z x firefox-19.0.2.source.tar&#xd;
-&#xd;
 cd mozilla-release&#xd;
-&#xd;
 dir &#xd;
-&#xd;
-&#xd;
 bash -c $VECTORCAST_DIR/vcshell &quot;python mach build&quot; </command>
     </hudson.tasks.BatchFile>
   </builders>
