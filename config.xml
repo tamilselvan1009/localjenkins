@@ -61,6 +61,7 @@
         <string>Cygwin_homepath</string>
         <string>Firefox_linux</string>
         <string>Firefox_linux_new</string>
+        <string>Firefox_window</string>
         <string>Git_Clone</string>
         <string>Git_Clone_under_design</string>
         <string>Linux32</string>
