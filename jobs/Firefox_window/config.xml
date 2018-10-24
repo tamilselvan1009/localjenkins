@@ -51,14 +51,15 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.tasks.Shell>
-      <command>#!/bin/bash -xe
-cd C:\mozilla-build
-start-shell-msvc2010
-cd D:\firefox-win
-cd mozilla-release
-$VECTORCAST_DIR/vcdb getfiles</command>
-    </hudson.tasks.Shell>
+    <hudson.tasks.BatchFile>
+      <command>cd C:\mozilla-build&#xd;
+start-shell-msvc2010&#xd;
+cd d:&#xd;
+cd firefox-win&#xd;
+cd mozilla-release&#xd;
+$VECTORCAST_DIR/vcdb getfiles&#xd;
+</command>
+    </hudson.tasks.BatchFile>
   </builders>
   <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.21">
