@@ -55,18 +55,22 @@
       <command>REM xcopy D:\firefox-win\firefox-19.0.2.source.tar %WORKSPACE%&#xd;
 cd C:\mozilla-build&#xd;
 call start-shell-msvc2010.bat&#xd;
-echo %PATH% &#xd;
+REM echo %PATH% &#xd;
 REM cd firefox-win/mozilla-release &#xd;
 REM %VECTORCAST_DIR%\vcdb getfiles&#xd;
-echo %WORKSPACE%&#xd;
+REM echo %WORKSPACE%&#xd;
 REM echo $WORKSPACE &#xd;
-cd %WORKSPACE%&#xd;
+REM cd %WORKSPACE%&#xd;
 REM cd /C/SlaveJenkins/workspace/Firefox_window/mozilla-release&#xd;
 REM 7z x firefox-19.0.2.source.tar&#xd;
-cd mozilla-release&#xd;
-dir &#xd;
-bash -c $VECTORCAST_DIR/vcshell &quot;python mach build&quot; </command>
+REM cd mozilla-release&#xd;
+REM dir &#xd;
+REM bash -c $VECTORCAST_DIR/vcshell &quot;python mach build&quot; </command>
     </hudson.tasks.BatchFile>
+    <hudson.tasks.Shell>
+      <command>cd /C/SlaveJenkins/workspace/Firefox_window/mozilla-release
+bash -c $VECTORCAST_DIR/vcshell &quot;python mach build&quot; </command>
+    </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
