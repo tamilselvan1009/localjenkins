@@ -57,7 +57,7 @@ call start-shell-msvc2010.bat &#xd;
 d:&#xd;
 cd firefox-win/mozilla-release &#xd;
 &#xd;
-echo $PWD&#xd;
+dir&#xd;
 &#xd;
 $VECTORCAST_DIR/vcdb getfiles &gt; shekhar.txt&#xd;
 </command>
