@@ -74,7 +74,7 @@ cd mozilla-release&#xd;
 dir &#xd;
 &#xd;
 &#xd;
-bash -c %VECTORCAST_DIR%\vcshell &quot;python mach build&quot; </command>
+bash -c $VECTORCAST_DIR/vcshell &quot;python mach build&quot; </command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
