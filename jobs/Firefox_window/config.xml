@@ -65,7 +65,7 @@ REM cd /C/SlaveJenkins/workspace/Firefox_window/mozilla-release&#xd;
 REM 7z x firefox-19.0.2.source.tar&#xd;
 REM cd mozilla-release&#xd;
 REM dir &#xd;
-bash -c &quot;$VECTORCAST_DIR/vcshell python mach build&quot; </command>
+bash -c &quot; mach build&quot; </command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
