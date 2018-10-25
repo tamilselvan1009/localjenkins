@@ -66,7 +66,7 @@ REM 7z x firefox-19.0.2.source.tar&#xd;
 cd %WORKSPACE%\\mozilla-release&#xd;
 REM dir &#xd;
 echo %CD%&#xd;
-bash --login -i &lt; &quot;./mach build;exit&quot; </command>
+bash --login -i &lt; &quot;cd $WORKSPACE/mozilla-release;./mach build;exit&quot; </command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
