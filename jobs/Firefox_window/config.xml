@@ -65,6 +65,7 @@ REM cd /C/SlaveJenkins/workspace/Firefox_window/mozilla-release&#xd;
 REM 7z x firefox-19.0.2.source.tar&#xd;
 REM cd mozilla-release&#xd;
 REM dir &#xd;
+echo PATH=%PATH%&#xd;
 bash -c &quot;ls&quot; </command>
     </hudson.tasks.BatchFile>
   </builders>
