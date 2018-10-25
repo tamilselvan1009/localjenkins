@@ -66,7 +66,8 @@ REM 7z x firefox-19.0.2.source.tar&#xd;
 cd %WORKSPACE%\\mozilla-release&#xd;
 REM dir &#xd;
 echo %CD%&#xd;
-echo &quot;echo pwd=$PWD&quot; &gt; mycommand.txt&#xd;
+echo &quot;cd &quot;$WORKSPACE/mozilla-release&quot; &gt; mycommand.txt&#xd;
+echo &quot;echo pwd=$PWD&quot;     &gt;&gt; mycommand.txt&#xd;
 echo &quot;mach build&quot; &gt;&gt; mycommand.txt&#xd;
 echo &quot;exit&quot; &gt;&gt; mycommand.txt&#xd;
 type mycommand.txt | bash --login -i  </command>
