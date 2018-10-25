@@ -52,7 +52,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>REM xcopy D:\firefox-win\firefox-19.0.2.source.tar %WORKSPACE%&#xd;
+      <command>xcopy D:\firefox-win\firefox-19.0.2.source.tar %WORKSPACE%&#xd;
 cd C:\mozilla-build&#xd;
 call start-shell-msvc2010.bat&#xd;
 REM echo %PATH% &#xd;
@@ -60,15 +60,17 @@ REM cd firefox-win/mozilla-release &#xd;
 REM %VECTORCAST_DIR%\vcdb getfiles&#xd;
 REM echo %WORKSPACE%&#xd;
 REM echo $WORKSPACE &#xd;
-REM cd %WORKSPACE%&#xd;
+cd %WORKSPACE%&#xd;
 REM cd /C/SlaveJenkins/workspace/Firefox_window/mozilla-release&#xd;
-REM 7z x firefox-19.0.2.source.tar&#xd;
+7z x firefox-19.0.2.source.tar&#xd;
+&#xd;
+&#xd;
 cd %WORKSPACE%\\mozilla-release&#xd;
 REM dir &#xd;
 echo %CD%&#xd;
 echo cd &quot;$WORKSPACE/mozilla-release&quot; &gt; mycommand.txt&#xd;
 echo echo pwd=$PWD     &gt;&gt; mycommand.txt&#xd;
-echo mach build &gt;&gt; mycommand.txt&#xd;
+echo &quot;$VECTORCAST_DIR/vcshell&quot; mach build --jobs=4 &gt;&gt; mycommand.txt&#xd;
 echo exit &gt;&gt; mycommand.txt&#xd;
 type mycommand.txt | bash --login -i  </command>
     </hudson.tasks.BatchFile>
@@ -108,6 +110,11 @@ type mycommand.txt | bash --login -i  </command>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
   <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
