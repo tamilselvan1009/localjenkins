@@ -65,12 +65,8 @@ REM cd /C/SlaveJenkins/workspace/Firefox_window/mozilla-release&#xd;
 REM 7z x firefox-19.0.2.source.tar&#xd;
 REM cd mozilla-release&#xd;
 REM dir &#xd;
-REM bash -c $VECTORCAST_DIR/vcshell &quot;python mach build&quot; </command>
+bash -c &quot;ls&quot; </command>
     </hudson.tasks.BatchFile>
-    <hudson.tasks.Shell>
-      <command>cd /C/SlaveJenkins/workspace/Firefox_window/mozilla-release
-bash -c $VECTORCAST_DIR/vcshell &quot;python mach build&quot; </command>
-    </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
