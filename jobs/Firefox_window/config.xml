@@ -53,8 +53,6 @@
   <builders>
     <hudson.tasks.BatchFile>
       <command>xcopy D:\firefox-win\firefox-19.0.2.source.tar %WORKSPACE%&#xd;
-cd C:\mozilla-build&#xd;
-call start-shell-msvc2010.bat&#xd;
 REM echo %PATH% &#xd;
 REM cd firefox-win/mozilla-release &#xd;
 REM %VECTORCAST_DIR%\vcdb getfiles&#xd;
@@ -62,8 +60,11 @@ REM echo %WORKSPACE%&#xd;
 REM echo $WORKSPACE &#xd;
 cd %WORKSPACE%&#xd;
 REM cd /C/SlaveJenkins/workspace/Firefox_window/mozilla-release&#xd;
+dir&#xd;
 7z x firefox-19.0.2.source.tar&#xd;
 &#xd;
+cd C:\mozilla-build&#xd;
+call start-shell-msvc2010.bat&#xd;
 &#xd;
 cd %WORKSPACE%\\mozilla-release&#xd;
 REM dir &#xd;
