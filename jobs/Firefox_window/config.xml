@@ -63,7 +63,7 @@ REM echo $WORKSPACE &#xd;
 REM cd %WORKSPACE%&#xd;
 REM cd /C/SlaveJenkins/workspace/Firefox_window/mozilla-release&#xd;
 REM 7z x firefox-19.0.2.source.tar&#xd;
-cd mozilla-release&#xd;
+cd %WORKSPACE%\\mozilla-release&#xd;
 REM dir &#xd;
 echo %CD%&#xd;
 bash -c &quot; mach build&quot; </command>
