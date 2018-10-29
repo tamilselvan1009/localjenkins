@@ -72,7 +72,7 @@ REM dir &#xd;
 echo %CD%&#xd;
 echo cd &quot;$WORKSPACE/mozilla-release&quot; &gt; mycommand.txt&#xd;
 echo echo pwd=$PWD     &gt;&gt; mycommand.txt&#xd;
-echo &quot;$VECTORCAST_DIR/vcdb getfiles&quot; &gt;&gt; mycommand.txt&#xd;
+echo &quot;$VECTORCAST_DIR\vcdb getfiles&quot; &gt;&gt; mycommand.txt&#xd;
 REM echo  mach build &gt;&gt; mycommand.txt&#xd;
 echo exit &gt;&gt; mycommand.txt&#xd;
 type mycommand.txt | bash --login -i  </command>
