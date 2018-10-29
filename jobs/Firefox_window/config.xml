@@ -72,7 +72,7 @@ REM dir &#xd;
 echo %CD%&#xd;
 echo cd &quot;$WORKSPACE/mozilla-release&quot; &gt; mycommand.txt&#xd;
 echo echo pwd=$PWD     &gt;&gt; mycommand.txt&#xd;
-echo echo $VECTORCAST_DIR/vcshell --version &gt;&gt; mycommand.txt&#xd;
+echo echo %VECTORCAST_DIR%\vcshell --version &gt;&gt; mycommand.txt&#xd;
 REM echo  mach build &gt;&gt; mycommand.txt&#xd;
 echo exit &gt;&gt; mycommand.txt&#xd;
 type mycommand.txt | bash --login -i  </command>
@@ -113,11 +113,6 @@ type mycommand.txt | bash --login -i  </command>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
-      <deleteDirs>false</deleteDirs>
-      <cleanupParameter></cleanupParameter>
-      <externalDelete></externalDelete>
-    </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
