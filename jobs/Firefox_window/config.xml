@@ -60,20 +60,21 @@ REM echo %WORKSPACE%&#xd;
 REM echo $WORKSPACE &#xd;
 cd %WORKSPACE%&#xd;
 REM cd /C/SlaveJenkins/workspace/Firefox_window/mozilla-release&#xd;
-dir&#xd;
+REM dir&#xd;
 7z x firefox-19.0.2.source.tar&#xd;
 &#xd;
-cd C:\mozilla-build&#xd;
-call start-shell-msvc2010.bat&#xd;
+REM cd C:\mozilla-build&#xd;
+REM echo %CD%&#xd;
+REM call start-shell-msvc2010.bat&#xd;
 &#xd;
 cd %WORKSPACE%\\mozilla-release&#xd;
 REM dir &#xd;
 echo %CD%&#xd;
-echo cd &quot;$WORKSPACE/mozilla-release&quot; &gt; mycommand.txt&#xd;
-echo echo pwd=$PWD     &gt;&gt; mycommand.txt&#xd;
-echo &quot;$VECTORCAST_DIR/vcshell&quot; mach build --jobs=4 &gt;&gt; mycommand.txt&#xd;
-echo exit &gt;&gt; mycommand.txt&#xd;
-type mycommand.txt | bash --login -i  </command>
+REM echo cd &quot;$WORKSPACE/mozilla-release&quot; &gt; mycommand.txt&#xd;
+REM echo echo pwd=$PWD     &gt;&gt; mycommand.txt&#xd;
+REM echo &quot;$VECTORCAST_DIR/vcshell&quot; mach build --jobs=4 &gt;&gt; mycommand.txt&#xd;
+REM echo exit &gt;&gt; mycommand.txt&#xd;
+REM type mycommand.txt | bash --login -i  </command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
