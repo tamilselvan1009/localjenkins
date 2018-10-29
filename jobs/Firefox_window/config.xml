@@ -70,11 +70,11 @@ REM call start-shell-msvc2010.bat&#xd;
 cd %WORKSPACE%\\mozilla-release&#xd;
 REM dir &#xd;
 echo %CD%&#xd;
-REM echo cd &quot;$WORKSPACE/mozilla-release&quot; &gt; mycommand.txt&#xd;
-REM echo echo pwd=$PWD     &gt;&gt; mycommand.txt&#xd;
-REM echo &quot;$VECTORCAST_DIR/vcshell&quot; mach build --jobs=4 &gt;&gt; mycommand.txt&#xd;
-REM echo exit &gt;&gt; mycommand.txt&#xd;
-REM type mycommand.txt | bash --login -i  </command>
+echo cd &quot;$WORKSPACE/mozilla-release&quot; &gt; mycommand.txt&#xd;
+echo echo pwd=$PWD     &gt;&gt; mycommand.txt&#xd;
+echo &quot;$VECTORCAST_DIR/vcshell&quot; mach build --jobs=4 &gt;&gt; mycommand.txt&#xd;
+echo exit &gt;&gt; mycommand.txt&#xd;
+type mycommand.txt | bash --login -i  </command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
