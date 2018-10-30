@@ -27,7 +27,7 @@
         <hudson.model.StringParameterDefinition>
           <name>LINUX_VECTORCAST_DIR</name>
           <description></description>
-          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/custom/VCAST_LINUX_sp3</defaultValue>
+          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/custom/VCAST_LINUX</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -76,7 +76,7 @@ cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 
 
 #$VECTORCAST_DIR/vpython VcRunTests.py --metrics --run_tests=vcInstTest --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972 
-$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=AddmetricsTest
+$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=VcdbcmdTest
 exit
 
 #for i in {1..2}
