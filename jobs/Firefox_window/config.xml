@@ -77,7 +77,11 @@ REM echo  mach build &gt;&gt; mycommand.txt&#xd;
 REM echo exit &gt;&gt; mycommand.txt&#xd;
 REM type mycommand.txt | bash --login -i&#xd;
 &#xd;
-powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcdb getfiles | Out-Host}&quot;  </command>
+powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcutil  addmetrics --vcppopt | Out-Host}&quot;&#xd;
+powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcutil  quickparse --vcppopt | Out-Host}&quot;&#xd;
+powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcdb getpaths  | Out-Host}&quot;&#xd;
+powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcdb files | Out-Host}&quot;&#xd;
+powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcdb getappfiles | Out-Host}&quot;        </command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
