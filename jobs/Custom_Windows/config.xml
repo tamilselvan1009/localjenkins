@@ -40,7 +40,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -61,7 +60,6 @@ call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&
 set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
-set _VC_USE_BOOST_TOKENIZER_=1&#xd;
 &#xd;
 xcopy /S /I /E %HARVESTER_PATH%\tests tests /Q /Y&#xd;
 &#xd;
@@ -69,7 +67,7 @@ cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests &#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=PortabilityTest</command>
+%VECTORCAST_DIR%\vpython VcRunTests.py </command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
