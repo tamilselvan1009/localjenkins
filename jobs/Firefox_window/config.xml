@@ -70,18 +70,21 @@ REM call start-shell-msvc2010.bat&#xd;
 cd %WORKSPACE%\\mozilla-release&#xd;
 REM dir &#xd;
 REM echo %CD%&#xd;
-REM echo cd &quot;$WORKSPACE/mozilla-release&quot; &gt; mycommand.txt&#xd;
-REM echo echo pwd=$PWD     &gt;&gt; mycommand.txt&#xd;
+echo cd &quot;$WORKSPACE/mozilla-release&quot; &gt; mycommand.txt&#xd;
+echo echo pwd=$PWD     &gt;&gt; mycommand.txt&#xd;
 REM echo &quot;$VECTORCAST_DIR/vcshell&quot; python mach build &gt;&gt; mycommand.txt&#xd;
 REM echo  mach build &gt;&gt; mycommand.txt&#xd;
-REM echo exit &gt;&gt; mycommand.txt&#xd;
-REM type mycommand.txt | bash --login -i&#xd;
+echo time(&quot;$VECTORCAST_DIR/vcutil&quot; addmetrics --vcppot) &gt;&gt;mycommand.txt&#xd;
+echo time(&quot;$VECTORCAST_DIR/vcutil&quot; quickparse --vcppopt) &gt;&gt;mycommand.txt&#xd;
+echo time(&quot;$VECTORCAST_DIR/vcdb&quot; getpaths) &gt;&gt;mycommand.txt &#xd;
+echo exit &gt;&gt; mycommand.txt&#xd;
+type mycommand.txt | bash --login -i&#xd;
 &#xd;
-powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcutil  addmetrics --vcppopt | Out-Host}&quot;&#xd;
-powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcutil  quickparse --vcppopt | Out-Host}&quot;&#xd;
-powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcdb getpaths  | Out-Host}&quot;&#xd;
-powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcdb files | Out-Host}&quot;&#xd;
-powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcdb getappfiles | Out-Host}&quot;        </command>
+REM powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcutil  addmetrics --vcppopt | Out-Host}&quot;&#xd;
+REM powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcutil  quickparse --vcppopt | Out-Host}&quot;&#xd;
+REM powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcdb getpaths  | Out-Host}&quot;&#xd;
+REM powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcdb files | Out-Host}&quot;&#xd;
+REM powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcdb getappfiles | Out-Host}&quot;        </command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
