@@ -21,7 +21,7 @@
         <hudson.model.StringParameterDefinition>
           <name>HARVESTER_PATH</name>
           <description></description>
-          <defaultValue>N:\shared\Jenkins_Harvester\Git</defaultValue>
+          <defaultValue>N:\shared\Jenkins_Harvester_80503\Git</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -67,7 +67,7 @@ cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests &#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py </command>
+%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=PortabilityTest</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
