@@ -76,7 +76,7 @@ cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 
 
 #$VECTORCAST_DIR/vpython VcRunTests.py --metrics --run_tests=vcInstTest --vcast_dir=/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/linux_54972 
-$VECTORCAST_DIR/vpython VcRunTests.py 
+$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=PortabilityTest,OnDirEntry
 exit
 
 #for i in {1..2}
