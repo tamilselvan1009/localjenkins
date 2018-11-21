@@ -56,7 +56,7 @@
 cd %WORKSPACE%&#xd;
 set path=%path:&quot;=%&#xd;
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
-&#xd;
+set _VC_USE_BOOST_TOKENIZER_=1&#xd;
 set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
@@ -67,7 +67,7 @@ cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests &#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py </command>
+%VECTORCAST_DIR%\vpython VcRunTests.py  --run_tests=VcshellPutCommandTest/PutCommand78866</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
