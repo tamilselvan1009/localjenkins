@@ -67,7 +67,7 @@ cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests &#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py  --run_tests=vcParseTest</command>
+%VECTORCAST_DIR%\vpython VcRunTests.py  --run_tests=MetricsTest\Neg_MetricsTest,PortabilityTest,VcshellOptionsTest,VcdbcmdTest</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
