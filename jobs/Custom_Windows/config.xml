@@ -27,7 +27,7 @@
         <hudson.model.StringParameterDefinition>
           <name>WINDOWS_VECTORCAST_DIR</name>
           <description></description>
-          <defaultValue>N:\shared\.VCAST_REGRESSION\JOB_6PM\VCAST_WINDOWS</defaultValue>
+          <defaultValue>N:\shared\.VCAST_REGRESSION\custom\VCAST_WINDOWS</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -40,6 +40,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
