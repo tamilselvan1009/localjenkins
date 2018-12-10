@@ -70,7 +70,7 @@ mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
 set PATH=C:\cygwin\bin;%PATH%&#xd;
 bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=GetApps-LinkTests/StaticLib,PortabilityTest/Version1_0l,PortabilityTest/Version1_0m,PortabilityTest/Version1_0n,PortabilityTest/Version1_0o,PortabilityTest/Version1_0p,PortabilityTest/Version1_0q</command>
+%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=PortabilityTest/Version1_0s,PortabilityTest/Version1_0v,PortabilityTest/Version1_0w,PortabilityTest/Version1_0x</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
