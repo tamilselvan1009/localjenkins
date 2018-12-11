@@ -15,7 +15,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BUILD NAME</name>
           <description></description>
-          <defaultValue>User_test</defaultValue>
+          <defaultValue>User_test_80503</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
