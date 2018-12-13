@@ -76,7 +76,7 @@ cmake ..\tests || call:handle_error&#xd;
 &#xd;
 rmdir getpaths\test_case_sensitive /s /q&#xd;
 rmdir getpaths\test_symbolic_link /s /q&#xd;
-exit&#xd;
+&#xd;
 echo &quot;Test starts here&quot; &#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py  || call:handle_error&#xd;
 &#xd;
