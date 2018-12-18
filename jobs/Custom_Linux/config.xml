@@ -58,7 +58,7 @@ cd $WORKSPACE
 
 ulimit -c unlimited
 export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
-export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UBUNTU.lic
+export VECTOR_LICENSE_FILE=7650@licenseserver
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 
 echo $VECTORCAST_DIR
