@@ -65,7 +65,7 @@ echo $VECTORCAST_DIR
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
-#cp -r ${HARVESTER_PATH}/tests $WORKSPACE
+cp -r ${HARVESTER_PATH}/tests $WORKSPACE
 
 rm -rf tbuild32
 #CMake and run VcRunTests
