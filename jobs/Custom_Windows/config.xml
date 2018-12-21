@@ -60,7 +60,7 @@ set _VC_USE_BOOST_TOKENIZER_=1&#xd;
 set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 rem set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
-set LM_LICENSE_FILE=27000@192.168.163.1&#xd;
+set LM_LICENSE_FILE=27000@192.168.163.60&#xd;
 &#xd;
 xcopy /S /I /E %HARVESTER_PATH%\tests tests /Q /Y&#xd;
 &#xd;
