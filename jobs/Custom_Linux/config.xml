@@ -73,7 +73,7 @@ mkdir tbuild32
 cd tbuild32
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 
-python VcRunTests.py --run_tests=FileListErrTest,VcutilTest/PutcmdTest,VcutilTest/VcbgTest,VcutilTest/AppendCoverIO/VcutilCover,CacheCoverageTest,DirNameTest,vcUtilRun
+python VcRunTests.py --run_tests=FileListErrTest
 exit
 
 #for i in {1..2}
