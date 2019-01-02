@@ -67,7 +67,7 @@ cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests &#xd;
-python VcRunTests.py --run_tests=VcutilTest/PutcmdTest,VcutilTest/VcbgTest</command>
+python VcRunTests.py </command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
