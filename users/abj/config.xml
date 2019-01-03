@@ -1,6 +1,6 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <user>
-  <fullName>abj</fullName>
+  <fullName>Abhishek Jain</fullName>
   <properties>
     <jenkins.security.ApiTokenProperty>
       <apiToken>{AQAAABAAAAAw+w4L43gkYRjuIrLJGmWMHVu+xP0d0Z4qWo/vI77lURmCnVnTeaW7XXMajJxkj1MiEFW7w3IT5BTfnI+tRf++mA==}</apiToken>
@@ -31,8 +31,17 @@
     <hudson.search.UserSearchProperty>
       <insensitiveSearch>true</insensitiveSearch>
     </hudson.search.UserSearchProperty>
+    <hudson.security.HudsonPrivateSecurityRealm_-Details>
+      <passwordHash>#jbcrypt:$2a$10$r2.pTjP1I4T0qifObGdZquT6ccMwDRBkXQoH7dljK4eVP5lKYHm16</passwordHash>
+    </hudson.security.HudsonPrivateSecurityRealm_-Details>
     <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.21">
-      <emailAddress>abj@abj.(none)</emailAddress>
+      <emailAddress>abhishek.jain@vectorcast.com</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
+    <jenkins.security.LastGrantedAuthoritiesProperty>
+      <roles>
+        <string>authenticated</string>
+      </roles>
+      <timestamp>1546504737025</timestamp>
+    </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>
