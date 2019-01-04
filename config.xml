@@ -1,12 +1,5 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <hudson>
-  <temporaryOfflineCause class="hudson.node_monitors.DiskSpaceMonitorDescriptor$DiskSpace">
-    <timestamp>1546584479022</timestamp>
-    <path>/var/lib/jenkins</path>
-    <size>822513664</size>
-    <triggered>true</triggered>
-    <trigger>hudson.node_monitors.DiskSpaceMonitor</trigger>
-  </temporaryOfflineCause>
   <disabledAdministrativeMonitors>
     <string>hudsonHomeIsFull</string>
   </disabledAdministrativeMonitors>
@@ -70,7 +63,6 @@
         <string>Firefox_linux_new</string>
         <string>Firefox_window</string>
         <string>Git_Clone</string>
-        <string>Git_Clone_under_design</string>
         <string>Linux32</string>
         <string>Linux32_on_VC</string>
         <string>Linux64_full</string>
