@@ -81,9 +81,6 @@
         <string>Linux_ValgrindTest</string>
         <string>Regression_6pm_Master</string>
         <string>Regression_Other_Jobs_Master</string>
-        <string>Release_build_linux64_lib</string>
-        <string>Release_git_clone</string>
-        <string>Release_integrated_build</string>
         <string>Result_Collector</string>
         <string>Result_Collector_New</string>
         <string>Result_Collector_Other</string>
@@ -147,31 +144,6 @@
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
       </categorizationCriteria>
-    </org.jenkinsci.plugins.categorizedview.CategorizedJobsView>
-    <org.jenkinsci.plugins.categorizedview.CategorizedJobsView plugin="categorized-view@1.10">
-      <owner class="hudson" reference="../../.."/>
-      <name>Release</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <org.jenkinsci.plugins.categorizedview.IndentedJobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>Release.*</includeRegex>
-      <recurse>true</recurse>
-      <groupingRules/>
-      <regexToIgnoreOnColorComputing></regexToIgnoreOnColorComputing>
-      <categorizationCriteria/>
     </org.jenkinsci.plugins.categorizedview.CategorizedJobsView>
   </views>
   <primaryView>Categorized View</primaryView>
