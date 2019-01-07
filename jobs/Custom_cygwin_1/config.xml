@@ -59,7 +59,7 @@ set WORKSPACE=C:\\cygwin\\home\\jenkins&#xd;
 cd %WORKSPACE%&#xd;
 &#xd;
 set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
-set VECTOR_LICENSE_FILE=vector-REG-WIN-1.lic&#xd;
+set VECTOR_LICENSE_FILE=C:\FLEXlm\vector-REG-WIN-1.lic&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 &#xd;
 echo %WORKSPACE%&#xd;
