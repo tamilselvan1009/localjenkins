@@ -61,7 +61,7 @@
       <command>set path=%path:&quot;=%&#xd;
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
 &#xd;
-set WORKSPACE=C:\SlaveJenkins\workspace\Cygwin32&#xd;
+set WORKSPACE=C:\cygwin\home\jenkins&#xd;
 cd %WORKSPACE%&#xd;
 &#xd;
 set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
