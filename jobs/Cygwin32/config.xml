@@ -80,7 +80,7 @@ set PATH=C:\cygwin\bin;%PATH%&#xd;
 rem bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
 echo $[_VC_NEW_CYGWIN_MODE_]&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=VcutilTest,FilterTest,LogFileTests,VcshellPutCommandTest/PutCommand78866&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py || call:handle_error&#xd;
+rem %VECTORCAST_DIR%\vpython VcRunTests.py || call:handle_error&#xd;
 &#xd;
 rem Collect results&#xd;
 %VECTORCAST_DIR%\vpython VcCollectResult.py --db=N:\shared\Jenkins_Result\vcshell.db --tag=cygwin32&#xd;
