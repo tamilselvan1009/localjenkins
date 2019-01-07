@@ -58,12 +58,12 @@ call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&
 set WORKSPACE=C:\\cygwin\\home\\jenkins&#xd;
 cd %WORKSPACE%&#xd;
 &#xd;
-set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
+set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
 set VECTOR_LICENSE_FILE=vector-REG-WIN-1.lic&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 &#xd;
 echo %WORKSPACE%&#xd;
-xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
+xcopy /S /I /E %HARVESTER_PATH%\tests tests /Q /Y&#xd;
 &#xd;
 rem set _VC_NEW_CYGWIN_MODE_=1&#xd;
 cd %WORKSPACE%&#xd;
