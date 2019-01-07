@@ -52,6 +52,7 @@
         <string>Coverage_Windows</string>
         <string>Coverage_Windows_under_design</string>
         <string>Custom_Cygwin</string>
+        <string>Custom_cygwin_1</string>
         <string>Custom_Linux</string>
         <string>Custom_Linux_1</string>
         <string>Custom_Windows</string>
@@ -60,27 +61,18 @@
         <string>Cygwin64</string>
         <string>Cygwin_homepath</string>
         <string>Firefox_linux</string>
-        <string>Firefox_linux_new</string>
         <string>Firefox_window</string>
         <string>Git_Clone</string>
         <string>Linux32</string>
-        <string>Linux32_on_VC</string>
         <string>Linux64_full</string>
-        <string>Linux64_lib_only</string>
         <string>Linux_EnvCreate</string>
         <string>LINUX_INSTRUMENTED_VCRUNTESTS</string>
-        <string>Linux_test_perf</string>
         <string>Linux_ValgrindTest</string>
         <string>Regression_6pm_Master</string>
         <string>Regression_Other_Jobs_Master</string>
         <string>Result_Collector</string>
         <string>Result_Collector_New</string>
         <string>Result_Collector_Other</string>
-        <string>test</string>
-        <string>Test_Commit_Linux</string>
-        <string>Test_Commit_WinCyg</string>
-        <string>try</string>
-        <string>Win32_64_on_VC</string>
         <string>WinCyg_EnvCreate</string>
         <string>Windows32_msvc10</string>
         <string>Windows32_msvc9</string>
