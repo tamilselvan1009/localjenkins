@@ -58,8 +58,7 @@ set path=%path:&quot;=%&#xd;
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
 set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
-rem set VECTOR_LICENSE_FILE=C:\flexlm\vector-INDIAWINDOWSBUI.lic&#xd;
-set LM_LICENSE_FILE=27000@192.168.163.60&#xd;
+set VECTOR_LICENSE_FILE=C:\flexlm\vector-WIN-REG64-54.lic&#xd;
 &#xd;
 xcopy /S /I /E %HARVESTER_PATH%\tests tests /Q /Y&#xd;
 &#xd;
@@ -67,7 +66,7 @@ cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests &#xd;
-python VcRunTests.py --run_tests=VcutilTest/AppendCoverIO/VcutilCover</command>
+%vectorcast_dir%\vpython VcRunTests.py</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
