@@ -124,7 +124,7 @@ REM ############################################################################
 ::Create vcshell.db
 %VECTORCAST_DIR%\vcshell buildWin.bat msvc9 --arch=win32 --config=Release
 %VECTORCAST_DIR%\clicast -lc template VISUAL_CPP_CPP_2008
-python abspath.py vcHarvesterSrcFilesForCoverageWindows.txt
+%VECTORCAST_DIR%\vpython abspath.py vcHarvesterSrcFilesForCoverageWindows.txt
 %VECTORCAST_DIR%\vcutil addmetrics --filelist=vcHarvesterSrcFilesForCoverageWindows.txt
 
 :: Change the VcTools version to the git commit id
