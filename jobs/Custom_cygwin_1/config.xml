@@ -55,8 +55,7 @@
       <command>set path=%path:&quot;=%&#xd;
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
 &#xd;
-set WORKSPACE=C:\\cygwin\\home\\jenkins\\workspace\\Custom_cygwin_1&#xd;
-cd %WORKSPACE%&#xd;
+rem set WORKSPACE=C:\\cygwin\\home\\jenkins\\workspace\\Custom_cygwin_1&#xd;
 &#xd;
 set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
 set VECTOR_LICENSE_FILE=C:\FLEXlm\vector-REG-WIN-1.lic&#xd;
@@ -67,16 +66,27 @@ xcopy /S /I /E %HARVESTER_PATH%\tests tests /Q /Y&#xd;
 &#xd;
 rem set _VC_NEW_CYGWIN_MODE_=1&#xd;
 cd %WORKSPACE%&#xd;
-mkdir tbuild32_cyg&#xd;
-cd tbuild32_cyg&#xd;
+mkdir tcyg__def_cygdrive&#xd;
+cd tcyg__def_cygdrive&#xd;
+mkdir MathTest&#xd;
+cd MathTest&#xd;
+mkdir Matrix&#xd;
+cd Matrix&#xd;
 set PATH=C:\cygwin\bin;%PATH%&#xd;
-bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py || call:handle_error&#xd;
+bash -c &quot;cmake ../../../testsMathTest/Matrix -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
+bash -c &quot;python VcRunTests.py&quot;&#xd;
 &#xd;
-rem Collect results&#xd;
-%VECTORCAST_DIR%\vpython VcCollectResult.py --db=N:\shared\Jenkins_Result\vcshell.db --tag=cygwin32&#xd;
-%VECTORCAST_DIR%\vpython VcRegressionResult.py --db=N:\shared\Jenkins_Result/regression.db --tag=cygwin32 --storeresult&#xd;
-</command>
+set _VC_NEW_CYGWIN_MODE_=1&#xd;
+cd %WORKSPACE%&#xd;
+mkdir tcyg__env_cygdrive&#xd;
+cd tcyg__env_cygdrive&#xd;
+mkdir MathTest&#xd;
+cd MathTest&#xd;
+mkdir Matrix&#xd;
+cd Matrix&#xd;
+set PATH=C:\cygwin\bin;%PATH%&#xd;
+bash -c &quot;cmake ../../../testsMathTest/Matrix -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
+bash -c &quot;python VcRunTests.py&quot;</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
@@ -87,11 +97,6 @@ rem Collect results&#xd;
     </hudson.tasks.Mailer>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
-      <deleteDirs>false</deleteDirs>
-      <cleanupParameter></cleanupParameter>
-      <externalDelete></externalDelete>
-    </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
