@@ -74,7 +74,7 @@ mkdir Matrix&#xd;
 cd Matrix&#xd;
 set PATH=C:\cygwin\bin;%PATH%&#xd;
 bash -c &quot;cmake ../../../tests/MathTest/Matrix -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
-bash -c &quot;python VcRunTests.py&quot;&#xd;
+bash -c &quot;python ../../VcRunTests.py&quot;&#xd;
 &#xd;
 set _VC_NEW_CYGWIN_MODE_=1&#xd;
 cd %WORKSPACE%&#xd;
