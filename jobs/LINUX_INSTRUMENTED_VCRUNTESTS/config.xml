@@ -27,6 +27,8 @@
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
       <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
       <throttleEnabled>false</throttleEnabled>
       <throttleOption>project</throttleOption>
@@ -55,8 +57,8 @@ export VC_RESULT_DIR=$PWD/results
 mkdir &quot;${VC_RESULT_DIR}&quot;
 
 #Copy the artifacts
-scp -r vectorindia@192.168.163.16:$HARVESTER_DIR/tests .
-scp -r vectorindia@192.168.163.16:$HARVESTER_DIR/vcast .
+scp -r vectorindia@192.168.163.73:$HARVESTER_DIR/tests .
+scp -r vectorindia@192.168.163.73:$HARVESTER_DIR/vcast .
 
 #Print the version
 $VECTORCAST_DIR/vcshell --version
@@ -94,7 +96,7 @@ $VECTORCAST_DIR/vpython ../../VcRunTests.py  || export _VC_RUNTEST_RETURN_CODE_=
 find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/SEQ_DISPATCHER.DAT &apos;;&apos;
 
 #Copy the TESTINSS.DAT to the upstream job
-scp -r ${VC_RESULT_DIR} vectorindia@192.168.163.16:${HARVESTER_DIR}/.
+scp -r ${VC_RESULT_DIR} vectorindia@192.168.163.73:${HARVESTER_DIR}/.
 
 echo The return code from VcRunTests: $_VC_RUNTEST_RETURN_CODE_</command>
     </hudson.tasks.Shell>
