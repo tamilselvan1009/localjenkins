@@ -43,7 +43,7 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
-  <assignedNode>Reg-win-1</assignedNode>
+  <assignedNode>Reg-win-2</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -59,7 +59,7 @@ call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&
 &#xd;
 set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
-set VECTOR_LICENSE_FILE=7650@licenseserver&#xd;
+set LM_LICENSE_FILE=27000@192.168.163.60&#xd;
 &#xd;
 xcopy /S /I /E %HARVESTER_PATH%\tests tests /Q /Y&#xd;
 &#xd;
