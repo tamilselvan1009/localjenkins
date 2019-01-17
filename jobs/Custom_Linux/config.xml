@@ -73,7 +73,7 @@ mkdir tbuild32
 cd tbuild32
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 
-python VcRunTests.py --run_tests=VcutilTest/vcInstTest
+python VcRunTests.py
 exit
 
 #for i in {1..2}
