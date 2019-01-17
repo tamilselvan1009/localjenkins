@@ -56,7 +56,6 @@
 
 #Common Variables
 export VECTORCAST_DIR=${WORKSPACE}/vcast
-export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UBUNTU.lic
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 export VC_RESULT_DIR=$PWD/results
 
