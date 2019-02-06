@@ -64,8 +64,8 @@ set PATH=C:\cygwinnew\bin;%PATH%&#xd;
 &#xd;
 cd C:\SlaveJenkins\workspace\Custom_Cygwin\tbuild32_cyg\MathTest\Sqrt&#xd;
 make clean&#xd;
-%VECTORCAST_DIR%\vcshell make&#xd;
-%VECTORCAST_DIR%\vcdb dumpcommands</command>
+%VECTORCAST_DIR%\vcshell make --nomixed&#xd;
+%VECTORCAST_DIR%\vcdb dumpfiles</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
