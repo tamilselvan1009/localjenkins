@@ -66,11 +66,11 @@ mkdir new&#xd;
 cd new&#xd;
 bash -c &quot;cmake -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ /cygdrive/n/shared/Jenkins_Harvester/Git/tests/MathTest/Matrix&quot;&#xd;
 make clean&#xd;
-rem set _VC_NEW_CYGWIN_MODE_=1&#xd;
+set _VC_NEW_CYGWIN_MODE_=1&#xd;
 del vcshell.*&#xd;
 set CYGWIN=detect_bloda&#xd;
 set LD_DEBUG=all&#xd;
-%VECTORCAST_DIR%\vcshell  make&#xd;
+strace -f %VECTORCAST_DIR%\vcshell  make&#xd;
 %VECTORCAST_DIR%\vcdb dumpfiles</command>
     </hudson.tasks.BatchFile>
   </builders>
