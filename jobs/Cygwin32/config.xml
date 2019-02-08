@@ -72,7 +72,7 @@ xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 set nodosfilewarning=1&#xd;
 echo %nodosfilewarning%&#xd;
 &#xd;
-rem set _VC_NEW_CYGWIN_MODE_=1&#xd;
+set _VC_NEW_CYGWIN_MODE_=1&#xd;
 cd %WORKSPACE%&#xd;
 mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
