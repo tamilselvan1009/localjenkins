@@ -69,6 +69,8 @@ set VECTOR_LICENSE_FILE=C:\FLEXlm\vector-WIN-REG64-68.lic&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 &#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
+set nodosfilewarning=1&#xd;
+echo %nodosfilewarning%&#xd;
 &#xd;
 rem set _VC_NEW_CYGWIN_MODE_=1&#xd;
 cd %WORKSPACE%&#xd;
