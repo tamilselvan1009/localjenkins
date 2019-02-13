@@ -78,8 +78,6 @@ mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
 set PATH=C:\cygwin\bin;%PATH%&#xd;
 bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
-ECHO FileID2K &gt; vc_test_add_dir&#xd;
-ECHO VcdbTest &gt;&gt; vc_test_add_dir&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py || call:handle_error&#xd;
 &#xd;
 rem Collect results&#xd;
