@@ -73,7 +73,7 @@ mkdir tbuild32
 cd tbuild32
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 
-$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=VcutilTest/AppendCoverIO/VcutilCover
+$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=FileID2K
 exit
 
 #for i in {1..2}
