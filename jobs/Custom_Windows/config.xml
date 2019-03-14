@@ -40,6 +40,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -66,7 +67,7 @@ cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 cmake ..\tests &#xd;
-%vectorcast_dir%\vpython VcRunTests.py --run_tests=VcutilTest/VcutilInterface/AssertInterFaceFileContents</command>
+%vectorcast_dir%\vpython VcRunTests.py --run_tests=VcutilTest/VcutilInterface/AssertInterFaceFileContents,OneDirEntry,VcdbcmdTest</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
