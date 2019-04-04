@@ -74,7 +74,7 @@ cd tbuild32
 
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 
-$VECTORCAST_DIR/vpython VcRunTests.py</command>
+$VECTORCAST_DIR/vpython VcRunTests.py  --run_tests=VcLogTests/VcDebugTest</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
