@@ -147,7 +147,7 @@ Extract $1 $3 $4
 
 #Set up Environment varaibles
 export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
-export VECTOR_LICENSE_FILE=/home/vectorindia/vector-license/vector-VECTORINDIA.lic
+export VECTOR_LICENSE_FILE=7650@licenseserver
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 
 #Print tools version in console for reference
