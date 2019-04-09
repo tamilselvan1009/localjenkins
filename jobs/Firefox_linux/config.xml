@@ -15,7 +15,7 @@
         <hudson.model.StringParameterDefinition>
           <name>LINUX_VECTORCAST_DIR</name>
           <description>Vectorcast directory</description>
-          <defaultValue>/home/vectorindia/rc3/release</defaultValue>
+          <defaultValue>/home/vectorindia/rc3</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -66,19 +66,19 @@
       <command>#!/bin/bash -xe
 
 echo $LINUX_VECTORCAST_DIR
-VCTOOLS_PACKAGE=`find /mnt/nfs/shared/Jenkins_Harvester/Linux -maxdepth 1 -name *.tgz`
+#VCTOOLS_PACKAGE=`find /mnt/nfs/shared/Jenkins_Harvester/Linux -maxdepth 1 -name *.tgz`
 #VCTOOLS_PACKAGE=`find /mnt/nfs/shared/1_14_dispatcher_fix -maxdepth 1 -name *.tgz`
 export BOOST_DIR=&quot;/mnt/nfs/TOOLS/boost-1.53.0&quot;
 
-if [ -f  $VCTOOLS_PACKAGE ];then
-	tar xvzf $VCTOOLS_PACKAGE
-    cd release
-    ./install.sh
-    cd ..
-else
-	echo &quot;VcTools package not available in $VCTOOLS_PACKAGE&quot;
-    exit  1
-fi
+#if [ -f  $VCTOOLS_PACKAGE ];then
+#	tar xvzf $VCTOOLS_PACKAGE
+#    cd release
+#    ./install.sh
+#    cd ..
+#else
+	#echo &quot;VcTools package not available in $VCTOOLS_PACKAGE&quot;
+    #exit  1
+#fi
 
 
 artifact=(&quot;Metrics Collected&quot; &quot;Successful for&quot; &quot;failed for&quot;)
