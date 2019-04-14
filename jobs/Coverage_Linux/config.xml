@@ -132,7 +132,7 @@ $VECTORCAST_DIR/clicast -lc option  VCAST_COVER_STATEMENTS_BY_BLOCK TRUE
 # change the vctools version to the git commit id
 export COMMIT_ID=$(git rev-parse --short HEAD)
 sed -i &quot;s/.*#define _VCTOOLS_VERSION_.*/#define _VCTOOLS_VERSION_ \&quot;inst_${COMMIT_ID}\&quot;/&quot; harvester/inc/vcVersion.h
-$VECTORCAST_DIR/vcshell  bash &quot;./build.sh --enable_threads&quot;
+$VECTORCAST_DIR/vcshell  bash ./build.sh --enable_threads
 #convert all relative path vcHarvesterSrcFilesForCoverageLinux.txt to absolute path
 chmod +x abspath.py
 $VECTORCAST_DIR/vpython abspath.py vcHarvesterSrcFilesForCoverageLinux.txt
