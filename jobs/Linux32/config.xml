@@ -10,6 +10,10 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.30">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
@@ -86,6 +90,12 @@ $VECTORCAST_DIR/vpython VcRunTests.py || export _VC_RUNTEST_RETURN_CODE_=$?
 $VECTORCAST_DIR/vpython VcCollectResult.py --db=/mnt/nfs/shared/Jenkins_Result/vcshell.db --tag=linux32
 
 $VECTORCAST_DIR/vpython VcRegressionResult.py --db=/mnt/nfs/shared/Jenkins_Result/regression.db --tag=linux32 --storeresult
+
+cp -r $LINUX_RELEASE_DIR/Linux/release $WORKSPACE
+cd $WORKSPACE/release/examples
+./buildall.sh
+export LD_LIBRARY_PATH=$LINUX_VECTORCAST_DIR/lib:$LD_LIBRARY_PATH
+./vcdbcapi
 
 exit /b $_VC_RUNTEST_RETURN_CODE_</command>
     </hudson.tasks.Shell>
