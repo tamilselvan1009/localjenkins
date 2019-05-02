@@ -66,8 +66,6 @@
 
 ulimit -c unlimited
 cd $WORKSPACE
-mkdir &apos;spaced path&apos;
-cd &apos;spaced path&apos;
 export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
 #export VECTOR_LICENSE_FILE=7650@licenseserver
 export LM_LICENSE_FILE=27000@192.168.163.60
