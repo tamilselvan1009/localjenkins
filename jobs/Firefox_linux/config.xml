@@ -10,6 +10,10 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.30">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
@@ -181,6 +185,8 @@ echo -e  &quot;Command               Time      ExpectedTime  Artifact ExpectedAr
 echo -n -e &quot;VchellMake-j4 \t&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcshell --db=pristine_vcshell.db make -j4 &gt;vcshell_make.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_make.out || handle_error
 Extract vcshell_make.out $vcshelltime `expr $vcshelltime + 6` || handle_error
+
+exit /b $_RETURN_CODE_
 
 #Execute and measure timings for vcshell metrics -j8
 #make clean
