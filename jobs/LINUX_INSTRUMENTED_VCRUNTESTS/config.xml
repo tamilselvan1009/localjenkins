@@ -10,6 +10,10 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.30">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
@@ -53,6 +57,9 @@
   <builders>
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
+
+export MALLOC_CHECK_=2
+set ulimit -c unlimited
 
 #Common Variables
 export VECTORCAST_DIR=${WORKSPACE}/vcast
