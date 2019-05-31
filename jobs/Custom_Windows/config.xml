@@ -72,7 +72,7 @@ cd tbuild32_msvc10&#xd;
 %VECTORCAST_DIR%\vcshell --version&#xd;
 %VECTORCAST_DIR%\clicast --version&#xd;
 cmake ..\tests &#xd;
-%vectorcast_dir%\vpython VcRunTests.py --run_tests=InplacevcInst,VcutilTest/vcInstTest,VcutilTest/vcParseTest,VcutilTest/DestinationDirCallBack,VcutilTest/Writable,VcLogTests/VcDebugTest</command>
+%vectorcast_dir%\vpython VcRunTests.py --run_tests=VcutilTest/vcInstTest,VcutilTest/vcParseTest</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
