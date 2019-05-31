@@ -241,6 +241,11 @@ echo -n -e &quot;VcdbDumpverb\t&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcdb dumpverbs --db=pristine_vcshell.db &gt; vcdb_dumpverbs.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_dumpv  || handle_error
 Extract vcdb_dumpv 0 1
 
+#vcdb getobjpath
+echo -n -e &quot;VcdbDumpverb\t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcdb getobjapth --filelist=vcdb_getfiles.out.txt --db=pristine_vcshell.db &gt; vcdb_getobjpath.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getobjpath  || handle_error
+Extract vcdb_getobjpath 0 1
+
 #vcdb getapps
 echo -n -e &quot;VcdbGetapps\t&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcdb getapps --db=pristine_vcshell.db &gt;vcdb_getapps.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getapps  || handle_error
