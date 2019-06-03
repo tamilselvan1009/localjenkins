@@ -19,7 +19,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.9.1">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>d00efedd-c8ec-49ae-83c2-9a89f22922dd</uuid>
+          <uuid>78d2aa1b-5a49-4b3a-93a6-7f703141b161</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -115,7 +115,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@3.8.0">
@@ -165,7 +164,7 @@ export COMMIT_DATE=$(git show -s --format=%ci $COMMIT_ID)
 if [ &quot;$USE_COMMIT_DATE_FOR_VERSION&quot; != &quot;false&quot; ]; then
 	export VERSION=$(echo $COMMIT_ID $COMMIT_DATE | awk &apos;BEGIN{FS=&quot; &quot;} {print $1&quot;_&quot;$2&quot;_&quot;$3}&apos;)
 	export VERSION=$(echo $VERSION | tr :- _)
-	sed -i &quot;s/.*#define _VCTOOLS_VERSION_.*/#define _VCTOOLS_VERSION_ \&quot;${VERSION}\&quot;/&quot; harvester/libVcApp/inc/vcVersion.h
+	sed -i &quot;s/.*#define _VCTOOLS_VERSION_.*/#define _VCTOOLS_VERSION_ \&quot;${VERSION}\&quot;/&quot; harvester/inc/vcVersion.h
 fi
 
 # delete the old release package dir if it exists
