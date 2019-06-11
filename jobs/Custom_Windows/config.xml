@@ -64,15 +64,19 @@ set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set VECTOR_LICENSE_FILE=7650@licenseserver&#xd;
 &#xd;
+set PATH=V:\boost_64bit_vctools\boost-1.53.0-x64\lib;%PATH%&#xd;
+&#xd;
 xcopy /S /I /E %HARVESTER_PATH%\tests tests /Q /Y&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
-mkdir tbuild32_msvc10&#xd;
-cd tbuild32_msvc10&#xd;
+mkdir tbuild64_msvc10&#xd;
+cd tbuild64_msvc10&#xd;
 %VECTORCAST_DIR%\vcshell --version&#xd;
 %VECTORCAST_DIR%\clicast --version&#xd;
-cmake ..\tests &#xd;
-%vectorcast_dir%\vpython VcRunTests.py --run_tests=VcutilTests</command>
+&#xd;
+cmake -G&quot;Visual Studio 10 Win64&quot; ..\tests &#xd;
+&#xd;
+%vectorcast_dir%\vpython VcRunTests.py</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
