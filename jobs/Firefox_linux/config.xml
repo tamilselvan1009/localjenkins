@@ -50,7 +50,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -183,9 +182,9 @@ echo -e  &quot;Command               Time      ExpectedTime  Artifact ExpectedAr
 
 
 #Execute and measure timings for vcshell make -j8
-echo -n -e &quot;VchellMake-j4 \t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcshell --db=pristine_vcshell.db make -j4 &gt;vcshell_make.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_make.out || handle_error
-Extract vcshell_make.out $vcshelltime `expr $vcshelltime + 6` || handle_error
+#echo -n -e &quot;VchellMake-j4 \t&quot;&gt;&gt;$summary_file
+#time ($VECTORCAST_DIR/vcshell --db=pristine_vcshell.db make -j4 &gt;vcshell_make.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_make.out || handle_error
+#Extract vcshell_make.out $vcshelltime `expr $vcshelltime + 6` || handle_error
 
 #Execute and measure timings for vcshell metrics -j8
 #make clean
@@ -200,15 +199,15 @@ Extract vcshell_make.out $vcshelltime `expr $vcshelltime + 6` || handle_error
 
 
 #Execute and measure timings for clearmetrics
-cp pristine_vcshell.db vcutil_metrics.db
+#cp pristine_vcshell.db vcutil_metrics.db
 #echo -n -e &quot;VcdbClearmetrics&quot;&gt;&gt;$summary_file
 #time ($VECTORCAST_DIR/vcdb clearmetrics --db=vcutil_metrics.db &gt; vcdb_clearmetrics.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_clearmetrics.out || handle_error
 #Extract vcdb_clearmetrics.out 0 1
 
 #Execute and measure timings for vcutil addmetrics
-echo  -n -e &quot;VcutilAddmetrics&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db  --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all addmetrics  &gt; vcutil_addmetrics.out.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_addmetrics.out || handle_error
-Extract vcutil_addmetrics.out `expr $vcshelltime + 63`  `expr $vcshelltime + 75` vcutil_addmetrics.out.txt &quot;${artifact[0]}&quot; || handle_error
+#echo  -n -e &quot;VcutilAddmetrics&quot;&gt;&gt;$summary_file
+#time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db  --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all addmetrics  &gt; vcutil_addmetrics.out.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_addmetrics.out || handle_error
+#Extract vcutil_addmetrics.out `expr $vcshelltime + 63`  `expr $vcshelltime + 75` vcutil_addmetrics.out.txt &quot;${artifact[0]}&quot; || handle_error
 
 
 #Verify metrics recorded in vcutil
@@ -218,14 +217,14 @@ Extract vcutil_addmetrics.out `expr $vcshelltime + 63`  `expr $vcshelltime + 75`
 
 
 #Vcutil Instrument 
-echo -n -e &quot;VcutilInstrument--jobs=4&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcutil  --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=InstFiles --coverage_type=statement instrument  &gt; vcutil_instr.out.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_instrument.out || handle_error
-Extract vcutil_instrument.out `expr $vcshelltime + 10` `expr $vcshelltime + 22` vcutil_instr.out.txt &quot;${artifact[1]}&quot; || handle_error
+#echo -n -e &quot;VcutilInstrument--jobs=4&quot;&gt;&gt;$summary_file
+#time ($VECTORCAST_DIR/vcutil  --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=InstFiles --coverage_type=statement instrument  &gt; vcutil_instr.out.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_instrument.out || handle_error
+#Extract vcutil_instrument.out `expr $vcshelltime + 10` `expr $vcshelltime + 22` vcutil_instr.out.txt &quot;${artifact[1]}&quot; || handle_error
 
 #Vcutil Quick parse
-echo -n -e &quot;VcutilQikparse--jobs=4&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse.out || handle_error
-Extract vcutil_qikparse.out `expr $vcshelltime - 3` `expr $vcshelltime + 5` vcutil_quick.out &quot;${artifact[1]}&quot; || handle_error
+#echo -n -e &quot;VcutilQikparse--jobs=4&quot;&gt;&gt;$summary_file
+#time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse.out || handle_error
+#Extract vcutil_qikparse.out `expr $vcshelltime - 3` `expr $vcshelltime + 5` vcutil_quick.out &quot;${artifact[1]}&quot; || handle_error
 
 #vcdb getfiles
 echo -n -e &quot;VcdbGetfiles\t&quot;&gt;&gt;$summary_file
@@ -368,6 +367,30 @@ Extract vcdb_setpathtype 0 1
 
 #finding differnece 
 #diff vcdb_getcommandlines.out.txt  vcdb_getnewcommandlines.out.txt &gt; diff.txt ||  handle_error
+
+
+(column -t $summary_file) &gt; temp.txt || handle_error
+rm -rf $summary_file || handle_error
+cp temp.txt $summary_file || handle_error
+#quick 
+#Archive the artifacts
+cd $top_level_archive_dir
+archive_dir=$(date +%d)
+if [ -d $archive_dir ];then
+	rm -rf $archive_dir
+fi
+mkdir $archive_dir
+cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/summary.txt $archive_dir/.
+cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/*.out $archive_dir/.
+cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/*.out.txt $archive_dir/.
+cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/sol.txt $archive_dir/.
+#copy sum.txt to the directory for mounted db  
+#cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/sum.txt $archive_dir/.
+exit /b $_RETURN_CODE_
+
+
+exit
+
 
 #taking 1000 files
 head -1000 vcdb_getfiles.out.txt &gt; first1000.txt || handle_error 
