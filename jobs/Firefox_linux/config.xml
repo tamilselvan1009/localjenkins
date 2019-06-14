@@ -289,56 +289,56 @@ Extract vcdb_getlist 0 1
 
 #getcmd.sh
 echo -n -e &quot;Getcmd.sh\t&quot;&gt;&gt;$summary_file
-chmod +x ../../getcmd.sh
-time (../.././getcmd.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt; getcommands_data.out.txt 2&gt;&amp;1) 2&gt;&gt; getcmd || handle_error
+chmod +x firefox_scripts/getcmd.sh
+time (./firefox_scripts/getcmd.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt; getcommands_data.out.txt 2&gt;&amp;1) 2&gt;&gt; getcmd || handle_error
 Extract getcmd 1 3
 
 #getcommentdensity
 echo -n -e &quot;GetcommentDensity.sh&quot;&gt;&gt;$summary_file
-chmod +x ../../getcommentdensity.sh
-time (../.././getcommentdensity.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt; get_commentdensit_out.txt 2&gt;&amp;1) 2&gt;&gt; getcomment || handle_error
+chmod +x firefox_scripts/getcommentdensity.sh
+time (./firefox_scripts/getcommentdensity.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt; get_commentdensit_out.txt 2&gt;&amp;1) 2&gt;&gt; getcomment || handle_error
 Extract getcomment 1 3
 
 #getincludes
 echo -n -e &quot;Getincludes.sh\t&quot;&gt;&gt;$summary_file
-chmod +x ../../getincludes.sh
-time (../.././getincludes.sh pristine_vcshell.db vcdb_getfiles.out.txt  &gt; get_includes_out.txt 2&gt;&amp;1) 2&gt;&gt;vcdb_getinclude || handle_error
+chmod +x firefox_scripts/getincludes.sh
+time (./firefox_scripts/getincludes.sh pristine_vcshell.db vcdb_getfiles.out.txt  &gt; get_includes_out.txt 2&gt;&amp;1) 2&gt;&gt;vcdb_getinclude || handle_error
 Extract vcdb_getinclude 0 1
 
 #getdefines
 echo -n -e &quot;Getdefines.sh\t&quot;&gt;&gt;$summary_file
-chmod +x ../../getdefines.sh
-time (../.././getdefines.sh pristine_vcshell.db vcdb_getfiles.out.txt  &gt; get_defines_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getdefine || handle_error
+chmod +x firefox_scripts/getdefines.sh
+time (./firefox_scripts/getdefines.sh pristine_vcshell.db vcdb_getfiles.out.txt  &gt; get_defines_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getdefine || handle_error
 Extract vcdb_getdefine 0 1
 
 #getoptions
 echo -n -e &quot;Getoptions.sh\t&quot;&gt;&gt;$summary_file
-chmod +x ../../getoptions.sh || handle_error
-time (../.././getoptions.sh pristine_vcshell.db vcdb_getfiles.out.txt  &gt; get_options_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getoption || handle_error
+chmod +x firefox_scripts/getoptions.sh || handle_error
+time (./firefox_scripts/getoptions.sh pristine_vcshell.db vcdb_getfiles.out.txt  &gt; get_options_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getoption || handle_error
 Extract vcdb_getoption 0 3
 
 #getpopt
 echo -n -e &quot;Getpoptions.sh\t&quot;&gt;&gt;$summary_file
-chmod +x ../../getppopts.sh || handle_error
-time (../.././getppopts.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt;get_poptions_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getpoption || handle_error
+chmod +x firefox_scripts/getppopts.sh || handle_error
+time (./firefox_scripts/getppopts.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt;get_poptions_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getpoption || handle_error
 Extract vcdb_getpoption 2 4
 
 #getuniindex
 echo -n -e &quot;Getunitindex.sh\t&quot;&gt;&gt;$summary_file
-chmod +x ../../getunitindex.sh || handle_error
-time (../.././getunitindex.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt;get_unitindex_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getunitindex || handle_error
+chmod +x firefox_scripts/getunitindex.sh || handle_error
+time (./firefox_scripts/getunitindex.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt;get_unitindex_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getunitindex || handle_error
 Extract vcdb_getunitindex 0 1
 
 #getpathtype
 echo -n -e &quot;GetPathtype.sh\t&quot;&gt;&gt;$summary_file
-chmod +x ../../getpathtype || handle_error
-time (../.././getpathtype.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt;get_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getpathtype || handle_error
+chmod +x firefox_scripts/getpathtype || handle_error
+time (./firefox_scripts/getpathtype.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt;get_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getpathtype || handle_error
 Extract vcdb_getpathtype 0 1
 
 #setpathtype
 echo -n -e &quot;Setpathtype.sh\t&quot;&gt;&gt;$summary_file
-chmod +x ../../setpathtype.sh || handle_error
-time (../.././setpathtype.sh pristine_vcshell.db vcdb_getfiles.out.txt  &gt; set_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_setpathtype || true
+chmod +x firefox_scripts/setpathtype.sh || handle_error
+time (./firefox_scripts/setpathtype.sh pristine_vcshell.db vcdb_getfiles.out.txt  &gt; set_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_setpathtype || true
 Extract vcdb_setpathtype 0 1
 
 #command to be executed on 
