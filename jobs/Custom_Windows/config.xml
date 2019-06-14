@@ -76,7 +76,7 @@ cd tbuild64_msvc10&#xd;
 &#xd;
 cmake -G&quot;Visual Studio 10 Win64&quot; ..\tests &#xd;
 &#xd;
-%vectorcast_dir%\vpython VcRunTests.py</command>
+%vectorcast_dir%\vpython VcRunTests.py --run_tests=VcdbTest</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
