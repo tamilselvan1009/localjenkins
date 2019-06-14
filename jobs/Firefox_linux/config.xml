@@ -82,7 +82,7 @@ export BOOST_DIR=&quot;/mnt/nfs/TOOLS/boost-1.53.0&quot;
 #else
 #	echo &quot;VcTools package not available in $VCTOOLS_PACKAGE&quot;
 #    exit  1
-fi
+#fi
 
 
 artifact=(&quot;Metrics Collected&quot; &quot;Successful for&quot; &quot;failed for&quot;)
@@ -457,7 +457,7 @@ exit /b $_RETURN_CODE_</command>
   </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
-      <recipientList>shekhar.singh@vectorcast.com</recipientList>
+      <recipientList>kavya@vectorcast.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
@@ -488,7 +488,7 @@ Jenkins</body>
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo>shekhar.singh@vectorcast.com</replyTo>
+      <replyTo>kavya@vectorcast.com</replyTo>
       <from></from>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
