@@ -44,6 +44,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -62,19 +63,19 @@ set path=%path:&quot;=%&#xd;
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
 set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
-set VECTOR_LICENSE_FILE=C:\FLEXlm\vector-WIN-REG64-54.lic&#xd;
+set VECTOR_LICENSE_FILE=7650@licenseserver&#xd;
 &#xd;
-rem set PATH=V:\boost_64bit_vctools\boost-1.53.0-x64\lib;%PATH%&#xd;
+set PATH=V:\boost_64bit_vctools\boost-1.53.0-x64\lib;%PATH%&#xd;
 &#xd;
 xcopy /S /I /E %HARVESTER_PATH%\tests tests /Q /Y&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
-mkdir tbuild32_msvc10&#xd;
-cd tbuild32_msvc10&#xd;
+mkdir tbuild64_msvc10&#xd;
+cd tbuild64_msvc10&#xd;
 %VECTORCAST_DIR%\vcshell --version&#xd;
 %VECTORCAST_DIR%\clicast --version&#xd;
 &#xd;
-cmake ..\tests&#xd;
+cmake -G&quot;Visual Studio 10 Win64&quot; ..\tests &#xd;
 &#xd;
 %vectorcast_dir%\vpython VcRunTests.py</command>
     </hudson.tasks.BatchFile>
