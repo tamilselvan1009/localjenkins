@@ -60,6 +60,7 @@
 cd %WORKSPACE%&#xd;
 set path=%path:&quot;=%&#xd;
 set PATH=C:\boost-1.69.0\lib;%PATH%&#xd;
+echo %PATH%&#xd;
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
 set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
