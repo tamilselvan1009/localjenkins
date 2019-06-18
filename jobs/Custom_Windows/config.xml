@@ -72,9 +72,9 @@ cd tbuild32_msvc10&#xd;
 %VECTORCAST_DIR%\vcshell --version&#xd;
 %VECTORCAST_DIR%\clicast --version&#xd;
 cmake ..\tests &#xd;
-set PATH=C:\boost-1.69.0\lib;%PATH%&#xd;
+rem set PATH=C:\boost-1.69.0\lib;%PATH%&#xd;
 echo %PATH%&#xd;
-%vectorcast_dir%\vpython VcRunTests.py </command>
+%vectorcast_dir%\vpython VcRunTests.py --run_tests=HelloTest</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
