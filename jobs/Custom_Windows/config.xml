@@ -66,13 +66,14 @@ set VECTOR_LICENSE_FILE=C:\FLEXlm\vector-WIN-REG64-54.lic&#xd;
 xcopy /S /I /E %HARVESTER_PATH%\tests tests /Q /Y&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
-mkdir tbuild32_msvc10&#xd;
+rem mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 %VECTORCAST_DIR%\vcshell --version&#xd;
 %VECTORCAST_DIR%\clicast --version&#xd;
-cmake ..\tests &#xd;
+rem cmake ..\tests &#xd;
 rem set PATH=C:\boost-1.69.0\lib;%PATH%&#xd;
 echo %PATH%&#xd;
+echo %vectorcast_dir%&#xd;
 %vectorcast_dir%\vpython VcRunTests.py --run_tests=HelloTest</command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -109,11 +110,5 @@ echo %PATH%&#xd;
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
-  <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
-      <deleteDirs>false</deleteDirs>
-      <cleanupParameter></cleanupParameter>
-      <externalDelete></externalDelete>
-    </hudson.plugins.ws__cleanup.PreBuildCleanup>
-  </buildWrappers>
+  <buildWrappers/>
 </project>
