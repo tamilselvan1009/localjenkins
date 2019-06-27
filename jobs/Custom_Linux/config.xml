@@ -64,7 +64,6 @@ ulimit -c unlimited
 export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
 export VECTOR_LICENSE_FILE=7650@licenseserver
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:/mnt/nfs/shared/tamil_temp:$PYTHONPATH
-export LD_LIBRARY_PATH=/mnt/nfs/TOOLS/boost-1.69.0/lib
 
 echo $VECTORCAST_DIR
 $VECTORCAST_DIR/vcshell --version
