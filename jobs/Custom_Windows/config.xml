@@ -72,7 +72,7 @@ cd tbuild32_msvc10&#xd;
 %VECTORCAST_DIR%\clicast --version&#xd;
 cmake ..\tests || call:handle_error&#xd;
 echo %vectorcast_dir%&#xd;
-%vectorcast_dir%\vpython VcRunTests.py --run_tests=VcutilTest/MultiRun || call:handle_error&#xd;
+%vectorcast_dir%\vpython VcRunTests.py || call:handle_error&#xd;
 &#xd;
 exit %VC_ERROR_ERROR%&#xd;
 :handle_error&#xd;
