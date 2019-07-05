@@ -66,16 +66,16 @@ set VECTOR_LICENSE_FILE=7650@licenseserver&#xd;
 xcopy /S /I /E %HARVESTER_PATH%\tests tests /Q /Y&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
-mkdir tbuild32_msvc10&#xd;
+rem mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 %VECTORCAST_DIR%\vcshell --version&#xd;
 %VECTORCAST_DIR%\clicast --version&#xd;
-cmake ..\tests || call:handle_error&#xd;
+rem cmake ..\tests || call:handle_error&#xd;
 set PATH=N:\shared\vikram\boost-1.69.0\lib;%PATH%&#xd;
 set BOOST_DIR=N:\shared\vikram\boost-1.69.0&#xd;
 echo %PATH%&#xd;
 echo %vectorcast_dir%&#xd;
-%vectorcast_dir%\vpython VcRunTests.py || call:handle_error&#xd;
+python VcRunTests.py --run_tests=HelloTest || call:handle_error&#xd;
 &#xd;
 exit %VC_ERROR_ERROR%&#xd;
 :handle_error&#xd;
@@ -117,11 +117,5 @@ goto:EOF</command>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
-  <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
-      <deleteDirs>false</deleteDirs>
-      <cleanupParameter></cleanupParameter>
-      <externalDelete></externalDelete>
-    </hudson.plugins.ws__cleanup.PreBuildCleanup>
-  </buildWrappers>
+  <buildWrappers/>
 </project>
