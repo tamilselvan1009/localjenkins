@@ -72,6 +72,7 @@ cd tbuild32_msvc10&#xd;
 %VECTORCAST_DIR%\clicast --version&#xd;
 cmake ..\tests || call:handle_error&#xd;
 set PATH=N:\shared\vikram\boost-1.69.0\lib;%PATH%&#xd;
+set BOOST_DIR=N:\shared\vikram\boost-1.69.0&#xd;
 echo %PATH%&#xd;
 echo %vectorcast_dir%&#xd;
 %vectorcast_dir%\vpython VcRunTests.py || call:handle_error&#xd;
