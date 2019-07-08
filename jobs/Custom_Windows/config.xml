@@ -75,7 +75,7 @@ set PATH=N:\shared\vikram\boost-1.69.0\lib;%PATH%&#xd;
 set BOOST_DIR=N:\shared\vikram\boost-1.69.0&#xd;
 echo %PATH%&#xd;
 echo %vectorcast_dir%&#xd;
-%vectorcast_dir%\vpython VcRunTests.py --run_tests=HelloTest || call:handle_error&#xd;
+%vectorcast_dir%\vpython VcRunTests.py|| call:handle_error&#xd;
 &#xd;
 exit %VC_ERROR_ERROR%&#xd;
 :handle_error&#xd;
