@@ -66,11 +66,11 @@ set VECTOR_LICENSE_FILE=27000@192.168.163.60&#xd;
 xcopy /S /I /E %HARVESTER_PATH%\tests tests /Q /Y&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
-rem mkdir tbuild32_msvc10&#xd;
+mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
 %VECTORCAST_DIR%\vcshell --version&#xd;
 %VECTORCAST_DIR%\clicast --version&#xd;
-rem cmake ..\tests || call:handle_error&#xd;
+cmake ..\tests || call:handle_error&#xd;
 set PATH=N:\shared\vikram\boost-1.69.0\lib;%PATH%&#xd;
 set BOOST_DIR=N:\shared\vikram\boost-1.69.0&#xd;
 echo %PATH%&#xd;
@@ -117,5 +117,11 @@ goto:EOF</command>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
-  <buildWrappers/>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+  </buildWrappers>
 </project>
