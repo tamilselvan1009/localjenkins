@@ -72,10 +72,11 @@ echo $LINUX_VECTORCAST_DIR
 #VCTOOLS_PACKAGE=`find /mnt/nfs/shared/Jenkins_Harvester/Linux -maxdepth 1 -name *.tgz`
 #VCTOOLS_PACKAGE=`find /mnt/nfs/shared/1_14_dispatcher_fix -maxdepth 1 -name *.tgz`
 export BOOST_DIR=&quot;/mnt/nfs/TOOLS/boost-1.53.0&quot;
-export VECTOR_LICENSE_FILE=7650@licenseserver
+export VECTOR_LICENSE_FILE=27000@192.168.163.60
 
 if [ -f  $VCTOOLS_PACKAGE ];then
-	tar xvzf $VCTOOLS_PACKAGE
+    echo $VCTOOLS_PACKAGE
+	tar -zxvf $VCTOOLS_PACKAGE
     cd release
     ./install.sh
     cd ..
