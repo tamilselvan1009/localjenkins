@@ -19,7 +19,7 @@
         <hudson.model.StringParameterDefinition>
           <name>VECTORCAST_DIR</name>
           <description></description>
-          <defaultValue>/mnt/nfs/shared/tamil_temp/vcast</defaultValue>
+          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/VCAST_LINUX</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
