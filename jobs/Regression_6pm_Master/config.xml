@@ -61,7 +61,7 @@
         <hudson.model.BooleanParameterDefinition>
           <name>BUILD_HARVESTER</name>
           <description>Uncheck this if we don&apos;t want to build harvester and run regression on pre-installed VECTORCAST_DIR</description>
-          <defaultValue>true</defaultValue>
+          <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WIN_VECTORCAST_DIR</name>
