@@ -66,13 +66,13 @@
         <hudson.model.StringParameterDefinition>
           <name>WIN_VECTORCAST_DIR</name>
           <description>Specify the path to VECTORCAST_DIR</description>
-          <defaultValue>N:\\shared\\.VCAST_REGRESSION\\JOB_6PM\\VCAST_WINDOWS</defaultValue>
+          <defaultValue>N:\\shared\\vctools_1_37\\windows</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LINUX_VECTORCAST_DIR</name>
           <description>Specify the path to VECTORCAST_DIR</description>
-          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/VCAST_LINUX</defaultValue>
+          <defaultValue>/mnt/nfs/shared/vctools_1_37/linux</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
