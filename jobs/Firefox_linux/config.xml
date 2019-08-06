@@ -231,8 +231,8 @@ cd $WORKSPACE
 
 #vcdb getfiles
 echo -n -e &quot;VcdbGetfiles\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb getfiles --db=pristine_vcshell.db &gt;vcdb_getfiles.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb__getfiles || handle_error
-Extract2 vcdb__getfiles vcdb_getfiles.out.txt 0 1
+time ($VECTORCAST_DIR/vcdb getfiles --db=pristine_vcshell.db &gt;vcdb_getfiles.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getfiles || handle_error
+Extract2 vcdb_getfiles vcdb_getfiles.out.txt 0 1
 
 #vcdb dumpcmd
 echo -n -e &quot;VcdbDumpcmd\t&quot;&gt;&gt;$summary_file
