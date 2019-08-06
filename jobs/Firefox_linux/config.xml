@@ -180,7 +180,7 @@ echo  &gt;&gt; $summary_file
 echo -e  &quot;Command               Time      ExpectedTime  Artifact ExpectedArtifact   TimmingResult   ArtiResult  &quot; &gt;&gt;$summary_file
 echo -e  &quot;Command               Time      ExpectedTime  Artifact ExpectedArtifact   TimmingResult   ArtiResult  &quot; &gt;&gt;sol.txt
 
-Execute and measure timings for vcshell make -j8
+#Execute and measure timings for vcshell make -j8
 echo -n -e &quot;VchellMake-j4 \t&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcshell --db=pristine_vcshell.db make -j4 &gt;vcshell_make.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_make.out || handle_error
 Extract vcshell_make.out $vcshelltime `expr $vcshelltime + 6` || handle_error
