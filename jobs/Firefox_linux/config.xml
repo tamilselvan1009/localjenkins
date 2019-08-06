@@ -456,28 +456,6 @@ exit /b $_RETURN_CODE_</command>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
       <recipientList>kavya@vectorcast.com</recipientList>
-      <configuredTriggers>
-        <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
-          <email>
-            <recipientList>shekhar.singh@vectorcast.com</recipientList>
-            <subject>Firefox Linux Result</subject>
-            <body>Hello All,
-
-${FILE,path=&quot;mozilla-release/obj-x86_64-unknown-linux-gnu/sol.txt&quot;}
-
-Thanks,
-Jenkins</body>
-            <recipientProviders>
-              <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
-            </recipientProviders>
-            <attachmentsPattern>mozilla-release/obj-x86_64-unknown-linux-gnu/summary.txt ,mozilla-release/obj-x86_64-unknown-linux-gnu/sum.txt</attachmentsPattern>
-            <attachBuildLog>false</attachBuildLog>
-            <compressBuildLog>false</compressBuildLog>
-            <replyTo>vectorindia@vectorcast.com</replyTo>
-            <contentType>text/plain</contentType>
-          </email>
-        </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
-      </configuredTriggers>
       <contentType>text/plain</contentType>
       <defaultSubject>Firefox Linux Result</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
