@@ -203,24 +203,24 @@ Extract vcshell_make.out $vcshelltime `expr $vcshelltime + 6` || handle_error
 #time ($VECTORCAST_DIR/vcdb clearmetrics --db=vcutil_metrics.db &gt; vcdb_clearmetrics.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_clearmetrics.out || handle_error
 #Extract vcdb_clearmetrics.out 0 1
 
-Execute and measure timings for vcutil addmetrics
+#Execute and measure timings for vcutil addmetrics
 echo  -n -e &quot;VcutilAddmetrics&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db  --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all addmetrics  &gt; vcutil_addmetrics.out.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_addmetrics.out || handle_error
 Extract vcutil_addmetrics.out `expr $vcshelltime + 63`  `expr $vcshelltime + 75` vcutil_addmetrics.out.txt &quot;${artifact[0]}&quot; || handle_error
 
 
-Verify metrics recorded in vcutil
+#Verify metrics recorded in vcutil
 echo -n -e &quot;VcdbGetmetrics\t&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_for_vcshell_metrics.out.txt 2&gt;&amp;1) 2&gt;&gt;vcdb_getmetrics_vcutil.out || handle_error
 Extract2 vcdb_getmetrics_vcutil.out vcdb_getmetrics_for_vcshell_metrics.out.txt 0 1  || handle_error
 
 
-Vcutil Instrument 
+#Vcutil Instrument 
 echo -n -e &quot;VcutilInstrument--jobs=4&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcutil  --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=InstFiles --coverage_type=statement instrument  &gt; vcutil_instr.out.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_instrument.out || handle_error
 Extract vcutil_instrument.out `expr $vcshelltime + 10` `expr $vcshelltime + 22` vcutil_instr.out.txt &quot;${artifact[1]}&quot; || handle_error
 
-Vcutil Quick parse
+#Vcutil Quick parse
 echo -n -e &quot;VcutilQikparse--jobs=4&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse.out || handle_error
 Extract vcutil_qikparse.out `expr $vcshelltime - 3` `expr $vcshelltime + 5` vcutil_quick.out &quot;${artifact[1]}&quot; || handle_error
