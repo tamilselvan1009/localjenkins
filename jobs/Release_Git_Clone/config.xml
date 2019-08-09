@@ -19,7 +19,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.9.1">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>c4ca53aa-e86f-40c2-b1ea-dc835b30f43b</uuid>
+          <uuid>7a59fedb-ce37-4d9c-8959-b1faf3c01485</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -89,8 +89,12 @@
       <command>#!/bin/bash -xe
 
 #set up the env var
+branch=${GIT_BRANCH_NAME}
+remove=&quot;origin/&quot;
 
-export LINUX_RELEASE_DIR=/mnt/nfs/shared/Jenkins_Harvester_&quot;${${GIT_BRANCH_NAME}//&quot;origin/&quot;/}&quot;
+branch_name=&quot;${branch//$remove/}&quot;
+echo $branch_name
+export LINUX_RELEASE_DIR=/mnt/nfs/shared/Jenkins_Harvester_$branch_name
 export LINUX_GIT_DIR=${LINUX_RELEASE_DIR}/Git
 
 # change the vctools version to the git commit id
