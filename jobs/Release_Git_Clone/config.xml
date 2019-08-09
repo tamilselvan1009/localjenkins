@@ -19,7 +19,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.9.1">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>85d0368e-0073-4458-94aa-6c9247ead89a</uuid>
+          <uuid>48681521-7b75-41db-a551-92e2cbd0451a</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -45,6 +45,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@3.8.0">
@@ -89,11 +90,7 @@
       <command>#!/bin/bash -xe
 
 #set up the env var
-branch=${GIT_BRANCH_NAME}
-remove=&quot;origin/&quot;
-branch_name=&quot;${branch//$remove/}&quot;
-
-export LINUX_RELEASE_DIR=/mnt/nfs/shared/Jenkins_Harvester_$branch_name
+export LINUX_RELEASE_DIR=/mnt/nfs/shared/Jenkins_Harvester_${GIT_BRANCH_NAME}
 export LINUX_GIT_DIR=${LINUX_RELEASE_DIR}/Git
 
 # change the vctools version to the git commit id
