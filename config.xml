@@ -70,6 +70,7 @@
         <string>Linux_ValgrindTest</string>
         <string>Regression_6pm_Master</string>
         <string>Regression_Other_Jobs_Master</string>
+        <string>Release_Git_Clone</string>
         <string>Result_Collector</string>
         <string>Result_Collector_New</string>
         <string>Result_Collector_Other</string>
