@@ -92,12 +92,10 @@ cp -r &quot;${new_dir}/harvester&quot; .
 cp -r &quot;${new_dir}/imports&quot; .
 cp -r &quot;${new_dir}/build.sh&quot; .
 
-echo &quot;vikram1&quot;
 # This job assumes that all envs are stored as globals
 # in the system. Ex: BOOST_DIR
 ./build.sh --static_cpp_lib=${VC_STDCPLUS_PLUS_STATIC_DIR}
 cd build
-echo &quot;vikram2&quot;
 # 64-bit recorder lib will not be built
 # so handle it
 ./release-package.sh --test_release || if [[ $? == 1 ]]; then 
@@ -106,7 +104,6 @@ echo &quot;vikram2&quot;
     	false
     fi
  
-echo &quot;vikram3&quot;
 echo ${LINUX_PACKAGE_DIR}
 # copy the build to the shared location
 cd ../release-packages
