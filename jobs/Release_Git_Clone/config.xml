@@ -19,7 +19,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.9.1">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>e2a0013a-99dd-4ce5-b821-1f080e5dd562</uuid>
+          <uuid>48681521-7b75-41db-a551-92e2cbd0451a</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -30,57 +30,11 @@
           <quickFilterEnabled>false</quickFilterEnabled>
         </net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>WIN_RELEASE_DIR</name>
-          <description>Specify the location where artifacts will be stored. Location of the release dir in windows style path</description>
-          <defaultValue>N:\\shared\\Jenkins_Harvester_${GIT_BRANCH_NAME}</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>LINUX_RELEASE_DIR</name>
-          <description>Specify the location where artifacts will be stored. Location of the release dir in linux style path</description>
-          <defaultValue>/mnt/nfs/shared/Jenkins_Harvester</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>WIN_GIT_DIR</name>
-          <description>Location of Git in windows path</description>
-          <defaultValue>${WIN_RELEASE_DIR}\\Git</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>LINUX_GIT_DIR</name>
-          <description>Location of Git in linux path</description>
-          <defaultValue>${LINUX_RELEASE_DIR}/Git</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>WIN_PACKAGE_DIR</name>
-          <description>Location of windows package dir in windows path</description>
-          <defaultValue>${WIN_RELEASE_DIR}\\Windows</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>LINUX_PACKAGE_DIR</name>
-          <description>Location of linux package dir in linux path</description>
-          <defaultValue>${LINUX_RELEASE_DIR}/Linux</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description>Specify a name for the jenkins build</description>
           <defaultValue>USER_TRIGGER_${GIT_BRANCH_NAME}</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>BUILD_HARVESTER</name>
-          <description>Uncheck this if we don&apos;t want to build harvester and run regression on pre-installed VECTORCAST_DIR</description>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>USE_COMMIT_DATE_FOR_VERSION</name>
-          <description></description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -134,14 +88,14 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
+#set up the env var
+export LINUX_RELEASE_DIR=/mnt/nfs/shared/Jenkins_Harvester_${GIT_BRANCH_NAME}
+export LINUX_GIT_DIR=${LINUX_RELEASE_DIR}/Git
+
 # change the vctools version to the git commit id
 export COMMIT_ID=$(git rev-parse --short HEAD)
 export COMMIT_DATE=$(git show -s --format=%ci $COMMIT_ID)
-if [ &quot;$USE_COMMIT_DATE_FOR_VERSION&quot; != &quot;false&quot; ]; then
-	export VERSION=$(echo $COMMIT_ID $COMMIT_DATE | awk &apos;BEGIN{FS=&quot; &quot;} {print $1&quot;_&quot;$2&quot;_&quot;$3}&apos;)
-	export VERSION=$(echo $VERSION | tr :- _)
-	sed -i &quot;s/.*#define _VCTOOLS_VERSION_.*/#define _VCTOOLS_VERSION_ \&quot;${VERSION}\&quot;/&quot; harvester/inc/vcVersion.h
-fi
+
 
 # delete the old release package dir if it exists
 if [[ -d &quot;${LINUX_RELEASE_DIR}&quot; ]];then
@@ -158,9 +112,9 @@ if [ -f &quot;$WORKSPACE/build_harvester.txt&quot; ]; then
 	rm &quot;$WORKSPACE/build_harvester.txt&quot;
 fi
 
-if [ &quot;$BUILD_HARVESTER&quot; != &quot;false&quot; ]; then
-echo VCTOOLS_VERSION=$VERSION &gt; $WORKSPACE/build_harvester.txt
-fi
+
+echo VCTOOLS_VERSION=use_default &gt; $WORKSPACE/build_harvester.txt
+
 </command>
     </hudson.tasks.Shell>
     <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.35.2">
@@ -175,6 +129,27 @@ fi
               <useMatrixChild>false</useMatrixChild>
               <onlyExactRuns>false</onlyExactRuns>
             </hudson.plugins.parameterizedtrigger.FileBuildParameters>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>WIN_RELEASE_DIR=N:\\shared\\Jenkins_Harvester_${GIT_BRANCH_NAME}
+LINUX_RELEASE_DIR=/mnt/nfs/shared/Jenkins_Harvester_${GIT_BRANCH_NAME}
+WIN_GIT_DIR=${WIN_RELEASE_DIR}\\Git
+LINUX_GIT_DIR=${LINUX_RELEASE_DIR}/Git
+WIN_PACKAGE_DIR=${WIN_RELEASE_DIR}\\Windows
+LINUX_PACKAGE_DIR=${LINUX_RELEASE_DIR}/Linux</properties>
+              <textParamValueOnNewLine>false</textParamValueOnNewLine>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+            <hudson.plugins.parameterizedtrigger.BooleanParameters>
+              <configs>
+                <hudson.plugins.parameterizedtrigger.BooleanParameterConfig>
+                  <name>BUILD_HARVESTER</name>
+                  <value>true</value>
+                </hudson.plugins.parameterizedtrigger.BooleanParameterConfig>
+                <hudson.plugins.parameterizedtrigger.BooleanParameterConfig>
+                  <name>USE_COMMIT_DATE_FOR_VERSION</name>
+                  <value>false</value>
+                </hudson.plugins.parameterizedtrigger.BooleanParameterConfig>
+              </configs>
+            </hudson.plugins.parameterizedtrigger.BooleanParameters>
           </configs>
           <projects>Build_Linux32,Build_Windows</projects>
           <condition>ALWAYS</condition>
