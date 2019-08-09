@@ -49,17 +49,13 @@
         <string>Build_Linux64_full</string>
         <string>Build_Windows</string>
         <string>Coverage_Linux</string>
-        <string>Coverage_Windows</string>
         <string>Coverage_Windows_under_design</string>
         <string>Custom_Cygwin</string>
-        <string>Custom_cygwin_1</string>
         <string>Custom_Linux</string>
         <string>Custom_Linux_1</string>
         <string>Custom_Windows</string>
         <string>Custom_Windows_1</string>
         <string>Cygwin32</string>
-        <string>Cygwin64</string>
-        <string>Cygwin_homepath</string>
         <string>Firefox_linux</string>
         <string>Firefox_window</string>
         <string>Git_Clone</string>
@@ -72,13 +68,9 @@
         <string>Regression_Other_Jobs_Master</string>
         <string>Release_Git_Clone</string>
         <string>Result_Collector</string>
-        <string>Result_Collector_New</string>
-        <string>Result_Collector_Other</string>
         <string>WinCyg_EnvCreate</string>
         <string>Windows32_msvc10</string>
         <string>Windows32_msvc9</string>
-        <string>Windows64_msvc10</string>
-        <string>Windows64_msvc9</string>
         <string>Workspace_cleanup_on_54</string>
         <string>Workspace_cleanup_on_68</string>
       </jobNames>
@@ -99,7 +91,7 @@
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
         <org.jenkinsci.plugins.categorizedview.GroupingRule>
-          <groupRegex>^Git_Clone|Build_Linux32|Build_Linux64|Build_Windows|BUILD_LINUX64_FULL|Release_git_clone$</groupRegex>
+          <groupRegex>^Git_Clone|Build_Linux32|Build_Linux64|Build_Windows|BUILD_LINUX64_FULL|Release_Git_Clone$</groupRegex>
           <namingRule>Harvester_Build</namingRule>
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
