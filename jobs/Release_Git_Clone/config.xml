@@ -19,7 +19,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.9.1">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>7a59fedb-ce37-4d9c-8959-b1faf3c01485</uuid>
+          <uuid>abd6b4f4-bedb-4872-abe7-ad1aa9c36601</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -90,10 +90,12 @@
 
 #set up the env var
 branch=${GIT_BRANCH_NAME}
+echo $branch
 remove=&quot;origin/&quot;
 
 branch_name=&quot;${branch//$remove/}&quot;
 echo $branch_name
+
 export LINUX_RELEASE_DIR=/mnt/nfs/shared/Jenkins_Harvester_$branch_name
 export LINUX_GIT_DIR=${LINUX_RELEASE_DIR}/Git
 
