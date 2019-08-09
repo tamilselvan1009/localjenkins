@@ -85,7 +85,7 @@
 # copy the artifacts from git dir
 branch=${LINUX_GIT_DIR}
 remove=&quot;origin/&quot;
-
+echo &quot;vikram&quot;
 new_dir= &quot;${branch//${remove/}&quot;
 
 cp -r &quot;${new_dir}/harvester&quot; .
@@ -105,9 +105,9 @@ cd build
     fi
  
 # copy the build to the shared location
-#cd ../release-packages
-#mkdir &quot;${LINUX_PACKAGE_DIR}&quot;
-#cp -r release &quot;${LINUX_PACKAGE_DIR}/.&quot;
+cd ../release-packages
+mkdir &quot;${LINUX_PACKAGE_DIR}&quot;
+cp -r release &quot;${LINUX_PACKAGE_DIR}/.&quot;
 
 </command>
     </hudson.tasks.Shell>
