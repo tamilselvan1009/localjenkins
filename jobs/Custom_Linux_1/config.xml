@@ -65,10 +65,12 @@ export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
 export LM_LICENSE_FILE=27000@192.168.163.60
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 
-echo $VECTORCAST_DIR
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
+unset VECTORCAST_DIR
+
+echo $VECTORCAST_DIR
 cp -r ${HARVESTER_PATH}/tests $WORKSPACE
 
 rm -rf tbuild32
