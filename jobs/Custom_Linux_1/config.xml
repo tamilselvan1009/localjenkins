@@ -67,6 +67,8 @@ export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
+export PATH=$VECTORCAST_DIR:$PATH
+echo $PATH
 
 unset VECTORCAST_DIR
 
