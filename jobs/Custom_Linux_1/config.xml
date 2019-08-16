@@ -44,7 +44,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -79,7 +78,11 @@ cd tbuild32
 
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 
-$VECTORCAST_DIR/vpython VcRunTests.py </command>
+mkdir cfg
+cp /mnt/nfs/shared/vikram/linux/CCAST_.CFG cfg
+
+
+python VcRunTests.py --cfg=cfg </command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
