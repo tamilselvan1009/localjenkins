@@ -78,7 +78,7 @@
         <hudson.model.StringParameterDefinition>
           <name>GIT_BRANCH_NAME</name>
           <description>specify the branch name</description>
-          <defaultValue>origin/develop</defaultValue>
+          <defaultValue>origin/develop__87613_putcmd_perf</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
