@@ -70,7 +70,7 @@ $VECTORCAST_DIR/clicast --version
 export PATH=$VECTORCAST_DIR:$PATH
 echo $PATH
 
-unset VECTORCAST_DIR
+
 
 echo $VECTORCAST_DIR
 cp -r ${HARVESTER_PATH}/tests $WORKSPACE
