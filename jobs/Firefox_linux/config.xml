@@ -338,6 +338,25 @@ chmod +x firefox_scripts/setpathtype.sh || handle_error
 time (./firefox_scripts/setpathtype.sh pristine_vcshell.db vcdb_getfiles.out.txt  &gt; set_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_setpathtype || true
 Extract vcdb_setpathtype 0 1
 
+#getallcmdlines
+echo -n -e &quot;getallcmdlines\t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcdb getallcmdlines  &gt; vcdb_getcmdlines.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getallcommandlines || handle_error
+Extract vcdb_getallcommandlines 0 1
+
+#vcshell putcommand
+echo -n -e &quot;vcshellputcommand\t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcshell putcommand --inputcmds=vcdb_getcmdlines.out.txt &gt; vcshell_putcmd.out.txt 2&gt;&amp;1) 2&gt;&gt;vcshell_putcommand  || handle_error
+Extract vcshell_putcommand 0 1
+
+#putcommand 87613
+echo -n -e &quot;vcshellputcommand_87613\t&quot;&gt;&gt;$summary_file
+tar -zxvf /mnt/nfs/Resources/artefacts/putcmd_87613.tar.gz
+cd putcmd_87613
+$VECTORCAST_DIR/vpython ./generate_stage.py
+$VECTORCAST_DIR/clicast -lc template gnu_cpp_48
+time ($VECTORCAST_DIR/vcshell putcommand --inputcmds=huge_time_cmds.txt &gt; vcshell_putcmd_87613.out.txt 2&gt;&amp;1) 2&gt;&gt;vcshell_putcommand_87613  || handle_error)
+Extract vcshell_putcommand_87613 0 1
+
 #command to be executed on 
 #chmod +x ../../per.sh || handle_error
 #../.././per.sh || handle_error
