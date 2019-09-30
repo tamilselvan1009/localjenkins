@@ -68,6 +68,7 @@
         <string>Regression_Other_Jobs_Master</string>
         <string>Release_Git_Clone</string>
         <string>Result_Collector</string>
+        <string>Vctools_Performance</string>
         <string>WinCyg_EnvCreate</string>
         <string>Windows32_msvc10</string>
         <string>Windows32_msvc9</string>
