@@ -1,15 +1,112 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <project>
+  <description></description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.30">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>LINUX_VECTORCAST_DIR</name>
+          <description></description>
+          <defaultValue>/home/vectorindia/.VCAST_REGRESSION</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+  </properties>
   <scm class="hudson.scm.NullSCM"/>
-  <canRoam>true</canRoam>
+  <assignedNode>firefox_linux</assignedNode>
+  <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <builders/>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash -xe
+
+echo $LINUX_VECTORCAST_DIR
+export VCTOOLS_PACKAGE=`find /mnt/nfs/shared/Jenkins_Harvester/Linux -maxdepth 1 -name *.tgz`
+export BOOST_DIR=&quot;/mnt/nfs/TOOLS/boost-1.53.0&quot;
+export VECTOR_LICENSE_FILE=27000@192.168.163.60
+
+if [ -f  $VCTOOLS_PACKAGE ];then
+    echo $VCTOOLS_PACKAGE
+	tar -zxvf $VCTOOLS_PACKAGE
+    cd release
+    ./install.sh
+    cd ..
+else
+	echo &quot;VcTools package not available in $VCTOOLS_PACKAGE&quot;
+    exit  1
+fi
+
+#function to handle error 
+handle_error()
+{
+	export _error_=$?
+	if [ ! &quot;$_error_&quot; == &quot;0&quot; ];then
+		echo &quot;      Command failed &quot;
+		export _RETURN_CODE_=$_error_
+	fi
+}
+
+#Set up Environment varaibles
+export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
+export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
+
+#Print tools version in console for reference
+$VECTORCAST_DIR/vcshell --version
+$VECTORCAST_DIR/clicast --version
+
+cd $WORKSPACE
+mkdir lua
+cd lua
+tar -zxvf /home/vectorindia/Performance_Regression/apps/lua/lua-5.3.1.tar.gz
+cp -r /home/vectorindia/Performance_Regression/scripts/* .
+cp /home/vectorindia/Performance_Regression/apps/lua/perfcommands .
+python permodule.py
+
+#TBD
+cd $WORKSPACE
+mkdir python
+cd python
+tar -zxvf /home/vectorindia/Performance_Regression/apps/lua/lua-5.3.1.tar.gz
+cp -r /home/vectorindia/Performance_Regression/scripts/* .
+cp /home/vectorindia/Performance_Regression/apps/lua/perfcommands .
+python permodule.py
+
+
+
+
+</command>
+    </hudson.tasks.Shell>
+  </builders>
   <publishers/>
-  <buildWrappers/>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
+  </buildWrappers>
 </project>
