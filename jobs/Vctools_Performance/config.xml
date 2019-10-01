@@ -86,6 +86,10 @@ cd lua
 tar -zxvf /home/vectorindia/Performance_Regression/apps/lua/lua-5.3.1.tar.gz
 cp -r /home/vectorindia/Performance_Regression/scripts/* .
 cp /home/vectorindia/Performance_Regression/apps/lua/perfcommands .
+
+#generating CCAST_.CFG
+$VECTORCAST_DIR/clicast -lc template GNU_C_44
+
 python perfmodule.py</command>
     </hudson.tasks.Shell>
   </builders>
