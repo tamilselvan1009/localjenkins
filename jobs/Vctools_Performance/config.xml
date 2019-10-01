@@ -86,12 +86,7 @@ cd lua
 tar -zxvf /home/vectorindia/Performance_Regression/apps/lua/lua-5.3.1.tar.gz
 cp -r /home/vectorindia/Performance_Regression/scripts/* .
 cp /home/vectorindia/Performance_Regression/apps/lua/perfcommands .
-python perfmodule.py
-
-
-
-
-</command>
+python perfmodule.py</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
