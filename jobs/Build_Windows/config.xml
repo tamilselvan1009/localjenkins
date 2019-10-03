@@ -125,13 +125,7 @@ echo &quot;Command exited with %VC_ERROR_LEVEL%&quot;)&#xd;
 goto:EOF</command>
     </hudson.tasks.BatchFile>
   </builders>
-  <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.21">
-      <recipients>kavya.seshu@vector.com</recipients>
-      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
-      <sendToIndividuals>false</sendToIndividuals>
-    </hudson.tasks.Mailer>
-  </publishers>
+  <publishers/>
   <buildWrappers>
     <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
       <deleteDirs>false</deleteDirs>
