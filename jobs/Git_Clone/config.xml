@@ -19,7 +19,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.9.1">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>78d2aa1b-5a49-4b3a-93a6-7f703141b161</uuid>
+          <uuid>74b7349b-6ac2-4ab4-b3a9-e871033de3ed</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -115,7 +115,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@3.8.0">
@@ -232,7 +231,7 @@ fi
   </builders>
   <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.21">
-      <recipients>kavya@vectorcast.com</recipients>
+      <recipients>kavya.seshu@vector.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
