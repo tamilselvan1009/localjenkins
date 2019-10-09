@@ -354,7 +354,7 @@ tar -zxvf /mnt/nfs/Resources/artefacts/putcmd_87613.tar.gz
 cd putcmd_87613
 $VECTORCAST_DIR/vpython ./generate_stage.py
 $VECTORCAST_DIR/clicast -lc template gnu_cpp_48
-time ($VECTORCAST_DIR/vcshell putcommand --inputcmds=huge_time_cmds.txt &gt; vcshell_putcmd_87613.out.txt 2&gt;&amp;1) 2&gt;&gt;vcshell_putcommand_87613  || handle_error)
+time ($VECTORCAST_DIR/vcshell putcommand --inputcmds=huge_time_cmds.txt &gt; vcshell_putcmd_87613.out.txt 2&gt;&amp;1) 2&gt;&gt;vcshell_putcommand_87613  || handle_error
 Extract vcshell_putcommand_87613 0 1
 
 #command to be executed on 
