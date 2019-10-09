@@ -198,7 +198,7 @@ Extract vcshell_make.out $vcshelltime `expr $vcshelltime + 6` || handle_error
 
 
 #Execute and measure timings for clearmetrics
-#cp pristine_vcshell.db vcutil_metrics.db
+cp pristine_vcshell.db vcutil_metrics.db
 #echo -n -e &quot;VcdbClearmetrics&quot;&gt;&gt;$summary_file
 #time ($VECTORCAST_DIR/vcdb clearmetrics --db=vcutil_metrics.db &gt; vcdb_clearmetrics.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_clearmetrics.out || handle_error
 #Extract vcdb_clearmetrics.out 0 1
@@ -340,12 +340,12 @@ Extract vcdb_setpathtype 0 1
 
 #getallcmdlines
 echo -n -e &quot;getallcmdlines\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb getallcmdlines  &gt; vcdb_getcmdlines.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getallcommandlines || handle_error
+time ($VECTORCAST_DIR/vcdb --db=pristine_vcshell.db getallcmdlines  &gt; vcdb_getcmdlines.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getallcommandlines || handle_error
 Extract vcdb_getallcommandlines 0 1
 
 #vcshell putcommand
 echo -n -e &quot;vcshellputcommand\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcshell putcommand --inputcmds=vcdb_getcmdlines.out.txt &gt; vcshell_putcmd.out.txt 2&gt;&amp;1) 2&gt;&gt;vcshell_putcommand  || handle_error
+time ($VECTORCAST_DIR/vcshell --db=putcmd.db putcommand --inputcmds=vcdb_getcmdlines.out.txt &gt; vcshell_putcmd.out.txt 2&gt;&amp;1) 2&gt;&gt;vcshell_putcommand  || handle_error
 Extract vcshell_putcommand 0 1
 
 #putcommand 87613
