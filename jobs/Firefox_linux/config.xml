@@ -136,7 +136,7 @@ echo -n  -e &quot; Passed &quot;&gt;&gt;$summary_file
 else
 echo  -n -e &quot; Failed &quot;&gt;&gt;$summary_file
 fi
-echo $_result &gt;&gt;$summary_file 
+#echo $_result &gt;&gt;$summary_file 
 
 }
 #secondary function to help generate Extract format
