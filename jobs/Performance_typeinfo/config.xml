@@ -74,6 +74,8 @@ export VECTOR_LICENSE_FILE=27000@192.168.163.60
 export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 
+ulimit -c unlimited
+
 #function to handle error 
 handle_error()
 {
