@@ -145,12 +145,12 @@ $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
 #Copy the firefox source 
-cp -r /home/vectorindia/firefox_regression/* $WORKSPACE/.
+#cp -r /home/vectorindia/firefox_regression/* $WORKSPACE/.
 
 #timing constant
 vcshelltime=20
 
-. ./make_config
+#. ./make_config
 
 #print date 
 echo $(date) &gt;&gt;$summary_file &gt;&gt;sol.txt
@@ -165,18 +165,18 @@ echo -e  &quot;Command               Time      ExpectedTime  Artifact ExpectedAr
 echo -e  &quot;Command               Time      ExpectedTime  Artifact ExpectedArtifact   TimmingResult   ArtiResult  &quot; &gt;&gt;sol.txt
 
 #Execute and measure timings for vcshell make -j8
-echo -n -e &quot;VchellMake-j4 \t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcshell --db=pristine_vcshell.db make -j4 &gt;vcshell_make.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_make.out || handle_error
-Extract vcshell_make.out $vcshelltime `expr $vcshelltime + 6` || handle_error
+#echo -n -e &quot;VchellMake-j4 \t&quot;&gt;&gt;$summary_file
+#time ($VECTORCAST_DIR/vcshell --db=pristine_vcshell.db make -j4 &gt;vcshell_make.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_make.out || handle_error
+#Extract vcshell_make.out $vcshelltime `expr $vcshelltime + 6` || handle_error
 
-cp pristine_vcshell.db vcshell.db
+#cp pristine_vcshell.db vcshell.db
 
-$VECTORCAST_DIR/vcdb getfiles &gt; files
+#$VECTORCAST_DIR/vcdb getfiles &gt; files
 
 #taking 1000 files
 head -1000 files &gt; first1k.txt || handle_error
 echo -n -e &quot;typeinfo_first1k\t&quot;&gt;&gt;$summary_file || handle_error
-time ($VECTORCAST_DIR/vcutil --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=first1000.txt --jobs=4 addtypeinfo &gt; typeinfo1.out 2&gt;&amp;1) 2&gt;&gt; typeinfo1 || handle_error
+time ($VECTORCAST_DIR/vcutil --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=first1k.txt --jobs=4 addtypeinfo &gt; typeinfo1.out 2&gt;&amp;1) 2&gt;&gt; typeinfo1 || handle_error
 Extract typeinfo1 0 2 typeinfo1.out &quot;${artifact[1]}&quot; || handle_error
 
 exit
@@ -184,27 +184,27 @@ exit
 #next 1000 files
 sed -n -e &apos;1001,2000p&apos; files &gt; second1k.txt || handle_error
 echo -n -e &quot;typeinfo_second1k\t&quot;&gt;&gt;$summary_file || handle_error
-time ($VECTORCAST_DIR/vcutil --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=first1000.txt --jobs=4 addtypeinfo &gt; typeinfo2.out 2&gt;&amp;1) 2&gt;&gt; typeinfo2 || handle_error
+time ($VECTORCAST_DIR/vcutil --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=second1k.txt --jobs=4 addtypeinfo &gt; typeinfo2.out 2&gt;&amp;1) 2&gt;&gt; typeinfo2 || handle_error
 Extract typeinfo1 0 2 typeinfo1.out &quot;${artifact[1]}&quot; || handle_error
 
 #next 1000 files
 sed -n -e &apos;2001,3000p&apos; files &gt; third1k.txt || handle_error
 echo -n -e &quot;typeinfo_third1k\t&quot;&gt;&gt;$summary_file || handle_error
-time ($VECTORCAST_DIR/vcutil --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=first1000.txt --jobs=4 addtypeinfo &gt; typeinfo3.out 2&gt;&amp;1) 2&gt;&gt; typeinfo3 || handle_error
+time ($VECTORCAST_DIR/vcutil --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=third1k.txt --jobs=4 addtypeinfo &gt; typeinfo3.out 2&gt;&amp;1) 2&gt;&gt; typeinfo3 || handle_error
 Extract typeinfo3 0 2 typeinfo3.out &quot;${artifact[1]}&quot; || handle_error
 
 
 #next 1000 files
 sed -n -e &apos;3001,4000p&apos; files &gt; fourth1k.txt || handle_error
 echo -n -e &quot;typeinfo_fourth1k\t&quot;&gt;&gt;$summary_file || handle_error
-time ($VECTORCAST_DIR/vcutil --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=first1000.txt --jobs=4 addtypeinfo &gt; typeinfo4.out 2&gt;&amp;1) 2&gt;&gt; typeinfo4 || handle_error
+time ($VECTORCAST_DIR/vcutil --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=fourth1k.txt --jobs=4 addtypeinfo &gt; typeinfo4.out 2&gt;&amp;1) 2&gt;&gt; typeinfo4 || handle_error
 Extract typeinfo4 0 2 typeinfo4.out &quot;${artifact[1]}&quot; || handle_error
 
 
 #next 1000 files
 sed -n -e &apos;4001,5085p&apos; files &gt; fifth1k.txt || handle_error
 echo -n -e &quot;typeinfo_fifth\t&quot;&gt;&gt;$summary_file || handle_error
-time ($VECTORCAST_DIR/vcutil --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=first1000.txt --jobs=4 addtypeinfo &gt; typeinfo5.out 2&gt;&amp;1) 2&gt;&gt; typeinfo5 || handle_error
+time ($VECTORCAST_DIR/vcutil --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=fifth1k.txt --jobs=4 addtypeinfo &gt; typeinfo5.out 2&gt;&amp;1) 2&gt;&gt; typeinfo5 || handle_error
 Extract typeinfo5 0 2 typeinfo5.out &quot;${artifact[1]}&quot; || handle_error
 
 
@@ -246,11 +246,6 @@ exit /b $_RETURN_CODE_</command>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
-      <deleteDirs>false</deleteDirs>
-      <cleanupParameter></cleanupParameter>
-      <externalDelete></externalDelete>
-    </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
