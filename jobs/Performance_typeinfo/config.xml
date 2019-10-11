@@ -91,9 +91,6 @@ $VECTORCAST_DIR/clicast --version
 #Copy the firefox source 
 #cp -r /home/vectorindia/firefox_regression/* $WORKSPACE/.
 
-#timing constant
-vcshelltime=20
-
 #. ./make_config
 
 #print date 
@@ -116,6 +113,8 @@ echo -e  &quot;Command               Time      ExpectedTime  Artifact ExpectedAr
 #cp pristine_vcshell.db vcshell.db
 
 #$VECTORCAST_DIR/vcdb getfiles &gt; files
+
+cd $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu
 
 #taking 1000 files
 head -1000 files &gt; first1k.txt || handle_error
