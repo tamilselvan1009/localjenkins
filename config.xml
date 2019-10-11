@@ -64,6 +64,7 @@
         <string>Linux_EnvCreate</string>
         <string>LINUX_INSTRUMENTED_VCRUNTESTS</string>
         <string>Linux_ValgrindTest</string>
+        <string>Performance_typeinfo</string>
         <string>Regression_6pm_Master</string>
         <string>Regression_Other_Jobs_Master</string>
         <string>Release_Git_Clone</string>
