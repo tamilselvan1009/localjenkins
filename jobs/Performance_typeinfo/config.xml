@@ -74,12 +74,6 @@ export VECTOR_LICENSE_FILE=27000@192.168.163.60
 export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 
-
-artifact=(&quot;Metrics Collected&quot; &quot;Successful for&quot; &quot;failed for&quot;)
-_expected=(&quot;Passed&quot; &quot;Failed&quot; &quot;Failed due to lesser artifact&quot;)
-_result=${_expected[0]}
-_threshold=4800
-
 #function to handle error 
 handle_error()
 {
@@ -88,56 +82,6 @@ handle_error()
 		echo &quot;      Command failed &quot;
 		export _RETURN_CODE_=$_error_
 	fi
-}
-
-#global variable to hold variable
-_var_=&quot;--&quot;
-#function to generate tabular file
-Extract()
-{
-
-output=`grep &quot;real&quot; $1 | awk &apos;{printf(&quot;%s&quot;,$2)}&apos;`
-grep &quot;real&quot; $1 | awk &apos;{printf(&quot;         %s         &quot;,$2)}&apos;&gt;&gt;$summary_file
-echo -n -e  $2 &gt;&gt;$summary_file
-echo -n -e &quot;-&quot; &gt;&gt;$summary_file
-echo -n -e $3  &gt;&gt;$summary_file
-echo -n -e  &quot;   &quot;&gt;&gt;$summary_file
-if [ ! -z &quot;$4&quot; ] &amp;&amp; [ ! -z &quot;$5&quot; ]
-then
-_var_=`grep &quot;$5&quot; $4 | grep -o &apos;[0-9]\+&apos;`
-if [ &quot;$5&quot; == &quot;${artifact[1]}&quot; ]
-then 
-if [ &quot;$_var_&quot; -ge &quot;$_threshold&quot; ]
-then
-_result=${_expected[0]}
-else
-_result=${_expected[1]}
-fi
-fi
-fi
-echo -n -e &quot; $_var_ &quot; &gt;&gt;$summary_file
-echo -n -e &quot; $_var_ &quot; &gt;&gt;$summary_file
-_var_=&quot;--&quot;
-out=`echo $output | awk &apos;{split ($0,a,&quot;m&quot;);print a[1]}&apos;`
-if  [ $out -ge $2 ] &amp;&amp; [ $out -le $3 ] 
-then 
-echo -n  -e &quot; Passed &quot;&gt;&gt;$summary_file
-else
-echo  -n -e &quot; Failed &quot;&gt;&gt;$summary_file
-fi
-#echo $_result &gt;&gt;$summary_file 
-
-}
-#secondary function to help generate Extract format
-Extract2()
-{
-if [ ! &quot;$2&quot; == &quot;vcdb_getfiles.out.txt&quot; ]
-then  
-_var_=`cat $2 | wc -l`
-else
-_var_=`cat $2 | wc -l`
-fi
-Extract $1 $3 $4
 }
 
 #Print tools version in console for reference
@@ -177,7 +121,6 @@ echo -e  &quot;Command               Time      ExpectedTime  Artifact ExpectedAr
 head -1000 files &gt; first1k.txt || handle_error
 echo -n -e &quot;typeinfo_first1k\t&quot;&gt;&gt;$summary_file || handle_error
 time ($VECTORCAST_DIR/vcutil --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=first1k.txt --jobs=4 addtypeinfo &gt; typeinfo1.out 2&gt;&amp;1) 2&gt;&gt; typeinfo1 || handle_error
-Extract typeinfo1 0 2 typeinfo1.out &quot;${artifact[1]}&quot; || handle_error
 
 exit
 
@@ -185,46 +128,26 @@ exit
 sed -n -e &apos;1001,2000p&apos; files &gt; second1k.txt || handle_error
 echo -n -e &quot;typeinfo_second1k\t&quot;&gt;&gt;$summary_file || handle_error
 time ($VECTORCAST_DIR/vcutil --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=second1k.txt --jobs=4 addtypeinfo &gt; typeinfo2.out 2&gt;&amp;1) 2&gt;&gt; typeinfo2 || handle_error
-Extract typeinfo1 0 2 typeinfo1.out &quot;${artifact[1]}&quot; || handle_error
 
 #next 1000 files
 sed -n -e &apos;2001,3000p&apos; files &gt; third1k.txt || handle_error
 echo -n -e &quot;typeinfo_third1k\t&quot;&gt;&gt;$summary_file || handle_error
 time ($VECTORCAST_DIR/vcutil --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=third1k.txt --jobs=4 addtypeinfo &gt; typeinfo3.out 2&gt;&amp;1) 2&gt;&gt; typeinfo3 || handle_error
-Extract typeinfo3 0 2 typeinfo3.out &quot;${artifact[1]}&quot; || handle_error
-
 
 #next 1000 files
 sed -n -e &apos;3001,4000p&apos; files &gt; fourth1k.txt || handle_error
 echo -n -e &quot;typeinfo_fourth1k\t&quot;&gt;&gt;$summary_file || handle_error
 time ($VECTORCAST_DIR/vcutil --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=fourth1k.txt --jobs=4 addtypeinfo &gt; typeinfo4.out 2&gt;&amp;1) 2&gt;&gt; typeinfo4 || handle_error
-Extract typeinfo4 0 2 typeinfo4.out &quot;${artifact[1]}&quot; || handle_error
-
 
 #next 1000 files
 sed -n -e &apos;4001,5085p&apos; files &gt; fifth1k.txt || handle_error
 echo -n -e &quot;typeinfo_fifth\t&quot;&gt;&gt;$summary_file || handle_error
 time ($VECTORCAST_DIR/vcutil --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=fifth1k.txt --jobs=4 addtypeinfo &gt; typeinfo5.out 2&gt;&amp;1) 2&gt;&gt; typeinfo5 || handle_error
-Extract typeinfo5 0 2 typeinfo5.out &quot;${artifact[1]}&quot; || handle_error
-
 
 (column -t $summary_file) &gt; temp.txt || handle_error
 rm -rf $summary_file || handle_error
 cp temp.txt $summary_file || handle_error
-#quick 
-#Archive the artifacts
-cd $top_level_archive_dir
-archive_dir=$(date +%d)
-if [ -d $archive_dir ];then
-	rm -rf $archive_dir
-fi
-mkdir $archive_dir
-cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/summary.txt $archive_dir/.
-cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/*.out $archive_dir/.
-cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/*.out.txt $archive_dir/.
-cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/sol.txt $archive_dir/.
-#copy sum.txt to the directory for mounted db  
-#cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/sum.txt $archive_dir/.
+
 exit /b $_RETURN_CODE_</command>
     </hudson.tasks.Shell>
   </builders>
