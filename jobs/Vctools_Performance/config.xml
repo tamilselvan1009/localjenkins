@@ -80,6 +80,28 @@ export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
+# **************************************************************************
+# Run performance for python app
+cd $WORKSPACE
+mkdir python
+cd python
+unzip /home/vectorindia/Performance_Regression/apps/python/Python-3.3.0.zip
+cd Python-3.3.0
+chmod +x configure
+./configure
+cp -r /home/vectorindia/Performance_Regression/scripts/* .
+cp /home/vectorindia/Performance_Regression/apps/python/perfcommands .
+
+#generating CCAST_.CFG
+$VECTORCAST_DIR/clicast -lc template GNU_C_44
+
+python perfmodule.py
+# **************************************************************************
+
+exit
+
+# **************************************************************************
+# Run performance for lua app
 cd $WORKSPACE
 mkdir lua
 cd lua
@@ -90,7 +112,8 @@ cp /home/vectorindia/Performance_Regression/apps/lua/perfcommands .
 #generating CCAST_.CFG
 $VECTORCAST_DIR/clicast -lc template GNU_C_44
 
-python perfmodule.py</command>
+python perfmodule.py
+# **************************************************************************</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
