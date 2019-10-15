@@ -94,7 +94,7 @@ cp /home/vectorindia/Performance_Regression/apps/python/perfcommands .
 
 #generating CCAST_.CFG
 $VECTORCAST_DIR/clicast -lc template GNU_C_44
-cp /mnt/nfs/shared/kavya_temp/perf_dbs/py_perf.db test.db
+cp /home/vectorindia/Performance_Regression/apps/python/py_perf.db test.db
 python perfmodule.py 
 # **************************************************************************
 
