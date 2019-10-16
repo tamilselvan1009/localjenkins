@@ -55,7 +55,7 @@
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>Firefox_linux</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
@@ -155,6 +155,7 @@ exit /b $_RETURN_CODE_</command>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
       <recipientList>kavya.seshu@vector.com</recipientList>
+      <configuredTriggers/>
       <contentType>text/plain</contentType>
       <defaultSubject>Firefox Linux Result</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
