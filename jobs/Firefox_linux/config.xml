@@ -74,7 +74,7 @@ export VCTOOLS_PACKAGE=`find /mnt/nfs/shared/Jenkins_Harvester_master/Linux -max
 export BOOST_DIR=&quot;/mnt/nfs/TOOLS/boost-1.53.0&quot;
 export VECTOR_LICENSE_FILE=27000@192.168.163.60
 
-
+: &apos;
 if [ -f  $VCTOOLS_PACKAGE ];then
     echo $VCTOOLS_PACKAGE
 	tar -zxvf $VCTOOLS_PACKAGE
@@ -85,7 +85,7 @@ else
 	echo &quot;VcTools package not available in $VCTOOLS_PACKAGE&quot;
     exit  1
 fi
-
+&apos;
 
 artifact=(&quot;Metrics Collected&quot; &quot;Successful for&quot; &quot;failed for&quot;)
 _expected=(&quot;Passed&quot; &quot;Failed&quot; &quot;Failed due to lesser artifact&quot;)
@@ -186,7 +186,7 @@ echo -n -e &quot;VchellMake-j4 \t&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcshell --db=pristine_vcshell.db make -j4 &gt;vcshell_make.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_make.out || handle_error
 Extract vcshell_make.out $vcshelltime `expr $vcshelltime + 6` || handle_error
 
-
+: &apos;
 #Execute and measure timings for vcshell metrics -j8
 #make clean
 #echo -n -e &quot;VcshellMetrics-j4\t&quot;&gt;&gt;$summary_file
@@ -472,7 +472,7 @@ cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/sol.txt $archive_dir/
 #copy sum.txt to the directory for mounted db  
 #cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/sum.txt $archive_dir/.
 exit /b $_RETURN_CODE_
-</command>
+&apos;</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
