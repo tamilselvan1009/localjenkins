@@ -74,8 +74,7 @@ export VCTOOLS_PACKAGE=`find /mnt/nfs/shared/Jenkins_Harvester_master/Linux -max
 export BOOST_DIR=&quot;/mnt/nfs/TOOLS/boost-1.53.0&quot;
 export VECTOR_LICENSE_FILE=27000@192.168.163.60
 
-#TODO REMOVE MULTILINE COMMENT
-: &apos;
+
 if [ -f  $VCTOOLS_PACKAGE ];then
     echo $VCTOOLS_PACKAGE
 	tar -zxvf $VCTOOLS_PACKAGE
@@ -86,7 +85,7 @@ else
 	echo &quot;VcTools package not available in $VCTOOLS_PACKAGE&quot;
     exit  1
 fi
-&apos;
+
 
 artifact=(&quot;Metrics Collected&quot; &quot;Successful for&quot; &quot;failed for&quot;)
 _expected=(&quot;Passed&quot; &quot;Failed&quot; &quot;Failed due to lesser artifact&quot;)
