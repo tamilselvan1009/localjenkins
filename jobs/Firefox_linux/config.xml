@@ -74,6 +74,7 @@ export VCTOOLS_PACKAGE=`find /mnt/nfs/shared/Jenkins_Harvester_master/Linux -max
 export BOOST_DIR=&quot;/mnt/nfs/TOOLS/boost-1.53.0&quot;
 export VECTOR_LICENSE_FILE=27000@192.168.163.60
 
+#TODO REMOVE MULTILINE COMMENT
 : &apos;
 if [ -f  $VCTOOLS_PACKAGE ];then
     echo $VCTOOLS_PACKAGE
