@@ -50,7 +50,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -187,7 +186,7 @@ echo -n -e &quot;VchellMake-j4 \t&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcshell --db=pristine_vcshell.db make -j4 &gt;vcshell_make.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_make.out || handle_error
 Extract vcshell_make.out $vcshelltime `expr $vcshelltime + 6` || handle_error
 
-: &apos;
+
 #Execute and measure timings for vcshell metrics -j8
 #make clean
 #echo -n -e &quot;VcshellMetrics-j4\t&quot;&gt;&gt;$summary_file
@@ -473,7 +472,7 @@ cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/sol.txt $archive_dir/
 #copy sum.txt to the directory for mounted db  
 #cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/sum.txt $archive_dir/.
 exit /b $_RETURN_CODE_
-&apos;</command>
+</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
