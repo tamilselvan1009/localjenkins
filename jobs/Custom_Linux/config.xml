@@ -79,7 +79,7 @@ cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 
 #$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=VcutilTest/PutcmdTest,CompatibilityTest
 cd VcutilTest/PutcmdTest
-cp -r ../../../tests/apps/lua-5.3.2 to lua-5.3.2
+cp -r ../../../tests/apps/lua-5.3.2  lua-5.3.2
 $VECTORCAST_DIR/vcshell  --db=org.db make -C lua-5.3.2 generic
 $VECTORCAST_DIR/vcdb  --db=org.db getallcmdlines --all </command>
     </hudson.tasks.Shell>
