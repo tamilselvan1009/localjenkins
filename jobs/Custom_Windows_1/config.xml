@@ -70,7 +70,7 @@ xcopy /S /I /E %HARVESTER_PATH%\tests tests /Q /Y&#xd;
 cd %WORKSPACE%&#xd;
 mkdir tbuild32_msvc10&#xd;
 cd tbuild32_msvc10&#xd;
-cmake ..\tests -G&quot;Visual Studio 10 2010&quot;&#xd;
+cmake ..\tests &#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py </command>
     </hudson.tasks.BatchFile>
   </builders>
