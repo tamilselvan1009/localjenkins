@@ -61,18 +61,18 @@
         <hudson.model.BooleanParameterDefinition>
           <name>BUILD_HARVESTER</name>
           <description>Uncheck this if we don&apos;t want to build harvester and run regression on pre-installed VECTORCAST_DIR</description>
-          <defaultValue>false</defaultValue>
+          <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WIN_VECTORCAST_DIR</name>
           <description>Specify the path to VECTORCAST_DIR</description>
-          <defaultValue>N:\\shared\\88749\\win_debug\\debug</defaultValue>
+          <defaultValue>N:\\shared\\.VCAST_REGRESSION\\JOB_6PM\\VCAST_WINDOWS</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LINUX_VECTORCAST_DIR</name>
           <description>Specify the path to VECTORCAST_DIR</description>
-          <defaultValue>/mnt/nfs/shared/88749/linux32</defaultValue>
+          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/VCAST_LINUX</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -84,7 +84,7 @@
         <hudson.model.StringParameterDefinition>
           <name>LINUX64_VECTORCAST_DIR</name>
           <description>specify the path for 64bit VECTORCAST</description>
-          <defaultValue>/mnt/nfs/shared/88749/linux64</defaultValue>
+          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/VCAST_64BIT</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -97,6 +97,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
