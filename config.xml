@@ -69,6 +69,10 @@
         <string>Regression_Other_Jobs_Master</string>
         <string>Release_Git_Clone</string>
         <string>Result_Collector</string>
+        <string>TypeInfo_master</string>
+        <string>TYPEINFOREGlinux32</string>
+        <string>TYPEINFOREGlinux64</string>
+        <string>TYPEINFOREGwin32</string>
         <string>Vctools_Performance</string>
         <string>WinCyg_EnvCreate</string>
         <string>Windows32_msvc10</string>
@@ -120,6 +124,11 @@
         <org.jenkinsci.plugins.categorizedview.GroupingRule>
           <groupRegex>^Regression_Other_Jobs_Master|Linux64_full|Linux64_lib_only|Cygwin64|Cygwin_homepath|Windows32_msvc9|Windows64_msvc10|Windows64_msvc9|Result_Collector_Other$</groupRegex>
           <namingRule>Regression_Other_jobs</namingRule>
+          <useDisplayName>false</useDisplayName>
+        </org.jenkinsci.plugins.categorizedview.GroupingRule>
+        <org.jenkinsci.plugins.categorizedview.GroupingRule>
+          <groupRegex>^TYPEINFOREGwin32|TYPEINFOREGlinux32|TYPEINFOREGlinux64|TypeInfo_master$</groupRegex>
+          <namingRule>TYPEINFO</namingRule>
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
       </categorizationCriteria>
