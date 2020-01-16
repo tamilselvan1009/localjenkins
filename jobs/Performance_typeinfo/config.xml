@@ -50,6 +50,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -68,11 +69,12 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
+
 echo $LINUX_VECTORCAST_DIR
 export BOOST_DIR=&quot;/mnt/nfs/TOOLS/boost-1.53.0&quot;
 export VECTOR_LICENSE_FILE=27000@192.168.163.60
 export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
-export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
+export PYTHONPATH=/usr/lib/python2.7/dist-packages:$PYTHONPATH
 
 ulimit -c unlimited
 
@@ -85,15 +87,177 @@ handle_error()
 		export _RETURN_CODE_=$_error_
 	fi
 }
+Extract()
+{
 
+output=`grep &quot;real&quot; $1 | awk &apos;{printf(&quot;%s&quot;,$2)}&apos;`
+grep &quot;real&quot; $1 | awk &apos;{printf(&quot;         %s         &quot;,$2)}&apos;&gt;&gt;$summary_file
+echo -n -e  $2 &gt;&gt;$summary_file
+echo -n -e &quot;-&quot; &gt;&gt;$summary_file
+echo -n -e $3  &gt;&gt;$summary_file
+echo -n -e  &quot;   &quot;&gt;&gt;$summary_file
+if [ ! -z &quot;$4&quot; ] &amp;&amp; [ ! -z &quot;$5&quot; ]
+then
+_var_=`grep &quot;$5&quot; $4 | grep -o &apos;[0-9]\+&apos;`
+if [ &quot;$5&quot; == &quot;${artifact[1]}&quot; ]
+then 
+if [ &quot;$_var_&quot; -ge &quot;$_threshold&quot; ]
+then
+_result=${_expected[0]}
+else
+_result=${_expected[1]}
+fi
+fi
+fi
+echo -n -e &quot; $_var_ &quot; &gt;&gt;$summary_file
+echo -n -e &quot; $_var_ &quot; &gt;&gt;$summary_file
+_var_=&quot;--&quot;
+out=`echo $output | awk &apos;{split ($0,a,&quot;m&quot;);print a[1]}&apos;`
+if  [ $out -ge $2 ] &amp;&amp; [ $out -le $3 ] 
+then 
+echo -n  -e &quot; Passed &quot;&gt;&gt;$summary_file
+else
+echo  -n -e &quot; Failed &quot;&gt;&gt;$summary_file
+fi
+#echo $_result &gt;&gt;$summary_file 
+
+}
+
+#function for lua performance  
+LUA_PERFORMANCE_FUNC()
+{
+   export VCTOOLS_PACKAGE=&quot;/mnt/nfs/shared/81269_daily/daily_typeinfo_build/typeinfo.unx32.tar.gz&quot;
+   if [ -f  $VCTOOLS_PACKAGE ];then
+    echo $VCTOOLS_PACKAGE
+	tar -zxvf $VCTOOLS_PACKAGE
+    export VECTORCAST_DIR=$PWD/vcast
+    echo &quot;in lua_performance_func&quot;
+    echo $VECTORCAST_DIR
+    cp  -r /home/vectorindia/Harvester/Harvester/tests/apps/lua-5.3.2 $WORKSPACE/.
+    
+    #set clicast 
+    $VECTORCAST_DIR/clicast -lc template GNU_C_44
+    
+    #RECORD VCSHELL TIMMINGS
+    echo -n -e &quot;VchellMake-j4 \t&quot;&gt;&gt;$summary_file
+    vcshelltime=0
+    time ($VECTORCAST_DIR/vcshell --db=pristine_vcshell.db make -C lua-5.3.2 generic  &gt;vcshell_make.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_make.out || handle_error
+    Extract vcshell_make.out $vcshelltime `expr $vcshelltime + 6` || handle_error
+    
+    cp  pristine_vcshell.db vcshell.db
+    
+    #RECORD ADDTYPEINFO lparser.c DATA
+    echo -n -e &quot;AddInfolparser.c \t&quot;&gt;&gt;$summary_file
+    time ($VECTORCAST_DIR/vcutil --file=lparser.c addtypeinfo  &gt;vcutil_lparser.txt 2&gt;&amp;1) 2&gt;&gt; vcaddtypeinfo_make.out || handle_error
+    vcshelltime=1
+    Extract vcaddtypeinfo_make.out $vcshelltime `expr $vcshelltime + 6` || handle_error
+   
+    #RECORD GETVARINFO lparser.c DATA
+    echo -n -e &quot;GetInfolparser.c \t&quot;&gt;&gt;$summary_file
+    time ($VECTORCAST_DIR/vcdb --file=lparser.c getvarinfo  &gt;vcutil_getvarinfo_lparser.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_getvarinfo_lparser_make.out || handle_error
+    vcshelltime=0
+    Extract vcutil_getvarinfo_lparser_make.out $vcshelltime `expr $vcshelltime + 6` || handle_error
+
+    $VECTORCAST_DIR/vcdb getfiles &gt; flist
+    
+    #RECORD ADDTYPEINFO lparser.c DATA
+    echo -n -e &quot;AddInfofilelist \t&quot;&gt;&gt;$summary_file
+    time ($VECTORCAST_DIR/vcutil --filelist=flist addtypeinfo  &gt;vcutil_full.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_full.out || handle_error
+    vcshelltime=1
+    Extract vcutil_full.out $vcshelltime `expr $vcshelltime + 6` || handle_error
+   
+    #RECORD ADDTYPEINFO lparser.c DATA
+    echo -n -e &quot;AddInfoAll \t&quot;&gt;&gt;$summary_file
+    time ($VECTORCAST_DIR/vcutil --all addtypeinfo  &gt;vcutil_all.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_all.out || handle_error
+    vcshelltime=1
+    Extract vcutil_all.out $vcshelltime `expr $vcshelltime + 6` || handle_error
+   
+    #RECORD GETVARINFO lparser.c DATA
+    echo -n -e &quot;GetInfolparser.c \t&quot;&gt;&gt;$summary_file
+    time ($VECTORCAST_DIR/vcdb --file=lparser.c getvarinfo  &gt;vcutil_getvarinfo_lparser1.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_getvarinfo_lparser_make1.out || handle_error
+    vcshelltime=0
+    Extract vcutil_getvarinfo_lparser_make1.out $vcshelltime `expr $vcshelltime + 6` || handle_error
+    
+    PYTHON_PERFORMANCE_FUNC
+    
+    
+    
+
+   fi
+
+}
+
+PYTHON_PERFORMANCE_FUNC()
+{
+
+   cp  /home/vectorindia/Harvester/Harvester/tests/apps/Python-3.5.0.tar.gz $WORKSPACE/.
+   tar xzfv Python-3.5.0.tar.gz
+   cd Python-3.5.0/
+   ./configure  
+   #RECORD VCSHELL TIMMINGS
+    echo -n -e &quot;VchellPythonMake \t&quot;&gt;&gt;$summary_file
+    vcshelltime=0
+    time ($VECTORCAST_DIR/vcshell --db=pristine_python_vcshell.db make  &gt;vcshell_python_make.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_python_make.out || handle_error
+    Extract vcshell_python_make.out $vcshelltime `expr $vcshelltime + 6` || handle_error
+    
+    cp  pristine_python_vcshell.db vcshell1.db
+    cp ../CCAST_.CFG .
+    
+    #RECORD ADDTYPEINFO unicodeobject.c DATA
+    echo -n -e &quot;Addunicodeobject \t&quot;&gt;&gt;$summary_file
+    time ($VECTORCAST_DIR/vcutil --db=vcshell1.db --file=unicodeobject.c addtypeinfo  &gt;vcutil_lparser_py.txt 2&gt;&amp;1) 2&gt;&gt; vcaddtypeinfo_make_py.out || handle_error
+    vcshelltime=1
+    Extract vcaddtypeinfo_make_py.out $vcshelltime `expr $vcshelltime + 6` || handle_error
+   
+    #RECORD GETVARINFO unicodeobject.c DATA
+    echo -n -e &quot;Getunicodeobject \t&quot;&gt;&gt;$summary_file
+    time ($VECTORCAST_DIR/vcdb --db=vcshell1.db --file=unicodeobject.c getvarinfo  &gt;vcutil_getvarinfo_lparser_py.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_getvarinfo_lparser_make_py.out || handle_error
+    vcshelltime=0
+    Extract vcutil_getvarinfo_lparser_make_py.out $vcshelltime `expr $vcshelltime + 6` || handle_error
+
+    
+    #RECORD --incremental DATA
+    echo -n -e &quot;AddInfofilelist \t&quot;&gt;&gt;$summary_file
+    time ($VECTORCAST_DIR/vcutil --db=vcshell1.db --incremental addtypeinfo  &gt;vcutil_full_py.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_full_py.out || handle_error
+    vcshelltime=1
+    Extract vcutil_full_py.out $vcshelltime `expr $vcshelltime + 6` || handle_error
+   
+    #RECORD ADDTYPEINFOall DATA
+    echo -n -e &quot;AddInfoAll \t&quot;&gt;&gt;$summary_file
+    time ($VECTORCAST_DIR/vcutil --db=vcshell1.db --all addtypeinfo  &gt;vcutil_all_py.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_all_py.out || handle_error
+    vcshelltime=1
+    Extract vcutil_all_py.out $vcshelltime `expr $vcshelltime + 6` || handle_error
+   
+    #RECORD GETVARINFO lparser.c DATA
+    echo -n -e &quot;GetInfolparser.c \t&quot;&gt;&gt;$summary_file
+    time ($VECTORCAST_DIR/vcdb --db=vcshell1.db --file=unicodeobject.c getvarinfo  &gt;vcutil_getvarinfo_lparser1_py.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_getvarinfo_lparser_make1_py.out || handle_error
+    vcshelltime=0
+    Extract vcutil_getvarinfo_lparser_make1_py.out $vcshelltime `expr $vcshelltime + 6` || handle_error
+    
+
+
+
+
+
+
+
+
+}
+
+
+: &apos;
+########################################
+#COMMENTS TO BE REMOVED
 #Print tools version in console for reference
-$VECTORCAST_DIR/vcshell --version
-$VECTORCAST_DIR/clicast --version
+#$VECTORCAST_DIR/vcshell --version
+#$VECTORCAST_DIR/clicast --version
 
 #Copy the firefox source 
 #cp -r /home/vectorindia/firefox_regression/* $WORKSPACE/.
+#cp  -r /home/vectorindia/Harvester/Harvester/tests/apps/lua-5.3.2 $WORKSPACE/.
 
 #. ./make_config
+
 
 #print date 
 echo $(date) &gt;&gt;$summary_file &gt;&gt;sol.txt
@@ -107,14 +271,26 @@ echo  &gt;&gt; $summary_file
 echo -e  &quot;Command               Time      ExpectedTime  Artifact ExpectedArtifact   TimmingResult   ArtiResult  &quot; &gt;&gt;$summary_file
 echo -e  &quot;Command               Time      ExpectedTime  Artifact ExpectedArtifact   TimmingResult   ArtiResult  &quot; &gt;&gt;sol.txt
 
+&apos;
+#######################################
+#MULTICOMMENTS to be removed
+
+
+#LUA performance function 
+LUA_PERFORMANCE_FUNC
+
+#########################################
+#MULTILINE COMMENT STARTED
+#TODO NAME:KAVYA  OBJECTIVE:PUT THE WHOLE STUFF IN A FUNCTION  SO THAT IT IS MODULAR 
+: &apos;
 #Execute and measure timings for vcshell make -j8
-#echo -n -e &quot;VchellMake-j4 \t&quot;&gt;&gt;$summary_file
-#time ($VECTORCAST_DIR/vcshell --db=pristine_vcshell.db make -j4 &gt;vcshell_make.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_make.out || handle_error
-#Extract vcshell_make.out $vcshelltime `expr $vcshelltime + 6` || handle_error
+echo -n -e &quot;VchellMake-j4 \t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcshell --db=pristine_vcshell.db make -j4 &gt;vcshell_make.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_make.out || handle_error
+Extract vcshell_make.out $vcshelltime `expr $vcshelltime + 6` || handle_error
 
-#cp pristine_vcshell.db vcshell.db
+cp pristine_vcshell.db vcshell.db
 
-#$VECTORCAST_DIR/vcdb getfiles &gt; files
+$VECTORCAST_DIR/vcdb getfiles &gt; files
 
 cd $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu
 
@@ -149,13 +325,16 @@ time ($VECTORCAST_DIR/vcutil --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=
 rm -rf $summary_file || handle_error
 cp temp.txt $summary_file || handle_error
 
+&apos;
+#########################################
+#MULTILINE COMMENT ENDED
+
 exit /b $_RETURN_CODE_</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
       <recipientList>kavya.seshu@vector.com</recipientList>
-      <configuredTriggers/>
       <contentType>text/plain</contentType>
       <defaultSubject>Firefox Linux Result</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
@@ -171,6 +350,11 @@ exit /b $_RETURN_CODE_</command>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
   <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
