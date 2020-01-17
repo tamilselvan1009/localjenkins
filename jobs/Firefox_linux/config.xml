@@ -50,13 +50,12 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>Firefox_linux</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>true</disabled>
+  <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
@@ -70,7 +69,8 @@
       <command>#!/bin/bash -xe
 
 echo $LINUX_VECTORCAST_DIR
-export VCTOOLS_PACKAGE=`find /mnt/nfs/shared/Jenkins_Harvester_master/Linux -maxdepth 1 -name *.tgz`
+export VCTOOLS_PACKAGE=&quot;/mnt/nfs/shared/88425/release32.tar.gz&quot;
+#`find /mnt/nfs/shared/Jenkins_Harvester_master/Linux -maxdepth 1 -name *.tgz`
 #VCTOOLS_PACKAGE=`find /mnt/nfs/shared/1_14_dispatcher_fix -maxdepth 1 -name *.tgz`
 export BOOST_DIR=&quot;/mnt/nfs/TOOLS/boost-1.53.0&quot;
 export VECTOR_LICENSE_FILE=27000@192.168.163.60
@@ -79,14 +79,15 @@ export VECTOR_LICENSE_FILE=27000@192.168.163.60
 if [ -f  $VCTOOLS_PACKAGE ];then
     echo $VCTOOLS_PACKAGE
 	tar -zxvf $VCTOOLS_PACKAGE
-    cd release
-    ./install.sh
-    cd ..
+    #cd release
+    #./install.sh
+    #cd ..
 else
 	echo &quot;VcTools package not available in $VCTOOLS_PACKAGE&quot;
     exit  1
 fi
 
+export VECTORCAST_DIR=$PWD/release
 
 artifact=(&quot;Metrics Collected&quot; &quot;Successful for&quot; &quot;failed for&quot;)
 _expected=(&quot;Passed&quot; &quot;Failed&quot; &quot;Failed due to lesser artifact&quot;)
@@ -138,7 +139,7 @@ echo -n  -e &quot; Passed &quot;&gt;&gt;$summary_file
 else
 echo  -n -e &quot; Failed &quot;&gt;&gt;$summary_file
 fi
-#echo $_result &gt;&gt;$summary_file 
+echo $_result &gt;&gt;$summary_file 
 
 }
 #secondary function to help generate Extract format
@@ -154,7 +155,7 @@ Extract $1 $3 $4
 }
 
 #Set up Environment varaibles
-export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
+#export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
 #export VECTOR_LICENSE_FILE=27000@192.168.163.60
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 
@@ -171,12 +172,12 @@ vcshelltime=20
 . ./make_config
 
 #print date 
-echo $(date) &gt;&gt;$summary_file &gt;&gt;sol.txt
+echo $(date) &gt;&gt;sol.txt
 
 #print VcTools version in log file
-echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --version | grep Version | awk &apos;{print $3}&apos;` &quot; &gt;&gt; $summary_file
-echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --version | grep Version | awk &apos;{print $3}&apos;` &quot; &gt;&gt; sol.txt
-echo  &gt;&gt; $summary_file
+#echo &quot; VcTools Version : ` $VECTORCAST_DIR/vcshell --version | grep Version | awk &apos;{print $3}&apos;` &quot; &gt;&gt; $summary_file
+echo &quot; VcTools Version : ` $VECTORCAST_DIR/vcshell --version | grep Version | awk &apos;{print $3}&apos;` &quot; &gt;&gt; sol.txt
+#echo  &gt;&gt; $summary_file
 
 #tabular format for the file
 echo -e  &quot;Command               Time      ExpectedTime  Artifact ExpectedArtifact   TimmingResult   ArtiResult  &quot; &gt;&gt;$summary_file
@@ -207,30 +208,27 @@ cp pristine_vcshell.db vcutil_metrics.db
 #Extract vcdb_clearmetrics.out 0 1
 
 #Execute and measure timings for vcutil addmetrics
-echo  -n -e &quot;VcutilAddmetrics&quot;&gt;&gt;$summary_file
+echo  -n -e &quot;VcutilAddmetrics\t&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db  --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all addmetrics  &gt; vcutil_addmetrics.out.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_addmetrics.out || handle_error
 Extract vcutil_addmetrics.out `expr $vcshelltime + 63`  `expr $vcshelltime + 75` vcutil_addmetrics.out.txt &quot;${artifact[0]}&quot; || handle_error
 
 
 #Verify metrics recorded in vcutil
 echo -n -e &quot;VcdbGetmetrics\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_for_vcshell_metrics.out.txt 2&gt;&amp;1) 2&gt;&gt;vcdb_getmetrics_vcutil.out || handle_error
+time ($VECTORCAST_DIR/vcdb getmetrics  --db=vcutil_metrics.db &gt; vcdb_getmetrics_for_vcshell_metrics.out.txt 2&gt;&amp;1) 2&gt;&gt;vcdb_getmetrics_vcutil.out || handle_error
 Extract2 vcdb_getmetrics_vcutil.out vcdb_getmetrics_for_vcshell_metrics.out.txt 0 1  || handle_error
 
 
 #Vcutil Instrument 
-echo -n -e &quot;VcutilInstrument--jobs=4&quot;&gt;&gt;$summary_file
+echo -n -e &quot;VcutilInstrument--jobs=4\t&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcutil  --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=InstFiles --coverage_type=statement instrument  &gt; vcutil_instr.out.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_instrument.out || handle_error
 Extract vcutil_instrument.out `expr $vcshelltime + 10` `expr $vcshelltime + 22` vcutil_instr.out.txt &quot;${artifact[1]}&quot; || handle_error
 
 #Vcutil Quick parse
-echo -n -e &quot;VcutilQikparse--jobs=4&quot;&gt;&gt;$summary_file
+echo -n -e &quot;VcutilQikparse--jobs=4\t&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --all --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse.out || handle_error
 Extract vcutil_qikparse.out `expr $vcshelltime - 3` `expr $vcshelltime + 5` vcutil_quick.out &quot;${artifact[1]}&quot; || handle_error
 
-echo $PWD
-
-cd $WORKSPACE
 
 #vcdb getfiles
 echo -n -e &quot;VcdbGetfiles\t&quot;&gt;&gt;$summary_file
@@ -248,8 +246,8 @@ time ($VECTORCAST_DIR/vcdb dumpverbs --db=pristine_vcshell.db &gt; vcdb_dumpverb
 Extract vcdb_dumpv 0 1
 
 #vcdb getobjpath
-echo -n -e &quot;VcdbDumpverb\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb getobjapth --filelist=vcdb_getfiles.out.txt --db=pristine_vcshell.db &gt; vcdb_getobjpath.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getobjpath  || handle_error
+echo -n -e &quot;VcdbDbgetopbjpath\t&quot;&gt;&gt;$summary_file
+time ($VECTORCAST_DIR/vcdb getobjpath --filelist=vcdb_getfiles.out.txt --db=pristine_vcshell.db &gt; vcdb_getobjpath.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getobjpath  || handle_error
 Extract vcdb_getobjpath 0 1
 
 #vcdb getapps
@@ -258,13 +256,13 @@ time ($VECTORCAST_DIR/vcdb getapps --db=pristine_vcshell.db &gt;vcdb_getapps.out
 Extract vcdb_getapps 0 1
 
 #get commentdata
-echo -n -e &quot;VcdbGetcommentdata&quot;&gt;&gt;$summary_file
+echo -n -e &quot;VcdbGetcommentdata\t&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcdb getcommentdata  --db=pristine_vcshell.db &gt; vcdb_getcommentdata.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getcommentdata || handle_error
 Extract vcdb_getcommentdata 0 1
 
 #get vcdb metrics
 echo -n -e &quot;VcdbGetmetrics\t&quot;&gt;&gt;$summary_file
-time ($VECTORCAST_DIR/vcdb getmetrics &gt; vcdb_getmetrics_data.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_met  || handle_error
+time ($VECTORCAST_DIR/vcdb getmetrics --db=vcutil_metrics.db &gt; vcdb_getmetrics_data.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_met  || handle_error
 Extract vcdb_met 0 1
 
 #get vcdb path
@@ -283,62 +281,63 @@ time ($VECTORCAST_DIR/vcdb getlinkcmd --db=pristine_vcshell.db &gt; vcdb_getlink
 Extract vcdb_getlinkcmd 0 1
 
 #get list
-echo -n -e &quot;VcdbList-prefixes&quot;&gt;&gt;$summary_file
+echo -n -e &quot;VcdbList-prefixes\t&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcdb list-prefixes  --db=pristine_vcshell.db &gt; vcdb_list-prefixes_data.out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getlist || handle_error
 Extract vcdb_getlist 0 1
 
 #getcmd.sh
 echo -n -e &quot;Getcmd.sh\t&quot;&gt;&gt;$summary_file
-chmod +x firefox_scripts/getcmd.sh
-time (./firefox_scripts/getcmd.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt; getcommands_data.out.txt 2&gt;&amp;1) 2&gt;&gt; getcmd || handle_error
+cp -r ../../firefox_scripts/* .
+chmod +x getcmd.sh
+time (./getcmd.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt; getcommands_data.out.txt 2&gt;&amp;1) 2&gt;&gt; getcmd || handle_error
 Extract getcmd 1 3
 
 #getcommentdensity
-echo -n -e &quot;GetcommentDensity.sh&quot;&gt;&gt;$summary_file
-chmod +x firefox_scripts/getcommentdensity.sh
-time (./firefox_scripts/getcommentdensity.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt; get_commentdensit_out.txt 2&gt;&amp;1) 2&gt;&gt; getcomment || handle_error
+echo -n -e &quot;GetcommentDensity.sh\t&quot;&gt;&gt;$summary_file
+chmod +x getcommentdensity.sh
+time (./getcommentdensity.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt; get_commentdensit_out.txt 2&gt;&amp;1) 2&gt;&gt; getcomment || handle_error
 Extract getcomment 1 3
 
 #getincludes
 echo -n -e &quot;Getincludes.sh\t&quot;&gt;&gt;$summary_file
-chmod +x firefox_scripts/getincludes.sh
-time (./firefox_scripts/getincludes.sh pristine_vcshell.db vcdb_getfiles.out.txt  &gt; get_includes_out.txt 2&gt;&amp;1) 2&gt;&gt;vcdb_getinclude || handle_error
+chmod +x getincludes.sh
+time (./getincludes.sh pristine_vcshell.db vcdb_getfiles.out.txt  &gt; get_includes_out.txt 2&gt;&amp;1) 2&gt;&gt;vcdb_getinclude || handle_error
 Extract vcdb_getinclude 0 1
 
 #getdefines
 echo -n -e &quot;Getdefines.sh\t&quot;&gt;&gt;$summary_file
-chmod +x firefox_scripts/getdefines.sh
-time (./firefox_scripts/getdefines.sh pristine_vcshell.db vcdb_getfiles.out.txt  &gt; get_defines_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getdefine || handle_error
+chmod +x getdefines.sh
+time (./getdefines.sh pristine_vcshell.db vcdb_getfiles.out.txt  &gt; get_defines_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getdefine || handle_error
 Extract vcdb_getdefine 0 1
 
 #getoptions
 echo -n -e &quot;Getoptions.sh\t&quot;&gt;&gt;$summary_file
-chmod +x firefox_scripts/getoptions.sh || handle_error
-time (./firefox_scripts/getoptions.sh pristine_vcshell.db vcdb_getfiles.out.txt  &gt; get_options_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getoption || handle_error
+chmod +x getoptions.sh || handle_error
+time (./getoptions.sh pristine_vcshell.db vcdb_getfiles.out.txt  &gt; get_options_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getoption || handle_error
 Extract vcdb_getoption 0 3
 
 #getpopt
 echo -n -e &quot;Getpoptions.sh\t&quot;&gt;&gt;$summary_file
-chmod +x firefox_scripts/getppopts.sh || handle_error
-time (./firefox_scripts/getppopts.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt;get_poptions_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getpoption || handle_error
+chmod +x getppopts.sh || handle_error
+time (./getppopts.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt;get_poptions_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getpoption || handle_error
 Extract vcdb_getpoption 2 4
 
 #getuniindex
 echo -n -e &quot;Getunitindex.sh\t&quot;&gt;&gt;$summary_file
-chmod +x firefox_scripts/getunitindex.sh || handle_error
-time (./firefox_scripts/getunitindex.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt;get_unitindex_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getunitindex || handle_error
+chmod +x getunitindex.sh || handle_error
+time (./getunitindex.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt;get_unitindex_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getunitindex || handle_error
 Extract vcdb_getunitindex 0 1
 
 #getpathtype
 echo -n -e &quot;GetPathtype.sh\t&quot;&gt;&gt;$summary_file
-chmod +x firefox_scripts/getpathtype || handle_error
-time (./firefox_scripts/getpathtype.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt;get_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getpathtype || handle_error
+chmod +x getpathtype.sh || handle_error
+time (./getpathtype.sh pristine_vcshell.db vcdb_getfiles.out.txt &gt;get_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_getpathtype || handle_error
 Extract vcdb_getpathtype 0 1
 
 #setpathtype
 echo -n -e &quot;Setpathtype.sh\t&quot;&gt;&gt;$summary_file
-chmod +x firefox_scripts/setpathtype.sh || handle_error
-time (./firefox_scripts/setpathtype.sh pristine_vcshell.db vcdb_getfiles.out.txt  &gt; set_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_setpathtype || true
+chmod +x setpathtype.sh || handle_error
+time (./setpathtype.sh pristine_vcshell.db vcdb_getfiles.out.txt  &gt; set_pathtypes_out.txt 2&gt;&amp;1) 2&gt;&gt; vcdb_setpathtype || true
 Extract vcdb_setpathtype 0 1
 
 #getallcmdlines
@@ -479,7 +478,6 @@ exit /b $_RETURN_CODE_
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
       <recipientList>kavya@vectorcast.com</recipientList>
-      <configuredTriggers/>
       <contentType>text/plain</contentType>
       <defaultSubject>Firefox Linux Result</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
