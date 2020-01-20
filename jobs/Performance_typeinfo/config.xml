@@ -50,6 +50,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -118,7 +119,7 @@ echo -n  -e &quot; Passed &quot;&gt;&gt;$summary_file
 else
 echo  -n -e &quot; Failed &quot;&gt;&gt;$summary_file
 fi
-#echo $_result &gt;&gt;$summary_file 
+echo $_result &gt;&gt;$summary_file 
 
 }
 
@@ -200,6 +201,7 @@ PYTHON_PERFORMANCE_FUNC()
     Extract vcshell_python_make.out $vcshelltime `expr $vcshelltime + 6` || handle_error
     
     cp  pristine_python_vcshell.db vcshell1.db
+    cp ../CCAST_.CFG .
     
     #RECORD ADDTYPEINFO unicodeobject.c DATA
     echo -n -e &quot;Addunicodeobject \t&quot;&gt;&gt;$summary_file
@@ -231,17 +233,33 @@ PYTHON_PERFORMANCE_FUNC()
     time ($VECTORCAST_DIR/vcdb --db=vcshell1.db --file=unicodeobject.c getvarinfo  &gt;vcutil_getvarinfo_lparser1_py.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_getvarinfo_lparser_make1_py.out || handle_error
     vcshelltime=0
     Extract vcutil_getvarinfo_lparser_make1_py.out $vcshelltime `expr $vcshelltime + 6` || handle_error
-    
-
-
-
-
-
-
-
+    SQLITE3_PERFORMANCE_FUNC    
 
 }
 
+SQLITE3_PERFORMANCE_FUNC()
+
+{
+    cp /mnt/nfs/Resources/Softwares/sqlite-autoconf-3081101.tar.gz $WORKSPACE/.
+    tar xzvf sqlite-autoconf-3081101.tar.gz
+    cd sqlite-autoconf-3081101/
+    ./configure
+    $VECTORCAST_DIR/vcshell make 
+
+    #RECORD ADDTYPEINFO sqlite3.c DATA
+    echo -n -e &quot;Addunicodeobject \t&quot;&gt;&gt;$summary_file
+    time ($VECTORCAST_DIR/vcutil --db=vcshell.db --file=sqlite3.c addtypeinfo  &gt;vcutil_lparser_sq.txt 2&gt;&amp;1) 2&gt;&gt; vcaddtypeinfo_make_sq.out || handle_error
+    vcshelltime=1
+    Extract vcaddtypeinfo_make_sq.out $vcshelltime `expr $vcshelltime + 6` || handle_error
+   
+    #RECORD GETVARINFO sqlite3.c DATA
+    echo -n -e &quot;Getunicodeobject \t&quot;&gt;&gt;$summary_file
+    time ($VECTORCAST_DIR/vcdb --db=vcshell.db --file=sqlite3.c getvarinfo  &gt;vcutil_getvarinfo_lparser_sq.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_getvarinfo_lparser_make_sq.out || handle_error
+    vcshelltime=0
+    Extract vcutil_getvarinfo_lparser_make_sq.out $vcshelltime `expr $vcshelltime + 6` || handle_error
+
+   
+}
 
 : &apos;
 ########################################
@@ -258,12 +276,12 @@ PYTHON_PERFORMANCE_FUNC()
 
 
 #print date 
-echo $(date) &gt;&gt;$summary_file &gt;&gt;sol.txt
+#echo $(date) &gt;&gt;$summary_file &gt;&gt;sol.txt
 
 #print VcTools version in log file
-echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --version | grep Version | awk &apos;{print $3}&apos;` &quot; &gt;&gt; $summary_file
+#echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --version | grep Version | awk &apos;{print $3}&apos;` &quot; &gt;&gt; $summary_file
 echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --version | grep Version | awk &apos;{print $3}&apos;` &quot; &gt;&gt; sol.txt
-echo  &gt;&gt; $summary_file
+#echo  &gt;&gt; $summary_file
 
 #tabular format for the file
 echo -e  &quot;Command               Time      ExpectedTime  Artifact ExpectedArtifact   TimmingResult   ArtiResult  &quot; &gt;&gt;$summary_file
@@ -276,6 +294,11 @@ echo -e  &quot;Command               Time      ExpectedTime  Artifact ExpectedAr
 
 #LUA performance function 
 LUA_PERFORMANCE_FUNC
+
+(column -t $summary_file) &gt; temp.txt || handle_error
+rm -rf $summary_file || handle_error
+cp temp.txt $summary_file || handle_error
+
 
 #########################################
 #MULTILINE COMMENT STARTED
