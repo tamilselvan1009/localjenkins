@@ -232,17 +232,33 @@ PYTHON_PERFORMANCE_FUNC()
     time ($VECTORCAST_DIR/vcdb --db=vcshell1.db --file=unicodeobject.c getvarinfo  &gt;vcutil_getvarinfo_lparser1_py.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_getvarinfo_lparser_make1_py.out || handle_error
     vcshelltime=0
     Extract vcutil_getvarinfo_lparser_make1_py.out $vcshelltime `expr $vcshelltime + 6` || handle_error
-    
-
-
-
-
-
-
-
+    SQLITE3_PERFORMANCE_FUNC    
 
 }
 
+SQLITE3_PERFORMANCE_FUNC()
+
+{
+    cp /mnt/nfs/Resources/Softwares/sqlite-autoconf-3081101.tar.gz $WORKSPACE/.
+    tar xzvf sqlite-autoconf-3081101.tar.gz
+    cd sqlite-autoconf-3081101/
+    ./configure
+    $VECTORCAST_DIR/vcshell make 
+
+    #RECORD ADDTYPEINFO sqlite3.c DATA
+    echo -n -e &quot;Addunicodeobject \t&quot;&gt;&gt;$summary_file
+    time ($VECTORCAST_DIR/vcutil --db=vcshell.db --file=sqlite3.c addtypeinfo  &gt;vcutil_lparser_sq.txt 2&gt;&amp;1) 2&gt;&gt; vcaddtypeinfo_make_sq.out || handle_error
+    vcshelltime=1
+    Extract vcaddtypeinfo_make_sq.out $vcshelltime `expr $vcshelltime + 6` || handle_error
+   
+    #RECORD GETVARINFO sqlite3.c DATA
+    echo -n -e &quot;Getunicodeobject \t&quot;&gt;&gt;$summary_file
+    time ($VECTORCAST_DIR/vcdb --db=vcshell.db --file=sqlite3.c getvarinfo  &gt;vcutil_getvarinfo_lparser_sq.txt 2&gt;&amp;1) 2&gt;&gt; vcutil_getvarinfo_lparser_make_sq.out || handle_error
+    vcshelltime=0
+    Extract vcutil_getvarinfo_lparser_make_sq.out $vcshelltime `expr $vcshelltime + 6` || handle_error
+
+   
+}
 
 : &apos;
 ########################################
@@ -277,6 +293,11 @@ echo -e  &quot;Command               Time      ExpectedTime  Artifact ExpectedAr
 
 #LUA performance function 
 LUA_PERFORMANCE_FUNC
+
+(column -t $summary_file) &gt; temp.txt || handle_error
+rm -rf $summary_file || handle_error
+cp temp.txt $summary_file || handle_error
+
 
 #########################################
 #MULTILINE COMMENT STARTED
