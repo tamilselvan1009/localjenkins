@@ -50,7 +50,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -119,7 +118,7 @@ echo -n  -e &quot; Passed &quot;&gt;&gt;$summary_file
 else
 echo  -n -e &quot; Failed &quot;&gt;&gt;$summary_file
 fi
-#echo $_result &gt;&gt;$summary_file 
+echo $_result &gt;&gt;$summary_file 
 
 }
 
@@ -260,12 +259,12 @@ PYTHON_PERFORMANCE_FUNC()
 
 
 #print date 
-echo $(date) &gt;&gt;$summary_file &gt;&gt;sol.txt
+#echo $(date) &gt;&gt;$summary_file &gt;&gt;sol.txt
 
 #print VcTools version in log file
-echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --version | grep Version | awk &apos;{print $3}&apos;` &quot; &gt;&gt; $summary_file
+#echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --version | grep Version | awk &apos;{print $3}&apos;` &quot; &gt;&gt; $summary_file
 echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --version | grep Version | awk &apos;{print $3}&apos;` &quot; &gt;&gt; sol.txt
-echo  &gt;&gt; $summary_file
+#echo  &gt;&gt; $summary_file
 
 #tabular format for the file
 echo -e  &quot;Command               Time      ExpectedTime  Artifact ExpectedArtifact   TimmingResult   ArtiResult  &quot; &gt;&gt;$summary_file
