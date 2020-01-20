@@ -86,7 +86,7 @@
   <triggers>
     <org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger plugin="parameterized-scheduler@0.5">
       <spec></spec>
-      <parameterizedSpecification>00 02 * * *  % BUILD_NAME=develop_timer</parameterizedSpecification>
+      <parameterizedSpecification>H 02 * * 6 % BUILD_NAME=develop_timer</parameterizedSpecification>
     </org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
