@@ -50,7 +50,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -261,6 +260,16 @@ SQLITE3_PERFORMANCE_FUNC()
    
 }
 
+echo -e  &quot;Command               Time      ExpectedTime  Artifact ExpectedArtifact   TimmingResult   ArtiResult  &quot; &gt;&gt;$summary_file
+#LUA performance function 
+LUA_PERFORMANCE_FUNC
+
+(column -t $summary_file) &gt; temp.txt || handle_error
+rm -rf $summary_file || handle_error
+cp temp.txt $summary_file || handle_error
+
+
+
 : &apos;
 ########################################
 #COMMENTS TO BE REMOVED
@@ -287,23 +296,16 @@ echo &quot;---- Results for VcTools Version : ` $VECTORCAST_DIR/vcshell --versio
 echo -e  &quot;Command               Time      ExpectedTime  Artifact ExpectedArtifact   TimmingResult   ArtiResult  &quot; &gt;&gt;$summary_file
 echo -e  &quot;Command               Time      ExpectedTime  Artifact ExpectedArtifact   TimmingResult   ArtiResult  &quot; &gt;&gt;sol.txt
 
-&apos;
+
 #######################################
 #MULTICOMMENTS to be removed
 
-
-#LUA performance function 
-LUA_PERFORMANCE_FUNC
-
-(column -t $summary_file) &gt; temp.txt || handle_error
-rm -rf $summary_file || handle_error
-cp temp.txt $summary_file || handle_error
 
 
 #########################################
 #MULTILINE COMMENT STARTED
 #TODO NAME:KAVYA  OBJECTIVE:PUT THE WHOLE STUFF IN A FUNCTION  SO THAT IT IS MODULAR 
-: &apos;
+
 #Execute and measure timings for vcshell make -j8
 echo -n -e &quot;VchellMake-j4 \t&quot;&gt;&gt;$summary_file
 time ($VECTORCAST_DIR/vcshell --db=pristine_vcshell.db make -j4 &gt;vcshell_make.out.txt 2&gt;&amp;1) 2&gt;&gt; vcshell_make.out || handle_error
