@@ -84,7 +84,7 @@ cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 
 
 
-$VECTORCAST_DIR/vpython VcRunTests.py</command>
+$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=ApiGenericTest</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
@@ -100,6 +100,7 @@ $VECTORCAST_DIR/vpython VcRunTests.py</command>
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
