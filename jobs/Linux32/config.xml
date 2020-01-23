@@ -86,9 +86,9 @@ $VECTORCAST_DIR/vpython VcRunTests.py || export _VC_RUNTEST_RETURN_CODE_=$?
 
 
 #Collect Result
-$VECTORCAST_DIR/vpython VcCollectResult.py --db=/mnt/nfs/shared/Jenkins_Result/vcshell.db --tag=linux32
+#$VECTORCAST_DIR/vpython VcCollectResult.py --db=/mnt/nfs/shared/Jenkins_Result/vcshell.db --tag=linux32
 
-$VECTORCAST_DIR/vpython VcRegressionResult.py --db=/mnt/nfs/shared/Jenkins_Result/regression.db --tag=linux32 --storeresult
+#$VECTORCAST_DIR/vpython VcRegressionResult.py --db=/mnt/nfs/shared/Jenkins_Result/regression.db --tag=linux32 --storeresult
 
 cp -r $LINUX_RELEASE_DIR/Linux/release $WORKSPACE
 cd $WORKSPACE/release/examples
