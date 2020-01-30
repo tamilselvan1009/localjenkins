@@ -68,7 +68,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -102,10 +101,6 @@ cd ..\release-packages&#xd;
 mkdir &quot;%WIN_PACKAGE_DIR%&quot;&#xd;
 copy harvester.win.zip &quot;%WIN_PACKAGE_DIR%\\harvester.win%VCTOOLS_VERSION%.zip&quot;&#xd;
 &#xd;
-REM cd %WORKSPACE%\\build&#xd;
-REM if not &quot;%WINDOWS_54972_VC%&quot; == &quot;&quot; ( set &quot;VECTORCAST_DIR=%WINDOWS_54972_VC%&quot;&#xd;
-REM call install.bat)&#xd;
-&#xd;
 rem Set back default VC&#xd;
 REM set &quot;VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&quot;&#xd;
 &#xd;
@@ -116,7 +111,9 @@ cd ..\release-packages&#xd;
 7z a harvester.win.zip release&#xd;
 mkdir &quot;%WIN64_PACKAGE_DIR%&quot;&#xd;
 copy harvester.win.zip &quot;%WIN64_PACKAGE_DIR%\\harvester.win%VCTOOLS_VERSION%.zip&quot;&#xd;
-&#xd;
+cd /D %WIN_PACKAGE_DIR%&#xd;
+7z x &quot;harvester.win%VCTOOLS_VERSION%.zip&quot;&#xd;
+cd /D %WORKSPACE%&#xd;
 &#xd;
 exit %VC_ERROR_LEVEL%&#xd;
 &#xd;
