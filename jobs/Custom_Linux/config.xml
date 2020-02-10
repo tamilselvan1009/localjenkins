@@ -31,7 +31,7 @@
         <hudson.model.StringParameterDefinition>
           <name>LINUX_VECTORCAST_DIR</name>
           <description></description>
-          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/custom/VCAST_LINUX</defaultValue>
+          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/custom/LINUX</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -77,7 +77,7 @@ mkdir tbuild32
 cd tbuild32
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 
-$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=IncludeTypes</command>
+$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=VcutilTest/AppendCoverIO,VcutilTest/Jobs,VcutilTest/DestinationDirCallBack,VcutilTest/CachecoverageTest,DBVersionTests,AddmetricsTest,SpaceInPath,FileListForGetobj,OutPutFlag,VcshellIncludes,ApiGenericTest,VcLogging,VcutilApiTestDestinationDir,Dependency</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
