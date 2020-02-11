@@ -108,7 +108,7 @@
   <triggers>
     <org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger plugin="parameterized-scheduler@0.5">
       <spec></spec>
-      <parameterizedSpecification>00 23 * * * %BUILD_NAME=7pm_timer</parameterizedSpecification>
+      <parameterizedSpecification>00 19 * * * %BUILD_NAME=7pm_timer</parameterizedSpecification>
     </org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
