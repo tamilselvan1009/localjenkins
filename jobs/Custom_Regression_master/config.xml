@@ -17,15 +17,21 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>WIN_RELEASE_DIR</name>
-          <description>Specify the location where artifacts will be stored. Location of the release dir in windows style path</description>
-          <defaultValue>N:\\shared\\Jenkins_Harvester</defaultValue>
+          <name>GIT_BRANCH_NAME</name>
+          <description>specify the branch name</description>
+          <defaultValue>origin/develop</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LINUX_RELEASE_DIR</name>
           <description>Specify the location where artifacts will be stored. Location of the release dir in linux style path</description>
           <defaultValue>/mnt/nfs/shared/Jenkins_Harvester</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>WIN_RELEASE_DIR</name>
+          <description>Specify the location where artifacts will be stored. Location of the release dir in windows style path</description>
+          <defaultValue>N:\\shared\\Jenkins_Harvester</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -73,12 +79,6 @@
           <name>LINUX_VECTORCAST_DIR</name>
           <description>Specify the path to VECTORCAST_DIR</description>
           <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/custom1/LINUX</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>GIT_BRANCH_NAME</name>
-          <description>specify the branch name</description>
-          <defaultValue>origin/develop</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
