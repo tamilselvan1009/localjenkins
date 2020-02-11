@@ -56,6 +56,7 @@
         <string>Custom_Windows</string>
         <string>Custom_Windows_1</string>
         <string>Cygwin32</string>
+        <string>Developer_Custom_Regression</string>
         <string>Firefox_linux</string>
         <string>Firefox_window</string>
         <string>Git_Clone</string>
