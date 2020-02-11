@@ -53,6 +53,7 @@
         <string>Custom_Cygwin</string>
         <string>Custom_Linux</string>
         <string>Custom_Linux_1</string>
+        <string>Custom_Regression_master</string>
         <string>Custom_Windows</string>
         <string>Custom_Windows_1</string>
         <string>Cygwin32</string>
