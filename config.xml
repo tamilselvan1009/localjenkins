@@ -132,6 +132,11 @@
           <namingRule>TYPEINFO</namingRule>
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
+        <org.jenkinsci.plugins.categorizedview.GroupingRule>
+          <groupRegex>^Developer_Custom_Regression</groupRegex>
+          <namingRule>Developer_Custom_Regression</namingRule>
+          <useDisplayName>false</useDisplayName>
+        </org.jenkinsci.plugins.categorizedview.GroupingRule>
       </categorizationCriteria>
     </org.jenkinsci.plugins.categorizedview.CategorizedJobsView>
   </views>
