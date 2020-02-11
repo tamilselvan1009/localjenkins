@@ -133,8 +133,13 @@
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
         <org.jenkinsci.plugins.categorizedview.GroupingRule>
-          <groupRegex>^Developer_Custom_Regression</groupRegex>
+          <groupRegex>^Developer_Custom_Regression|	Custom_Regression_master$</groupRegex>
           <namingRule>Developer_Custom_Regression</namingRule>
+          <useDisplayName>false</useDisplayName>
+        </org.jenkinsci.plugins.categorizedview.GroupingRule>
+        <org.jenkinsci.plugins.categorizedview.GroupingRule>
+          <groupRegex></groupRegex>
+          <namingRule></namingRule>
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
       </categorizationCriteria>
