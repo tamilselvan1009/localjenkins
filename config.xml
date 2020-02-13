@@ -60,6 +60,7 @@
         <string>Firefox_linux</string>
         <string>Firefox_window</string>
         <string>Git_Clone</string>
+        <string>linux</string>
         <string>Linux32</string>
         <string>Linux64_full</string>
         <string>Linux_EnvCreate</string>
