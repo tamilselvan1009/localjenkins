@@ -19,19 +19,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description></description>
-          <defaultValue>User_test</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>HARVESTER_PATH</name>
-          <description></description>
-          <defaultValue>/mnt/nfs/shared/Jenkins_Harvester/Git</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>LINUX_VECTORCAST_DIR</name>
-          <description></description>
-          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/custom1/VCAST_LINUX</defaultValue>
+          <defaultValue>${GIT_BRANCH_NAME}</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -74,7 +62,7 @@ echo $PATH
 
 
 echo $VECTORCAST_DIR
-cp -r ${HARVESTER_PATH}/tests $WORKSPACE
+cp -r ${LINUX_GIT_DIR}/tests $WORKSPACE
 
 rm -rf tbuild32
 #CMake and run VcRunTests
@@ -103,7 +91,7 @@ $VECTORCAST_DIR/vpython VcRunTests.py --run_tests=VcutilTest/vcInstTest,Dependen
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
-      <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
+      <template>BUILD_NAME</template>
       <runAtStart>true</runAtStart>
       <runAtEnd>true</runAtEnd>
     </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
