@@ -63,39 +63,14 @@ call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&
 &#xd;
 set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
-set LM_LICENSE_FILE=27000@192.168.163.60&#xd;
-&#xd;
+set LM_LICENSE_FILE=7650@licenseserver&#xd;
 xcopy /S /I /E %HARVESTER_PATH%\tests tests /Q /Y&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
 mkdir tb&#xd;
 cd tb&#xd;
 cmake ..\tests &#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=OneDirEntry&#xd;
-&#xd;
-cd %WORKSPACE%&#xd;
-mkdir t1&#xd;
-cd t1&#xd;
-cmake ..\tests &#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=OneDirEntry&#xd;
-&#xd;
-cd %WORKSPACE%&#xd;
-mkdir t2&#xd;
-cd t2&#xd;
-cmake ..\tests &#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=OneDirEntry&#xd;
-&#xd;
-cd %WORKSPACE%&#xd;
-mkdir t3&#xd;
-cd t3&#xd;
-cmake ..\tests &#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=OneDirEntry&#xd;
-&#xd;
-cd %WORKSPACE%&#xd;
-mkdir t4&#xd;
-cd t4&#xd;
-cmake ..\tests &#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=OneDirEntry</command>
+%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=VcutilTest/VcbgTest,VcutilTest/PutcmdTest</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
