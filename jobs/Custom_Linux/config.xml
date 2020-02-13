@@ -78,7 +78,7 @@ mkdir tbuild32
 cd tbuild32
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 
-$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=IncludeTypes</command>
+$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=VcutilTest/VcbgTest</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
@@ -115,6 +115,11 @@ $VECTORCAST_DIR/vpython VcRunTests.py --run_tests=IncludeTypes</command>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
   <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
       <runAtStart>true</runAtStart>
