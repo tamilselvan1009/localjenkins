@@ -72,13 +72,13 @@
         <hudson.model.StringParameterDefinition>
           <name>WIN_VECTORCAST_DIR</name>
           <description>Specify the path to VECTORCAST_DIR</description>
-          <defaultValue>N:\\shared\\.VCAST_REGRESSION\\custom1\\WINDOWS</defaultValue>
+          <defaultValue>N:\\shared\\.VCAST_REGRESSION\\DEV_REG\\WINDOWS</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LINUX_VECTORCAST_DIR</name>
           <description>Specify the path to VECTORCAST_DIR</description>
-          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/custom1/LINUX</defaultValue>
+          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/DEV_REG/LINUX</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
