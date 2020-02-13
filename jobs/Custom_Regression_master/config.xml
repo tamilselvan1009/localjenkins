@@ -153,7 +153,7 @@
           <configs>
             <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
           </configs>
-          <projects>Custom_Linux_1, Custom_Windows_1</projects>
+          <projects>Linux1</projects>
           <condition>ALWAYS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>
