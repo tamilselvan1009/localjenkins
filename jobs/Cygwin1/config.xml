@@ -19,17 +19,17 @@
         <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description></description>
-          <defaultValue>User_test</defaultValue>
+          <defaultValue>%GIT_BRANCH_NAME%</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>HARVESTER_PATH</name>
+          <name>WIN_GIT_DIR</name>
           <description></description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>WINDOWS_VECTORCAST_DIR</name>
+          <name>WIN_VECTORCAST_DIR</name>
           <description></description>
           <defaultValue></defaultValue>
           <trim>false</trim>
@@ -60,10 +60,10 @@
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
-set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
+set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
 set VECTOR_LICENSE_FILE=27000@192.168.163.60&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
-xcopy /S /I /E %HARVESTER_PATH%\tests tests /Q /Y&#xd;
+xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 &#xd;
 set nodosfilewarning=1&#xd;
 echo %nodosfilewarning%&#xd;
