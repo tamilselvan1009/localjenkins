@@ -23,15 +23,21 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>HARVESTER_PATH</name>
+          <name>WIN_RELEASE_DIR</name>
           <description></description>
-          <defaultValue>N:\shared\Jenkins_Harvester\Git</defaultValue>
+          <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>WINDOWS_VECTORCAST_DIR</name>
+          <name>WIN_VECTORCAST_DIR</name>
           <description></description>
-          <defaultValue>N:\shared\.VCAST_REGRESSION\JOB_6PM\WINDOWS</defaultValue>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>WIN_GIT_DIR</name>
+          <description></description>
+          <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -44,7 +50,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
