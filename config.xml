@@ -78,6 +78,7 @@
         <string>TYPEINFOREGwin32</string>
         <string>Vctools_Performance</string>
         <string>WinCyg_EnvCreate</string>
+        <string>Windows1</string>
         <string>Windows32_msvc10</string>
         <string>Windows32_msvc9</string>
         <string>Workspace_cleanup_on_54</string>
