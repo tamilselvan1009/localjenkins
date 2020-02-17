@@ -136,7 +136,7 @@
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
         <org.jenkinsci.plugins.categorizedview.GroupingRule>
-          <groupRegex>^Custom_Regression_master|Linux1|Cygwin1$</groupRegex>
+          <groupRegex>^Custom_Regression_master|Linux1|Cygwin1|Windows1$</groupRegex>
           <namingRule>Developer_Regression</namingRule>
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
