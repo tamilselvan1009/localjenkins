@@ -112,7 +112,7 @@ $VECTORCAST_DIR/vpython VcRunTests.py --run_tests=VcutilTest/vcInstTest,Dependen
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
-      <template>BUILD_NAME</template>
+      <template>${ENV, var=&quot;${GIT_BRANCH_NAME}&quot;}</template>
       <runAtStart>true</runAtStart>
       <runAtEnd>true</runAtEnd>
     </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
