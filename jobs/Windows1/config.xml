@@ -66,7 +66,7 @@
 cd %WORKSPACE%&#xd;
 set path=%path:&quot;=%&#xd;
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
-&#xd;
+echo %WIN_VECTORCAST_DIR%&#xd;
 set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set LM_LICENSE_FILE=7650@licenseserver&#xd;
