@@ -50,7 +50,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@3.8.0">
@@ -83,12 +82,7 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers>
-    <org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger plugin="parameterized-scheduler@0.5">
-      <spec></spec>
-      <parameterizedSpecification>00 01 * * 5  % BUILD_NAME=develop_timer</parameterizedSpecification>
-    </org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger>
-  </triggers>
+  <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <com.vectorcast.plugins.vectorcastexecution.VectorCASTSetup plugin="vectorcast-execution@0.33">
@@ -168,7 +162,7 @@ BUILD_NAME=${BUILD_NAME}</properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
-          <projects>LINUX_INSTRUMENTED_VCRUNTESTS</projects>
+          <projects>Coverage_experiment_child</projects>
           <condition>ALWAYS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>
@@ -204,11 +198,6 @@ export MANAGE_PROJECT=&quot;${WORKSPACE}/VcToolsProject.vcm&quot;
 export HISTORY_DIR=&quot;/mnt/nfs/shared/Harvester_Coverage_History/Linux&quot;
 export VC_RESULT_DIR=$PWD/results
 
-#Run the unit test cases
-cd ${WORKSPACE}/build
-./RunUnitTest.sh || export _VC_RUNTEST_RETURN_CODE_=$?
-find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/UNITTEST.DAT &apos;;&apos;
-
 #Run the examples
 if [ -d ../release-packages ]; then
 	rm -rf ../release-packages
@@ -218,13 +207,11 @@ fi
     else
     	false
     fi
-cd ../release-packages/release/examples
-./buildall.sh || export _VC_RUNTEST_RETURN_CODE_=$?
-find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/EXAMPLES.DAT &apos;;&apos;
+
 cd ${WORKSPACE}
 
 #Add TESTINSS.DAT to cover project
-declare -a results=(&quot;VCRUNTESTS&quot; &quot;LONGCMD&quot; &quot;CMDVERB&quot; &quot;OLD_VCAPP&quot; &quot;SEQ_DISPATCHER&quot; &quot;UNITTEST&quot; &quot;EXAMPLES&quot;)
+declare -a results=(&quot;VCADDMETRICS&quot; &quot;VCDISPATCHER&quot;)
 for result in &quot;${results[@]}&quot;
 do
 	$VECTORCAST_DIR/clicast -lc -e VcTools cover result add  ${VC_RESULT_DIR}/$result.DAT
@@ -378,7 +365,7 @@ if ( coverage &lt; 60) {
       <runForMatrixParent>false</runForMatrixParent>
     </org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
-      <recipientList>tamil.selvan@vectorcast.com</recipientList>
+      <recipientList>kavya.seshu@vector.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.StatusChangedTrigger>
           <email>
@@ -417,7 +404,7 @@ if ( coverage &lt; 60) {
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo>tamil.selvan@vectorcast.com</replyTo>
+      <replyTo>kavya.seshu@vector.com</replyTo>
       <from></from>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
