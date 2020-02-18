@@ -44,7 +44,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -78,35 +77,22 @@ $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
 #Cmake and run tests
-mkdir tbuild
-cd tbuild
+
+mkdir tbuild_addmetrics
+cd tbuild_addmetrics
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 export _VC_RUNTEST_RETURN_CODE_=0
-$VECTORCAST_DIR/vpython VcRunTests.py || export _VC_RUNTEST_RETURN_CODE_=$?
-find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/VCRUNTESTS.DAT &apos;;&apos;
+$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=AddmetricsTest|| export _VC_RUNTEST_RETURN_CODE_=$?
+find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/VCADDMETRICS.DAT &apos;;&apos;
+cd $WORKSPACE
 
-#Run Longcmd
-mkdir longcmd
-cd longcmd
-cmake  -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ ../../tests/LongCmd
-$VECTORCAST_DIR/vpython ../VcRunTests.py  || export _VC_RUNTEST_RETURN_CODE_=$?
-find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/LONGCMD.DAT &apos;;&apos;
-cd ..
-
-#Run Cmd-verb
-cd MathTest/Matrix
-$VECTORCAST_DIR/vpython ../../VcRunTests.py --cmdverb || export _VC_RUNTEST_RETURN_CODE_=$?
-find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/CMDVERB.DAT &apos;;&apos;
-
-#Run old vcapp db interface
-export _VC_OLD_VCAPP_DB_IF_=1
-time $VECTORCAST_DIR/vpython ../../VcRunTests.py || export _VC_RUNTEST_RETURN_CODE_=$?
-find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/OLD_VCAPP.DAT &apos;;&apos;
-
-#Run Sequential dispatcher
-export _VC_SEQ_DISPATCHER_=1
-$VECTORCAST_DIR/vpython ../../VcRunTests.py  || export _VC_RUNTEST_RETURN_CODE_=$?
-find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/SEQ_DISPATCHER.DAT &apos;;&apos;
+mkdir tbuild_dispatcher
+cd tbuild_dispatcher
+cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+export _VC_RUNTEST_RETURN_CODE_=0
+$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=DispatcherTests|| export _VC_RUNTEST_RETURN_CODE_=$?
+find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/VCDISPATCHER.DAT &apos;;&apos;
+cd $WORKSPACE
 
 #Copy the TESTINSS.DAT to the upstream job
 scp -r ${VC_RESULT_DIR} vectorindia@192.168.163.73:${HARVESTER_DIR}/.
