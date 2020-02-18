@@ -87,7 +87,8 @@ else
     exit  1
 fi
 
-export VECTORCAST_DIR=$PWD/release
+#export VECTORCAST_DIR=$PWD/release
+export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
 
 artifact=(&quot;Metrics Collected&quot; &quot;Successful for&quot; &quot;failed for&quot;)
 _expected=(&quot;Passed&quot; &quot;Failed&quot; &quot;Failed due to lesser artifact&quot;)
