@@ -51,6 +51,7 @@
         <string>Coverage_Linux</string>
         <string>Coverage_Windows_under_design</string>
         <string>Custom_Cygwin</string>
+        <string>Custom_Cygwin_1</string>
         <string>Custom_Linux</string>
         <string>Custom_Linux_1</string>
         <string>Custom_Regression_master</string>
