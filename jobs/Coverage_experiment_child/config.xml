@@ -78,20 +78,36 @@ $VECTORCAST_DIR/clicast --version
 
 #Cmake and run tests
 
-mkdir tbuild_addmetrics
-cd tbuild_addmetrics
+mkdir tbuild_echo
+cd tbuild_echo
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 export _VC_RUNTEST_RETURN_CODE_=0
-$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=AddmetricsTest|| export _VC_RUNTEST_RETURN_CODE_=$?
-find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/VCADDMETRICS.DAT &apos;;&apos;
+$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=EchoTests|| export _VC_RUNTEST_RETURN_CODE_=$?
+find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/ECHO.DAT &apos;;&apos;
 cd $WORKSPACE
 
-mkdir tbuild_dispatcher
-cd tbuild_dispatcher
+mkdir tbuild_echodb
+cd tbuild_echodb
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 export _VC_RUNTEST_RETURN_CODE_=0
-$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=DispatcherTests|| export _VC_RUNTEST_RETURN_CODE_=$?
-find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/VCDISPATCHER.DAT &apos;;&apos;
+$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=EchoDbTests|| export _VC_RUNTEST_RETURN_CODE_=$?
+find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/ECHODB.DAT &apos;;&apos;
+cd $WORKSPACE
+
+mkdir tbuild_newecho
+cd tbuild_newecho
+cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+export _VC_RUNTEST_RETURN_CODE_=0
+$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=NewEchoTests|| export _VC_RUNTEST_RETURN_CODE_=$?
+find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/NEWECHO.DAT &apos;;&apos;
+cd $WORKSPACE
+
+mkdir tbuild_newechocmddb
+cd tbuild_newechocmddb
+cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+export _VC_RUNTEST_RETURN_CODE_=0
+$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=NewEchoCmdDbTests|| export _VC_RUNTEST_RETURN_CODE_=$?
+find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/NEWECHOCMDDB.DAT &apos;;&apos;
 cd $WORKSPACE
 
 #Copy the TESTINSS.DAT to the upstream job
