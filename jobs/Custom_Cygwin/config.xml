@@ -73,7 +73,6 @@ echo %nodosfilewarning%&#xd;
 %VECTORCAST_DIR%\clicast --version&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
-rmdir tcyg /s /q&#xd;
 mkdir tcyg&#xd;
 cd tcyg&#xd;
 set PATH=C:\cygwin\bin;%PATH%&#xd;
