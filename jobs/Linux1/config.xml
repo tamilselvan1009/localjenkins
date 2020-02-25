@@ -100,7 +100,7 @@ cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 
 
 
-$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=VcutilTest/vcInstTest</command>
+$VECTORCAST_DIR/vpython VcRunTests.py ${test_name}</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
