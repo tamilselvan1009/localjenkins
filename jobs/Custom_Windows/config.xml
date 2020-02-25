@@ -19,19 +19,19 @@
         <hudson.model.StringParameterDefinition>
           <name>BUILD NAME</name>
           <description></description>
-          <defaultValue>User_test</defaultValue>
+          <defaultValue>tests_cleanup</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>HARVESTER_PATH</name>
           <description></description>
-          <defaultValue>N:\shared\Jenkins_Harvester\Git</defaultValue>
+          <defaultValue>N:\shared\Jenkins_Harvester_tests_cleanup\Git</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WINDOWS_VECTORCAST_DIR</name>
           <description></description>
-          <defaultValue>N:\shared\.VCAST_REGRESSION\custom\VCAST_WINDOWS</defaultValue>
+          <defaultValue>N:\shared\.VCAST_REGRESSION\JOB_6PM\WINDOWS</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -52,7 +52,11 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers/>
+  <triggers>
+    <hudson.triggers.TimerTrigger>
+      <spec>30 7 * * *</spec>
+    </hudson.triggers.TimerTrigger>
+  </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
@@ -73,7 +77,7 @@ cd tbuild32_msvc10&#xd;
 cmake ..\tests || call:handle_error&#xd;
 echo %PATH%&#xd;
 echo %vectorcast_dir%&#xd;
-%vectorcast_dir%\vpython VcRunTests.py --run_tests=VcutilTest&#xd;
+%vectorcast_dir%\vpython VcRunTests.py&#xd;
 &#xd;
 exit %VC_ERROR_ERROR%&#xd;
 :handle_error&#xd;
