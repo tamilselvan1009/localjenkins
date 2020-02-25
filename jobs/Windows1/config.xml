@@ -83,7 +83,7 @@ cd %WORKSPACE%&#xd;
 mkdir tb&#xd;
 cd tb&#xd;
 cmake ..\tests &#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py 	${test_name}</command>
+%VECTORCAST_DIR%\vpython VcRunTests.py 	%test_name%</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
