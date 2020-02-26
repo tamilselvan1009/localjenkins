@@ -70,7 +70,7 @@ cd %WORKSPACE%&#xd;
 mkdir tb&#xd;
 cd tb&#xd;
 cmake ..\tests &#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=VcutilTest/VcbgTest,VcutilTest/PutcmdTest</command>
+%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=VcutilTest/PutcmdTest --gen_also</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
