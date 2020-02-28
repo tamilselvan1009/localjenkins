@@ -82,7 +82,7 @@ xcopy /S /I /E %WIN_RELEASE_DIR%\Git\tests tests /Q /Y&#xd;
 cd %WORKSPACE%&#xd;
 mkdir tb&#xd;
 cd tb&#xd;
-cmake ..\tests &#xd;
+cmake ..\tests -G&quot;Visual Studio 10&quot;&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py 	%test_name%</command>
     </hudson.tasks.BatchFile>
   </builders>
