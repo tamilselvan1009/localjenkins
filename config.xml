@@ -137,7 +137,7 @@
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
         <org.jenkinsci.plugins.categorizedview.GroupingRule>
-          <groupRegex>^|Linux_vcutilTests|Windows_vcutilTests|Cygwin_vcutilTests$</groupRegex>
+          <groupRegex>^Linux_vcutilTests|Windows_vcutilTests|Cygwin_vcutilTests$</groupRegex>
           <namingRule>VcutilTests</namingRule>
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
