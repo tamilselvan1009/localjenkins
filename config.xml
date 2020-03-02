@@ -74,7 +74,6 @@
         <string>Linux_vcutilTests</string>
         <string>Performance_typeinfo</string>
         <string>Regression_6pm_Master</string>
-        <string>Regression_Other_Jobs_Master</string>
         <string>Release_Git_Clone</string>
         <string>Result_Collector</string>
         <string>TypeInfo_master</string>
