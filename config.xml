@@ -117,18 +117,8 @@
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
         <org.jenkinsci.plugins.categorizedview.GroupingRule>
-          <groupRegex>^Test_Commit_Linux|Test_Commit_WinCyg$</groupRegex>
-          <namingRule>Test_Commit_jobs</namingRule>
-          <useDisplayName>false</useDisplayName>
-        </org.jenkinsci.plugins.categorizedview.GroupingRule>
-        <org.jenkinsci.plugins.categorizedview.GroupingRule>
           <groupRegex>^Linux_ValgrindTest|Coverage_Linux|Coverage_Windows|LINUX_INSTRUMENTED_VCRUNTESTS|Linux_EnvCreate|WinCyg_EnvCreate|Firefox_linux|Linux_test_perf$</groupRegex>
           <namingRule>Performance_jobs</namingRule>
-          <useDisplayName>false</useDisplayName>
-        </org.jenkinsci.plugins.categorizedview.GroupingRule>
-        <org.jenkinsci.plugins.categorizedview.GroupingRule>
-          <groupRegex>^VectorCAST_Release_tests_master|Linux32_on_VC|Win32_64_on_VC$</groupRegex>
-          <namingRule>VectorCAST_Release_test_jobs</namingRule>
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
         <org.jenkinsci.plugins.categorizedview.GroupingRule>
@@ -144,6 +134,11 @@
         <org.jenkinsci.plugins.categorizedview.GroupingRule>
           <groupRegex>^Custom_Regression_master|Linux1|Cygwin1|Windows1$</groupRegex>
           <namingRule>Developer_Regression</namingRule>
+          <useDisplayName>false</useDisplayName>
+        </org.jenkinsci.plugins.categorizedview.GroupingRule>
+        <org.jenkinsci.plugins.categorizedview.GroupingRule>
+          <groupRegex>^|Linux_vcutilTests|Windows_vcutilTests|Cygwin_vcutilTests$</groupRegex>
+          <namingRule>VcutilTests</namingRule>
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
       </categorizationCriteria>
