@@ -63,7 +63,6 @@
         <string>Cygwin32</string>
         <string>Cygwin_vcutilTests</string>
         <string>Firefox_linux</string>
-        <string>Firefox_windows</string>
         <string>Git_Clone</string>
         <string>Linux1</string>
         <string>Linux32</string>
@@ -115,12 +114,12 @@
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
         <org.jenkinsci.plugins.categorizedview.GroupingRule>
-          <groupRegex>^Linux_ValgrindTest|Coverage_Linux|Coverage_Windows|LINUX_INSTRUMENTED_VCRUNTESTS|Linux_EnvCreate|WinCyg_EnvCreate|Firefox_linux|Linux_test_perf$</groupRegex>
+          <groupRegex>^Linux_ValgrindTest|Coverage_Linux|Coverage_Windows|LINUX_INSTRUMENTED_VCRUNTESTS|Linux_EnvCreate|WinCyg_EnvCreate|Firefox_linux|Firefox_windows|Vctools_Performance$</groupRegex>
           <namingRule>Performance_jobs</namingRule>
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
         <org.jenkinsci.plugins.categorizedview.GroupingRule>
-          <groupRegex>^TYPEINFOREGwin32|TYPEINFOREGlinux32|TYPEINFOREGlinux64|TypeInfo_master$</groupRegex>
+          <groupRegex>^TYPEINFOREGwin32|TYPEINFOREGlinux32|TYPEINFOREGlinux64|Performance_typeinfo|TypeInfo_master$</groupRegex>
           <namingRule>TYPEINFO</namingRule>
           <useDisplayName>false</useDisplayName>
         </org.jenkinsci.plugins.categorizedview.GroupingRule>
