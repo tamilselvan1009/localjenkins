@@ -65,7 +65,6 @@
       <command>set path=%path:&quot;=%&#xd;
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
 &#xd;
-set WORKSPACE=C:\SlaveJenkins\workspace\Cygwin32&#xd;
 cd %WORKSPACE%&#xd;
 &#xd;
 set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
@@ -77,11 +76,11 @@ set nodosfilewarning=1&#xd;
 echo %nodosfilewarning%&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
-mkdir tbuild32_cyg&#xd;
-cd tbuild32_cyg&#xd;
+mkdir tutil&#xd;
+cd tutil&#xd;
 set PATH=C:\cygwin\bin;%PATH%&#xd;
 bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=VcutilTest,vcUtilRun,OutPutFlag,NegativeVcUtilRunTest,AddmetricsTest,clearMetrics,DirNameTest,DispatcherTests,InplacevcInst,Dependency || call:handle_error</command>
+%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=VcutilTest,vcUtilRun,OutPutFlag,NegativeVcUtilRunTest,AddmetricsTest,clearMetrics,DirNameTest,DispatcherTests,InplacevcInst,Dependency</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
