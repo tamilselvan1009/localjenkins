@@ -50,7 +50,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -63,26 +62,26 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>cd %WORKSPACE%&#xd;
-set path=%path:&quot;=%&#xd;
+      <command>set path=%path:&quot;=%&#xd;
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
+&#xd;
+set WORKSPACE=C:\SlaveJenkins\workspace\Cygwin32&#xd;
+cd %WORKSPACE%&#xd;
+&#xd;
 set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
+set VECTOR_LICENSE_FILE=27000@192.168.163.60&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
-set VECTOR_LICENSE_FILE=C:\FLEXlm\vector-WIN-REG64-54.lic&#xd;
+&#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
+set nodosfilewarning=1&#xd;
+echo %nodosfilewarning%&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
-mkdir tutil || call:handle_error&#xd;
-cd tutil&#xd;
-cmake ..\tests || call:handle_error&#xd;
-&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=VcutilTest,vcUtilRun,OutPutFlag,NegativeVcUtilRunTest,AddmetricsTest,clearMetrics,DirNameTest,DispatcherTests,InplacevcInst,Dependency || call:handle_error&#xd;
-&#xd;
-exit %VC_ERROR_ERROR%&#xd;
-:handle_error&#xd;
-if NOT %ERRORLEVEL% EQU 0 (set VC_ERROR_LEVEL=%ERRORLEVEL%&#xd;
-echo &quot;Command exited with %VC_ERROR_LEVEL%&quot;)&#xd;
-goto:EOF</command>
+mkdir tbuild32_cyg&#xd;
+cd tbuild32_cyg&#xd;
+set PATH=C:\cygwin\bin;%PATH%&#xd;
+bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=VcutilTest,vcUtilRun,OutPutFlag,NegativeVcUtilRunTest,AddmetricsTest,clearMetrics,DirNameTest,DispatcherTests,InplacevcInst,Dependency || call:handle_error</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
