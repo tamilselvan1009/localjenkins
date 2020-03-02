@@ -10,6 +10,10 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.30">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
@@ -52,31 +56,20 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>REM xcopy D:\firefox-win\firefox-19.0.2.source.tar %WORKSPACE%&#xd;
-REM echo %PATH% &#xd;
-REM cd firefox-win/mozilla-release &#xd;
-REM %VECTORCAST_DIR%\vcdb getfiles&#xd;
-REM echo %WORKSPACE%&#xd;
-REM echo $WORKSPACE &#xd;
-REM cd %WORKSPACE%&#xd;
-REM cd /C/SlaveJenkins/workspace/Firefox_window/mozilla-release&#xd;
-REM dir&#xd;
-REM 7z x firefox-19.0.2.source.tar&#xd;
+      <command>xcopy D:\firefox-win\firefox-19.0.2.source.tar %WORKSPACE%&#xd;
+7z x firefox-19.0.2.source.tar&#xd;
 &#xd;
 cd C:\mozilla-build&#xd;
-echo %CD%&#xd;
-call start-shell-msvc2010.bat&#xd;
+call start-shell-msvc2010-jenkins.bat&#xd;
 &#xd;
 cd %WORKSPACE%\\mozilla-release&#xd;
-REM dir &#xd;
-REM echo %CD%&#xd;
 echo cd &quot;$WORKSPACE/mozilla-release&quot; &gt; mycommand.txt&#xd;
 echo echo pwd=$PWD     &gt;&gt; mycommand.txt&#xd;
 echo &quot;$VECTORCAST_DIR/vcshell&quot; python mach build &gt;&gt; mycommand.txt&#xd;
 REM echo  mach build &gt;&gt; mycommand.txt&#xd;
 REM echo time(&quot;$VECTORCAST_DIR/vcutil&quot; addmetrics --vcppot) &gt;&gt;mycommand.txt&#xd;
 REM echo time(&quot;$VECTORCAST_DIR/vcutil&quot; quickparse --vcppopt) &gt;&gt;mycommand.txt&#xd;
-echo time(&quot;$VECTORCAST_DIR/vcdb&quot; getpaths) &gt;&gt;mycommand.txt &#xd;
+REM echo time(&quot;$VECTORCAST_DIR/vcdb&quot; getpaths) &gt;&gt;mycommand.txt &#xd;
 echo exit &gt;&gt; mycommand.txt&#xd;
 type mycommand.txt | bash --login -i&#xd;
 &#xd;
@@ -122,6 +115,11 @@ REM powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcdb getappfiles | Out-Ho
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
   <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
