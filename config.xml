@@ -63,6 +63,7 @@
         <string>Cygwin32</string>
         <string>Cygwin_vcutilTests</string>
         <string>Firefox_linux</string>
+        <string>Firefox_windows</string>
         <string>Git_Clone</string>
         <string>Linux1</string>
         <string>Linux32</string>
