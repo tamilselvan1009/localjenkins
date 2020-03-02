@@ -1,7 +1,7 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>VcRunTests on 32bit msvc10 platform. </description>
+  <description>vcutiltests on 32bit msvc10 platform. </description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
@@ -17,27 +17,21 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>WIN_GIT_DIR</name>
-          <description></description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>WIN_VECTORCAST_DIR</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>N:\\shared\\.VCAST_REGRESSION\\JOB_6PM\\WINDOWS</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>utiltests</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WIN_RELEASE_DIR</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>N:\\shared\\Jenkins_Harvester</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -50,7 +44,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -72,20 +65,11 @@ set VECTOR_LICENSE_FILE=C:\FLEXlm\vector-WIN-REG64-54.lic&#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
-mkdir tbuild32_msvc10 || call:handle_error&#xd;
-cd tbuild32_msvc10&#xd;
+mkdir tutil || call:handle_error&#xd;
+cd tutil&#xd;
 cmake ..\tests || call:handle_error&#xd;
 &#xd;
-rmdir getpaths\test_case_sensitive /s /q&#xd;
-rmdir getpaths\test_symbolic_link /s /q&#xd;
-&#xd;
-echo &quot;Test starts here&quot; &#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py || call:handle_error&#xd;
-&#xd;
-rem Collect Results&#xd;
-%VECTORCAST_DIR%\vpython VcCollectResult.py --db=N:\shared\Jenkins_Result\vcshell.db --tag=windows32_msvc10&#xd;
-&#xd;
-%VECTORCAST_DIR%\vpython VcRegressionResult.py --db=N:\shared\Jenkins_Result/regression.db --tag=windows32_msvc10 --storeresult&#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=VcutilTest,vcUtilRun,OutPutFlag,NegativeVcUtilRunTest,AddmetricsTest,clearMetrics,DirNameTest,DispatcherTests,InplacevcInst,Dependency || call:handle_error&#xd;
 &#xd;
 exit %VC_ERROR_ERROR%&#xd;
 :handle_error&#xd;
