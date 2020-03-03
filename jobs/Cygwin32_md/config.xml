@@ -23,12 +23,6 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>WIN_VECTORCAST_DIR</name>
-          <description></description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description></description>
           <defaultValue></defaultValue>
@@ -50,7 +44,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -67,17 +60,22 @@
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
 &#xd;
 set WORKSPACE=C:\SlaveJenkins\workspace\Cygwin32&#xd;
-cd %WORKSPACE%&#xd;
-&#xd;
-set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
 set VECTOR_LICENSE_FILE=27000@192.168.163.60&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 &#xd;
-xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 set nodosfilewarning=1&#xd;
 echo %nodosfilewarning%&#xd;
 &#xd;
-rem set _VC_NEW_CYGWIN_MODE_=1&#xd;
+rem Set VC&#xd;
+set VECTORCAST_DIR=C:\\Users\\vectorindia\\VCAST&#xd;
+&#xd;
+rem Install vctools&#xd;
+xcopy %WIN_RELEASE_DIR%\Windows\*.zip %WORKSPACE% /y &#xd;
+7z x *.zip&#xd;
+cd %WORKSPACE%\release&#xd;
+call install.bat&#xd;
+&#xd;
+xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 cd %WORKSPACE%&#xd;
 mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
