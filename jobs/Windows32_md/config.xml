@@ -65,7 +65,7 @@ set VECTOR_LICENSE_FILE=C:\FLEXlm\vector-WIN-REG64-54.lic&#xd;
 rem Set VC&#xd;
 set VECTORCAST_DIR=C:\\users\\vectorindia\\VCAST&#xd;
 xcopy %WIN_RELEASE_DIR%\Windows\*.zip %WORKSPACE% /y &#xd;
-7z e *.zip %WORKSPACE%\release&#xd;
+7z e *.zip -o%WORKSPACE%\release -r&#xd;
 cd %WORKSPACE%\release&#xd;
 install.bat&#xd;
 &#xd;
