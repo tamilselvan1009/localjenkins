@@ -17,12 +17,6 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>WIN_VECTORCAST_DIR</name>
-          <description></description>
-          <defaultValue>N:\\shared\\.VCAST_REGRESSION\\JOB_6PM\\WINDOWS</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description></description>
           <defaultValue>run_test</defaultValue>
