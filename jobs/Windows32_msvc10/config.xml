@@ -80,7 +80,7 @@ cd tbuild32&#xd;
 cmake ..\tests &#xd;
 &#xd;
 echo &quot;Test starts here&quot; &#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=MathTest || call:handle_error&#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py || call:handle_error&#xd;
 &#xd;
 rem Collect Results&#xd;
 %VECTORCAST_DIR%\vpython VcCollectResult.py --db=N:\shared\Jenkins_Result\vcshell.db --tag=windows32_msvc10&#xd;
