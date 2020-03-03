@@ -61,6 +61,7 @@
         <string>Custom_Windows_1</string>
         <string>Cygwin1</string>
         <string>Cygwin32</string>
+        <string>Cygwin32_md</string>
         <string>Cygwin_vcutilTests</string>
         <string>Firefox_linux</string>
         <string>Firefox_windows</string>
