@@ -75,8 +75,6 @@
   <builders>
     <hudson.tasks.BatchFile>
       <command>set path=%path:&quot;=%&#xd;
-call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
-&#xd;
 cd %WORKSPACE%&#xd;
 set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
 echo %VECTORCAST_DIR%&#xd;
@@ -96,7 +94,7 @@ mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
 set PATH=C:\cygwin\bin;%PATH%&#xd;
 bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
-%vectorcast_dir%\vpython VcRunTests.py --run_tests=GetCommandTest/GetCmdDir,VcshellTest,UnitIndex,VcshellTest/env_test,GetApps-LinkTests\SimpleCmd	%test_name%</command>
+%vectorcast_dir%\vpython VcRunTests.py --run_tests=GetCommandTest/GetCmdDir</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
