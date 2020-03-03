@@ -23,12 +23,6 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>LINUX_VECTORCAST_DIR</name>
-          <description></description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description></description>
           <defaultValue></defaultValue>
@@ -50,7 +44,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -66,17 +59,26 @@
       <command>#!/bin/bash -xe
 
 ulimit -c unlimited
-cd $WORKSPACE
-export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
-export VECTOR_LICENSE_FILE=27000@192.168.163.60
+export VECTOR_LICENSE_FILE=/home/vectorindia/flexlm/vector-UNX-REG32-71
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:/mnt/nfs/shared/tamil_temp:$PYTHONPATH
 export BOOST_DIR=/mnt/nfs/shared/vikram/boost-1.53.0
-echo $VECTORCAST_DIR
+
+#Set VC
+export VECTORCAST_DIR=/home/vectorindia/.VCAST
+
+#Install vctools
+cd $WORKSPACE
+cp -r ${LINUX_RELEASE_DIR}/Linux/*.tgz $WORKSPACE
+tar -zxvf *.tgz
+cd release
+./install.sh
+
+#Check version
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
+#Get the tests
 cp -r ${LINUX_GIT_DIR}/tests $WORKSPACE
-
 
 #CMake and run VcRunTests
 mkdir tbuild
@@ -91,7 +93,7 @@ $VECTORCAST_DIR/vpython VcRunTests.py || export _VC_RUNTEST_RETURN_CODE_=$?
 
 #$VECTORCAST_DIR/vpython VcRegressionResult.py --db=/mnt/nfs/shared/Jenkins_Result/regression.db --tag=linux32 --storeresult
 
-cp -r $LINUX_RELEASE_DIR/Linux/release $WORKSPACE
+#Run examples
 cd $WORKSPACE/release/examples
 ./buildall.sh
 export LD_LIBRARY_PATH=$LINUX_VECTORCAST_DIR/lib:$LD_LIBRARY_PATH
