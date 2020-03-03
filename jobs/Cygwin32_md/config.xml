@@ -69,7 +69,7 @@ set VECTORCAST_DIR=C:\\Users\\vectorindia\\VCAST&#xd;
 &#xd;
 set PATH=C:\cygwin\bin;%PATH%&#xd;
 rem Install vctools&#xd;
-bash -c &quot;cp -r %WIN_RELEASE_DIR%\\Windows\\*.zip %WORKSPACE%&quot;&#xd;
+bash -c &quot;cp -r %WIN_RELEASE_DIR%/Windows/*.zip %WORKSPACE%&quot;&#xd;
 bash -c &quot;7z x *.zip&quot;&#xd;
 cd %WORKSPACE%\release&#xd;
 call install.bat&#xd;
