@@ -86,7 +86,7 @@ mkdir tbuild
 cd tbuild
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 export _VC_RUNTEST_RETURN_CODE_=0
-$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=MathTest || export _VC_RUNTEST_RETURN_CODE_=$?
+$VECTORCAST_DIR/vpython VcRunTests.py || export _VC_RUNTEST_RETURN_CODE_=$?
 
 
 #Collect Result
@@ -94,7 +94,6 @@ $VECTORCAST_DIR/vpython VcRunTests.py --run_tests=MathTest || export _VC_RUNTEST
 
 #$VECTORCAST_DIR/vpython VcRegressionResult.py --db=/mnt/nfs/shared/Jenkins_Result/regression.db --tag=linux32 --storeresult
 
-cp -r $LINUX_RELEASE_DIR/Linux/release $WORKSPACE
 cd $WORKSPACE/release/examples
 ./buildall.sh
 export LD_LIBRARY_PATH=$LINUX_VECTORCAST_DIR/lib:$LD_LIBRARY_PATH
