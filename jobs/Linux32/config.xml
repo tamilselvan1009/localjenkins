@@ -23,12 +23,6 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>LINUX_VECTORCAST_DIR</name>
-          <description></description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description></description>
           <defaultValue></defaultValue>
@@ -65,24 +59,34 @@
       <command>#!/bin/bash -xe
 
 ulimit -c unlimited
-cd $WORKSPACE
-export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
 export VECTOR_LICENSE_FILE=27000@192.168.163.60
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:/mnt/nfs/shared/tamil_temp:$PYTHONPATH
 export BOOST_DIR=/mnt/nfs/shared/vikram/boost-1.53.0
-echo $VECTORCAST_DIR
+
+#Set VC
+export VECTORCAST_DIR=/home/vectorindia/.VCAST
+
+#Install vctools
+cd $WORKSPACE
+cp -r ${LINUX_RELEASE_DIR}/Linux/*.tgz $WORKSPACE
+tar -zxvf *.tgz
+cd release
+./install.sh
+
+#Check version
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
+#Get the tests
 cp -r ${LINUX_GIT_DIR}/tests $WORKSPACE
 
-
 #CMake and run VcRunTests
+cd $WORKSPACE
 mkdir tbuild
 cd tbuild
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 export _VC_RUNTEST_RETURN_CODE_=0
-$VECTORCAST_DIR/vpython VcRunTests.py || export _VC_RUNTEST_RETURN_CODE_=$?
+$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=MathTest || export _VC_RUNTEST_RETURN_CODE_=$?
 
 
 #Collect Result
