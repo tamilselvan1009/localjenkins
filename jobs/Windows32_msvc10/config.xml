@@ -23,12 +23,6 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>WIN_VECTORCAST_DIR</name>
-          <description></description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description></description>
           <defaultValue></defaultValue>
@@ -65,21 +59,28 @@
       <command>cd %WORKSPACE%&#xd;
 set path=%path:&quot;=%&#xd;
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
-set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set VECTOR_LICENSE_FILE=C:\FLEXlm\vector-WIN-REG64-54.lic&#xd;
-xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
+&#xd;
+rem Set VC&#xd;
+set VECTORCAST_DIR=C:\\users\\vectorindia\\VCAST&#xd;
+&#xd;
+rem Install vctools&#xd;
+xcopy %WIN_RELEASE_DIR%\Windows\*.zip %WORKSPACE% /y &#xd;
+7z x *.zip&#xd;
+cd %WORKSPACE%\release&#xd;
+call install.bat&#xd;
+&#xd;
+rem Get the tests&#xd;
+xcopy /S /I /E %WIN_GIT_DIR%\tests %WORKSPACE%\tests /Q /Y&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
-mkdir tbuild32_msvc10 || call:handle_error&#xd;
-cd tbuild32_msvc10&#xd;
-cmake ..\tests || call:handle_error&#xd;
-&#xd;
-rmdir getpaths\test_case_sensitive /s /q&#xd;
-rmdir getpaths\test_symbolic_link /s /q&#xd;
+mkdir tbuild32 &#xd;
+cd tbuild32&#xd;
+cmake ..\tests &#xd;
 &#xd;
 echo &quot;Test starts here&quot; &#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py || call:handle_error&#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=MathTest || call:handle_error&#xd;
 &#xd;
 rem Collect Results&#xd;
 %VECTORCAST_DIR%\vpython VcCollectResult.py --db=N:\shared\Jenkins_Result\vcshell.db --tag=windows32_msvc10&#xd;
