@@ -76,6 +76,7 @@
         <string>Regression_6pm_Master</string>
         <string>Release_Git_Clone</string>
         <string>Result_Collector</string>
+        <string>Test_perf_on_win</string>
         <string>TypeInfo_master</string>
         <string>TYPEINFOREGlinux32</string>
         <string>TYPEINFOREGlinux64</string>
