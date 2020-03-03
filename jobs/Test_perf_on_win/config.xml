@@ -64,30 +64,22 @@ set VECTOR_LICENSE_FILE=C:\FLEXlm\vector-WIN-REG64-54.lic&#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
+set VECTORCAST_DIR=&quot;N:\\shared\\.VCAST_REGRESSION\\JOB_6PM\\WINDOWS&quot;&#xd;
+mkdir tbuild&#xd;
+cd tbuild&#xd;
+cmake ..\tests&#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=MathTest/Matrix&#xd;
+&#xd;
+cd %WORKSPACE%&#xd;
 set VECTORCAST_DIR=&quot;C:\\VC_TEST&quot;&#xd;
 echo %VECTORCAST_DIR%&#xd;
 mkdir tbuild1&#xd;
 cd tbuild1&#xd;
 cmake ..\tests&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=MathTest/Matrix,VcutilTest/VcutilCommonTest&#xd;
-&#xd;
-exit&#xd;
-&#xd;
-cd %WORKSPACE%&#xd;
-set VECTORCAST_DIR=&quot;N:\\shared\\.VCAST_REGRESSION\\JOB_6PM\\WINDOWS&quot;&#xd;
-mkdir tbuild&#xd;
-cd tbuild&#xd;
-cmake ..\tests&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=MathTest/Matrix,VcutilTest/VcutilCommonTest</command>
+%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=MathTest/Matrix</command>
     </hudson.tasks.BatchFile>
   </builders>
-  <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.21">
-      <recipients>kavya.seshu@vector.com</recipients>
-      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
-      <sendToIndividuals>false</sendToIndividuals>
-    </hudson.tasks.Mailer>
-  </publishers>
+  <publishers/>
   <buildWrappers>
     <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
       <deleteDirs>false</deleteDirs>
