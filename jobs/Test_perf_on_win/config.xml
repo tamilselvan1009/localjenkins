@@ -74,7 +74,7 @@ cd %WORKSPACE%&#xd;
 mkdir tbuild&#xd;
 cd tbuild&#xd;
 cmake ..\tests&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=MathTest/Matrix&#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=MathTest/Matrix,VcutilTest/VcutilCommonTest&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
 set VECTORCAST_DIR=&quot;C:\\VC_TEST&quot;&#xd;
@@ -82,7 +82,7 @@ echo %VECTORCAST_DIR%&#xd;
 mkdir tbuild1&#xd;
 cd tbuild1&#xd;
 cmake ..\tests&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=MathTest/Matrix</command>
+%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=MathTest/Matrix,VcutilTest/VcutilCommonTest</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
