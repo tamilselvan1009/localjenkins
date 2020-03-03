@@ -85,6 +85,7 @@
         <string>Vctools_Performance</string>
         <string>WinCyg_EnvCreate</string>
         <string>Windows1</string>
+        <string>Windows32_md</string>
         <string>Windows32_msvc10</string>
         <string>Windows_vcutilTests</string>
         <string>Workspace_cleanup_on_54</string>
