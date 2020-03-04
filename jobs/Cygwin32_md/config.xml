@@ -56,8 +56,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>echo %WORKSPACE%&#xd;
-exit 0&#xd;
+      <command>set WORKSPACE=C:\SlaveJenkins\workspace\Cygwin32_md&#xd;
 set path=%path:&quot;=%&#xd;
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
 &#xd;
@@ -70,11 +69,16 @@ rem Set VC&#xd;
 set VECTORCAST_DIR=C:\\Users\\vectorindia\\VCAST&#xd;
 &#xd;
 rem Install vctools&#xd;
-echo copy %WIN_RELEASE_DIR%\Windows\*.zip %WORKSPACE%\. &#xd;
-copy %WIN_RELEASE_DIR%\Windows\*.zip %WORKSPACE%\. &#xd;
+xcopy %WIN_RELEASE_DIR%\Windows\*.zip %WORKSPACE% /y &#xd;
 7z x *.zip&#xd;
 cd %WORKSPACE%\release&#xd;
 call install.bat&#xd;
+&#xd;
+rem Install vctools&#xd;
+rem copy %WIN_RELEASE_DIR%\Windows\*.zip %WORKSPACE%\. &#xd;
+rem 7z x *.zip&#xd;
+rem cd %WORKSPACE%\release&#xd;
+rem call install.bat&#xd;
 &#xd;
 rem Get the tests&#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
