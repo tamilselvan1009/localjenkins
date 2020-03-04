@@ -77,7 +77,7 @@ cd release&#xd;
 call install.bat&#xd;
 &#xd;
 rem Get the tests&#xd;
-xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
+xcopy /S /I /E %WIN_GIT_DIR%\tests %WORKSPACE%\. /Q /Y&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
 mkdir tbuild32_cyg&#xd;
