@@ -23,12 +23,6 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>WIN_VECTORCAST_DIR</name>
-          <description></description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description></description>
           <defaultValue></defaultValue>
@@ -66,15 +60,26 @@
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
 &#xd;
 set WORKSPACE=C:\SlaveJenkins\workspace\Cygwin32&#xd;
-cd %WORKSPACE%&#xd;
-&#xd;
-set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
 set VECTOR_LICENSE_FILE=27000@192.168.163.60&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
+set BOOST_DIR=C:\boost\boost-1.53.0&#xd;
 &#xd;
-xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 set nodosfilewarning=1&#xd;
 echo %nodosfilewarning%&#xd;
+&#xd;
+rem Set VC&#xd;
+set VECTORCAST_DIR=C:\\Users\\vectorindia\\VCAST&#xd;
+&#xd;
+cd %WORKSPACE%&#xd;
+rem Install vctools&#xd;
+copy %WIN_RELEASE_DIR%\Windows\*.zip %WORKSPACE%\. &#xd;
+7z x *.zip&#xd;
+cd release&#xd;
+call install.bat&#xd;
+&#xd;
+rem Get the tests&#xd;
+cd %WORKSPACE%&#xd;
+xcopy /S /I /E %WIN_GIT_DIR%\tests tests\. /Q /Y&#xd;
 &#xd;
 rem set _VC_NEW_CYGWIN_MODE_=1&#xd;
 cd %WORKSPACE%&#xd;
@@ -82,7 +87,7 @@ mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
 set PATH=C:\cygwin\bin;%PATH%&#xd;
 bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py || call:handle_error&#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=MathTest/Matrix || call:handle_error&#xd;
 &#xd;
 rem Collect results&#xd;
 %VECTORCAST_DIR%\vpython VcCollectResult.py --db=N:\shared\Jenkins_Result\vcshell.db --tag=cygwin32&#xd;
