@@ -62,6 +62,7 @@ call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&
 set WORKSPACE=C:\SlaveJenkins\workspace\Cygwin32_md&#xd;
 set VECTOR_LICENSE_FILE=27000@192.168.163.60&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
+set BOOST_DIR=C:\boost\boost-1.53.0&#xd;
 set nodosfilewarning=1&#xd;
 echo %nodosfilewarning%&#xd;
 &#xd;
@@ -69,7 +70,6 @@ rem Set VC&#xd;
 set VECTORCAST_DIR=C:\\Users\\vectorindia\\VCAST&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
-echo &quot;---------%WORKSPACE%-----------&quot;&#xd;
 rem Install vctools&#xd;
 copy %WIN_RELEASE_DIR%\Windows\*.zip %WORKSPACE%\. &#xd;
 7z x *.zip&#xd;
