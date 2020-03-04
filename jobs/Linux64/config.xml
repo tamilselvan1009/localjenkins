@@ -34,12 +34,6 @@
           <defaultValue>/mnt/nfs/shared/Jenkins_Harvester</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>LINUX64_VECTORCAST_DIR</name>
-          <description></description>
-          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/LINUX64</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -67,17 +61,24 @@
 ulimit -c unlimited
 export BOOST64_DIR=/home/vectorindia/boost-1.55.0-x64
 export LD_LIBRARY_PATH=$BOOST64_DIR/lib
-cd $WORKSPACE
-export VECTORCAST_DIR=$LINUX64_VECTORCAST_DIR
 export VECTOR_LICENSE_FILE=27000@192.168.163.60
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
-echo $VECTORCAST_DIR
-$VECTORCAST_DIR/vcshell --version
-$VECTORCAST_DIR/clicast --version
+
+#Set VC
+export VECTORCAST_DIR=/home/vectorindia/.VCAST
+
+#Install vctools
+cd $WORKSPACE
+cp -r ${LINUX_RELEASE_DIR}/Linux/64_bit/*.tgz $WORKSPACE
+tar -zxvf *.tgz
+cd release
+./install.sh
+
 file $VECTORCAST_DIR/vcdb
 file $VECTORCAST_DIR/vcutil
 file $VECTORCAST_DIR/clicast
 
+cd $WORKSPACE
 cp -r ${LINUX_GIT_DIR}/tests $WORKSPACE
 
 #CMake and run VcRunTests
