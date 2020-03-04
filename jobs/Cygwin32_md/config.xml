@@ -79,7 +79,7 @@ call install.bat&#xd;
 rem Get the tests&#xd;
 cd %WORKSPACE%&#xd;
 echo ----------%WORKSPACE%-------------&#xd;
-xcopy /S /I /E %WIN_GIT_DIR%\tests %WORKSPACE%\. /Q /Y&#xd;
+xcopy /S /I /E %WIN_GIT_DIR%\tests %WORKSPACE%\tests\. /Q /Y&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
 mkdir tbuild32_cyg&#xd;
