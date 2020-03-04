@@ -56,10 +56,10 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>set WORKSPACE=C:\SlaveJenkins\workspace\Cygwin32_md&#xd;
-set path=%path:&quot;=%&#xd;
+      <command>set path=%path:&quot;=%&#xd;
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
 &#xd;
+set WORKSPACE=C:\SlaveJenkins\workspace\Cygwin32_md&#xd;
 set VECTOR_LICENSE_FILE=27000@192.168.163.60&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set nodosfilewarning=1&#xd;
@@ -68,6 +68,7 @@ echo %nodosfilewarning%&#xd;
 rem Set VC&#xd;
 set VECTORCAST_DIR=C:\\Users\\vectorindia\\VCAST&#xd;
 &#xd;
+cd %WORKSPACE%&#xd;
 echo &quot;---------%WORKSPACE%-----------&quot;&#xd;
 rem Install vctools&#xd;
 copy %WIN_RELEASE_DIR%\Windows\*.zip \. &#xd;
