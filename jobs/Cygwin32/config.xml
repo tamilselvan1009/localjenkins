@@ -81,7 +81,6 @@ rem Get the tests&#xd;
 cd %WORKSPACE%&#xd;
 xcopy /S /I /E %WIN_GIT_DIR%\tests tests\. /Q /Y&#xd;
 &#xd;
-rem set _VC_NEW_CYGWIN_MODE_=1&#xd;
 cd %WORKSPACE%&#xd;
 mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
