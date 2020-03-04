@@ -65,7 +65,6 @@
         <string>Git_Clone</string>
         <string>Linux1</string>
         <string>Linux32</string>
-        <string>Linux32_md</string>
         <string>Linux64</string>
         <string>Linux_EnvCreate</string>
         <string>LINUX_INSTRUMENTED_VCRUNTESTS</string>
