@@ -71,7 +71,7 @@ set VECTORCAST_DIR=C:\\Users\\vectorindia\\VCAST&#xd;
 cd %WORKSPACE%&#xd;
 echo &quot;---------%WORKSPACE%-----------&quot;&#xd;
 rem Install vctools&#xd;
-copy %WIN_RELEASE_DIR%\Windows\*.zip \. &#xd;
+copy %WIN_RELEASE_DIR%\Windows\*.zip %WORKSPACE%\. &#xd;
 7z x *.zip&#xd;
 cd release&#xd;
 call install.bat&#xd;
