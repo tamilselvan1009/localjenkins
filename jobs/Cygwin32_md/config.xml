@@ -61,7 +61,7 @@ call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&
 &#xd;
 set VECTOR_LICENSE_FILE=27000@192.168.163.60&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
-set nodosfilewarning=1&#xd;
+rem set nodosfilewarning=1&#xd;
 echo %nodosfilewarning%&#xd;
 &#xd;
 rem Set VC&#xd;
