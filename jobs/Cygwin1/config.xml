@@ -75,7 +75,6 @@
   <builders>
     <hudson.tasks.BatchFile>
       <command>set path=%path:&quot;=%&#xd;
-set WORKSPACE=C:\SlaveJenkins\workspace\Cygwin1&#xd;
 set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
 echo %VECTORCAST_DIR%&#xd;
 &#xd;
