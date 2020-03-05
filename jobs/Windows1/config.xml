@@ -78,6 +78,8 @@ set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set LM_LICENSE_FILE=7650@licenseserver&#xd;
 echo %WIN_RELEASE_DIR%&#xd;
 xcopy /S /I /E %WIN_RELEASE_DIR%\Git\tests tests /Q /Y&#xd;
+cd %WIN_RELEASE_DIR%\Windows\release&#xd;
+call install.bat&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
 mkdir tb&#xd;
