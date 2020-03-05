@@ -29,7 +29,7 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>LINUX_VECTORCAST_DIR</name>
+          <name>LINUX_VECTORCAST_DIR1</name>
           <description></description>
           <defaultValue></defaultValue>
           <trim>false</trim>
@@ -74,9 +74,9 @@ cd $WORKSPACE
 
 ulimit -c unlimited
 echo here
-echo ${LINUX_VECTORCAST_DIR}
+echo ${LINUX_VECTORCAST_DIR1}
 echo here
-export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR}
+export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR1}
 export LM_LICENSE_FILE=27000@192.168.163.60
 export BOOST_DIR=/mnt/nfs/shared/vikram/boost-1.53.0
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
