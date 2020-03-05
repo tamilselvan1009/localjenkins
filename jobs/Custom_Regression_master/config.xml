@@ -70,19 +70,19 @@
           <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>WIN_VECTORCAST_DIR</name>
+          <name>WIN_VECTORCAST_DIR1</name>
           <description>Specify the path to VECTORCAST_DIR</description>
-          <defaultValue>N:\\shared\\.VCAST_REGRESSION\\DEV_REG\\WINDOWS</defaultValue>
+          <defaultValue>C:\\users\vectorindia\.VCAST</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>LINUX_VECTORCAST_DIR</name>
+          <name>LINUX_VECTORCAST_DIR1</name>
           <description>Specify the path to VECTORCAST_DIR</description>
-          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/DEV_REG/LINUX</defaultValue>
+          <defaultValue>/home/vectorindia/.VCAST</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>LINUX64_VECTORCAST_DIR</name>
+          <name>LINUX64_VECTORCAST_DIR1</name>
           <description>specify the path for 64bit VECTORCAST</description>
           <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/DEV_REG/LINUX64</defaultValue>
           <trim>false</trim>
