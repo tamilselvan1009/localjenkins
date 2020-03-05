@@ -85,7 +85,9 @@ $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 export PATH=$VECTORCAST_DIR:$PATH
 echo $PATH
-
+cd ${LINUX_RELEASE_DIR}/Linux/release
+./install.sh
+cd -
 
 
 echo $VECTORCAST_DIR
