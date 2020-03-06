@@ -29,7 +29,7 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>WIN_VECTORCAST_DIR</name>
+          <name>CYG_VECTORCAST_DIR1</name>
           <description></description>
           <defaultValue></defaultValue>
           <trim>false</trim>
@@ -75,7 +75,7 @@
   <builders>
     <hudson.tasks.BatchFile>
       <command>set path=%path:&quot;=%&#xd;
-set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
+set VECTORCAST_DIR=%CYG_VECTORCAST_DIR1%&#xd;
 echo %VECTORCAST_DIR%&#xd;
 &#xd;
 set VECTOR_LICENSE_FILE=27000@192.168.163.60&#xd;
