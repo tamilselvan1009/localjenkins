@@ -74,7 +74,9 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>set path=%path:&quot;=%&#xd;
+      <command>cd %WORKSPACE%&#xd;
+&#xd;
+set path=%path:&quot;=%&#xd;
 set VECTORCAST_DIR=%CYG_VECTORCAST_DIR1%&#xd;
 echo %VECTORCAST_DIR%&#xd;
 &#xd;
