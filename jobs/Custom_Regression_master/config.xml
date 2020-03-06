@@ -82,6 +82,12 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
+          <name>CYG_VECTORCAST_DIR1</name>
+          <description></description>
+          <defaultValue>C:\\users\vectorindia\.VCAST</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
           <name>LINUX64_VECTORCAST_DIR1</name>
           <description>specify the path for 64bit VECTORCAST</description>
           <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/DEV_REG/LINUX64</defaultValue>
