@@ -95,7 +95,7 @@ echo %nodosfilewarning%&#xd;
 &#xd;
 &#xd;
 &#xd;
-cd %WORKSPACE%&#xd;
+cd ..&#xd;
 rmdir tbuild32_cyg /s /q&#xd;
 mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
