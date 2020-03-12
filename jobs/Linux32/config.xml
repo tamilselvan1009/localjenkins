@@ -73,6 +73,8 @@ export BOOST_DIR=/mnt/nfs/shared/vikram/boost-1.53.0
 #cd release
 #./install.sh
 
+export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/89872/LINUX
+
 #Check version
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
