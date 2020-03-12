@@ -211,7 +211,7 @@ fi
 cd ${WORKSPACE}
 
 #Add TESTINSS.DAT to cover project
-declare -a results=(&quot;VCADDMETRICS&quot; &quot;VCDISPATCHER&quot;)
+declare -a results=(&quot;OLD&quot; &quot;NEW&quot;)
 for result in &quot;${results[@]}&quot;
 do
 	$VECTORCAST_DIR/clicast -lc -e VcTools cover result add  ${VC_RESULT_DIR}/$result.DAT
