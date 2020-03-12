@@ -78,6 +78,25 @@ $VECTORCAST_DIR/clicast --version
 
 #Cmake and run tests
 
+mkdir tbuild_old
+cd tbuild_old
+cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+export _VC_RUNTEST_RETURN_CODE_=0
+$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=VcutilTest/VcutilCommonTest|| export _VC_RUNTEST_RETURN_CODE_=$?
+find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/OLD.DAT &apos;;&apos;
+cd $WORKSPACE
+
+mkdir tbuild_new
+cd tbuild_new
+cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+export _VC_RUNTEST_RETURN_CODE_=0
+$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=VcutilTest/UtiloptionsTest|| export _VC_RUNTEST_RETURN_CODE_=$?
+find . -name &quot;TESTINSS*&quot; -exec cat &apos;{}&apos; &gt;&gt; ${VC_RESULT_DIR}/NEW.DAT &apos;;&apos;
+cd $WORKSPACE
+
+exit
+
+
 mkdir tbuild_echo
 cd tbuild_echo
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
