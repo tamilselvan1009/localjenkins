@@ -73,7 +73,7 @@ cd tbuild32_msvc10&#xd;
 cmake ..\tests || call:handle_error&#xd;
 echo %PATH%&#xd;
 echo %vectorcast_dir%&#xd;
-%vectorcast_dir%\vpython VcRunTests.py --run_tests=ApiGenericTest&#xd;
+%vectorcast_dir%\vpython VcRunTests.py --run_tests=VcutilTest/UtiloptionsTest&#xd;
 &#xd;
 exit %VC_ERROR_ERROR%&#xd;
 :handle_error&#xd;
