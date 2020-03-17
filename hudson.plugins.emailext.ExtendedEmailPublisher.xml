@@ -1,10 +1,13 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<hudson.plugins.emailext.ExtendedEmailPublisherDescriptor plugin="email-ext@2.57">
-  <smtpAuthUsername>kavya@vectorcast.com</smtpAuthUsername>
-  <smtpAuthPassword>LYP1URcPhqUu3OzHGd7vpFAceR7wPuR40dAEzOvWAGM=</smtpAuthPassword>
-  <smtpHost>smtp.gmail.com</smtpHost>
-  <useSsl>true</useSsl>
-  <smtpPort>465</smtpPort>
+<?xml version='1.1' encoding='UTF-8'?>
+<hudson.plugins.emailext.ExtendedEmailPublisherDescriptor plugin="email-ext@2.62">
+  <mailAccount>
+    <smtpHost>smtp.gmail.com</smtpHost>
+    <smtpPort>465</smtpPort>
+    <smtpUsername>kavya@vectorcast.com</smtpUsername>
+    <smtpPassword>{AQAAABAAAAAQUNjL5uT5TwV9/zpkAHWmlRWdHpwPAOtl6c3cbprEQ9Q=}</smtpPassword>
+    <useSsl>true</useSsl>
+  </mailAccount>
+  <addAccounts/>
   <charset>UTF-8</charset>
   <defaultContentType>text/html</defaultContentType>
   <defaultSubject>$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!</defaultSubject>
@@ -33,4 +36,5 @@ Check console output at $BUILD_URL to view the results.</defaultBody>
   <debugMode>false</debugMode>
   <requireAdminForTemplateTesting>false</requireAdminForTemplateTesting>
   <enableWatching>false</enableWatching>
+  <enableAllowUnregistered>false</enableAllowUnregistered>
 </hudson.plugins.emailext.ExtendedEmailPublisherDescriptor>
