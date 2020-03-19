@@ -74,6 +74,9 @@ export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
 export LM_LICENSE_FILE=27000@192.168.163.60
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 echo $VECTORCAST_DIR
+cd  $LINUX_RELEASE_DIR/release
+./install.sh
+cd -
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
