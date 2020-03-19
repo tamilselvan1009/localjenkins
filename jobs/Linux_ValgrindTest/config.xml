@@ -89,7 +89,7 @@ cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 export LD_LIBRARY_PATH=$VECTORCAST_DIR/lib
 cd ValgrindTests
 python ../VcRunTests.py
-$VECTORCAST_DIR/vpython VcCollectResult.py</command>
+$VECTORCAST_DIR/vpython ../VcCollectResult.py</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
