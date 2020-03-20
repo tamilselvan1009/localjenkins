@@ -35,12 +35,6 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>WIN_GIT_DIR</name>
-          <description></description>
-          <defaultValue>N:\\shared\\Jenk</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>test_name</name>
           <description></description>
           <defaultValue></defaultValue>
@@ -72,7 +66,6 @@
 cd %WORKSPACE%&#xd;
 set path=%vectorcast_dir%;%path%&#xd;
 set path=%path:&quot;=%&#xd;
-call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
 echo %WIN_VECTORCAST_DIR1%&#xd;
 set VECTORCAST_DIR=%WIN_VECTORCAST_DIR1%&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
@@ -80,7 +73,7 @@ set LM_LICENSE_FILE=7650@licenseserver&#xd;
 echo %WIN_RELEASE_DIR%&#xd;
 xcopy /S /I /E %WIN_RELEASE_DIR%\Git\tests tests /Q /Y&#xd;
 set BOOST_DIR=N:\TOOLS\boost-1.53.0&#xd;
-xcopy /S /I /E %WIN_RELEASE_DIR%\Windows\release release /Q /Y&#xd;
+xcopy /S /I /E %WIN_RELEASE_DIR%\Windows\64_bit\release release /Q /Y&#xd;
 cd release &#xd;
 call install.bat&#xd;
 cd %WORKSPACE%&#xd;
