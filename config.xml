@@ -84,6 +84,7 @@
         <string>WinCyg_EnvCreate</string>
         <string>Windows1</string>
         <string>Windows32_msvc10</string>
+        <string>windows64bit_54mac</string>
         <string>Windows_vcutilTests</string>
         <string>Workspace_cleanup_on_54</string>
         <string>Workspace_cleanup_on_68</string>
