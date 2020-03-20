@@ -31,7 +31,7 @@
         <hudson.model.StringParameterDefinition>
           <name>WIN_VECTORCAST_DIR</name>
           <description></description>
-          <defaultValue>c:\\Users\vectocast\VCAST64</defaultValue>
+          <defaultValue>c:\\Users\vectorindia\VCAST64</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
