@@ -72,7 +72,7 @@ set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set LM_LICENSE_FILE=7650@licenseserver&#xd;
 echo %WIN_RELEASE_DIR%&#xd;
 xcopy /S /I /E %WIN_RELEASE_DIR%\Git\tests tests /Q /Y&#xd;
-set BOOST_DIR=N:\TOOLS\boost-1.53.0&#xd;
+set BOOST_DIR=N:\TOOLS\boost-1.69.0&#xd;
 xcopy /S /I /E %WIN_RELEASE_DIR%\Windows\64_bit\release release /Q /Y&#xd;
 cd release &#xd;
 call install.bat&#xd;
@@ -80,7 +80,7 @@ cd %WORKSPACE%&#xd;
 mkdir tb&#xd;
 cd tb&#xd;
 cmake ..\tests -G&quot;Visual Studio 10&quot;&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py  	%test_name%</command>
+%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=ExtTest</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
