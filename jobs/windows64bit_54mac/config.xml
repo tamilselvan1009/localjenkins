@@ -25,7 +25,7 @@
         <hudson.model.StringParameterDefinition>
           <name>WIN_RELEASE_DIR</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>N:\\shared\\Jenkins_Harvester</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
