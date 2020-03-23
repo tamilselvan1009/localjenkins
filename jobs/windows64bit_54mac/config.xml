@@ -81,7 +81,7 @@ cd %WORKSPACE%&#xd;
 mkdir tb&#xd;
 cd tb&#xd;
 cmake ..\tests -G&quot;Visual Studio 10&quot;&#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=ExtTest</command>
+python VcRunTests.py --run_tests=ExtTest</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
