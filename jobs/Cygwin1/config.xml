@@ -100,7 +100,7 @@ echo %nodosfilewarning%&#xd;
 ::rmdir tbuild32_cyg /s /q&#xd;
 ::mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
-set PATH=C:\cygwin\bin;%PATH%&#xd;
+set PATH=C:\cygwin\bin;%PATH%;%VECTORCAST_DIR%&#xd;
 ::bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
 ::%vectorcast_dir%\vpython VcRunTests.py   %test_name%&#xd;
 cd GetCommandTest\GetCmdDir\GDTestApp&#xd;
