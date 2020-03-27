@@ -76,7 +76,8 @@
     <hudson.tasks.BatchFile>
       <command>cd %WORKSPACE%&#xd;
 &#xd;
-::set path=%path:&quot;=%&#xd;
+set path=%path:&quot;=%&#xd;
+call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
 set VECTORCAST_DIR=%CYG_VECTORCAST_DIR1%&#xd;
 echo %VECTORCAST_DIR%&#xd;
 &#xd;
@@ -96,11 +97,11 @@ echo %nodosfilewarning%&#xd;
 &#xd;
 &#xd;
 ::cd ..&#xd;
-rmdir tbuild32_cyg /s /q&#xd;
-mkdir tbuild32_cyg&#xd;
+::rmdir tbuild32_cyg /s /q&#xd;
+::mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
 set PATH=C:\cygwin\bin;%PATH%&#xd;
-bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
+::bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
 %vectorcast_dir%\vpython VcRunTests.py   %test_name%</command>
     </hudson.tasks.BatchFile>
   </builders>
