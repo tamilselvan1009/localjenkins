@@ -74,7 +74,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>::cd %WORKSPACE%&#xd;
+      <command>cd %WORKSPACE%&#xd;
 &#xd;
 set path=%path:&quot;=%&#xd;
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot;&#xd;
@@ -82,11 +82,11 @@ set VECTORCAST_DIR=%CYG_VECTORCAST_DIR1%&#xd;
 echo %VECTORCAST_DIR%&#xd;
 &#xd;
 set VECTOR_LICENSE_FILE=27000@192.168.163.60&#xd;
-::xcopy /S /I /E %WIN_RELEASE_DIR%\Git\tests tests /Q /Y&#xd;
+xcopy /S /I /E %WIN_RELEASE_DIR%\Git\tests tests /Q /Y&#xd;
 &#xd;
-::xcopy /S /I /E %WIN_RELEASE_DIR%\Windows\release release /Q /Y&#xd;
-::cd release&#xd;
-::call install.bat&#xd;
+xcopy /S /I /E %WIN_RELEASE_DIR%\Windows\release release /Q /Y&#xd;
+cd release&#xd;
+call install.bat&#xd;
 &#xd;
 set nodosfilewarning=1&#xd;
 echo %nodosfilewarning%&#xd;
@@ -96,21 +96,23 @@ echo %nodosfilewarning%&#xd;
 &#xd;
 &#xd;
 &#xd;
-::cd ..&#xd;
-::rmdir tbuild32_cyg /s /q&#xd;
-::mkdir tbuild32_cyg&#xd;
+cd ..&#xd;
+rmdir tbuild32_cyg /s /q&#xd;
+mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
 set PATH=C:\cygwin\bin;%PATH%;%VECTORCAST_DIR%&#xd;
-::bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
-::%vectorcast_dir%\vpython VcRunTests.py   %test_name%&#xd;
-cd GetCommandTest\GetCmdDir\GDTestApp&#xd;
-%VECTORCAST_DIR%\vcshell  %VECTORCAST_DIR%\vpython buildMain.py --vcbg&#xd;
-%VECTORCAST_DIR%\vcdb dumpfiles&#xd;
-%VECTORCAST_DIR%\vcdb dumpcommands</command>
+bash -c &quot;cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++&quot;&#xd;
+%vectorcast_dir%\vpython VcRunTests.py   %test_name%&#xd;
+</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
   <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>%GIT_BRANCH_NAME%</template>
       <runAtStart>true</runAtStart>
