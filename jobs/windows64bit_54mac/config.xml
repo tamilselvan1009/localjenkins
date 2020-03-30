@@ -64,7 +64,7 @@
     <hudson.tasks.BatchFile>
       <command>@echo on&#xd;
 cd %WORKSPACE%&#xd;
-rem set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
+set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 &#xd;
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot; amd64&#xd;
 &#xd;
