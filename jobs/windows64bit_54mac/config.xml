@@ -74,6 +74,7 @@ set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
 set VECTOR_LICENSE_FILE=7650@licenseserver&#xd;
 echo %VECTORCAST_DIR%&#xd;
 echo %path% &#xd;
+ECHO %vectorcast_dir%\vcshell --version&#xd;
 ECHO %WORKSPACE%&#xd;
 xcopy /S /I /E %WIN_RELEASE_DIR%\Git\tests tests /Q /Y&#xd;
 rem set BOOST_DIR=N:\TOOLS\boost-1.69.0&#xd;
