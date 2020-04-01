@@ -63,19 +63,18 @@
   <builders>
     <hudson.tasks.BatchFile>
       <command>@echo on&#xd;
+echo %WORKSPACE%&#xd;
 cd %WORKSPACE%&#xd;
 set path=%path:&quot;=%&#xd;
 call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&quot; amd64&#xd;
-rem set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 &#xd;
-echo %WIN_VECTORCAST_DIR%&#xd;
-rem set path=C:\Python27\Scripts;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\amd64;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\BIN\amd64;%path%&#xd;
-&#xd;
+set path=C:\Python27\Scripts;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\amd64;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\BIN\amd64;%path%&#xd;
 &#xd;
 set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
-&#xd;
-set LM_LICENSE_FILE=7650@licenseserver&#xd;
-echo %WIN_RELEASE_DIR%&#xd;
+set VECTOR_LICENSE_FILE=7650@licenseserver&#xd;
+echo %VECTORCAST_DIR%&#xd;
+echo %path% &#xd;
+ECHO %WORKSPACE%&#xd;
 xcopy /S /I /E %WIN_RELEASE_DIR%\Git\tests tests /Q /Y&#xd;
 rem set BOOST_DIR=N:\TOOLS\boost-1.69.0&#xd;
 python --version&#xd;
