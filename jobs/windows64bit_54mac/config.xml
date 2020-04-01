@@ -83,6 +83,7 @@ cd %WORKSPACE%&#xd;
 mkdir tb&#xd;
 cd tb&#xd;
 cmake ..\tests -G&quot;Visual Studio 10 Win64&quot;&#xd;
+&#xd;
 python VcRunTests.py </command>
     </hudson.tasks.BatchFile>
   </builders>
