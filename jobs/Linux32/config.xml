@@ -65,14 +65,15 @@ export BOOST_DIR=/mnt/nfs/shared/vikram/boost-1.53.0
 export VECTOR_LICENSE_FILE=7650@licenseserver
 
 #Set VC
-export VECTORCAST_DIR=/home/vectorindia/.VCAST
+#export VECTORCAST_DIR=/home/vectorindia/.VCAST
+export VECTORCAST_DIR=/home/vectorindia/.VCAST_89129
 
 #Install vctools
 cd $WORKSPACE
-cp -r ${LINUX_RELEASE_DIR}/Linux/*.tgz $WORKSPACE
-tar -zxvf *.tgz
-cd release
-./install.sh
+#cp -r ${LINUX_RELEASE_DIR}/Linux/*.tgz $WORKSPACE
+#tar -zxvf *.tgz
+#cd release
+#./install.sh
 
 #export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/86438/LINUX
 
