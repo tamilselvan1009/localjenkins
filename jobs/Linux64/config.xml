@@ -72,10 +72,10 @@ export VECTORCAST_DIR=/home/vectorindia/.VCAST_89129
 
 #Install vctools
 cd $WORKSPACE
-cp -r ${LINUX_RELEASE_DIR}/Linux/64_bit/*.tgz $WORKSPACE
-tar -zxvf *.tgz
-cd release
-./install.sh
+#cp -r ${LINUX_RELEASE_DIR}/Linux/64_bit/*.tgz $WORKSPACE
+#tar -zxvf *.tgz
+#cd release
+#./install.sh
 
 #export VECTORCAST_DIR=/mnt/nfs/shared/.VCAST_REGRESSION/86438/LINUX64
 
