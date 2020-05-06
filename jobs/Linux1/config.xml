@@ -56,7 +56,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -76,9 +75,9 @@ cd $WORKSPACE
 ulimit -c unlimited
 echo here
 echo ${LINUX_VECTORCAST_DIR1}
-echo here
 export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR1}
-export LM_LICENSE_FILE=27000@192.168.163.60
+echo VECTORCAST_DIR=${VECTORCAST_DIR}
+export LM_LICENSE_FILE=7650@licenseserver
 export BOOST_DIR=/mnt/nfs/shared/vikram/boost-1.53.0
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 
@@ -108,7 +107,7 @@ $VECTORCAST_DIR/vpython VcRunTests.py ${test_name}</command>
   </builders>
   <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.21">
-      <recipients>kavya@vectorcast.com</recipients>
+      <recipients>kavya.seshu@vector.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
