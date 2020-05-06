@@ -78,7 +78,7 @@
         <hudson.model.StringParameterDefinition>
           <name>GIT_BRANCH_NAME</name>
           <description>specify the branch name</description>
-          <defaultValue>origin/develop</defaultValue>
+          <defaultValue>origin/develop__89498_getoption</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -97,7 +97,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -109,7 +108,7 @@
   <triggers>
     <org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger plugin="parameterized-scheduler@0.5">
       <spec></spec>
-      <parameterizedSpecification>00 19 * * * %BUILD_NAME=7pm_timer</parameterizedSpecification>
+      <parameterizedSpecification>00 2 * * * %BUILD_NAME=7pm_timer</parameterizedSpecification>
     </org.jenkinsci.plugins.parameterizedscheduler.ParameterizedTimerTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
