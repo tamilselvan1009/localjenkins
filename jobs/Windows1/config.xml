@@ -83,45 +83,20 @@ set BOOST_DIR=N:\TOOLS\boost-1.53.0&#xd;
 xcopy /S /I /E %WIN_RELEASE_DIR%\Windows\release release /Q /Y&#xd;
 cd release &#xd;
 call install.bat&#xd;
+&#xd;
 cd %WORKSPACE%&#xd;
-mkdir tb&#xd;
-cd tb&#xd;
+mkdir tbuild&#xd;
+cd tbuild&#xd;
 cmake ..\tests -G&quot;Visual Studio 10&quot;&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py  	%test_name%</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
-    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
-      <recipientList>$DEFAULT_RECIPIENTS</recipientList>
-      <configuredTriggers>
-        <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
-          <email>
-            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
-            <body>$PROJECT_DEFAULT_CONTENT</body>
-            <recipientProviders>
-              <hudson.plugins.emailext.plugins.recipients.RequesterRecipientProvider/>
-            </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
-            <attachBuildLog>false</attachBuildLog>
-            <compressBuildLog>false</compressBuildLog>
-            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
-            <contentType>project</contentType>
-          </email>
-        </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
-      </configuredTriggers>
-      <contentType>default</contentType>
-      <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
-      <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern></attachmentsPattern>
-      <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
-      <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
-      <attachBuildLog>false</attachBuildLog>
-      <compressBuildLog>false</compressBuildLog>
-      <replyTo>$DEFAULT_REPLYTO</replyTo>
-      <from></from>
-      <saveOutput>false</saveOutput>
-      <disabled>false</disabled>
-    </hudson.plugins.emailext.ExtendedEmailPublisher>
+    <hudson.tasks.Mailer plugin="mailer@1.21">
+      <recipients>kavya.seshu@vector.com</recipients>
+      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
+      <sendToIndividuals>false</sendToIndividuals>
+    </hudson.tasks.Mailer>
   </publishers>
   <buildWrappers>
     <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
