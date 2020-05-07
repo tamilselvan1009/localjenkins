@@ -61,7 +61,7 @@ call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&
 &#xd;
 set WORKSPACE=C:\SlaveJenkins\workspace\Cygwin32&#xd;
 rem set VECTOR_LICENSE_FILE=27000@192.168.163.60&#xd;
-set VECTOR_LICENSE_FILE=C:\FLEXlm\vector-WIN-REG64-68&#xd;
+set VECTOR_LICENSE_FILE=7650@licenseserver&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
 set BOOST_DIR=C:\boost\boost-1.53.0&#xd;
 &#xd;
