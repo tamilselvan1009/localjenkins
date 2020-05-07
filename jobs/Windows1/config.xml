@@ -87,7 +87,7 @@ call install.bat&#xd;
 cd %WORKSPACE%&#xd;
 mkdir tbuild&#xd;
 cd tbuild&#xd;
-cmake ..\tests -G&quot;Visual Studio 10&quot; || call:handle_error&#xd;
+cmake ..\tests  || call:handle_error&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py  	%test_name%&#xd;
 &#xd;
 &#xd;
