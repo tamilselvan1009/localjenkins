@@ -67,15 +67,15 @@ export VECTOR_LICENSE_FILE=7650@licenseserver
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 
 #Set VC
-export VECTORCAST_DIR=/home/vectorindia/.VCAST
-#export VECTORCAST_DIR=/home/vectorindia/.VCAST_89129
+#export VECTORCAST_DIR=/home/vectorindia/.VCAST
+export VECTORCAST_DIR=/home/vectorindia/.VCAST_86438
 
 #Install vctools
 cd $WORKSPACE
-cp -r ${LINUX_RELEASE_DIR}/Linux/64_bit/*.tgz $WORKSPACE
-tar -zxvf *.tgz
-cd release
-./install.sh
+#cp -r ${LINUX_RELEASE_DIR}/Linux/64_bit/*.tgz $WORKSPACE
+#tar -zxvf *.tgz
+#cd release
+#./install.sh
 
 file $VECTORCAST_DIR/vcdb
 file $VECTORCAST_DIR/vcutil
