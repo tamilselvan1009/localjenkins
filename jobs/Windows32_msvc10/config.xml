@@ -65,7 +65,7 @@ set VECTOR_LICENSE_FILE=7650@licenseserver&#xd;
 &#xd;
 rem Set VC&#xd;
 rem set VECTORCAST_DIR=C:\\users\\vectorindia\\VCAST&#xd;
-set VECTORCAST_DIR=V:\\VCAST_86438&#xd;
+set VECTORCAST_DIR=V:\\90409&#xd;
 &#xd;
 echo %VECTORCAST_DIR%&#xd;
 &#xd;
