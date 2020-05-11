@@ -66,7 +66,7 @@ export VECTOR_LICENSE_FILE=7650@licenseserver
 
 #Set VC
 #export VECTORCAST_DIR=/home/vectorindia/.VCAST
-export VECTORCAST_DIR=/home/vectorindia/.VCAST_86438
+export VECTORCAST_DIR=/home/vectorindia/.90409
 
 #Install vctools
 #cd $WORKSPACE
