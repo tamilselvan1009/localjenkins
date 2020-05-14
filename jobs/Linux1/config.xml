@@ -73,11 +73,10 @@
 cd $WORKSPACE
 
 ulimit -c unlimited
-echo here
-echo ${LINUX_VECTORCAST_DIR1}
+
+
 export VECTORCAST_DIR=${LINUX_VECTORCAST_DIR1}
-echo VECTORCAST_DIR=${VECTORCAST_DIR}
-export LM_LICENSE_FILE=7650@licenseserver
+export LM_LICENSE_FILE=27000@192.168.163.60
 export BOOST_DIR=/mnt/nfs/shared/vikram/boost-1.53.0
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 
@@ -93,7 +92,7 @@ cd -
 echo $VECTORCAST_DIR
 cp -r ${LINUX_RELEASE_DIR}/Git/tests $WORKSPACE
 
-rm -rf tbuild32
+
 #CMake and run VcRunTests
 mkdir tbuild32
 cd tbuild32
@@ -102,7 +101,7 @@ cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 
 
 
-$VECTORCAST_DIR/vpython VcRunTests.py --run_tests=SubDirTest,GetApps-LinkTests,CshTest,SymbolicTest,YaccLexTest,CompatibilityTest,EnvPrefixNew,VcshellPutCommandTest,MetricsTest,UnitIndex,AddmetricsTest,PortabilityTest,clearMetrics,NegativeVcUtilRunTest,DbOverwrite,DispatcherTests,FilterTest,Examples,ClicastTest,LinkOptionsTest,LogFileTests,VcshellTest/env_test,VclogbaseTest,GetOptionTest,OneDirEntry,ViaTest,ExtTest,vcParseTest,PutcmdScalability,VcshellOptionsTest,vcdbcapi,GetappsTest,FileListErrTest,vcUtilRun,InterFaceFileTest,vcInstTest,VcutilTest,CacheCoverageTest,VcshellPutCommandTest/PutCommand78866,InplacevcInst,GetFileName,VcshellTest,VcshellOptionsTest,IncludeTypes,ExpandTest,getpaths,vcCodegenTest,VcdbcmdTest
+$VECTORCAST_DIR/vpython VcRunTests.py ${test_name}
 </command>
     </hudson.tasks.Shell>
   </builders>
