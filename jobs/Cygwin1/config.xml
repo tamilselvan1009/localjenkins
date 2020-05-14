@@ -81,7 +81,7 @@ call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&
 set VECTORCAST_DIR=%CYG_VECTORCAST_DIR1%&#xd;
 echo %VECTORCAST_DIR%&#xd;
 &#xd;
-set VECTOR_LICENSE_FILE=7650@licenseserver&#xd;
+set VECTOR_LICENSE_FILE=27000@192.168.163.60&#xd;
 xcopy /S /I /E %WIN_RELEASE_DIR%\Git\tests tests /Q /Y&#xd;
 &#xd;
 xcopy /S /I /E %WIN_RELEASE_DIR%\Windows\release release /Q /Y&#xd;
@@ -95,7 +95,7 @@ echo %nodosfilewarning%&#xd;
 %VECTORCAST_DIR%\clicast --version&#xd;
 &#xd;
 cd ..&#xd;
-rmdir tbuild32_cyg /s /q&#xd;
+&#xd;
 mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
 set PATH=C:\cygwin\bin;%PATH%;%VECTORCAST_DIR%&#xd;
