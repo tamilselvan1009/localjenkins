@@ -115,7 +115,7 @@
 
 #Common Variables used
 export VECTORCAST_TO_USE=&quot;$VECTORCAST_DIR&quot;
-export VECTORCAST_DIR=${WORKSPACE}/vcast
+export VECTORCAST_DIR=${WORKSPACE}/vcast/LINUX
 
 # Set 4.1.2 GCC in PATH
 export PATH=/home/vectorindia/gcc-4.1.2/bin:$PATH
