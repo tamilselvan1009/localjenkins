@@ -145,7 +145,7 @@ $VECTORCAST_DIR/vcshell  bash ./build.sh --enable_threads
 chmod +x abspath.py
 $VECTORCAST_DIR/vpython abspath.py vcHarvesterSrcFilesForCoverageLinux.txt
 #Collect metrics only for the files of interest
-$VECTORCAST_DIR/vcutil addmetrics --filelist=vcHarvesterSrcFilesForCoverageLinux.txt
+$VECTORCAST_DIR/vcutil addmetrics --filelist=vcHarvesterSrcFilesForCoverageLinux.txt || true
 
 $VECTORCAST_DIR/clicover add_source_vcdb VcTools vcshell.db vcHarvesterSrcFilesForCoverageLinux.txt
 $VECTORCAST_DIR/clicast -lc -e VcTools cover instrument statement
@@ -437,7 +437,8 @@ cd $WORKSPACE
 
 #kill the vcdash
 killall -9 vcdash
-</command>
+
+rm -rf *</command>
         </hudson.tasks.Shell>
       </buildSteps>
       <failOnError>false</failOnError>
