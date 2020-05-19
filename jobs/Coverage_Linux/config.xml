@@ -115,7 +115,11 @@
 
 #Common Variables used
 export VECTORCAST_TO_USE=&quot;$VECTORCAST_DIR&quot;
-export VECTORCAST_DIR=${WORKSPACE}/vcast/LINUX
+export VECTORCAST_DIR=${WORKSPACE}/vcast
+
+if [ -d &quot;${VECTORCAST_DIR}&quot; ] ; then
+rm -rf &quot;${VECTORCAST_DIR}&quot;
+fi
 
 # Set 4.1.2 GCC in PATH
 export PATH=/home/vectorindia/gcc-4.1.2/bin:$PATH
@@ -433,8 +437,7 @@ cd $WORKSPACE
 
 #kill the vcdash
 killall -9 vcdash
-
-rm -rf *</command>
+</command>
         </hudson.tasks.Shell>
       </buildSteps>
       <failOnError>false</failOnError>
