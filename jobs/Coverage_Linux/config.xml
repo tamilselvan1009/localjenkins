@@ -150,7 +150,16 @@ $VECTORCAST_DIR/vcutil addmetrics --filelist=vcHarvesterSrcFilesForCoverageLinux
 $VECTORCAST_DIR/clicover add_source_vcdb VcTools vcshell.db vcHarvesterSrcFilesForCoverageLinux.txt
 $VECTORCAST_DIR/clicast -lc -e VcTools cover instrument statement
 
-./build_instrumented.sh
+#Append cover io
+$VECTORCAST_DIR/vpython abspath.py vcHarvesterAppendCoverIoLinux.txt
+while read line
+do
+	$VECTORCAST_DIR/clicast -lc -e VcTools cover append TRUE -u $line
+done &lt; vcHarvesterAppendCoverIoLinux.txt 
+
+$VECTORCAST_DIR/clicast -lc -e VcTools cover instrument statement
+
+./build.sh --vcast_coverage --jobs=4
 cd build
 ./install.sh || if [[ $? == 1 ]]; then 
 	true
