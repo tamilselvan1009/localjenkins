@@ -148,7 +148,6 @@ $VECTORCAST_DIR/vpython abspath.py vcHarvesterSrcFilesForCoverageLinux.txt
 $VECTORCAST_DIR/vcutil addmetrics --filelist=vcHarvesterSrcFilesForCoverageLinux.txt || true
 
 $VECTORCAST_DIR/clicover add_source_vcdb VcTools vcshell.db vcHarvesterSrcFilesForCoverageLinux.txt
-$VECTORCAST_DIR/clicast -lc -e VcTools cover instrument statement
 
 #Append cover io
 $VECTORCAST_DIR/vpython abspath.py vcHarvesterAppendCoverIoLinux.txt
