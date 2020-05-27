@@ -50,7 +50,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -69,27 +68,39 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
+
 echo $LINUX_VECTORCAST_DIR
-export VCTOOLS_PACKAGE=&quot;/mnt/nfs/shared/88425/release32.tar.gz&quot;
+
+##########################################################################################
+##########################################################################################
+#############    SET VCTOOLS PACKAGE    ##################################################
+#export VCTOOLS_PACKAGE=&quot;/mnt/nfs/shared/88425/release32.tar.gz&quot;
 #`find /mnt/nfs/shared/Jenkins_Harvester_master/Linux -maxdepth 1 -name *.tgz`
-#VCTOOLS_PACKAGE=`find /mnt/nfs/shared/1_14_dispatcher_fix -maxdepth 1 -name *.tgz`
+VCTOOLS_PACKAGE=`find /mnt/nfs/shared/1_14_dispatcher_fix -maxdepth 1 -name *.tgz`
+
+#############    SET BOOST DIRECTORY   ##################################################
 export BOOST_DIR=&quot;/mnt/nfs/TOOLS/boost-1.53.0&quot;
+
+############     SET VECTOR LICENSE FILE ################################################
 export VECTOR_LICENSE_FILE=27000@192.168.163.60
 
+############     SET VECTORCAST_DIR      ################################################
+export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
+
+##########################################################################################
+##########################################################################################
 
 if [ -f  $VCTOOLS_PACKAGE ];then
     echo $VCTOOLS_PACKAGE
 	tar -zxvf $VCTOOLS_PACKAGE
-    #cd release
-    #./install.sh
-    #cd ..
+    cd release
+    ./install.sh
+    cd ..
 else
 	echo &quot;VcTools package not available in $VCTOOLS_PACKAGE&quot;
     exit  1
 fi
 
-#export VECTORCAST_DIR=$PWD/release
-export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
 
 artifact=(&quot;Metrics Collected&quot; &quot;Successful for&quot; &quot;failed for&quot;)
 _expected=(&quot;Passed&quot; &quot;Failed&quot; &quot;Failed due to lesser artifact&quot;)
@@ -480,7 +491,6 @@ exit /b $_RETURN_CODE_
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
       <recipientList>kavya@vectorcast.com</recipientList>
-      <configuredTriggers/>
       <contentType>text/plain</contentType>
       <defaultSubject>Firefox Linux Result</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
