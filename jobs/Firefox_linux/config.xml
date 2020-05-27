@@ -76,7 +76,7 @@ echo $LINUX_VECTORCAST_DIR
 #############    SET VCTOOLS PACKAGE    ##################################################
 #export VCTOOLS_PACKAGE=&quot;/mnt/nfs/shared/88425/release32.tar.gz&quot;
 #
-VCTOOLS_PACKAGE=`find /mnt/nfs/shared/Jenkins_Harvester/Linux -maxdepth 1 -name *.tgz`
+VCTOOLS_PACKAGE=`find /mnt/nfs/shared/Jenkins_Harvester_89696/Linux -maxdepth 1 -name *.tgz`
 
 #############    SET BOOST DIRECTORY   ##################################################
 export BOOST_DIR=&quot;/mnt/nfs/TOOLS/boost-1.53.0&quot;
