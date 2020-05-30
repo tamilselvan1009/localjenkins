@@ -364,13 +364,13 @@ time ($VECTORCAST_DIR/vcshell --db=putcmd.db putcommand --inputcmds=vcdb_getcmdl
 Extract vcshell_putcommand 0 1
 
 #putcommand 87613
-echo -n -e &quot;vcshellputcommand_87613\t&quot;&gt;&gt;$summary_file
-tar -zxvf /mnt/nfs/Resources/artefacts/putcmd_87613.tar.gz
-cd putcmd_87613
-$VECTORCAST_DIR/vpython ./generate_stage.py
-$VECTORCAST_DIR/clicast -lc template gnu_cpp_48
-time ($VECTORCAST_DIR/vcshell putcommand --inputcmds=huge_time_cmds.txt &gt; vcshell_putcmd_87613.out.txt 2&gt;&amp;1) 2&gt;&gt;vcshell_putcommand_87613  || handle_error
-Extract vcshell_putcommand_87613 0 1
+#echo -n -e &quot;vcshellputcommand_87613\t&quot;&gt;&gt;$summary_file
+#tar -zxvf /mnt/nfs/Resources/artefacts/putcmd_87613.tar.gz
+#cd putcmd_87613
+#$VECTORCAST_DIR/vpython ./generate_stage.py
+#$VECTORCAST_DIR/clicast -lc template gnu_cpp_48
+#time ($VECTORCAST_DIR/vcshell putcommand --inputcmds=huge_time_cmds.txt &gt; vcshell_putcmd_87613.out.txt 2&gt;&amp;1) 2&gt;&gt;vcshell_putcommand_87613  || handle_error
+#Extract vcshell_putcommand_87613 0 1
 
 #command to be executed on 
 #chmod +x ../../per.sh || handle_error
@@ -406,60 +406,39 @@ Extract vcshell_putcommand_87613 0 1
 #diff vcdb_getcommandlines.out.txt  vcdb_getnewcommandlines.out.txt &gt; diff.txt ||  handle_error
 
 
-(column -t $summary_file) &gt; temp.txt || handle_error
-rm -rf $summary_file || handle_error
-cp temp.txt $summary_file || handle_error
-#quick 
-#Archive the artifacts
-cd $top_level_archive_dir
-archive_dir=$(date +%d)
-if [ -d $archive_dir ];then
-	rm -rf $archive_dir
-fi
-mkdir $archive_dir
-cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/summary.txt $archive_dir/.
-cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/*.out $archive_dir/.
-cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/*.out.txt $archive_dir/.
-cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/sol.txt $archive_dir/.
-#copy sum.txt to the directory for mounted db  
-#cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/sum.txt $archive_dir/.
-exit /b $_RETURN_CODE_
-
-
-exit
 
 
 #taking 1000 files
-head -1000 vcdb_getfiles.out.txt &gt; first1000.txt || handle_error 
-echo -n -e &quot;qikparse1000\t&quot;&gt;&gt;$summary_file || handle_error
-time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=first1000.txt --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick1.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse1 || handle_error
-Extract vcutil_qikparse1 0 2 vcutil_quick1.out &quot;${artifact[1]}&quot; || handle_error
+#head -1000 vcdb_getfiles.out.txt &gt; first1000.txt || handle_error 
+#echo -n -e &quot;qikparse1000\t&quot;&gt;&gt;$summary_file || handle_error
+#time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=first1000.txt --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick1.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse1 || handle_error
+#Extract vcutil_qikparse1 0 2 vcutil_quick1.out &quot;${artifact[1]}&quot; || handle_error
 
 #next 1000 files
-sed -n -e &apos;1001,2000p&apos; vcdb_getfiles.out.txt &gt; second.txt || handle_error
-echo -n -e &quot;qikparse2000\t&quot;&gt;&gt;$summary_file || handle_error
-time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=second.txt --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick2.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse2 || handle_error
-Extract vcutil_qikparse2 0 2 vcutil_quick2.out &quot;${artifact[1]}&quot; || handle_error
+#sed -n -e &apos;1001,2000p&apos; vcdb_getfiles.out.txt &gt; second.txt || handle_error
+#echo -n -e &quot;qikparse2000\t&quot;&gt;&gt;$summary_file || handle_error
+#time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=second.txt --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick2.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse2 || handle_error
+#Extract vcutil_qikparse2 0 2 vcutil_quick2.out &quot;${artifact[1]}&quot; || handle_error
 
 #next 1000 files
-sed -n -e &apos;2001,3000p&apos; vcdb_getfiles.out.txt &gt; third.txt || handle_error
-echo -n -e &quot;qikparse3000\t&quot;&gt;&gt;$summary_file || handle_error
-time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=third.txt --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick3.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse3 || handle_error
-Extract vcutil_qikparse3 0 2 vcutil_quick3.out &quot;${artifact[1]}&quot; || handle_error
-
-
-#next 1000 files
-sed -n -e &apos;3001,4000p&apos; vcdb_getfiles.out.txt &gt; fourth.txt || handle_error
-echo -n -e &quot;qikparse4000\t&quot;&gt;&gt;$summary_file || handle_error
-time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=fourth.txt --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick4.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse4 || handle_error
-Extract vcutil_qikparse4 0 2 vcutil_quick4.out &quot;${artifact[1]}&quot; || handle_error
+#sed -n -e &apos;2001,3000p&apos; vcdb_getfiles.out.txt &gt; third.txt || handle_error
+#echo -n -e &quot;qikparse3000\t&quot;&gt;&gt;$summary_file || handle_error
+#time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=third.txt --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick3.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse3 || handle_error
+#Extract vcutil_qikparse3 0 2 vcutil_quick3.out &quot;${artifact[1]}&quot; || handle_error
 
 
 #next 1000 files
-sed -n -e &apos;4001,5000p&apos; vcdb_getfiles.out.txt &gt; fif.txt || handle_error
-echo -n -e &quot;qikparse5000\t&quot;&gt;&gt;$summary_file || handle_error
-time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=third.txt --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick5.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse5 || handle_error
-Extract vcutil_qikparse5 0 2 vcutil_quick5.out &quot;${artifact[1]}&quot; || handle_error
+#sed -n -e &apos;3001,4000p&apos; vcdb_getfiles.out.txt &gt; fourth.txt || handle_error
+#echo -n -e &quot;qikparse4000\t&quot;&gt;&gt;$summary_file || handle_error
+#time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=fourth.txt --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick4.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse4 || handle_error
+#Extract vcutil_qikparse4 0 2 vcutil_quick4.out &quot;${artifact[1]}&quot; || handle_error
+
+
+#next 1000 files
+#sed -n -e &apos;4001,5000p&apos; vcdb_getfiles.out.txt &gt; fif.txt || handle_error
+#echo -n -e &quot;qikparse5000\t&quot;&gt;&gt;$summary_file || handle_error
+#time ($VECTORCAST_DIR/vcutil --db=vcutil_metrics.db --flags=&quot;-include=1,-f=1,-std=gnu++0x,-m=1,-W=1&quot; --filelist=third.txt --jobs=4 --destination_dir=Quick quickparse &gt; vcutil_quick5.out 2&gt;&amp;1) 2&gt;&gt; vcutil_qikparse5 || handle_error
+#Extract vcutil_qikparse5 0 2 vcutil_quick5.out &quot;${artifact[1]}&quot; || handle_error
 
 
 #if ! grep &quot;Failed&quot; $summary_file &gt;&gt; sol.txt 
