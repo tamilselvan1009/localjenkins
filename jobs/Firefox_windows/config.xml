@@ -19,7 +19,7 @@
         <hudson.model.StringParameterDefinition>
           <name>WINDOWS_VECTORCAST_DIR</name>
           <description>Vectorcast directory</description>
-          <defaultValue>C:\vcast_64z</defaultValue>
+          <defaultValue>C:\VCASTNEW</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
