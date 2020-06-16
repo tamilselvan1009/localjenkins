@@ -75,7 +75,7 @@ cd tbuild32_msvc10&#xd;
 cmake ..\tests || call:handle_error&#xd;
 echo %PATH%&#xd;
 echo %vectorcast_dir%&#xd;
-%vectorcast_dir%\vpython VcRunTests.py --run_tests=ApiGenericTest&#xd;
+%vectorcast_dir%\vpython VcRunTests.py --run_tests=ApiGenericTest,VcdbTest/getoption,VcLogging&#xd;
 exit %VC_ERROR_ERROR%&#xd;
 :handle_error&#xd;
 if NOT %ERRORLEVEL% EQU 0 (set VC_ERROR_LEVEL=%ERRORLEVEL%&#xd;
