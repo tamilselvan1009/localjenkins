@@ -93,7 +93,7 @@ echo %nodosfilewarning%&#xd;
 %VECTORCAST_DIR%\vcshell --version&#xd;
 %VECTORCAST_DIR%\clicast --version&#xd;
 &#xd;
-cd ..&#xd;
+REM cd ..&#xd;
 &#xd;
 mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
