@@ -62,6 +62,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -83,9 +84,9 @@ echo %VECTORCAST_DIR%&#xd;
 set VECTOR_LICENSE_FILE=27000@192.168.163.60&#xd;
 xcopy /S /I /E %WIN_RELEASE_DIR%\Git\tests tests /Q /Y&#xd;
 &#xd;
-REM xcopy /S /I /E %WIN_RELEASE_DIR%\Windows\release release /Q /Y&#xd;
-REM cd release&#xd;
-REM call install.bat&#xd;
+xcopy /S /I /E %WIN_RELEASE_DIR%\Windows\release release /Q /Y&#xd;
+cd release&#xd;
+call install.bat&#xd;
 &#xd;
 set nodosfilewarning=1&#xd;
 echo %nodosfilewarning%&#xd;
@@ -93,7 +94,7 @@ echo %nodosfilewarning%&#xd;
 %VECTORCAST_DIR%\vcshell --version&#xd;
 %VECTORCAST_DIR%\clicast --version&#xd;
 &#xd;
-REM cd ..&#xd;
+cd ..&#xd;
 &#xd;
 mkdir tbuild32_cyg&#xd;
 cd tbuild32_cyg&#xd;
