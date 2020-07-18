@@ -19,7 +19,7 @@
         <hudson.model.StringParameterDefinition>
           <name>LINUX_VECTORCAST_DIR</name>
           <description>Vectorcast directory</description>
-          <defaultValue>/home/vectorindia/.VCAST_REGRESSION</defaultValue>
+          <defaultValue>/home/vectorindia/.VCAST_REGRESSION/debug</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -76,7 +76,8 @@ echo $LINUX_VECTORCAST_DIR
 #############    SET VCTOOLS PACKAGE    ##################################################
 #export VCTOOLS_PACKAGE=&quot;/mnt/nfs/shared/88425/release32.tar.gz&quot;
 #
-VCTOOLS_PACKAGE=`find /mnt/nfs/shared/Jenkins_Harvester_89696/Linux -maxdepth 1 -name *.tgz`
+
+#VCTOOLS_PACKAGE=`find /mnt/nfs/shared/Jenkins_Harvester_89696/Linux -maxdepth 1 -name *.tgz`
 
 #############    SET BOOST DIRECTORY   ##################################################
 export BOOST_DIR=&quot;/mnt/nfs/TOOLS/boost-1.53.0&quot;
@@ -90,16 +91,16 @@ export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
 ##########################################################################################
 ##########################################################################################
 
-if [ -f  $VCTOOLS_PACKAGE ];then
-    echo $VCTOOLS_PACKAGE
-	tar -zxvf $VCTOOLS_PACKAGE
-    cd release
-    ./install.sh
-    cd ..
-else
-	echo &quot;VcTools package not available in $VCTOOLS_PACKAGE&quot;
-    exit  1
-fi
+#if [ -f  $VCTOOLS_PACKAGE ];then
+#    echo $VCTOOLS_PACKAGE
+#	tar -zxvf $VCTOOLS_PACKAGE
+#    cd release
+#    ./install.sh
+#    cd ..
+#else
+#	echo &quot;VcTools package not available in $VCTOOLS_PACKAGE&quot;
+#    exit  1
+#fi
 
 
 artifact=(&quot;Metrics Collected&quot; &quot;Successful for&quot; &quot;failed for&quot;)
