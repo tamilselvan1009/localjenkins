@@ -56,7 +56,9 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>xcopy D:\firefox-win\firefox-19.0.2.source.tar %WORKSPACE%&#xd;
+      <command>set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
+echo %VECTORCAST_DIR%&#xd;
+xcopy D:\firefox-win\firefox-19.0.2.source.tar %WORKSPACE%&#xd;
 7z x firefox-19.0.2.source.tar&#xd;
 &#xd;
 cd C:\mozilla-build&#xd;
