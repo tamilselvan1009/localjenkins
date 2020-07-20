@@ -29,7 +29,7 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>WINDOWS_VECTORCAST_DIR</name>
+          <name>VECTORCAST_DIR</name>
           <description></description>
           <defaultValue>N:\\shared\\.VCAST_REGRESSION\\custom\\WINDOWS</defaultValue>
           <trim>false</trim>
