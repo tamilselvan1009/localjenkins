@@ -156,7 +156,11 @@ do
 	$VECTORCAST_DIR/clicast -lc -e VcTools cover append TRUE -u $line
 done &lt; vcHarvesterAppendCoverIoLinux.txt 
 
+#if system headers are collapsed we have instrumentation bug from signal.h {https://kb.vector.com/entry/1495/}
+$VECTORCAST_DIR/clicast -lc -e options VCAST_COLLAPSE_STD_HEADER COLLAPSE_NONE
+
 $VECTORCAST_DIR/clicast -lc -e VcTools cover instrument statement
+
 
 ./build.sh --vcast_coverage --jobs=4
 cd build
@@ -298,7 +302,7 @@ daemonize -E BUILD_ID=dontKillMe -E VECTORCAST_DIR=$VECTORCAST_DIR $PWD/vcdash.s
       </healthReports>
     </com.vectorcast.plugins.vectorcastcoverage.VectorCASTPublisher>
     <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.4">
-      <script plugin="script-security@1.43">
+      <script plugin="script-security@1.65">
         <script>import hudson.FilePath
 import java.util.regex.Pattern
 
