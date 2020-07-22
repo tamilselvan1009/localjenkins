@@ -157,7 +157,7 @@ do
 done &lt; vcHarvesterAppendCoverIoLinux.txt 
 
 #if system headers are collapsed we have instrumentation bug from signal.h {https://kb.vector.com/entry/1495/}
-$VECTORCAST_DIR/clicast -lc -e options VCAST_COLLAPSE_STD_HEADER COLLAPSE_NONE
+$VECTORCAST_DIR/clicast -lc -e options VCAST_COLLAPSE_STD_HEADERS COLLAPSE_NONE
 
 $VECTORCAST_DIR/clicast -lc -e VcTools cover instrument statement
 
