@@ -53,6 +53,7 @@
         <string>Coverage_Windows_under_design</string>
         <string>Custom_Cygwin</string>
         <string>Custom_Linux</string>
+        <string>Custom_Linux64</string>
         <string>Custom_Windows</string>
         <string>Cygwin1</string>
         <string>Cygwin32</string>

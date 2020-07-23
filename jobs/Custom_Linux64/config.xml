@@ -1,0 +1,110 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Run VcRunTests on Ubuntu64 bit mac</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.30">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>LINUX_GIT_DIR</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_NAME</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>LINUX_RELEASE_DIR</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <assignedNode>Reg-unx64-01</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash -xe
+
+ulimit -c unlimited
+export BOOST64_DIR=/home/vectorindia/boost-1.55.0-x64
+export BOOST_DIR=/home/vectorindia/boost-1.55.0-x64
+export LD_LIBRARY_PATH=$BOOST64_DIR/lib
+export VECTOR_LICENSE_FILE=27000@192.168.163.60
+#export VECTOR_LICENSE_FILE=7650@licenseserver
+export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
+
+#Set VC
+export VECTORCAST_DIR=/home/vectorindia/.VCAST
+#export VECTORCAST_DIR=/home/vectorindia/.VCAST_86438
+
+#Install vctools
+cd $WORKSPACE
+cp -r ${LINUX_RELEASE_DIR}/Linux/64_bit/*.tgz $WORKSPACE
+tar -zxvf *.tgz
+cd release
+./install.sh
+
+file $VECTORCAST_DIR/vcdb
+file $VECTORCAST_DIR/vcutil
+file $VECTORCAST_DIR/clicast
+
+cd $WORKSPACE
+cp -r ${LINUX_GIT_DIR}/tests $WORKSPACE
+
+#CMake and run VcRunTests
+mkdir tbuild64
+cd tbuild64
+cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+
+python VcRunTests.py
+</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
+      <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
+      <runAtStart>true</runAtStart>
+      <runAtEnd>true</runAtEnd>
+    </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
+  </buildWrappers>
+</project>
