@@ -126,9 +126,6 @@ xcopy /s %VECTORCAST_DIR_TO_USE% %VECTORCAST_DIR%\*
 
 REM ######################################################################################
 ::Create vcshell.db
-
-REM install the dir 
-call &quot;N:\shared\Jenkins_Harvester_coverage\Windows\release\install.bat&quot;
 %VECTORCAST_DIR%\vcshell buildWin.bat msvc9 --arch=win32 --config=Release
 %VECTORCAST_DIR%\clicast -lc template VISUAL_CPP_CPP_2008
 %VECTORCAST_DIR%\vpython abspath.py vcHarvesterSrcFilesForCoverageWindows.txt
