@@ -19,7 +19,7 @@
         <hudson.model.StringParameterDefinition>
           <name>LINUX_VECTORCAST_DIR</name>
           <description>Vectorcast directory</description>
-          <defaultValue>/home/vectorindia/.VCAST_REGRESSION/debug</defaultValue>
+          <defaultValue>/home/vectorindia/.VCAST_REGRESSION/89129</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
