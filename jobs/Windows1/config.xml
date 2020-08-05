@@ -76,7 +76,9 @@ call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&
 &#xd;
 set VECTORCAST_DIR=%WIN_VECTORCAST_DIR1%&#xd;
 set PYTHONPATH=C:\Python27\Lib\site-packages\junit_xml-1.0-py2.7.egg&#xd;
-set LM_LICENSE_FILE=27000@192.168.163.60&#xd;
+REM set LM_LICENSE_FILE=27000@192.168.163.60&#xd;
+set LM_LICENSE_FILE=7650@licenseserver&#xd;
+&#xd;
 &#xd;
 xcopy /S /I /E %WIN_RELEASE_DIR%\Git\tests tests /Q /Y&#xd;
 set BOOST_DIR=N:\TOOLS\boost-1.53.0&#xd;
