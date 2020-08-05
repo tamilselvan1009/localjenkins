@@ -56,7 +56,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -81,9 +80,9 @@ set LM_LICENSE_FILE=27000@192.168.163.60&#xd;
 &#xd;
 xcopy /S /I /E %WIN_RELEASE_DIR%\Git\tests tests /Q /Y&#xd;
 set BOOST_DIR=N:\TOOLS\boost-1.53.0&#xd;
-xcopy /S /I /E %WIN_RELEASE_DIR%\Windows\release release /Q /Y&#xd;
-cd release &#xd;
-call install.bat&#xd;
+REM xcopy /S /I /E %WIN_RELEASE_DIR%\Windows\release release /Q /Y&#xd;
+REM cd release &#xd;
+REM call install.bat&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
 mkdir tbuild&#xd;
