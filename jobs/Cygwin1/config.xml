@@ -80,7 +80,9 @@ call &quot;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat&
 set VECTORCAST_DIR=%CYG_VECTORCAST_DIR1%&#xd;
 echo %VECTORCAST_DIR%&#xd;
 &#xd;
-set VECTOR_LICENSE_FILE=27000@192.168.163.60&#xd;
+REM set VECTOR_LICENSE_FILE=27000@192.168.163.60&#xd;
+set VECTOR_LICENSE_FILE=7650@licenseserver&#xd;
+&#xd;
 xcopy /S /I /E %WIN_RELEASE_DIR%\Git\tests tests /Q /Y&#xd;
 &#xd;
 REM xcopy /S /I /E %WIN_RELEASE_DIR%\Windows\release release /Q /Y&#xd;
