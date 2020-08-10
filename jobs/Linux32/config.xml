@@ -62,18 +62,6 @@ ulimit -c unlimited
 export VECTOR_LICENSE_FILE=27000@192.168.163.60
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:/mnt/nfs/shared/tamil_temp:$PYTHONPATH
 export BOOST_DIR=/mnt/nfs/shared/vikram/boost-1.53.0
-#export VECTOR_LICENSE_FILE=7650@licenseserver
-
-#Set VC
-export VECTORCAST_DIR=/home/vectorindia/.VCAST
-#export VECTORCAST_DIR=/home/vectorindia/.VCAST_86438
-
-#Install vctools
-cd $WORKSPACE
-cp -r ${LINUX_RELEASE_DIR}/Linux/*.tgz $WORKSPACE
-tar -zxvf *.tgz
-cd release
-./install.sh
 
 #Check version
 $VECTORCAST_DIR/vcshell --version
@@ -89,12 +77,6 @@ cd tbuild
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 export _VC_RUNTEST_RETURN_CODE_=0
 $VECTORCAST_DIR/vpython VcRunTests.py || export _VC_RUNTEST_RETURN_CODE_=$?
-
-
-#Collect Result
-#$VECTORCAST_DIR/vpython VcCollectResult.py --db=/mnt/nfs/shared/Jenkins_Result/vcshell.db --tag=linux32
-
-#$VECTORCAST_DIR/vpython VcRegressionResult.py --db=/mnt/nfs/shared/Jenkins_Result/regression.db --tag=linux32 --storeresult
 
 cd $WORKSPACE/release/examples
 ./buildall.sh
