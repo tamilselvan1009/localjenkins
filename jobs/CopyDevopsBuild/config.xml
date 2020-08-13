@@ -17,7 +17,7 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>WINDOWS_VECTORCAST_DIR</name>
+          <name>DEVOPS_DIRECTORY</name>
           <description>Vectorcast directory</description>
           <defaultValue>C:\VCASTNEW</defaultValue>
           <trim>false</trim>
@@ -44,7 +44,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -57,31 +56,16 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
-set VECTOR_LICENSE_FILE=7650@licenseserver&#xd;
-echo %VECTORCAST_DIR%&#xd;
-xcopy D:\firefox-win\firefox-19.0.2.source.tar %WORKSPACE%&#xd;
-7z x firefox-19.0.2.source.tar&#xd;
+      <command>set WINDOWS_DIR=&quot;C:\\TEMP\\%DEVOPS_DIRECTORY%&quot;&#xd;
+IF EXISTS %WINDOWS_DIR%(&#xd;
+ rmdir /q /s %WINDOWS_DIR%&#xd;
+)&#xd;
+mkdir %WINDOWS_DIR%\window&#xd;
+mkdir %WINDOWS_DIR%\linux&#xd;
 &#xd;
-cd C:\mozilla-build&#xd;
-call start-shell-msvc2010-jenkins.bat&#xd;
+call C:\\TEMP\\write.bat %DEVEOPS_DIRECTORY% %WINDOWS_DIR%&#xd;
 &#xd;
-cd %WORKSPACE%\\mozilla-release&#xd;
-echo cd &quot;$WORKSPACE/mozilla-release&quot; &gt; mycommand.txt&#xd;
-echo echo pwd=$PWD     &gt;&gt; mycommand.txt&#xd;
-echo &quot;$VECTORCAST_DIR/vcshell&quot; python mach build &gt;&gt; mycommand.txt&#xd;
-REM echo  mach build &gt;&gt; mycommand.txt&#xd;
-REM echo time(&quot;$VECTORCAST_DIR/vcutil&quot; addmetrics --vcppot) &gt;&gt;mycommand.txt&#xd;
-REM echo time(&quot;$VECTORCAST_DIR/vcutil&quot; quickparse --vcppopt) &gt;&gt;mycommand.txt&#xd;
-REM echo time(&quot;$VECTORCAST_DIR/vcdb&quot; getpaths) &gt;&gt;mycommand.txt &#xd;
-echo exit &gt;&gt; mycommand.txt&#xd;
-type mycommand.txt | bash --login -i&#xd;
-&#xd;
-REM powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcutil  addmetrics --vcppopt | Out-Host}&quot;&#xd;
-REM powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcutil  quickparse --vcppopt | Out-Host}&quot;&#xd;
-REM powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcdb getpaths  | Out-Host}&quot;&#xd;
-REM powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcdb files | Out-Host}&quot;&#xd;
-REM powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcdb getappfiles | Out-Host}&quot;        </command>
+</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
