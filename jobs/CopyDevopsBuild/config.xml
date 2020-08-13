@@ -57,7 +57,7 @@
   <builders>
     <hudson.tasks.BatchFile>
       <command>set WINDOWS_DIR=&quot;C:\\TEMP\\%DEVOPS_DIRECTORY%&quot;&#xd;
-IF EXISTS %WINDOWS_DIR%(&#xd;
+IF EXISTS %WINDOWS_DIR% (&#xd;
  rmdir /q /s %WINDOWS_DIR%&#xd;
 )&#xd;
 mkdir %WINDOWS_DIR%\window&#xd;
