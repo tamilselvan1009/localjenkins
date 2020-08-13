@@ -19,7 +19,7 @@
         <hudson.model.StringParameterDefinition>
           <name>DEVOPS_DIRECTORY</name>
           <description>Vectorcast directory</description>
-          <defaultValue>C:\VCASTNEW</defaultValue>
+          <defaultValue>vc20</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -63,8 +63,8 @@ IF EXIST %WINDOWS_DIR% (&#xd;
 mkdir %WINDOWS_DIR%\window\&#xd;
 mkdir %WINDOWS_DIR%\linux\&#xd;
 &#xd;
-cd &quot;C:\\Temp&quot; &#xd;
-cmd /c &quot;write.bat %DEVEOPS_DIRECTORY% C:\\Temp&quot;&#xd;
+ &#xd;
+call &quot;C:\\Temp\\write.bat %DEVOPS_DIRECTORY% C:\\Temp&quot;&#xd;
 &#xd;
 </command>
     </hudson.tasks.BatchFile>
