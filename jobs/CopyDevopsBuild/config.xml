@@ -1,0 +1,134 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Firefox windows data</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.30">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>WINDOWS_VECTORCAST_DIR</name>
+          <description>Vectorcast directory</description>
+          <defaultValue>C:\VCASTNEW</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>summary_file</name>
+          <description></description>
+          <defaultValue>summary.txt</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_NAME</name>
+          <description></description>
+          <defaultValue>user_trigger</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <assignedNode>Firefox_windows</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.BatchFile>
+      <command>set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
+set VECTOR_LICENSE_FILE=7650@licenseserver&#xd;
+echo %VECTORCAST_DIR%&#xd;
+xcopy D:\firefox-win\firefox-19.0.2.source.tar %WORKSPACE%&#xd;
+7z x firefox-19.0.2.source.tar&#xd;
+&#xd;
+cd C:\mozilla-build&#xd;
+call start-shell-msvc2010-jenkins.bat&#xd;
+&#xd;
+cd %WORKSPACE%\\mozilla-release&#xd;
+echo cd &quot;$WORKSPACE/mozilla-release&quot; &gt; mycommand.txt&#xd;
+echo echo pwd=$PWD     &gt;&gt; mycommand.txt&#xd;
+echo &quot;$VECTORCAST_DIR/vcshell&quot; python mach build &gt;&gt; mycommand.txt&#xd;
+REM echo  mach build &gt;&gt; mycommand.txt&#xd;
+REM echo time(&quot;$VECTORCAST_DIR/vcutil&quot; addmetrics --vcppot) &gt;&gt;mycommand.txt&#xd;
+REM echo time(&quot;$VECTORCAST_DIR/vcutil&quot; quickparse --vcppopt) &gt;&gt;mycommand.txt&#xd;
+REM echo time(&quot;$VECTORCAST_DIR/vcdb&quot; getpaths) &gt;&gt;mycommand.txt &#xd;
+echo exit &gt;&gt; mycommand.txt&#xd;
+type mycommand.txt | bash --login -i&#xd;
+&#xd;
+REM powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcutil  addmetrics --vcppopt | Out-Host}&quot;&#xd;
+REM powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcutil  quickparse --vcppopt | Out-Host}&quot;&#xd;
+REM powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcdb getpaths  | Out-Host}&quot;&#xd;
+REM powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcdb files | Out-Host}&quot;&#xd;
+REM powershell &quot;Measure-Command {%VECTORCAST_DIR%\vcdb getappfiles | Out-Host}&quot;        </command>
+    </hudson.tasks.BatchFile>
+  </builders>
+  <publishers>
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
+      <recipientList>shekhar.singh@vectorcast.com</recipientList>
+      <configuredTriggers>
+        <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+          <email>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
+              <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern>mozilla-release\shekhar.txt</attachmentsPattern>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+      </configuredTriggers>
+      <contentType>default</contentType>
+      <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
+      <defaultContent>$DEFAULT_CONTENT</defaultContent>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
+      <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
+      <attachBuildLog>false</attachBuildLog>
+      <compressBuildLog>false</compressBuildLog>
+      <replyTo>shekhar.singh@vectorcast.com</replyTo>
+      <from></from>
+      <saveOutput>false</saveOutput>
+      <disabled>false</disabled>
+    </hudson.plugins.emailext.ExtendedEmailPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
+      <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
+      <runAtStart>true</runAtStart>
+      <runAtEnd>true</runAtEnd>
+    </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
+  </buildWrappers>
+</project>
