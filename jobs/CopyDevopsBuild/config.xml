@@ -62,8 +62,8 @@ IF EXIST %WINDOWS_DIR% (&#xd;
 )&#xd;
 mkdir %WINDOWS_DIR%\window\&#xd;
 mkdir %WINDOWS_DIR%\linux\&#xd;
-&#xd;
-call C:\\TEMP\\write.bat %DEVEOPS_DIRECTORY% &quot;C:\\Temp&quot;&#xd;
+ &#xd;
+C:\\TEMP\\write.bat %DEVEOPS_DIRECTORY% C:\\Temp&#xd;
 &#xd;
 </command>
     </hudson.tasks.BatchFile>
