@@ -47,7 +47,6 @@
         <string>Build_Linux64_full</string>
         <string>Build_Linx32_new</string>
         <string>Build_Windows</string>
-        <string>CopyDevopsBuild</string>
         <string>Coverage_experiment_child</string>
         <string>Coverage_experiment_master</string>
         <string>Coverage_Linux</string>
