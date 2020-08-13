@@ -64,7 +64,7 @@ mkdir %WINDOWS_DIR%\window\&#xd;
 mkdir %WINDOWS_DIR%\linux\&#xd;
 &#xd;
  &#xd;
-call &quot;C:\\Temp\\write.bat %DEVOPS_DIRECTORY% C:\\Temp&quot;&#xd;
+call &quot;C:\\Temp\\write.bat&quot; %DEVOPS_DIRECTORY% C:\\Temp&#xd;
 &#xd;
 </command>
     </hudson.tasks.BatchFile>
