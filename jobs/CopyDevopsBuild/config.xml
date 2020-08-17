@@ -57,11 +57,11 @@
   <builders>
     <hudson.tasks.BatchFile>
       <command> set WINDOWS_DIR=C:\\TEMP\\%DEVOPS_DIRECTORY%&#xd;
-REM IF EXIST %WINDOWS_DIR% (&#xd;
- REM rmdir /q /s %WINDOWS_DIR%&#xd;
-REM )&#xd;
-REM mkdir %WINDOWS_DIR%\window\&#xd;
-REM mkdir %WINDOWS_DIR%\linux\&#xd;
+IF EXIST %WINDOWS_DIR% (&#xd;
+  rmdir /q /s %WINDOWS_DIR%&#xd;
+ )&#xd;
+mkdir %WINDOWS_DIR%\window\&#xd;
+mkdir %WINDOWS_DIR%\linux\&#xd;
 &#xd;
  &#xd;
 call &quot;C:\\Temp\\write.bat&quot; %DEVOPS_DIRECTORY% %WINDOWS_DIR%&#xd;
