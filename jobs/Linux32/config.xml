@@ -65,6 +65,7 @@
       <command>#!/bin/bash -xe
 
 ulimit -c unlimited
+echo $LINUX_VECTORCAST_DIR
 export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
 export VECTOR_LICENSE_FILE=27000@192.168.163.60
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:/mnt/nfs/shared/tamil_temp:$PYTHONPATH
