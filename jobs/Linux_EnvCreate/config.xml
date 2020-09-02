@@ -19,25 +19,19 @@
         <hudson.model.StringParameterDefinition>
           <name>LINUX_GIT_DIR</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>/mnt/nfs/shared/Jenkins_Harvester/Git</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LINUX_VECTORCAST_DIR</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>/home/vectorindia/VCAST</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description></description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>LINUX_RELEASE_DIR</name>
-          <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>Timer_run</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
