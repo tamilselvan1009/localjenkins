@@ -123,6 +123,8 @@ fi
 
 # Set 4.1.2 GCC in PATH
 export PATH=/home/vectorindia/gcc-8.3.0-glibc-2.5/bin:$PATH
+export BOOST_DIR=/home/vectorindia/boost-1.69.0
+
 
 cp -r &quot;$VECTORCAST_TO_USE&quot; &quot;$VECTORCAST_DIR&quot;
 
