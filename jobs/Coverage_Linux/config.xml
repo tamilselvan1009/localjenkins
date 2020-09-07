@@ -122,14 +122,14 @@ rm -rf &quot;${VECTORCAST_DIR}&quot;
 fi
 
 # Set 4.1.2 GCC in PATH
-export PATH=/home/vectorindia/gcc-4.1.2/bin:$PATH
+export PATH=/home/vectorindia/gcc-8.3.0-glibc-2.5/bin:$PATH
 
 cp -r &quot;$VECTORCAST_TO_USE&quot; &quot;$VECTORCAST_DIR&quot;
 
 
 #Create cover project
 $VECTORCAST_DIR/clicast -lc cover env create VcTools
-$VECTORCAST_DIR/clicast -lc template GNU_CPP_41
+$VECTORCAST_DIR/clicast -lc template GNU_CPP_83
 $VECTORCAST_DIR/clicast -lc option  COVERAGE_IO_TYPE VCAST_COVERAGE_IO_BUFFERED
 $VECTORCAST_DIR/clicast -lc option  VCAST_APPEND_TO_TESTINSS TRUE
 $VECTORCAST_DIR/clicast -lc option  VCAST_COVERAGE_FOR_HEADERS TRUE
