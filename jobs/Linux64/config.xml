@@ -85,7 +85,7 @@ mkdir tbuild64
 cd tbuild64
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 
-python VcRunTests.py
+python VcRunTests.py --run_tests=HelloTest
 </command>
     </hudson.tasks.Shell>
   </builders>
