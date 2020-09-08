@@ -63,7 +63,7 @@ set ulimit -c unlimited
 
 
 #set BOOST_DIR
-export BOOST_DIR=/mnt/nfs/TOOLS/boost-1.53.0
+export BOOST_DIR=/home/vectorindia/boost-1.69.0
 #set ld library path  needed for devops kind of vectorcast 
 export LD_LIBRARY_PATH=$BOOST_DIR/lib:$LD_LIBRARY_PATH
 
