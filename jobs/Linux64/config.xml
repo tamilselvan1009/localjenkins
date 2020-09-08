@@ -65,6 +65,8 @@
       <command>#!/bin/bash -xe
 
 ulimit -c unlimited
+echo $LINUX_VECTORCAST_DIR
+export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
 export BOOST64_DIR=/home/vectorindia/boost-1.55.0-x64
 export BOOST_DIR=/home/vectorindia/boost-1.55.0-x64
 export LD_LIBRARY_PATH=$BOOST64_DIR/lib
