@@ -59,8 +59,13 @@
       <command>set VECTORCAST_DIR=%WINDOWS_VECTORCAST_DIR%&#xd;
 set VECTOR_LICENSE_FILE=7650@licenseserver&#xd;
 echo %VECTORCAST_DIR%&#xd;
+%VECTORCAST_DIR%\vcshell --version&#xd;
+%VECTORCAST_DIR%\clicast --version&#xd;
+&#xd;
 xcopy D:\firefox-win\firefox-19.0.2.source.tar %WORKSPACE%&#xd;
 7z x firefox-19.0.2.source.tar&#xd;
+&#xd;
+&#xd;
 &#xd;
 cd C:\mozilla-build&#xd;
 call start-shell-msvc2010-jenkins.bat&#xd;
