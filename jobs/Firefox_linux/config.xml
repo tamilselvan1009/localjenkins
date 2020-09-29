@@ -50,7 +50,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -459,7 +458,7 @@ if [ -d $archive_dir ];then
 	rm -rf $archive_dir
 fi
 mkdir $archive_dir
-cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/summary.txt $archive_dir/.
+cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/$summary_file $archive_dir/.
 cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/*.out $archive_dir/.
 cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/*.out.txt $archive_dir/.
 cp $WORKSPACE/mozilla-release/obj-x86_64-unknown-linux-gnu/sol.txt $archive_dir/.
@@ -472,7 +471,6 @@ exit /b $_RETURN_CODE_
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
       <recipientList>kavya@vectorcast.com</recipientList>
-      <configuredTriggers/>
       <contentType>text/plain</contentType>
       <defaultSubject>Firefox Linux Result</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
