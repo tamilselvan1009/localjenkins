@@ -23,12 +23,6 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>LINUX_RELEASE_DIR</name>
-          <description>Specify the location where artifacts will be stored. Location of the release dir in linux style path</description>
-          <defaultValue>/mnt/nfs/shared/Jenkins_Harvester</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>WIN_GIT_DIR</name>
           <description>Location of Git in windows style path</description>
           <defaultValue>${WIN_RELEASE_DIR}\\Git</defaultValue>
@@ -44,12 +38,6 @@
           <name>WIN_PACKAGE_DIR</name>
           <description>Location of windows package in windows style path</description>
           <defaultValue>${WIN_RELEASE_DIR}\\Windows</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>LINUX_PACKAGE_DIR</name>
-          <description>Location of linux package in linux style path</description>
-          <defaultValue>${LINUX_RELEASE_DIR}/Linux</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -72,7 +60,7 @@
         <hudson.model.StringParameterDefinition>
           <name>LINUX_VECTORCAST_DIR</name>
           <description>Specify the path to VECTORCAST_DIR</description>
-          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/LINUX</defaultValue>
+          <defaultValue>/home/vectorindia/.VC_REG/6pm</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -97,7 +85,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
