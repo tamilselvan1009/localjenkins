@@ -17,12 +17,6 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>WIN_RELEASE_DIR</name>
-          <description>Specify the location where artifacts will be stored. Location of the release dir in windows style path</description>
-          <defaultValue>N:\\shared\\Jenkins_Harvester</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>WIN_GIT_DIR</name>
           <description>Location of Git in windows style path</description>
           <defaultValue>${WIN_RELEASE_DIR}\\Git</defaultValue>
@@ -32,12 +26,6 @@
           <name>LINUX_GIT_DIR</name>
           <description>Location of Git in Linux style path</description>
           <defaultValue>${LINUX_RELEASE_DIR}/Git</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>WIN_PACKAGE_DIR</name>
-          <description>Location of windows package in windows style path</description>
-          <defaultValue>${WIN_RELEASE_DIR}\\Windows</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -54,7 +42,7 @@
         <hudson.model.StringParameterDefinition>
           <name>WIN_VECTORCAST_DIR</name>
           <description>Specify the path to VECTORCAST_DIR</description>
-          <defaultValue>N:\\shared\\.VCAST_REGRESSION\\JOB_6PM\\WINDOWS</defaultValue>
+          <defaultValue>V:\\SlaveJenkins\\VCAST\\6pm</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -73,6 +61,12 @@
           <name>LINUX64_VECTORCAST_DIR</name>
           <description>specify the path for 64bit VECTORCAST</description>
           <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/LINUX64</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>CYGWIN_VECTORCAST_DIR</name>
+          <description></description>
+          <defaultValue>C:\\SlaveJenkins\\VCAST\\6pm</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
