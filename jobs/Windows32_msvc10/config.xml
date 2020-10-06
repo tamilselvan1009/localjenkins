@@ -66,15 +66,15 @@ set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
 echo %VECTORCAST_DIR%&#xd;
 &#xd;
 rem Get the tests&#xd;
-xcopy /S /I /E %WIN_GIT_DIR%\tests %WORKSPACE%\tests /Q /Y&#xd;
+rem xcopy /S /I /E %WIN_GIT_DIR%\tests %WORKSPACE%\tests /Q /Y&#xd;
 &#xd;
 cd %WORKSPACE%&#xd;
-mkdir tbuild32 &#xd;
+rem mkdir tbuild32 &#xd;
 cd tbuild32&#xd;
-cmake ..\tests &#xd;
+rem cmake ..\tests &#xd;
 &#xd;
 echo &quot;Test starts here&quot; &#xd;
-%VECTORCAST_DIR%\vpython VcRunTests.py&#xd;
+%VECTORCAST_DIR%\vpython VcRunTests.py --run_tests=HelloTest&#xd;
 &#xd;
 || call:handle_error&#xd;
 &#xd;
@@ -87,11 +87,6 @@ goto:EOF</command>
   </builders>
   <publishers/>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
-      <deleteDirs>false</deleteDirs>
-      <cleanupParameter></cleanupParameter>
-      <externalDelete></externalDelete>
-    </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
