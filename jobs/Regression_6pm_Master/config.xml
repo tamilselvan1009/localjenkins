@@ -55,7 +55,7 @@
         <hudson.model.StringParameterDefinition>
           <name>LINUX64_VECTORCAST_DIR</name>
           <description>specify the path for 64bit VECTORCAST</description>
-          <defaultValue>/mnt/nfs/shared/.VCAST_REGRESSION/JOB_6PM/LINUX64</defaultValue>
+          <defaultValue>/home/vectorindia/SlaveJenkins/VCAST/6pm</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
