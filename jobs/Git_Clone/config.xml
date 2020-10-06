@@ -19,7 +19,7 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.9.1">
           <name>GIT_BRANCH_NAME</name>
           <description>name of the branch. default is origin/develop</description>
-          <uuid>9175b417-becc-46a9-aa5d-ef4bc46d4f1d</uuid>
+          <uuid>0655121f-79bb-48bf-b977-99e33460e174</uuid>
           <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
@@ -30,39 +30,15 @@
           <quickFilterEnabled>false</quickFilterEnabled>
         </net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>WIN_RELEASE_DIR</name>
-          <description>Specify the location where artifacts will be stored. Location of the release dir in windows style path</description>
-          <defaultValue>N:\\shared\\Jenkins_Harvester</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>LINUX_RELEASE_DIR</name>
-          <description>Specify the location where artifacts will be stored. Location of the release dir in linux style path</description>
-          <defaultValue>/mnt/nfs/shared/Jenkins_Harvester</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>WIN_GIT_DIR</name>
           <description>Location of Git in windows path</description>
-          <defaultValue>${WIN_RELEASE_DIR}\\Git</defaultValue>
+          <defaultValue>N:\\shared\\Jenkins_Harvester\\Git</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LINUX_GIT_DIR</name>
           <description>Location of Git in linux path</description>
-          <defaultValue>${LINUX_RELEASE_DIR}/Git</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>WIN_PACKAGE_DIR</name>
-          <description>Location of windows package dir in windows path</description>
-          <defaultValue>${WIN_RELEASE_DIR}\\Windows</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>LINUX_PACKAGE_DIR</name>
-          <description>Location of linux package dir in linux path</description>
-          <defaultValue>${LINUX_RELEASE_DIR}/Linux</defaultValue>
+          <defaultValue>/mnt/nfs/shared/Jenkins_Harvester/Git</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -73,8 +49,8 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>BUILD_HARVESTER</name>
-          <description>Uncheck this if we don&apos;t want to build harvester and run regression on pre-installed VECTORCAST_DIR</description>
-          <defaultValue>true</defaultValue>
+          <description>check this if we want to build harvester and run regression on installed VECTORCAST_DIR</description>
+          <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LINUX_VECTORCAST_DIR</name>
@@ -86,12 +62,6 @@
           <name>WIN_VECTORCAST_DIR</name>
           <description></description>
           <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>WIN64_PACKAGE_DIR</name>
-          <description></description>
-          <defaultValue>${WIN_PACKAGE_DIR}\\64_bit</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
@@ -169,10 +139,10 @@ if [ &quot;$USE_COMMIT_DATE_FOR_VERSION&quot; != &quot;false&quot; ]; then
 fi
 
 # delete the old release package dir if it exists
-if [[ -d &quot;${LINUX_RELEASE_DIR}&quot; ]];then
-rm -rf &quot;${LINUX_RELEASE_DIR}&quot;
-fi
-mkdir &quot;${LINUX_RELEASE_DIR}&quot;
+#if [[ -d &quot;${LINUX_RELEASE_DIR}&quot; ]];then
+#rm -rf &quot;${LINUX_RELEASE_DIR}&quot;
+#fi
+#mkdir &quot;${LINUX_RELEASE_DIR}&quot;
 
 # copy all the files to git dir
 mkdir &quot;${LINUX_GIT_DIR}&quot;
@@ -188,47 +158,6 @@ echo VCTOOLS_VERSION=$VERSION &gt; $WORKSPACE/build_harvester.txt
 fi
 </command>
     </hudson.tasks.Shell>
-    <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.35.2">
-      <configs>
-        <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
-          <configs>
-            <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
-            <hudson.plugins.parameterizedtrigger.FileBuildParameters>
-              <propertiesFile>build_harvester.txt</propertiesFile>
-              <failTriggerOnMissing>true</failTriggerOnMissing>
-              <textParamValueOnNewLine>false</textParamValueOnNewLine>
-              <useMatrixChild>false</useMatrixChild>
-              <onlyExactRuns>false</onlyExactRuns>
-            </hudson.plugins.parameterizedtrigger.FileBuildParameters>
-          </configs>
-          <projects>Build_Linux32,Build_Windows</projects>
-          <condition>ALWAYS</condition>
-          <triggerWithNoParameters>false</triggerWithNoParameters>
-          <triggerFromChildProjects>false</triggerFromChildProjects>
-          <block>
-            <buildStepFailureThreshold>
-              <name>FAILURE</name>
-              <ordinal>2</ordinal>
-              <color>RED</color>
-              <completeBuild>true</completeBuild>
-            </buildStepFailureThreshold>
-            <unstableThreshold>
-              <name>UNSTABLE</name>
-              <ordinal>1</ordinal>
-              <color>YELLOW</color>
-              <completeBuild>true</completeBuild>
-            </unstableThreshold>
-            <failureThreshold>
-              <name>FAILURE</name>
-              <ordinal>2</ordinal>
-              <color>RED</color>
-              <completeBuild>true</completeBuild>
-            </failureThreshold>
-          </block>
-          <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
-        </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
-      </configs>
-    </hudson.plugins.parameterizedtrigger.TriggerBuilder>
   </builders>
   <publishers/>
   <buildWrappers>
