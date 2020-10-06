@@ -29,13 +29,7 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>LINUX_RELEASE_DIR</name>
-          <description></description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>LINUX_VECTORCAST_DIR</name>
+          <name>LINUX64_VECTORCAST_DIR</name>
           <description></description>
           <defaultValue></defaultValue>
           <trim>false</trim>
@@ -65,8 +59,8 @@
       <command>#!/bin/bash -xe
 
 ulimit -c unlimited
+export VECTORCAST_DIR=$LINUX64_VECTORCAST_DIR
 echo $LINUX_VECTORCAST_DIR
-export VECTORCAST_DIR=$LINUX_VECTORCAST_DIR
 export BOOST64_DIR=/home/vectorindia/boost-1.55.0-x64
 export BOOST_DIR=/home/vectorindia/boost-1.55.0-x64
 export LD_LIBRARY_PATH=$BOOST64_DIR/lib
