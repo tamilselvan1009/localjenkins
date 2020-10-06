@@ -19,13 +19,13 @@
         <hudson.model.StringParameterDefinition>
           <name>WIN_GIT_DIR</name>
           <description>Location of Git in windows style path</description>
-          <defaultValue>${WIN_RELEASE_DIR}\\Git</defaultValue>
+          <defaultValue>N:\\shared\\Jenkins_Harvester\\Git</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LINUX_GIT_DIR</name>
           <description>Location of Git in Linux style path</description>
-          <defaultValue>${LINUX_RELEASE_DIR}/Git</defaultValue>
+          <defaultValue>/mnt/nfs/shared/Jenkins_Harvester/Git</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
