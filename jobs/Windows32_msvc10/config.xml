@@ -74,6 +74,7 @@ rem cmake ..\tests || call:handle_error&#xd;
 &#xd;
 echo %PATH%&#xd;
 echo %vectorcast_dir%&#xd;
+dir&#xd;
 clicast --version&#xd;
 vcshell --version&#xd;
 %VECTORCAST_DIR%\vpython VcRunTests.py || call:handle_error&#xd;
