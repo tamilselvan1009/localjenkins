@@ -54,7 +54,7 @@
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>Centos_5_11_x64_Build_machine</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
