@@ -43,7 +43,7 @@
         <hudson.model.StringParameterDefinition>
           <name>LINUX_VECTORCAST_DIR</name>
           <description>Specify the path to VECTORCAST_DIR</description>
-          <defaultValue>/home/vectorindia/.VC_REG/6pm</defaultValue>
+          <defaultValue>/home/vectorindia/SlaveJenkins/VCAST/6pm</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
