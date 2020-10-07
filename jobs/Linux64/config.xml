@@ -61,6 +61,8 @@ export LD_LIBRARY_PATH=$BOOST64_DIR/lib
 export VECTOR_LICENSE_FILE=27000@192.168.163.60
 export PYTHONPATH=/usr/lib/python2.7/dist-packages:PYTHONPATH
 
+echo $VECTORCAST_DIR
+
 file $VECTORCAST_DIR/vcdb
 file $VECTORCAST_DIR/vcutil
 file $VECTORCAST_DIR/clicast
