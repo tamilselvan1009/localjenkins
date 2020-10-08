@@ -66,7 +66,7 @@ rem set path=C:\Python27\Scripts;C:\Program Files (x86)\Microsoft Visual Studio 
 &#xd;
 set WORKSPACE=C:\\SlaveJenkins\\workspace\\windows64bit_54mac&#xd;
 &#xd;
-set VECTORCAST_DIR=%WIN_VECTORCAST_DIR%&#xd;
+set VECTORCAST_DIR=%WIN64_VECTORCAST_DIR%&#xd;
 set VECTOR_LICENSE_FILE=27000@192.168.163.60&#xd;
 echo %VECTORCAST_DIR%&#xd;
 echo %path% &#xd;
