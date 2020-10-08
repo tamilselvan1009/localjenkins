@@ -23,19 +23,13 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>WIN_RELEASE_DIR</name>
+          <name>WIN_GIT_DIR</name>
           <description></description>
-          <defaultValue>N:\\shared\\Jenkins_Harvester</defaultValue>
+          <defaultValue>N:\\shared\\Jenkins_Harvester\\Git</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>WIN_VECTORCAST_DIR</name>
-          <description></description>
-          <defaultValue>C:\Users\vectorindia\VCAST64</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>test_name</name>
+          <name>WIN64_VECTORCAST_DIR</name>
           <description></description>
           <defaultValue></defaultValue>
           <trim>false</trim>
@@ -76,7 +70,7 @@ echo %VECTORCAST_DIR%&#xd;
 echo %path% &#xd;
 ECHO %vectorcast_dir%\vcshell --version&#xd;
 ECHO %WORKSPACE%&#xd;
-xcopy /S /I /E %WIN_RELEASE_DIR%\Git\tests tests /Q /Y&#xd;
+xcopy /S /I /E %WIN_GIT_DIR%\tests tests /Q /Y&#xd;
 rem set BOOST_DIR=N:\TOOLS\boost-1.69.0&#xd;
 python --version&#xd;
 cd %WORKSPACE%&#xd;
