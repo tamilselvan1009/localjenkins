@@ -3,7 +3,7 @@
   <scm class="hudson.plugins.scm_sync_configuration.scms.ScmSyncGitSCM"/>
   <scmRepositoryUrl>scm:git:git@github.com:tamilselvan1009/localjenkins.git</scmRepositoryUrl>
   <noUserCommitMessage>false</noUserCommitMessage>
-  <displayStatus>false</displayStatus>
+  <displayStatus>true</displayStatus>
   <commitMessagePattern>[message]</commitMessagePattern>
   <manualSynchronizationIncludes/>
 </hudson.plugins.scm__sync__configuration.ScmSyncConfigurationPlugin>
