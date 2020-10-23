@@ -83,6 +83,7 @@
         <string>TYPEINFOREGlinux64</string>
         <string>TYPEINFOREGwin32</string>
         <string>Vctools_Performance</string>
+        <string>VectorCAST_build_under_vcshell</string>
         <string>WinCyg_EnvCreate</string>
         <string>Windows1</string>
         <string>Windows32_msvc10</string>
