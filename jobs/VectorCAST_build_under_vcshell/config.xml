@@ -70,7 +70,55 @@ C:\sqlite3\sqlite3.exe C:\cygwin\home\vectorindia\%BUILD_NAME%.db &lt; C:\cygwin
   <publishers>
     <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.4">
       <script plugin="script-security@1.65">
-        <script></script>
+        <script>import hudson.model.*
+
+import java.util.regex.Pattern
+
+manager.listener.logger.println(&quot;Executing Groovy post build&quot;)
+
+def buildLog = manager.build.getLog()
+String table = &quot;&quot;
+int count  =0  
+
+def expected_count = [:] 
+expected_count[&quot;files&quot;] = 1835
+expected_count[&quot;commands&quot;] = 10230
+expected_count[&quot;comment_density&quot;] = 1761
+expected_count[&quot;vcmetrics&quot;] = 7759
+expected_count[&quot;gcc&quot;] = 1
+expected_count[&quot;cl&quot;] = 1830
+expected_count[&quot;vcmetrics_recorded_for_files&quot;] = 1348
+
+Pattern pattern_1 = Pattern.compile(&apos;(?s)select count \\(\\*\\) from (.*?);.*?(\\d+)&apos;)
+buildLog.eachMatch pattern_1, {
+        if( ((expected_count[ it[1] ]-1)&gt;Integer.valueOf(it[2])) &amp;&amp; (Integer.valueOf(it[2])  &gt; (expected_count[ it[1] ]+1)) ){
+           manager.buildFailure()
+           manager.addBadge(&quot;error.gif&quot;, &quot;Entry in &quot; + it[1] + &quot; table not in range&quot;)
+           manager.listener.logger.println(&quot;Entry in &quot; + it[1] + &quot; table not in range&quot;)
+      }
+}   
+
+Pattern pattern_2 = Pattern.compile(&apos;(?s)select.*?%(.*?)[.]exe%.*?(\\d+)&apos;)
+buildLog.eachMatch pattern_2, {
+        if( Integer.valueOf(it[2]) != expected_count[it[1]]){
+                    manager.buildFailure()
+                    manager.addBadge(&quot;error.gif&quot;, &quot;Number of files associated with &quot; + it[1] + &quot; not in range&quot;)
+                    manager.listener.logger.println(&quot;Number of files associated with &quot; + it[1] + &quot; not in range&quot;)
+      }
+}   
+
+Pattern pattern_3 = Pattern.compile(&apos;(?s)select count [(]DISTINCT FILENAME[)] from vcmetrics;.*?(\\d+)&apos;)
+buildLog.eachMatch pattern_3, {
+        if(Integer.valueOf(it[1]) != expected_count[&quot;vcmetrics_recorded_for_files&quot;]){
+                    manager.buildFailure()
+                    manager.addBadge(&quot;error.gif&quot;, &quot;Number of files associated with &quot; +
+                                                      &quot;vcmetrics recorded for files not in range&quot;)
+                    manager.listener.logger.println(&quot;Number of files associated with &quot; +
+                                                                      &quot;vcmetrics recorded for files not in range&quot;)
+      }
+}   
+
+manager.listener.logger.println(&quot;Done executing Groovy post build&quot;)</script>
         <sandbox>false</sandbox>
       </script>
       <behavior>2</behavior>
