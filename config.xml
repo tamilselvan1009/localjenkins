@@ -60,6 +60,7 @@
         <string>Cygwin1</string>
         <string>Cygwin32</string>
         <string>Cygwin32_md</string>
+        <string>Cygwin64</string>
         <string>Cygwin_vcutilTests</string>
         <string>Developer_Regression_master</string>
         <string>Firefox_linux</string>
