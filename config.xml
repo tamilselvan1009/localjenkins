@@ -80,6 +80,7 @@
         <string>Result_Collector</string>
         <string>scm</string>
         <string>Test_perf_on_win</string>
+        <string>testjob</string>
         <string>TypeInfo_master</string>
         <string>TYPEINFOREGlinux32</string>
         <string>TYPEINFOREGlinux64</string>
