@@ -62,7 +62,7 @@
 if not exist q: (&#xd;
     subst q: C:\vcast_libs\q&#xd;
 )&#xd;
-set PATH=C:\cygwin\bin;%PATH%&#xd;
+set PATH=C:\52\cygwin\bin;%PATH%&#xd;
 bash -c &quot;/home/vectorindia/build_vcast.sh&quot;&#xd;
 C:\sqlite3\sqlite3.exe C:\cygwin\home\vectorindia\%BUILD_NAME%.db &lt; C:\cygwin\home\vectorindia\sqlite3_cmd.txt</command>
     </hudson.tasks.BatchFile>
