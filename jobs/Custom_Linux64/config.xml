@@ -44,6 +44,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -74,13 +75,13 @@ file $VECTORCAST_DIR/clicast
 $VECTORCAST_DIR/vcshell --version
 $VECTORCAST_DIR/clicast --version
 
-#cp -r ${HARVESTER_PATH}/tests $WORKSPACE
+cp -r ${HARVESTER_PATH}/tests $WORKSPACE
 
-#rm -rf tbuild64
+rm -rf tbuild64
 #CMake and run VcRunTests
-#mkdir tbuild64
+mkdir tbuild64
 cd tbuild64
-#cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 echo &quot;python path before the tests&quot;
 echo $PYTHONPATH
 $VECTORCAST_DIR/vpython VcRunTests.py
@@ -89,6 +90,11 @@ $VECTORCAST_DIR/vpython VcRunTests.py
   </builders>
   <publishers/>
   <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
     <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>${ENV,var=&quot;BUILD_NAME&quot;}</template>
