@@ -19,19 +19,19 @@
         <hudson.model.StringParameterDefinition>
           <name>VECTORCAST_DIR</name>
           <description>Specify the vectorcast directory</description>
-          <defaultValue></defaultValue>
+          <defaultValue>C:\Users\vectorindia\VCAST</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>VECTOR_LICENSE_FILE</name>
           <description>Specify the license server</description>
-          <defaultValue></defaultValue>
+          <defaultValue>7650@licenseserver</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_NAME</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>build_vchsell</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
