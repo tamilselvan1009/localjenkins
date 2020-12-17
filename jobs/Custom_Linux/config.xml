@@ -79,7 +79,7 @@ cd tbuild32
 cmake ../tests -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 echo &quot;python path before the tests&quot;
 echo $PYTHONPATH
-$VECTORCAST_DIR/vpython VcRunTests.py  --run_tests=vcUtilRun,VcutilTest/VcutilDirname,VcutilTest/ProbParseTest,VcutilTest/vcParseTest,VcutilTest/MetricsTest/PositiveTest,VcutilTest/MetricsTest/Neg_MetricsTest,VcutilTest/VcutilCommonTest</command>
+$VECTORCAST_DIR/vpython VcRunTests.py </command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
