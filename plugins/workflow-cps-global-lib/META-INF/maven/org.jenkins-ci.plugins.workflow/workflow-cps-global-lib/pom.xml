@@ -63,7 +63,7 @@
     </pluginRepositories>
     <properties>
         <jenkins.version>1.642.3</jenkins.version>
-        <workflow-cps-plugin.version>2.28</workflow-cps-plugin.version>
+        <workflow-cps-plugin.version>2.65</workflow-cps-plugin.version>
     </properties>
     <dependencies>
         <dependency>
